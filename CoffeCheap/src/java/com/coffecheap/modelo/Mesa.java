@@ -3,7 +3,7 @@ Edward Vidal
 */
 package com.coffecheap.modelo;
 
-public class mesa {
+public class Mesa {
     private int id_mesa;
     private int cantidad_comensales;
     private String ubicacion;

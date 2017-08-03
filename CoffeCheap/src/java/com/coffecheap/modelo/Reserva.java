@@ -5,7 +5,7 @@ package com.coffecheap.modelo;
 
 import java.sql.Time;
 
-public class reserva {
+public class Reserva {
     private int id_reserva;
     private String fecha;
     private Time hora_inicio;

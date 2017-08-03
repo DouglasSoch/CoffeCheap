@@ -1,6 +1,6 @@
 package com.coffecheap.modelo;
 
-public class reseta {
+public class Reseta {
   int id_plato;
   int id_producto;
   int cantidad;

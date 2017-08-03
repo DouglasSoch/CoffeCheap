@@ -1,6 +1,6 @@
 package com.coffecheap.modelo;
 
-public class unidad_medida {
+public class Unidad_medida {
   int id_unidad;
   String nombre;
 

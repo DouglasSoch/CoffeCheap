@@ -1,6 +1,6 @@
 package com.coffecheap.modelo;
 
-public class transaccion_inventario {
+public class Transaccion_inventario {
   int id_trasaccion;
   String fecha;
   int id_producto;
