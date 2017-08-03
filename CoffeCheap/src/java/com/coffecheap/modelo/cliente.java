@@ -1,7 +1,8 @@
 /*
 Edward Vidal
 */
-package modelo;
+package com.coffecheap.modelo;
+
 public class cliente {
     private int id_cliente;
     private String nombre_cliente;

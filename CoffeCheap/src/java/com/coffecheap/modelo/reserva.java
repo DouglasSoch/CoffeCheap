@@ -1,7 +1,7 @@
 /*
 Edward Vidal
 */
-package modelo;
+package com.coffecheap.modelo;
 
 import java.sql.Time;
 

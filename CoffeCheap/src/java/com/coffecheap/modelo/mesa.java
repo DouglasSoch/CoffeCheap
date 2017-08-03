@@ -1,7 +1,8 @@
 /*
 Edward Vidal
 */
-package modelo;
+package com.coffecheap.modelo;
+
 public class mesa {
     private int id_mesa;
     private int cantidad_comensales;

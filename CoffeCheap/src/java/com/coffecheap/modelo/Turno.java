@@ -1,4 +1,4 @@
-package modelo;
+package com.coffecheap.modelo;
 
 public class Turno {
     
