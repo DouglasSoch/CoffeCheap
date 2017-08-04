@@ -1,0 +1,87 @@
+package com.coffecheap.modelo;
+
+import java.util.Objects;
+
+public class Cliente 
+{
+    int id_cliente = 0 ;
+    String nombre = null;
+    String direccion = null;
+
+    public Cliente() {
+    }
+
+    public Cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    public Cliente(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Cliente(int id_cliente, String nombre, String direccion) {
+        this.id_cliente = id_cliente;
+        this.nombre = nombre;
+        this.direccion = direccion;
+    }
+    
+    public int getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + this.id_cliente;
+        hash = 79 * hash + Objects.hashCode(this.nombre);
+        hash = 79 * hash + Objects.hashCode(this.direccion);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (this.id_cliente != other.id_cliente) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return Objects.equals(this.direccion, other.direccion);
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "id_cliente=" + id_cliente + ", nombre=" + nombre + ", direccion=" + direccion + '}';
+    }
+   
+}
