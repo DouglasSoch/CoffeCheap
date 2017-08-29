@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Pedido 
 {
     int id_pedido = 0;
-    Mesa mesa = new Mesa();
+    Mesa mesa = new Mesa(); 
     Time hora = null;
     Personal_mesero Pmesero = new Personal_mesero();
 

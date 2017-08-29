@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Reseta 
 {
-    Plato plato;
-    Producto producto;
-    int cantidad;
-    Unidad_medida Umedida;
+    Plato plato = new Plato();
+    Producto producto = new Producto();
+    int cantidad = 0;
+    Unidad_medida Umedida = new Unidad_medida();
 
     public Reseta() {
     }
@@ -25,6 +25,13 @@ public class Reseta
     }
 
     public Reseta(Unidad_medida Umedida) {
+        this.Umedida = Umedida;
+    }
+
+    public Reseta(Plato plato, Producto producto, int cantidad, Unidad_medida Umedida) {
+        this.plato = plato;
+        this.producto = producto;
+        this.cantidad = cantidad;
         this.Umedida = Umedida;
     }
     

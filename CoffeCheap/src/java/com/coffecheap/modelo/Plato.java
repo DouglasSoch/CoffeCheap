@@ -6,13 +6,13 @@ public class Plato
 {
     int id_plato = 0;
     String nombre = null;
-    int precio = 0;
-    int porciones = 0;
+    Double precio = 0.0;
+    int porciones  = 0;
     String descripcion = null;
 
     public Plato() {
     }
-
+    
     public Plato(int id_plato) {
         this.id_plato = id_plato;
     }
@@ -21,7 +21,11 @@ public class Plato
         this.nombre = nombre;
     }
 
-    public Plato(int id_plato, String nombre, int precio, int porciones, String descripcion) {
+    public Plato(Double precio) {
+        this.precio = precio;
+    }
+
+    public Plato(int id_plato, String nombre, Double precio, int porciones, String descripcion) {
         this.id_plato = id_plato;
         this.nombre = nombre;
         this.precio = precio;
@@ -45,11 +49,11 @@ public class Plato
         this.nombre = nombre;
     }
 
-    public int getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
@@ -72,11 +76,11 @@ public class Plato
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + this.id_plato;
-        hash = 83 * hash + Objects.hashCode(this.nombre);
-        hash = 83 * hash + this.precio;
-        hash = 83 * hash + this.porciones;
-        hash = 83 * hash + Objects.hashCode(this.descripcion);
+        hash = 53 * hash + this.id_plato;
+        hash = 53 * hash + Objects.hashCode(this.nombre);
+        hash = 53 * hash + Objects.hashCode(this.precio);
+        hash = 53 * hash + this.porciones;
+        hash = 53 * hash + Objects.hashCode(this.descripcion);
         return hash;
     }
 
@@ -95,9 +99,6 @@ public class Plato
         if (this.id_plato != other.id_plato) {
             return false;
         }
-        if (this.precio != other.precio) {
-            return false;
-        }
         if (this.porciones != other.porciones) {
             return false;
         }
@@ -107,7 +108,7 @@ public class Plato
         if (!Objects.equals(this.descripcion, other.descripcion)) {
             return false;
         }
-        return true;
+        return Objects.equals(this.precio, other.precio);
     }
 
     @Override

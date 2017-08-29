@@ -1,12 +1,13 @@
 package com.coffecheap.modelo;
 
 import java.sql.Time;
+import java.util.Date;
 import java.util.Objects;
 
 public class Reserva 
 {
     int id_reserva = 0; 
-    String fecha = null;
+    Date fecha = null;
     Time hora_inicio = null;
     Time hora_final = null;
     String cantidad_personas = null;
@@ -18,7 +19,7 @@ public class Reserva
         this.id_reserva = id_reserva;
     }
 
-    public Reserva(String fecha) {
+    public Reserva(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -26,14 +27,18 @@ public class Reserva
         this.hora_inicio = hora_inicio;
     }
 
-    public Reserva(int id_reserva, String fecha, Time hora_inicio, Time hora_final, String cantidad_personas) {
+    public Reserva(String cantidad_personas) {
+        this.cantidad_personas = cantidad_personas;
+    }
+
+    public Reserva(int id_reserva, Date fecha, Time hora_inicio, Time hora_final, String cantidad_personas) {
         this.id_reserva = id_reserva;
         this.fecha = fecha;
         this.hora_inicio = hora_inicio;
         this.hora_final = hora_final;
         this.cantidad_personas = cantidad_personas;
     }
-    
+
     public int getId_reserva() {
         return id_reserva;
     }
@@ -42,11 +47,11 @@ public class Reserva
         this.id_reserva = id_reserva;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -76,12 +81,12 @@ public class Reserva
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 61 * hash + this.id_reserva;
-        hash = 61 * hash + Objects.hashCode(this.fecha);
-        hash = 61 * hash + Objects.hashCode(this.hora_inicio);
-        hash = 61 * hash + Objects.hashCode(this.hora_final);
-        hash = 61 * hash + Objects.hashCode(this.cantidad_personas);
+        int hash = 7;
+        hash = 23 * hash + this.id_reserva;
+        hash = 23 * hash + Objects.hashCode(this.fecha);
+        hash = 23 * hash + Objects.hashCode(this.hora_inicio);
+        hash = 23 * hash + Objects.hashCode(this.hora_final);
+        hash = 23 * hash + Objects.hashCode(this.cantidad_personas);
         return hash;
     }
 
@@ -100,10 +105,10 @@ public class Reserva
         if (this.id_reserva != other.id_reserva) {
             return false;
         }
-        if (!Objects.equals(this.fecha, other.fecha)) {
+        if (!Objects.equals(this.cantidad_personas, other.cantidad_personas)) {
             return false;
         }
-        if (!Objects.equals(this.cantidad_personas, other.cantidad_personas)) {
+        if (!Objects.equals(this.fecha, other.fecha)) {
             return false;
         }
         if (!Objects.equals(this.hora_inicio, other.hora_inicio)) {
