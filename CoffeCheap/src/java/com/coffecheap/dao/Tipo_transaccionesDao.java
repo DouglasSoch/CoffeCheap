@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author acier
  */
-public class Tipo_transaccionesDAO extends Dao {
+public class Tipo_transaccionesDao extends Dao {
 
   public void registrar(Tipo_transacciones Tt) throws Exception {
     

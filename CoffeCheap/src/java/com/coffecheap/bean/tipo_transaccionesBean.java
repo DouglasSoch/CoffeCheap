@@ -6,7 +6,7 @@ package com.coffecheap.bean;
  */
 
 import com.coffecheap.modelo.Tipo_transacciones;
-import com.coffecheap.dao.Tipo_transaccionesDAO;
+import com.coffecheap.dao.Tipo_transaccionesDao;
 
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -40,10 +40,10 @@ public class tipo_transaccionesBean {
 
     System.out.println("*******************************************************registrar");
 
-    Tipo_transaccionesDAO dao;
+    Tipo_transaccionesDao dao;
 
     try {
-      dao = new Tipo_transaccionesDAO();
+      dao = new Tipo_transaccionesDao();
       dao.registrar(tipo_transacciones);
     } catch (Exception e) {
       System.out.println(e);
@@ -52,10 +52,10 @@ public class tipo_transaccionesBean {
   }
 
   public void listar() throws Exception {
-    Tipo_transaccionesDAO dao;
+    Tipo_transaccionesDao dao;
 
     try {
-      dao = new Tipo_transaccionesDAO();
+      dao = new Tipo_transaccionesDao();
       lstTipo_transacciones = dao.listar();
     } catch (Exception e) {
       throw e;
@@ -65,10 +65,10 @@ public class tipo_transaccionesBean {
 
   public void modificar(Tipo_transacciones mar) throws Exception {
     System.out.println("*******************************************************Modificar");
-    Tipo_transaccionesDAO dao;
+    Tipo_transaccionesDao dao;
 
     try {
-      dao = new Tipo_transaccionesDAO();
+      dao = new Tipo_transaccionesDao();
       dao.modificar(mar);
 
     } catch (Exception e) {
@@ -79,10 +79,10 @@ public class tipo_transaccionesBean {
 
   public void eliminar(Tipo_transacciones mar) throws Exception {
     System.out.println("*******************************************************eliminar");
-    Tipo_transaccionesDAO dao;
+    Tipo_transaccionesDao dao;
 
     try {
-      dao = new Tipo_transaccionesDAO();
+      dao = new Tipo_transaccionesDao();
       dao.eliminar(mar);
 
     } catch (Exception e) {
