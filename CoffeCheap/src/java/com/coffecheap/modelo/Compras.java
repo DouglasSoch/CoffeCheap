@@ -4,10 +4,14 @@ import java.util.Objects;
 
 public class Compras 
 {
-    int id_compras = 0;
+    int id_compras = 0 ;
     Orden_compras Ocompras = new Orden_compras();
     Proveedor proveedor = new Proveedor();
     Producto producto = new Producto();
+    int cantidad =0 ;
+    int costo = 0;
+    int no_fac= 0;
+    String serie = null;
 
     public Compras() {
     }
@@ -28,12 +32,21 @@ public class Compras
         this.producto = producto;
     }
 
-    public Compras(int id_compras, Orden_compras Ocompras, Proveedor proveedor, Producto producto) {
+    public Compras(String serie) {
+        this.serie = serie;
+    }
+
+    public Compras(int id_compras, Orden_compras Ocompras, Proveedor proveedor, Producto producto, int cantidad, int costo, int no_fac, String serie) {
         this.id_compras = id_compras;
         this.Ocompras = Ocompras;
         this.proveedor = proveedor;
         this.producto = producto;
+        this.cantidad = cantidad;
+        this.costo = costo;
+        this.no_fac = no_fac;
+        this.serie = serie;
     }
+    
     
     public int getId_compras() {
         return id_compras;
@@ -67,13 +80,49 @@ public class Compras
         this.producto = producto;
     }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public int getCosto() {
+        return costo;
+    }
+
+    public void setCosto(int costo) {
+        this.costo = costo;
+    }
+
+    public int getNo_fac() {
+        return no_fac;
+    }
+
+    public void setNo_fac(int no_fac) {
+        this.no_fac = no_fac;
+    }
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + this.id_compras;
-        hash = 31 * hash + Objects.hashCode(this.Ocompras);
-        hash = 31 * hash + Objects.hashCode(this.proveedor);
-        hash = 31 * hash + Objects.hashCode(this.producto);
+        hash = 79 * hash + this.id_compras;
+        hash = 79 * hash + Objects.hashCode(this.Ocompras);
+        hash = 79 * hash + Objects.hashCode(this.proveedor);
+        hash = 79 * hash + Objects.hashCode(this.producto);
+        hash = 79 * hash + this.cantidad;
+        hash = 79 * hash + this.costo;
+        hash = 79 * hash + this.no_fac;
+        hash = 79 * hash + Objects.hashCode(this.serie);
         return hash;
     }
 
@@ -92,6 +141,18 @@ public class Compras
         if (this.id_compras != other.id_compras) {
             return false;
         }
+        if (this.cantidad != other.cantidad) {
+            return false;
+        }
+        if (this.costo != other.costo) {
+            return false;
+        }
+        if (this.no_fac != other.no_fac) {
+            return false;
+        }
+        if (!Objects.equals(this.serie, other.serie)) {
+            return false;
+        }
         if (!Objects.equals(this.Ocompras, other.Ocompras)) {
             return false;
         }
@@ -103,6 +164,7 @@ public class Compras
 
     @Override
     public String toString() {
-        return "Compras{" + "id_compras=" + id_compras + ", Ocompras=" + Ocompras + ", proveedor=" + proveedor + ", producto=" + producto + '}';
+        return "Compras{" + "id_compras=" + id_compras + ", Ocompras=" + Ocompras + ", proveedor=" + proveedor + ", producto=" + producto + ", cantidad=" + cantidad + ", costo=" + costo + ", no_fac=" + no_fac + ", serie=" + serie + '}';
     }
+    
 }
