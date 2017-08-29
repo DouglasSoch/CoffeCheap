@@ -2,7 +2,7 @@ package com.coffecheap.modelo;
 
 import java.util.Objects;
 
-public class Compras 
+public class Compra 
 {
     int id_compras = 0 ;
     Orden_compras Ocompras = new Orden_compras();
@@ -13,30 +13,30 @@ public class Compras
     int no_fac= 0;
     String serie = null;
 
-    public Compras() {
+    public Compra() {
     }
 
-    public Compras(int id_compras) {
+    public Compra(int id_compras) {
         this.id_compras = id_compras;
     }
 
-    public Compras(Orden_compras Ocompras) {
+    public Compra(Orden_compras Ocompras) {
         this.Ocompras = Ocompras;
     }
 
-    public Compras(Proveedor proveedor) {
+    public Compra(Proveedor proveedor) {
         this.proveedor = proveedor;
     }
 
-    public Compras(Producto producto) {
+    public Compra(Producto producto) {
         this.producto = producto;
     }
 
-    public Compras(String serie) {
+    public Compra(String serie) {
         this.serie = serie;
     }
 
-    public Compras(int id_compras, Orden_compras Ocompras, Proveedor proveedor, Producto producto, int cantidad, int costo, int no_fac, String serie) {
+    public Compra(int id_compras, Orden_compras Ocompras, Proveedor proveedor, Producto producto, int cantidad, int costo, int no_fac, String serie) {
         this.id_compras = id_compras;
         this.Ocompras = Ocompras;
         this.proveedor = proveedor;
@@ -137,7 +137,7 @@ public class Compras
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Compras other = (Compras) obj;
+        final Compra other = (Compra) obj;
         if (this.id_compras != other.id_compras) {
             return false;
         }
