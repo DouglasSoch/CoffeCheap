@@ -15,74 +15,74 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class Personal_ChefBean {
 
-    Personal_chef personal = new Personal_chef();
-    List <Personal_chef> lista = new ArrayList();
+  Personal_chef personal = new Personal_chef();
+  List<Personal_chef> lista = new ArrayList();
 
-    public Personal_chef getPersonal() {
-        return personal;
-    }
+  public Personal_chef getPersonal() {
+    return personal;
+  }
 
-    public void setPersonal(Personal_chef personal) {
-        this.personal = personal;
-    }
+  public void setPersonal(Personal_chef personal) {
+    this.personal = personal;
+  }
 
-    public List<Personal_chef> getLista() {
-        return lista;
-    }
+  public List<Personal_chef> getLista() {
+    return lista;
+  }
 
-    public void setLista(List<Personal_chef> lista) {
-        this.lista = lista;
+  public void setLista(List<Personal_chef> lista) {
+    this.lista = lista;
+  }
+
+  public Personal_ChefBean() {
+  }
+
+  public void Ingresar() throws Exception {
+
+    Personal_chefDao dao;
+
+    try {
+      dao = new Personal_chefDao();
+      dao.Ingresar(personal);
+    } catch (Exception e) {
+      throw e;
     }
-    
-    public Personal_ChefBean() {
+  }
+
+  public void Modificar() throws Exception {
+
+    Personal_chefDao dao;
+
+    try {
+      dao = new Personal_chefDao();
+      dao.Modificar(personal);
+    } catch (Exception e) {
+      throw e;
     }
-    
-    public void Ingresar() throws Exception{
-        
-        Personal_chefDao dao;
-        
-        try {
-            dao = new Personal_chefDao();
-            dao.Ingresar(personal);
-        } catch (Exception e) {
-            throw e;
-        }
+  }
+
+  public void Eliminar() throws Exception {
+
+    Personal_chefDao dao;
+
+    try {
+      dao = new Personal_chefDao();
+      dao.Eliminar(personal);
+    } catch (Exception e) {
+      throw e;
     }
-    
-    public void Modificar() throws Exception{
-        
-        Personal_chefDao dao;
-        
-        try {
-            dao = new Personal_chefDao();
-            dao.Modificar(personal);
-        } catch (Exception e) {
-            throw e;
-        }
+  }
+
+  public void Mostrar() throws Exception {
+
+    Personal_chefDao dao;
+
+    try {
+      dao = new Personal_chefDao();
+      lista = dao.Mostrar();
+    } catch (Exception e) {
+      throw e;
     }
-    
-    public void Eliminar() throws Exception{
-        
-        Personal_chefDao dao;
-        
-        try {
-            dao = new Personal_chefDao();
-            dao.Eliminar(personal);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-    
-    public void Mostrar() throws Exception{
-        
-        Personal_chefDao dao;
-        
-        try {
-            dao = new Personal_chefDao();
-            lista = dao.Mostrar();
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-            
+  }
+
 }

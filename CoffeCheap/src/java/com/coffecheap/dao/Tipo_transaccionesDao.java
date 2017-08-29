@@ -18,14 +18,13 @@ import java.util.List;
 public class Tipo_transaccionesDao extends Dao {
 
   public void registrar(Tipo_transacciones Tt) throws Exception {
-    
 
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("insert into tipo_transacciones values(?,?);");
 
       st.setInt(1, Tt.getId_tipo_transacciones());
-      st.setString(2, Tt.getNombre());      
+      st.setString(2, Tt.getNombre());
 
       st.executeUpdate();
 
@@ -52,7 +51,6 @@ public class Tipo_transaccionesDao extends Dao {
 
         tt.setId_tipo_transacciones(rs.getInt(1));
         tt.setNombre(rs.getString(2));
-     
 
         lista.add(tt);
       }
