@@ -6,14 +6,16 @@ import java.util.Objects;
 
 public class Reserva 
 {
-    int id_reserva = 0; 
-    Date fecha = null;
-    Time hora_inicio = null;
-    Time hora_final = null;
-    String cantidad_personas = null;
+    int id_reserva; 
+    Date fecha ;
+    Time hora_inicio ;
+    Time hora_final ;
+    int cantidad_personas ;
 
     public Reserva() {
     }
+    
+    
 
     public Reserva(int id_reserva) {
         this.id_reserva = id_reserva;
@@ -27,18 +29,14 @@ public class Reserva
         this.hora_inicio = hora_inicio;
     }
 
-    public Reserva(String cantidad_personas) {
-        this.cantidad_personas = cantidad_personas;
-    }
-
-    public Reserva(int id_reserva, Date fecha, Time hora_inicio, Time hora_final, String cantidad_personas) {
+    public Reserva(int id_reserva, Date fecha, Time hora_inicio, Time hora_final, int cantidad_personas) {
         this.id_reserva = id_reserva;
         this.fecha = fecha;
         this.hora_inicio = hora_inicio;
         this.hora_final = hora_final;
         this.cantidad_personas = cantidad_personas;
     }
-
+    
     public int getId_reserva() {
         return id_reserva;
     }
@@ -71,22 +69,22 @@ public class Reserva
         this.hora_final = hora_final;
     }
 
-    public String getCantidad_personas() {
+    public int getCantidad_personas() {
         return cantidad_personas;
     }
 
-    public void setCantidad_personas(String cantidad_personas) {
+    public void setCantidad_personas(int cantidad_personas) {
         this.cantidad_personas = cantidad_personas;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + this.id_reserva;
-        hash = 23 * hash + Objects.hashCode(this.fecha);
-        hash = 23 * hash + Objects.hashCode(this.hora_inicio);
-        hash = 23 * hash + Objects.hashCode(this.hora_final);
-        hash = 23 * hash + Objects.hashCode(this.cantidad_personas);
+        hash = 29 * hash + this.id_reserva;
+        hash = 29 * hash + Objects.hashCode(this.fecha);
+        hash = 29 * hash + Objects.hashCode(this.hora_inicio);
+        hash = 29 * hash + Objects.hashCode(this.hora_final);
+        hash = 29 * hash + this.cantidad_personas;
         return hash;
     }
 
@@ -105,7 +103,7 @@ public class Reserva
         if (this.id_reserva != other.id_reserva) {
             return false;
         }
-        if (!Objects.equals(this.cantidad_personas, other.cantidad_personas)) {
+        if (this.cantidad_personas != other.cantidad_personas) {
             return false;
         }
         if (!Objects.equals(this.fecha, other.fecha)) {
@@ -121,4 +119,6 @@ public class Reserva
     public String toString() {
         return "Reserva{" + "id_reserva=" + id_reserva + ", fecha=" + fecha + ", hora_inicio=" + hora_inicio + ", hora_final=" + hora_final + ", cantidad_personas=" + cantidad_personas + '}';
     }
+
+    
 }
