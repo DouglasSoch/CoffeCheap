@@ -22,12 +22,12 @@ public class Orden_comprasDao extends Dao {
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("insert into orden_compras values(?,?,?,?,?);");
-
       st.setInt(1, Tt.getId_orden_compras());
       st.setDate(2, Tt.getFecha_orden());
       st.setDate(3, Tt.getFecha_entrega());
-      st.setInt(4, Tt.getPproductos().getProducto().getId_producto());
+      st.setDouble(3, Tt.getPrecioo());
       
+      st.setInt(4, Tt.getPproductos().getProducto().getId_producto());   
       
      st.setInt(4, Tt.getReserva().getId_reserva());
      st.setInt(5, Tt.getCliente().getId_cliente());

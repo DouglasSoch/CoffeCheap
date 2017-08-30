@@ -80,11 +80,11 @@ public class Orden_compras
         this.Pproductos = Pproductos;
     }
 
-    public Double getPrecioo() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecioo(Double precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
 
