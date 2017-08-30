@@ -10,7 +10,7 @@ public class Orden_compras
     Date fecha_entrega = null;
     int cantidad =0;
     Proveedor_productos Pproductos = new Proveedor_productos();
-    Double precioo = 0.0;
+    Double precio = 0.0;
 
     public Orden_compras() {
     }
@@ -27,17 +27,17 @@ public class Orden_compras
         this.Pproductos = Pproductos;
     }
 
-    public Orden_compras(Double precioo) {
-        this.precioo = precioo;
+    public Orden_compras(Double precio) {
+        this.precio = precio;
     }
 
-    public Orden_compras(int id_orden_compras, Date fecha_orden, Date fecha_entrega, int cantidad, Proveedor_productos Pproductos, Double precioo) {
+    public Orden_compras(int id_orden_compras, Date fecha_orden, Date fecha_entrega, int cantidad, Proveedor_productos Pproductos, Double precio) {
         this.id_orden_compras = id_orden_compras;
         this.fecha_orden = fecha_orden;
         this.fecha_entrega = fecha_entrega;
         this.cantidad = cantidad;
         this.Pproductos = Pproductos;
-        this.precioo = precioo;
+        this.precio = precio;
     }
     
     public int getId_orden_compras() {
@@ -81,11 +81,11 @@ public class Orden_compras
     }
 
     public Double getPrecioo() {
-        return precioo;
+        return precio;
     }
 
-    public void setPrecioo(Double precioo) {
-        this.precioo = precioo;
+    public void setPrecioo(Double precio) {
+        this.precio = precio;
     }
 
     @Override
@@ -96,7 +96,7 @@ public class Orden_compras
         hash = 79 * hash + Objects.hashCode(this.fecha_entrega);
         hash = 79 * hash + this.cantidad;
         hash = 79 * hash + Objects.hashCode(this.Pproductos);
-        hash = 79 * hash + Objects.hashCode(this.precioo);
+        hash = 79 * hash + Objects.hashCode(this.precio);
         return hash;
     }
 
@@ -127,12 +127,12 @@ public class Orden_compras
         if (!Objects.equals(this.Pproductos, other.Pproductos)) {
             return false;
         }
-        return Objects.equals(this.precioo, other.precioo);
+        return Objects.equals(this.precio, other.precio);
     }
 
     @Override
     public String toString() {
-        return "Orden_compras{" + "id_orden_compras=" + id_orden_compras + ", fecha_orden=" + fecha_orden + ", fecha_entrega=" + fecha_entrega + ", cantidad=" + cantidad + ", Pproductos=" + Pproductos + ", precioo=" + precioo + '}';
+        return "Orden_compras{" + "id_orden_compras=" + id_orden_compras + ", fecha_orden=" + fecha_orden + ", fecha_entrega=" + fecha_entrega + ", cantidad=" + cantidad + ", Pproductos=" + Pproductos + ", precio=" + precio + '}';
     }
     
 }
