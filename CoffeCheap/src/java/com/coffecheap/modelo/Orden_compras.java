@@ -8,9 +8,9 @@ public class Orden_compras
     int id_orden_compras = 0;
     Date fecha_orden = null;
     Date fecha_entrega = null;
-    int cantidad = 0;
+    int cantidad =0;
     Proveedor_productos Pproductos = new Proveedor_productos();
-    int precio = 0;
+    Double precioo = 0.0;
 
     public Orden_compras() {
     }
@@ -27,15 +27,19 @@ public class Orden_compras
         this.Pproductos = Pproductos;
     }
 
-    public Orden_compras(int id_orden_compras, Date fecha_orden, Date fecha_entrega, int cantidad, Proveedor_productos Pproductos, int precio) {
+    public Orden_compras(Double precioo) {
+        this.precioo = precioo;
+    }
+
+    public Orden_compras(int id_orden_compras, Date fecha_orden, Date fecha_entrega, int cantidad, Proveedor_productos Pproductos, Double precioo) {
         this.id_orden_compras = id_orden_compras;
         this.fecha_orden = fecha_orden;
         this.fecha_entrega = fecha_entrega;
         this.cantidad = cantidad;
         this.Pproductos = Pproductos;
-        this.precio = precio;
+        this.precioo = precioo;
     }
-
+    
     public int getId_orden_compras() {
         return id_orden_compras;
     }
@@ -76,23 +80,23 @@ public class Orden_compras
         this.Pproductos = Pproductos;
     }
 
-    public int getPrecio() {
-        return precio;
+    public Double getPrecioo() {
+        return precioo;
     }
 
-    public void setPrecio(int precio) {
-        this.precio = precio;
+    public void setPrecioo(Double precioo) {
+        this.precioo = precioo;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + this.id_orden_compras;
-        hash = 59 * hash + Objects.hashCode(this.fecha_orden);
-        hash = 59 * hash + Objects.hashCode(this.fecha_entrega);
-        hash = 59 * hash + this.cantidad;
-        hash = 59 * hash + Objects.hashCode(this.Pproductos);
-        hash = 59 * hash + this.precio;
+        int hash = 3;
+        hash = 79 * hash + this.id_orden_compras;
+        hash = 79 * hash + Objects.hashCode(this.fecha_orden);
+        hash = 79 * hash + Objects.hashCode(this.fecha_entrega);
+        hash = 79 * hash + this.cantidad;
+        hash = 79 * hash + Objects.hashCode(this.Pproductos);
+        hash = 79 * hash + Objects.hashCode(this.precioo);
         return hash;
     }
 
@@ -114,20 +118,21 @@ public class Orden_compras
         if (this.cantidad != other.cantidad) {
             return false;
         }
-        if (this.precio != other.precio) {
-            return false;
-        }
         if (!Objects.equals(this.fecha_orden, other.fecha_orden)) {
             return false;
         }
         if (!Objects.equals(this.fecha_entrega, other.fecha_entrega)) {
             return false;
         }
-        return Objects.equals(this.Pproductos, other.Pproductos);
+        if (!Objects.equals(this.Pproductos, other.Pproductos)) {
+            return false;
+        }
+        return Objects.equals(this.precioo, other.precioo);
     }
 
     @Override
     public String toString() {
-        return "Orden_compras{" + "id_orden_compras=" + id_orden_compras + ", fecha_orden=" + fecha_orden + ", fecha_entrega=" + fecha_entrega + ", cantidad=" + cantidad + ", Pproductos=" + Pproductos + ", precio=" + precio + '}';
+        return "Orden_compras{" + "id_orden_compras=" + id_orden_compras + ", fecha_orden=" + fecha_orden + ", fecha_entrega=" + fecha_entrega + ", cantidad=" + cantidad + ", Pproductos=" + Pproductos + ", precioo=" + precioo + '}';
     }
+    
 }
