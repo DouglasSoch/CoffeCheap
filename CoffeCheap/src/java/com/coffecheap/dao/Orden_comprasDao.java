@@ -25,12 +25,9 @@ public class Orden_comprasDao extends Dao {
       st.setInt(1, Tt.getId_orden_compras());
       st.setDate(2, Tt.getFecha_orden());
       st.setDate(3, Tt.getFecha_entrega());
-      st.setDouble(3, Tt.getPrecioo());
-      
-      st.setInt(4, Tt.getPproductos().getProducto().getId_producto());   
-      
-     st.setInt(4, Tt.getReserva().getId_reserva());
-     st.setInt(5, Tt.getCliente().getId_cliente());
+      st.setInt(4, Tt.getCantidad());    
+      st.setInt(5, Tt.getPproductos().getProducto().getId_producto());   
+      st.setInt(6, Tt.getPproductos().getId_proveedor());   
 
       st.executeUpdate();
 
@@ -56,10 +53,11 @@ public class Orden_comprasDao extends Dao {
         Orden_compras tt = new Orden_compras();
 
         tt.setId_orden_compras(rs.getInt(1));
-        tt.setCantidad_comensales(rs.getInt(2));
-        tt.setUbicacion(rs.getString(3));
-        tt.getReserva().setId_reserva(rs.getInt(4));
-        tt.getCliente().setId_cliente(rs.getInt(5));
+        tt.setFecha_orden(rs.getDate(2));
+        tt.setFecha_entrega(rs.getDate(3));
+        tt.getPproductos().getProducto().setId_producto(rs.getInt(4));
+        tt.getPproductos().setId_proveedor(rs.getInt(5));
+        tt.setPrecio(rs.getDouble(6));
         lista.add(tt);
       }
 
@@ -80,13 +78,12 @@ public class Orden_comprasDao extends Dao {
       PreparedStatement st = this.getCon().prepareStatement("UPDATE  orden_compras SET id_Orden_compras=?, cantidad_Comensales=?, Ubicacion=?, id_reserva=?, id_cliente=? WHERE id_Orden_compras=?;");
 
       st.setInt(1, tt.getId_orden_compras());
-      st.setInt(2, tt.getCantidad_comensales());
-      st.setString(3, tt.getUbicacion());
-      st.setInt(4, tt.getReserva().getId_reserva());
-      st.setInt(5, tt.getCliente().getId_cliente());
-      
-      st.setInt(6, tt.getId_orden_compras());
-
+      st.setDate(2, tt.getFecha_orden());
+      st.setDate(3, tt.getFecha_entrega());
+      st.setInt(4, tt.getCantidad());    
+      st.setInt(5, tt.getPproductos().getProducto().getId_producto());   
+      st.setInt(6, tt.getPproductos().getId_proveedor()); 
+      st.setInt(7, tt.getId_orden_compras());
       st.executeUpdate();
 
     } catch (Exception ex) {
