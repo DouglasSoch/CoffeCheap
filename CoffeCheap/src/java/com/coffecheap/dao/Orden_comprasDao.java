@@ -21,7 +21,7 @@ public class Orden_comprasDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into orden_compras values(?,?,?,?,?);");
+      PreparedStatement st = this.getCon().prepareStatement("insert into orden_compras values(?,?,?,?,?,?);");
       st.setInt(1, Tt.getId_orden_compras());
       st.setDate(2, Tt.getFecha_orden());
       st.setDate(3, Tt.getFecha_entrega());
@@ -75,7 +75,7 @@ public class Orden_comprasDao extends Dao {
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  orden_compras SET id_Orden_compras=?, cantidad_Comensales=?, Ubicacion=?, id_reserva=?, id_cliente=? WHERE id_Orden_compras=?;");
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE  orden_compras SET id_orden_compras=?, fecha_orden=?, fecha_entrega=?, cantidad_orden=?, id_producto=?, id_proveedor=?, precio=? WHERE id_orden_compras=?;");
 
       st.setInt(1, tt.getId_orden_compras());
       st.setDate(2, tt.getFecha_orden());
