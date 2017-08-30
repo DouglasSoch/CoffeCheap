@@ -33,7 +33,7 @@ public class TurnoBean {
     public TurnoBean() {
     }
     
-    public void Ingresar() throws Exception{
+    public void Ingreso() throws Exception{
         
         TurnoDao dao;
         
