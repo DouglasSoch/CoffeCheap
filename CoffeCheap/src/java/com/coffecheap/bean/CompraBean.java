@@ -80,7 +80,9 @@ public class CompraBean extends Dao {
             lista = dao.Mostrar();
         } catch (Exception e) {
             throw e;
-        }
-        
-    }
+        } 
+    }      
+    
+    
+    
 }
