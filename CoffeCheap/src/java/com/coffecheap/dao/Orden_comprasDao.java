@@ -27,7 +27,8 @@ public class Orden_comprasDao extends Dao {
       st.setDate(3, Tt.getFecha_entrega());
       st.setInt(4, Tt.getCantidad());    
       st.setInt(5, Tt.getPproductos().getProducto().getId_producto());   
-      st.setInt(6, Tt.getPproductos().getId_proveedor());   
+      st.setInt(6, Tt.getPproductos().getId_proveedor());
+      st.setInt(7, Tt.getPrecio());
 
       st.executeUpdate();
 
@@ -84,7 +85,9 @@ public class Orden_comprasDao extends Dao {
       st.setDate(3, tt.getFecha_entrega());
       st.setInt(4, tt.getCantidad());    
       st.setInt(5, tt.getPproductos().getProducto().getId_producto());   
-      st.setInt(6, tt.getPproductos().getId_proveedor());  
+      st.setInt(6, tt.getPproductos().getId_proveedor());
+      st.setDouble(7, tt.getPrecio());
+      st.setInt(8, tt.getId_orden_compras());
       st.executeUpdate();
 
 
