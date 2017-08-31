@@ -5,7 +5,7 @@
  */
 package com.coffecheap.dao;
 
-import com.coffecheap.modelo.Tipo_transacciones;
+import com.coffecheap.modelo.Pedido;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -17,14 +17,16 @@ import java.util.List;
  */
 public class PedidoDao extends Dao {
 
-  public void registrar(Tipo_transacciones Tt) throws Exception {
+  public void registrar(Pedido Tt) throws Exception {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into tipo_transacciones values(?,?);");
+      PreparedStatement st = this.getCon().prepareStatement("insert into pedido values(?,?);");
 
-      st.setInt(1, Tt.getId_tipo_transacciones());
-      st.setString(2, Tt.getNombre());
+      st.setInt(1, Tt.getId_pedido());
+      st.setInt(2, Tt.getMesa().getId_mesa());
+      st.setTime(3, Tt.getHora());
+      st.setInt(4, Tt.getPmesero().getId_personal_servicio());
 
       st.executeUpdate();
 
@@ -37,20 +39,22 @@ public class PedidoDao extends Dao {
 
   }
 
-  public List<Tipo_transacciones> listar() throws Exception {
-    List<Tipo_transacciones> lista;
+  public List<Pedido> listar() throws Exception {
+    List<Pedido> lista;
     ResultSet rs;
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM tipo_transacciones");
+      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM pedido");
       rs = st.executeQuery();
       lista = new ArrayList();
       while (rs.next()) {
-        Tipo_transacciones tt = new Tipo_transacciones();
+        Pedido tt = new Pedido();
 
-        tt.setId_tipo_transacciones(rs.getInt(1));
-        tt.setNombre(rs.getString(2));
+        tt.setId_pedido(rs.getInt(1));
+        tt.getMesa().setId_mesa(rs.getInt(2));
+        tt.setHora(rs.getTime(3));
+        tt.getPmesero().setId_personal_servicio(rs.getInt(4));
 
         lista.add(tt);
       }
@@ -65,15 +69,17 @@ public class PedidoDao extends Dao {
 
   }
 
-  public void modificar(Tipo_transacciones tt) throws Exception {
+  public void modificar(Pedido Tt) throws Exception {
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  tipo_transacciones SET id_tipo_transacciones=?, nombre_trasaccion=? WHERE id_tipo_transacciones=?;");
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE  pedido SET id_pedido=?, id_mesa=?, hora=?, id_personal=? WHERE id_pedido=?;");
 
-      st.setInt(1, tt.getId_tipo_transacciones());
-      st.setString(2, tt.getNombre());
-      st.setInt(3, tt.getId_tipo_transacciones());
+      st.setInt(1, Tt.getId_pedido());
+      st.setInt(2, Tt.getMesa().getId_mesa());
+      st.setTime(3, Tt.getHora());
+      st.setInt(4, Tt.getPmesero().getId_personal_servicio());
+      st.setInt(5, Tt.getId_pedido());
 
       st.executeUpdate();
 
@@ -86,12 +92,12 @@ public class PedidoDao extends Dao {
 
   }
 
-  public void eliminar(Tipo_transacciones pac) throws Exception {
+  public void eliminar(Pedido pac) throws Exception {
     System.out.println("*******************************************************eliminar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("DELETE FROM tipo_transacciones WHERE id_tipo_transacciones=?;");
-      st.setInt(1, pac.getId_tipo_transacciones());
+      PreparedStatement st = this.getCon().prepareStatement("DELETE FROM pedido WHERE id_pedido=?;");
+      st.setInt(1, pac.getId_pedido());
       st.executeUpdate();
 
     } catch (Exception ex) {
