@@ -75,7 +75,7 @@ public class TurnoBean {
         
         try {
             dao = new TurnoDao();
-            lista = dao.Mostrar();
+            lista = dao.Visualizar();
         } catch (Exception e) {
             throw e;
         }

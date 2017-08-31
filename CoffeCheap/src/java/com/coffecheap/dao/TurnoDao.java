@@ -60,7 +60,7 @@ public class TurnoDao extends Dao{
     }
     
     
-    public List<Turno> Mostrar() throws Exception{
+    public List<Turno> Visualizar() throws Exception{
         
         List<Turno> lista;
         ResultSet rs;
