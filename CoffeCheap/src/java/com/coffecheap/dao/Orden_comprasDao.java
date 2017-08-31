@@ -28,7 +28,7 @@ public class Orden_comprasDao extends Dao {
       st.setInt(4, Tt.getCantidad());    
       st.setInt(5, Tt.getPproductos().getProducto().getId_producto());   
       st.setInt(6, Tt.getPproductos().getId_proveedor());
-      st.setInt(7, Tt.getPrecio());
+      st.setDouble(7, Tt.getPrecio());
 
       st.executeUpdate();
 
