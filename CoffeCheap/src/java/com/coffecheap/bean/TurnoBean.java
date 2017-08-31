@@ -57,7 +57,7 @@ public class TurnoBean {
         }
     }
     
-    public void Modificar()throws Exception{
+    public void Editar()throws Exception{
         
         TurnoDao dao;
         
