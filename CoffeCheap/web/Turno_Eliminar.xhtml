@@ -10,7 +10,7 @@
         <h:form id="form1">
             <p:outputLabel for="codigo" value="Codigo:"/>
             <p:inputText id="codigo" value="#{turnoBean.turno.id_turno}"/><br/>
-            <p:commandButton value="Ingresar" action="#{turnoBean.Eliminar}" update="form1"/>
+            <p:commandButton value="Ingresar" action="#{turnoBean.Eliminar()}" update="form1"/>
         </h:form>
     </h:body>
 </html>
