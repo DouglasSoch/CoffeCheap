@@ -22,6 +22,10 @@ public class Personal_chefDao extends Dao {
             throw e;
         } finally {
             this.Desconecar();
+            personal.setId_personal(0);
+            personal.setNombre(null);
+            personal.setTelefono(0);
+            personal.getTurno().setId_turno(0);
         }
     }
 
@@ -54,6 +58,7 @@ public class Personal_chefDao extends Dao {
             throw e;
         } finally {
             this.Desconecar();
+            
         }
     }
 
