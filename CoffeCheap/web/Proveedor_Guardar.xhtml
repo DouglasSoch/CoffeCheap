@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+
+            <ui:define name="content">
+
+                <h:form id="form1">
+                    <h:panelGrid id="general" columns="2" cellpadding="5">
+                        <p:outputLabel for="codigo" value="Codigo"/>
+                        <p:inputText id="codigo" value="#{proveedorBean.proveedor.id_provedor}"/>
+                        <p:outputLabel for="nombre" value="Nombre"/>
+                        <p:inputText id="nombre" value="#{proveedorBean.proveedor.nombre}"/>
+                        <p:outputLabel for="telefono" value="Telefono"/>
+                        <p:inputText id="telefono" value="#{proveedorBean.proveedor.telefono}"/>
+                        <p:outputLabel for="correo" value="Email"/>
+                        <p:inputText id="correo" value="#{proveedorBean.proveedor.mail}"/>
+                        <p:outputLabel for="direccion" value="Direccion"/>
+                        <p:inputText id="direccion" value="#{proveedorBean.proveedor.direccion}"/>
+                    </h:panelGrid><br/>
+                    <p:commandButton value="Guardar" action="#{proveedorBean.Ingresar()}" update="form1"/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+
