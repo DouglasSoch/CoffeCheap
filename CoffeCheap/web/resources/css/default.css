@@ -32,27 +32,31 @@ a:link:hover, a:visited:hover  {
 .ui-dialog.ui-widget-content {
   background-image: none;
   background-color: rgba(83,72,63,0.5);
+   font-size: 16px;
 }
 
 .ui-datalist-content.ui-widget-content{  
   background-image: none;
-  background-color: rgba(83,72,63,0.1);  
+  background-color: rgba(83,72,63,0.1);
+ font-size: 16px;  
 }
 
 .ui-widget-content{
   
   background-image: none;
   background-color: rgba(83,72,63,0.1);
-  
+   font-size: 16px;  
 }
 
 .ui-button-text.ui-c{
   background-color: rgba(83,72,63,0.1);
+   font-size: 16px; 
 
 }
 
 input{
   background-color: rgba(239,224,213,0.1);
+   font-size: 16px;
 
 }
 
