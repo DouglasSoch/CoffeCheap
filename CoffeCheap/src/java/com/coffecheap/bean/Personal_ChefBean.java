@@ -67,7 +67,7 @@ public class Personal_ChefBean {
 
     try {
       dao = new Personal_chefDao();
-      dao.Eliminar(personal);
+      dao.Borrar(personal);
     } catch (Exception e) {
       throw e;
     }

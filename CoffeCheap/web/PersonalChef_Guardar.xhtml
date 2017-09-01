@@ -8,17 +8,17 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <f:event type="preRenderView" listener="#{turnoBean.Mostrar()}"/>
+        
         <h:form id="form1">
+            <f:event type="preRenderView" listener="#{turnoBean.Mostrar()}"/>
             <p:outputLabel for="Codigo" value="Codigo"/>
             <p:inputText id="Codigo" value="#{personal_ChefBean.personal.id_personal}"/><br/>
             <p:outputLabel for="Nombre" value="Nombre"/>
             <p:inputText id="Nombre" value="#{personal_ChefBean.personal.nombre}"/><br/>
             <p:outputLabel for="TelefonoChef" value="Telefono"/>
             <p:inputText id="TelefonoChef" value="#{personal_ChefBean.personal.telefono}"/><br/>
-            <p:outputLabel value="Turno"/><br/>
-            <p:selectOneMenu value="#{personal_ChefBean.personal.turno.id_turno}" style="width:200px"><br/>
-                <f:selectItem itemLabel="Turno..." itemValue=""/>
+            <p:outputLabel for="TurnoChef" value="Turno"/><br/>
+            <p:selectOneMenu id="TurnoChef" value="#{personal_ChefBean.personal.turno.id_turno}" style="width:200px"><br/>
                 <f:selectItems value="#{turnoBean.lista}" var="turno" itemLabel="#{turno.horario_turno}" itemValue="#{turno.id_turno}"/>
             </p:selectOneMenu><br/>
             <p:commandButton value="Guardar" action="#{personal_ChefBean.Guardar()}" update="form1"/>
