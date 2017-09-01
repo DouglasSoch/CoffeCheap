@@ -28,13 +28,21 @@
             <p:dataList value="#{pedidoBean.lstPedido}" var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
 
               <p:column>
-                <f:facet name="header">Codigo de la trasaccion</f:facet>
+                <f:facet name="header">Id Pedido</f:facet>
                 <h:inputText value="#{tabla.id_pedido}" style="color: #ffffff; width : 30px" />
               </p:column>
               <p:column>
-                <f:facet name="header">Nombre de la trasaccion</f:facet>
-                <h:inputText value="#{tabla.nombre}" style="color: #ffffff; width : 160px" />
+                <f:facet name="header">Id Mesa</f:facet>
+                <h:inputText value="#{tabla.mesa.id_mesa}" style="color: #ffffff; width : 160px" />
               </p:column>
+              <p:column>
+                <f:facet name="header">hora</f:facet>
+                <h:inputText value="#{tabla.hora}" style="color: #ffffff; width : 160px" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">id personal</f:facet>
+                <h:inputText value="#{tabla.pmesero.id_personal_servicio}" style="color: #ffffff; width : 160px" />
+              </p:column>              
 
               <p:column>
                 <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{pedidoBean.eliminar(tabla)}"/>                    
