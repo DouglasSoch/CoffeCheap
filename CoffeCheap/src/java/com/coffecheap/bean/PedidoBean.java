@@ -5,8 +5,8 @@ package com.coffecheap.bean;
  * @marhor acier
  */
 
-import com.coffecheap.modelo.Tipo_transacciones;
-import com.coffecheap.dao.Tipo_transaccionesDao;
+import com.coffecheap.modelo.Pedido;
+import com.coffecheap.dao.PedidoDao;
 
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -17,34 +17,34 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class PedidoBean {
 
-  private Tipo_transacciones tipo_transacciones = new Tipo_transacciones();
-  private List<Tipo_transacciones> lstTipo_transacciones;
+  private Pedido pedido = new Pedido();
+  private List<Pedido> lstPedido;
 
-  public Tipo_transacciones getTipo_transacciones() {
-    return tipo_transacciones;
+  public Pedido getPedido() {
+    return pedido;
   }
 
-  public void setTipo_transacciones(Tipo_transacciones tipo_transacciones) {
-    this.tipo_transacciones = tipo_transacciones;
+  public void setPedido(Pedido pedido) {
+    this.pedido = pedido;
   }
 
-  public List<Tipo_transacciones> getLstTipo_transacciones() {
-    return lstTipo_transacciones;
+  public List<Pedido> getLstPedido() {
+    return lstPedido;
   }
 
-  public void setLstTipo_transacciones(List<Tipo_transacciones> lstTipo_transacciones) {
-    this.lstTipo_transacciones = lstTipo_transacciones;
+  public void setLstPedido(List<Pedido> lstPedido) {
+    this.lstPedido = lstPedido;
   }
 
   public void registrar() {
 
     System.out.println("*******************************************************registrar");
 
-    Tipo_transaccionesDao dao;
+    PedidoDao dao;
 
     try {
-      dao = new Tipo_transaccionesDao();
-      dao.registrar(tipo_transacciones);
+      dao = new PedidoDao();
+      dao.registrar(pedido);
     } catch (Exception e) {
       System.out.println(e);
     }
@@ -52,23 +52,23 @@ public class PedidoBean {
   }
 
   public void listar() throws Exception {
-    Tipo_transaccionesDao dao;
+    PedidoDao dao;
 
     try {
-      dao = new Tipo_transaccionesDao();
-      lstTipo_transacciones = dao.listar();
+      dao = new PedidoDao();
+      lstPedido = dao.listar();
     } catch (Exception e) {
       throw e;
     }
 
   }
 
-  public void modificar(Tipo_transacciones mar) throws Exception {
+  public void modificar(Pedido mar) throws Exception {
     System.out.println("*******************************************************Modificar");
-    Tipo_transaccionesDao dao;
+    PedidoDao dao;
 
     try {
-      dao = new Tipo_transaccionesDao();
+      dao = new PedidoDao();
       dao.modificar(mar);
 
     } catch (Exception e) {
@@ -77,12 +77,12 @@ public class PedidoBean {
 
   }
 
-  public void eliminar(Tipo_transacciones mar) throws Exception {
+  public void eliminar(Pedido mar) throws Exception {
     System.out.println("*******************************************************eliminar");
-    Tipo_transaccionesDao dao;
+    PedidoDao dao;
 
     try {
-      dao = new Tipo_transaccionesDao();
+      dao = new PedidoDao();
       dao.eliminar(mar);
 
     } catch (Exception e) {
