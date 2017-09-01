@@ -17,6 +17,7 @@ import java.util.List;
  * @author medev
  */
 public class ProductoDao extends Dao{
+    
     public void registrar(Producto prod) throws Exception {
 
     try {
@@ -78,7 +79,7 @@ public class ProductoDao extends Dao{
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  producto SET id_producto=?, nombre_producto=?, existencia=?, id_unidad=?, id_tipos=?, id_producto=?, id_proveedor=?, precio=? WHERE id_producto=?;");
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE  producto SET id_producto=?, nombre_producto=?, existencia=?, id_unidad=?, id_tipos=? WHERE id_producto=?;");
 
       st.setInt(1, prod.getId_producto());
       st.setString(2, prod.getNombre());
