@@ -3,9 +3,10 @@ package com.coffecheap.dao;
 import com.coffecheap.dao.Dao;
 import com.coffecheap.modelo.Transaccion_inventario;
 import java.sql.PreparedStatement;
-
-import java.sql.Date;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Transaccion_InventarioDAO extends Dao
@@ -39,31 +40,30 @@ public class Transaccion_InventarioDAO extends Dao
             this.Desconecar();
         }
     }
-    /*
-      public List<orden_compras> mostrar() throws Exception
+      public List<Transaccion_inventario> mostrar() throws Exception
     {
-        List<orden_compras> lista;
+        List<Transaccion_inventario> lista;
         ResultSet rs;
         
         try
         {
-            this.conectar();
-            PreparedStatement st = getCn().prepareCall("select 	id_orden_compras, fecha_orden, "
-                    + "fecha_entrega, cantidad_orden, id_producto, id_proveedor, precio from orden_compras");
+            this.Conectar();
+            PreparedStatement st = getCon().prepareCall("select traInv.id_transaccion, traInv.fecha, "
+                    + "pro.nombre_producto, tipTran.nombre_trasaccion from transaccion_inventario as "
+                    + "traInv inner join producto as pro on(traInv.id_producto = pro.id_producto) "
+                    + "inner join tipo_transacciones as tipTran on(traInv.id_tipo_transaccion = "
+                    + "tipTran.id_tipo_transacciones)");
             rs=st.executeQuery();
             lista = new ArrayList();
             
             while(rs.next())
             {
-                orden_compras oc = new orden_compras();
-                oc.setId_orden_compras(rs.getInt(1));
-                oc.setFecha_orden(rs.getString(2));
-                oc.setFecha_entrega(rs.getString(3));
-                oc.setCantidad_orden(rs.getInt(4));
-                oc.setId_producto(rs.getInt(5));
-                oc.setId_proveedor(rs.getInt(6));
-                oc.setPrecio(rs.getInt(7));
-                lista.add(oc);
+                Transaccion_inventario tra = new Transaccion_inventario();
+                tra.setId_transaccion(rs.getInt(1));
+                tra.setFecha((rs.getDate(2)));
+                tra.getProducto().setNombre(rs.getString(3));
+                tra.getTtransaccion().setNombre(rs.getString(4));
+                lista.add(tra);
                
             }
         }catch(Exception e)
@@ -71,10 +71,11 @@ public class Transaccion_InventarioDAO extends Dao
             throw e;
         }finally
         {
-            this.cerrar();
+            this.Desconecar();
         }
         return lista;
     }   
+    /*
     
       public List<orden_compras> mostrarPorPrarametro(orden_compras or) throws Exception
     {
