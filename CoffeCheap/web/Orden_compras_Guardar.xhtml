@@ -13,8 +13,8 @@
   <h:body>
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-        <f:event type="preRenderView" listener="#{productoBean.mostrar()}"/>
-        <f:event type="preRenderView" listener="#{proveedorBean.mostrar()}"/>
+        <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
+        <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
 
         <h:form class="flip">
 
@@ -43,7 +43,7 @@
 
             <p:outputLabel for="lis1" value="Id_proveedor:" />
             <p:selectOneMenu id="lis1" style="width:125px" value="#{orden_comprasBean.orden_compras.pproductos.id_proveedor}"> 
-              <f:selectItems value="#{proveedorBean.lista}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_provedor}"/>      
+              <f:selectItems value="#{proveedorBean.listar}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_provedor}"/>      
               <p:ajax event="change" update="@this" />      
             </p:selectOneMenu> 
             
