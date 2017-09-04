@@ -4,16 +4,16 @@ import com.coffecheap.dao.CompraDao;
 import com.coffecheap.dao.Dao;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import com.coffecheap.modelo.Compra;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
-@Named(value = "comprarBean")
-@RequestScoped
+@ManagedBean
+@ViewScoped
 public class CompraBean extends Dao {
 
     Compra compra = new Compra();
-    List <Compra> lista = new ArrayList();
+    List <Compra> lista;
 
     public List<Compra> getLista() {
         return lista;
@@ -71,7 +71,7 @@ public class CompraBean extends Dao {
     }
 
     
-    public void Listar() throws Exception{
+    public void Mostrar() throws Exception{
         
         CompraDao dao;
         

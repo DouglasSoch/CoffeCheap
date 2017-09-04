@@ -15,7 +15,7 @@
       <ui:define name="content">
         
         <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{personal_ChefBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{personal_chefBean.Mostrar()}"/>
 
         <h:form class="flip">
 
@@ -31,12 +31,12 @@
           </p:selectOneMenu>
 
              <p:outputLabel value="hora" />
-            <p:inputMask id="hora" value="#{pedidoBean.pedido.hora}" mask="99:99"/>
+            <p:inputMask id="hora" value="#{pedidoBean.pedido.hora}" mask="99:99:99"/>
           </h:panelGrid>
           
           <p:outputLabel for="lis" value="id_personal:" />
           <p:selectOneMenu id="lis" style="width:125px" value="#{pedidoBean.pedido.pmesero.id_personal_servicio}"> 
-            <f:selectItems value="#{personal_ChefBean.lista}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_personal}"/>      
+              <f:selectItems value="#{personal_chefBean.lstChef}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_personal}"/>      
             <p:ajax event="change" update="@this" />      
           </p:selectOneMenu>          
 

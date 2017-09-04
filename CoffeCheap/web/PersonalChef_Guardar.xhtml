@@ -19,15 +19,15 @@
                     <h:form id="form1">
                         <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
                             <p:outputLabel for="Codigo" value="Codigo"/>
-                            <p:inputText id="Codigo" value="#{personal_ChefBean.personal.id_personal}"/>
+                            <p:inputText id="Codigo" value="#{personal_chefBean.personal.id_personal}"/>
                             <p:outputLabel for="Nombre" value="Nombre"/>
-                            <p:inputText id="Nombre" value="#{personal_ChefBean.personal.nombre}"/>
+                            <p:inputText id="Nombre" value="#{personal_chefBean.personal.nombre}"/>
                             <p:outputLabel for="TelefonoChef" value="Telefono"/>
-                            <p:inputMask id="TelefonoChef" value="#{personal_ChefBean.personal.telefono}" mask="99999999"/>
+                            <p:inputMask id="TelefonoChef" value="#{personal_chefBean.personal.telefono}" mask="99999999"/>
                             <p:outputLabel for="TurnoChef" value="Turno"/>
-                            <p:inputText id="TurnoChef" value="#{personal_ChefBean.personal.turno.id_turno}" />
+                            <p:inputText id="TurnoChef" value="#{personal_chefBean.personal.turno.id_turno}" />
                         </h:panelGrid><br/>
-                        <p:commandButton value="Guardar" action="#{personal_ChefBean.Guardar()}" update="form1"/>
+                        <p:commandButton value="Guardar" action="#{personal_chefBean.Guardar()}" update="form1"/>
                     </h:form>
                     <h:form id="form2" style="width: 150px">
 

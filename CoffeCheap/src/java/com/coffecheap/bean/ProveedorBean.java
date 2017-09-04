@@ -2,17 +2,16 @@ package com.coffecheap.bean;
 
 import com.coffecheap.dao.ProveedorDao;
 import com.coffecheap.modelo.Proveedor;
-import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
-@Named(value = "proveedorBean")
-@RequestScoped
+@ManagedBean
+@ViewScoped
 public class ProveedorBean {
 
     Proveedor proveedor = new Proveedor();
-    List <Proveedor> lista = new ArrayList();
+    List <Proveedor> listar;
 
     public Proveedor getProveedor() {
         return proveedor;
@@ -22,13 +21,15 @@ public class ProveedorBean {
         this.proveedor = proveedor;
     }
 
-    public List<Proveedor> getLista() {
-        return lista;
+    public List<Proveedor> getListar() {
+        return listar;
     }
 
-    public void setLista(List<Proveedor> lista) {
-        this.lista = lista;
+    public void setListar(List<Proveedor> listar) {
+        this.listar = listar;
     }
+
+    
     
     public ProveedorBean() {
     }
@@ -75,7 +76,7 @@ public class ProveedorBean {
         
         try {
             dao = new ProveedorDao();
-            lista = dao.Mostrar();
+            listar = dao.Mostrar();
         } catch (Exception e) {
             throw e;
         }

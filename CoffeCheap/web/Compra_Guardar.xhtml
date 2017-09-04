@@ -12,13 +12,16 @@
         <ui:composition template="./WEB-INF/template/Template.xhtml">
             <ui:define name="content">
                 <h:form id="form1">
+                    <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
                     <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
                         <p:outputLabel for="Codigo" value="Codigo de Compra"/>
                         <p:inputText id="Codigo" value="#{comprarBean.compra.id_compras}"/>
                         <p:outputLabel for="Orden" value="Codigo de Orden"/>
                         <p:inputText id="Orden" value="#{comprarBean.compra.ocompras.id_orden_compras}"/>
                         <p:outputLabel for="Proveedor" value="Id Proveedor"/>
-                        <p:inputText id="Proveedor" value="#{comprarBean.compra.proveedor.id_provedor}"/>
+                        <p:selectOneMenu id="Proveedor" value="#{comprarBean.compra.proveedor.id_provedor}">
+                            <f:selectItems value="#{proveedorBean.mostrar}" var="lista" itemLabel="#{lista.id_provedor}" itemValue="#{lista.id_provedor}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel for="Producto" value="Id Producto"/>
                         <p:inputText id="Producto" value="#{comprarBean.compra.producto.id_producto}" />
                         <p:outputLabel for="Cantidad" value="Cantidad"/>
