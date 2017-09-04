@@ -49,7 +49,8 @@ public class ProveedorDao extends Dao {
     public void Editar(Proveedor proveedor) throws Exception {
 
         try {
-            PreparedStatement st = this.getCon().prepareStatement("UPDATE proveedor SET nombre_proveedor=?, telefono_proveedor=?, email_proveedor?, direccion_proveedor=? where id_proveedor=?");
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("UPDATE proveedor SET nombre_proveedor=?, telefono_proveedor=?, email_proveedor=?, direccion_proveedor=? where id_proveedor=?");
             st.setString(1, proveedor.getNombre());
             st.setInt(2, proveedor.getTelefono());
             st.setString(3, proveedor.getMail());

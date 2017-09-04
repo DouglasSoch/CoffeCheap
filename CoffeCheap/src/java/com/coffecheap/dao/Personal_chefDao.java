@@ -48,7 +48,7 @@ public class Personal_chefDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("update from personal_chef set(?,?,? where idpersonal=?)");
+            PreparedStatement st = this.getCon().prepareStatement("update personal_chef set nombre_personal=?, telefono_personal=?, id_turno=? where idpersonal=?");
             st.setString(1, personal.getNombre());
             st.setInt(2, personal.getTelefono());
             st.setInt(3, personal.getTurno().getId_turno());
@@ -58,7 +58,10 @@ public class Personal_chefDao extends Dao {
             throw e;
         } finally {
             this.Desconecar();
-            
+            personal.setId_personal(0);
+            personal.setNombre(null);
+            personal.setTelefono(0);
+            personal.getTurno().setId_turno(0);
         }
     }
 
