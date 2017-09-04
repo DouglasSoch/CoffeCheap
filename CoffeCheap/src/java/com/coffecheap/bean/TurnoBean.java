@@ -4,11 +4,11 @@ import com.coffecheap.dao.TurnoDao;
 import com.coffecheap.modelo.Turno;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
-@Named(value = "turnoBean")
-@RequestScoped
+@ManagedBean
+@ViewScoped
 public class TurnoBean {
 
     Turno turno = new Turno();

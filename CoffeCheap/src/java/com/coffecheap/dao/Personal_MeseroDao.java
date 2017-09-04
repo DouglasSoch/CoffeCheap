@@ -22,7 +22,7 @@ public class Personal_MeseroDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into personal_mesero values(?,?,?,?,?);");
+      PreparedStatement st = this.getCon().prepareStatement("insert into personal_mesero values(?,?,?,?);");
       st.setInt(1, permes.getId_personal_servicio());
       st.setString(2, permes.getNombre());
       st.setString(3, permes.getTelefono());
@@ -47,7 +47,7 @@ public class Personal_MeseroDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM personal_mesero");
+      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM personal_mesero;");
       rs = st.executeQuery();
       lista = new ArrayList();
       while (rs.next()) {

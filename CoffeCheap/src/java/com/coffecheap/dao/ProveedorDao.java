@@ -77,17 +77,17 @@ public class ProveedorDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("select * from proveedor");
+            PreparedStatement st = this.getCon().prepareCall("select * from proveedor");
             rs = st.executeQuery();
             lista = new ArrayList();
 
             while (rs.next()) {
                 Proveedor proveedor = new Proveedor();
-                proveedor.setId_provedor(rs.getInt("id_proveedor"));
-                proveedor.setNombre(rs.getString("nombre_proveedor"));
-                proveedor.setTelefono(rs.getInt("telefono_proveedor"));
-                proveedor.setMail(rs.getString("email_proveedor"));
-                proveedor.setDireccion(rs.getString("direccion_proveedor"));
+                proveedor.setId_provedor(rs.getInt(1));
+                proveedor.setNombre(rs.getString(2));
+                proveedor.setTelefono(rs.getInt(3));
+                proveedor.setMail(rs.getString(4));
+                proveedor.setDireccion(rs.getString(5));
                 lista.add(proveedor);
             }
         } catch (Exception e) {

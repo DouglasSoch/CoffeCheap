@@ -51,7 +51,7 @@ public class Orden_comprasBean {
 
   }
 
-  public void listar() throws Exception {
+  public void Mostrar() throws Exception {
     Orden_comprasDao dao;
 
     try {
