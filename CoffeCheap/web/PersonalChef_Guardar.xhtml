@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+
+
+    </h:head>
+    <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+
+            <ui:define name="content">
+                <f:event type="preRenderView" listener="#{turnoBean.Mostrar()}"/>
+                <h:panelGrid id="general" columns="3" cellpadding="5">
+                    <h:form id="form1">
+                        <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
+                            <p:outputLabel for="Codigo" value="Codigo"/>
+                            <p:inputText id="Codigo" value="#{personal_ChefBean.personal.id_personal}"/>
+                            <p:outputLabel for="Nombre" value="Nombre"/>
+                            <p:inputText id="Nombre" value="#{personal_ChefBean.personal.nombre}"/>
+                            <p:outputLabel for="TelefonoChef" value="Telefono"/>
+                            <p:inputMask id="TelefonoChef" value="#{personal_ChefBean.personal.telefono}" mask="99999999"/>
+                            <p:outputLabel for="TurnoChef" value="Turno"/>
+                            <p:inputText id="TurnoChef" value="#{personal_ChefBean.personal.turno.id_turno}" />
+                        </h:panelGrid>
+                        <p:commandButton value="Guardar" action="#{personal_ChefBean.Guardar()}" update="form1"/>
+                    </h:form>
+                    <h:form id="form2" style="width: 150px">
+
+                    </h:form>
+                    <h:form id="form3" style="">
+                        <p:dataTable id="data" value="#{turnoBean.lista}" var="turno" style="width: 300px;">
+                            <p:column headerText="Codigo:">
+                                <p:outputLabel style="color: white" value="#{turno.id_turno}"/>
+                            </p:column>
+                            <p:column headerText="Nombre:">
+                                <p:outputLabel style="color: white" value="#{turno.horario_turno}"/>
+                            </p:column> 
+                        </p:dataTable>
+                    </h:form>
+                </h:panelGrid>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

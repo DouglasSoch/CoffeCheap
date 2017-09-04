@@ -22,20 +22,25 @@ public class Personal_chefDao extends Dao {
             throw e;
         } finally {
             this.Desconecar();
+            personal.setId_personal(0);
+            personal.setNombre(null);
+            personal.setTelefono(0);
+            personal.getTurno().setId_turno(0);
         }
     }
 
-    public void Eliminar(Personal_chef personal) throws Exception {
+    public void Borrar(Personal_chef personal) throws Exception {
 
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("delete personal_chef where idpersonal=?");
+            PreparedStatement st = this.getCon().prepareStatement("delete from personal_chef where idpersonal=?");
             st.setInt(1, personal.getId_personal());
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
         } finally {
             this.Desconecar();
+            personal.setId_personal(0);
         }
     }
 
@@ -53,6 +58,7 @@ public class Personal_chefDao extends Dao {
             throw e;
         } finally {
             this.Desconecar();
+            
         }
     }
 

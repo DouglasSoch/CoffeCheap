@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Orden Compras</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            
+         <br/>
+                    <p:outputLabel value="ingrese id"/>
+                    <p:inputText  value="#{transaccion_inventarioBEAN.traInv.id_transaccion}"/>
+                    <br/>
+                    <p:outputLabel value="Fecha de transaccion"/>  
+                    <p:outputLabel   id="hola" value="#{transaccion_inventarioBEAN.fechaSus}" />
+                    <br/>
+                    <p:outputLabel value="ingrese producto"/>
+                    <p:inputText  value="#{transaccion_inventarioBEAN.traInv.producto.id_producto}"/>
+                    <br/>
+                    <p:outputLabel value="Indicar el tipo de transaccion"/>
+                    <p:inputText  value="#{transaccion_inventarioBEAN.traInv.ttransaccion.id_tipo_transacciones}"/>
+                     <br/>
+                     <p:commandButton value="Guardar" update="hola" actionListener="#{transaccion_inventarioBEAN.registrar()}"/>
+                    </h:form>
+    </h:body>
+</html>
+

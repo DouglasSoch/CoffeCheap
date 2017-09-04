@@ -8,9 +8,9 @@
     </h:head>
     <h:body>
         <h:form id="form1">
-            <p:outputLabel for="codigo" value="Codigo:"/>
-            <p:inputText id="codigo" value="#{turnoBean.turno.id_turno}"/><br/>
-            <p:commandButton value="Ingresar" action="#{turnoBean.Eliminar()}" update="form1"/>
+            <p:outputLabel for="CodigoEliminar" value="Codigo"/><br/>
+            <p:inputText id="CodigoEliminar" value="#{personal_ChefBean.personal.id_personal}"/><br/>
+            <p:commandButton value="Eliminar" action="#{personal_ChefBean.Eliminar()}" update="form1"/>
         </h:form>
     </h:body>
 </html>

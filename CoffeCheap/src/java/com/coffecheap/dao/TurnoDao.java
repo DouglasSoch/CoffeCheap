@@ -20,6 +20,9 @@ public class TurnoDao extends Dao{
             throw e;
         }finally{
             this.Desconecar();
+            turno.setId_turno(0);
+            turno.setHorario_turno(null);
+            turno.setObservaciones(null);
         }
     }
     
@@ -33,13 +36,15 @@ public class TurnoDao extends Dao{
             throw e;
         }finally{
             this.Desconecar();
+            turno.setId_turno(0);
         }
     }
     
     public void Modificar(Turno turno) throws Exception{
+        
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("update turno set (?,? where idturno=?)");
+            PreparedStatement st = this.getCon().prepareStatement("UPDATE turno SET horario_turno=?, observaciones=? where idturno=?");
             st.setString(1,turno.getHorario_turno());
             st.setString(2, turno.getObservaciones());
             st.setInt(3, turno.getId_turno());
@@ -48,11 +53,14 @@ public class TurnoDao extends Dao{
             throw e;
         }finally{
             this.Desconecar();
+            turno.setId_turno(0);
+            turno.setHorario_turno(null);
+            turno.setObservaciones(null);
         }
     }
     
     
-    public List<Turno> Mostrar() throws Exception{
+    public List<Turno> Visualizar() throws Exception{
         
         List<Turno> lista;
         ResultSet rs;
