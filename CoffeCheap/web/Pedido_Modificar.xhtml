@@ -21,13 +21,12 @@
          
         </h:form>
         <h:form id="otro">
-
-          <!-- Modal -->
+        
 
           <p:panelGrid id="display1" columns="4" columnClasses="label,value">          
             <p:dataList value="#{pedidoBean.lstPedido}" var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
 
-              <p:column>
+              < <p:column>
                 <f:facet name="header">Id Pedido</f:facet>
                 <h:inputText value="#{tabla.id_pedido}" style="color: #ffffff; width : 30px" />
               </p:column>
@@ -42,7 +41,7 @@
               <p:column>
                 <f:facet name="header">id personal</f:facet>
                 <h:inputText value="#{tabla.pmesero.id_personal_servicio}" style="color: #ffffff; width : 160px" />
-              </p:column>              
+              </p:column>                    
 
               <p:column>
                 <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{pedidoBean.eliminar(tabla)}"/>                    

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+  <h:body>
+    <ui:composition template="./WEB-INF/template/Template.xhtml">
+      <ui:define name="content">
+        <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{proveedorBean.mostrar()}"/>
+
+        <h:form class="flip">
+
+          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+            
+            <p:outputLabel value="id orden de compras" />
+            <p:autoComplete id="Codig" value="#{orden_comprasBean.orden_compras.id_orden_compras}"/>                         
+
+            <p:outputLabel  value="Fecha de Orden" />
+            <p:autoComplete id="Orden" value="#{orden_comprasBean.orden_compras.fecha_orden}"/>
+
+            <p:outputLabel  value="Fecha de Entrega" />
+            <p:autoComplete id="Entrega" value="#{orden_comprasBean.orden_compras.fecha_entrega}"/>
+
+            <p:outputLabel  value="Cantidad Orden" />
+            <p:autoComplete id="Cantidad" value="#{orden_comprasBean.orden_compras.cantidad}"/>
+
+            <p:outputLabel for="lis" value="Id_producto:" />
+            <p:selectOneMenu id="lis" style="width:125px" value="#{orden_comprasBean.orden_compras.pproductos.producto.id_producto}"> 
+              <f:selectItems value="#{productoBean.lstProducto}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_producto}"/>      
+              <p:ajax event="change" update="@this" />      
+            </p:selectOneMenu> 
+
+            <p:outputLabel  value="Id_proveedor" />
+            <p:autoComplete id="proveedor" value="#{orden_comprasBean.orden_compras.pproductos.id_proveedor}"/>
+
+            <p:outputLabel for="lis1" value="Id_proveedor:" />
+            <p:selectOneMenu id="lis1" style="width:125px" value="#{orden_comprasBean.orden_compras.pproductos.id_proveedor}"> 
+              <f:selectItems value="#{proveedorBean.lista}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_provedor}"/>      
+              <p:ajax event="change" update="@this" />      
+            </p:selectOneMenu> 
+            
+            <p:outputLabel  value="precio" />
+            <p:autoComplete id="precio" value="#{orden_comprasBean.orden_compras.precio}"/>
+
+          </h:panelGrid>
+
+
+          <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{orden_comprasBean.registrar()}"/>
+
+
+          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
+            <p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+              <h:outputText value="id_orden_compras" />
+              <h:outputText id="compra1" value="#{orden_comprasBean.orden_compras.id_orden_compras}" />                         
+
+              <h:outputText value="fecha orden" />
+              <h:outputText id="orden1" value="#{orden_comprasBean.orden_compras.fecha_entrega}" />
+              
+              <h:outputText value="Fecha entrega" />
+              <h:outputText id="entrega1" value="#{orden_comprasBean.orden_compras.fecha_orden}" />
+              
+              <h:outputText value="id producto" />
+              <h:outputText id="producto1" value="#{orden_comprasBean.orden_compras.pproductos.producto.id_producto}" />
+              
+              <h:outputText value="id proveedor" />
+              <h:outputText id="proveedor1" value="#{orden_comprasBean.orden_compras.pproductos.id_proveedor}" />
+              
+              <h:outputText value="precio" />
+              <h:outputText id="precio1" value="#{orden_comprasBean.orden_compras.precio}" />
+
+            </p:panelGrid>
+          </p:dialog>
+
+        </h:form>
+        <h:form id="otro">       
+
+
+        </h:form> 
+
+      </ui:define>
+    </ui:composition>
+  </h:body>
+</html>
+
