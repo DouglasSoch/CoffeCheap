@@ -12,7 +12,7 @@ public class CompraDao extends Dao{
     public void Insertar(Compra compra) throws Exception {
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("insert into compra values( ?,?,?,?,?,?,?,?)");
+            PreparedStatement st = this.getCon().prepareStatement("insert into compra values(?,?,?,?,?,?,?,?)");
             st.setInt(1, compra.getId_compras());
             st.setInt(2, compra.getOcompras().getId_orden_compras());
             st.setInt(3, compra.getProveedor().getId_provedor());
@@ -26,6 +26,14 @@ public class CompraDao extends Dao{
             throw e;
         } finally {
             this.Desconecar();
+            compra.setId_compras(0);
+            compra.getOcompras().setId_orden_compras(0);
+            compra.getProveedor().setId_provedor(0);
+            compra.getProducto().setId_producto(0);
+            compra.setCantidad(0);
+            compra.setCosto(0);
+            compra.setNo_fac(0);
+            compra.setSerie(null);
         }
     }
 
