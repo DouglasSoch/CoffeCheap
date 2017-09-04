@@ -1,6 +1,5 @@
 package com.coffecheap.dao;
 
-import com.coffecheap.dao.Dao;
 import com.coffecheap.modelo.Transaccion_inventario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
