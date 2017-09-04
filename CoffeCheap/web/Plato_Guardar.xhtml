@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+      <ui:define name="content">
+
+        <h:form class="flip">
+
+          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+            <p:outputLabel value="Codigo del platillo" />
+            <p:autoComplete id="codig" value="#{platoBean.plato.id_plato}"/>                         
+            
+            <p:outputLabel value="Nombre del platillo" />
+            <p:autoComplete id="nombre" value="#{platoBean.plato.nombre}"/>
+            
+            <p:outputLabel value="Precio del platillo" />
+            <p:autoComplete id="precio" value="#{platoBean.plato.precio}"/>
+            
+            <p:outputLabel value="Porciones" />
+            <p:autoComplete id="porcion" value="#{platoBean.plato.porciones}"/>
+            
+            <p:outputLabel  value="Descripcion del plato" />
+            <p:autoComplete id="descripcion" value="#{platoBean.plato.descripcion}"/>
+
+          </h:panelGrid>
+
+
+            <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{platoBean.registrar()}"/>
+
+
+          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
+            <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                
+                <h:outputText value="Codigo del platillo" />
+                <h:outputText id="codigV" value="#{platoBean.plato.id_plato}"/>                         
+            
+                <h:outputText value="Nombre del platillo" />
+                <h:outputText id="nombreV" value="#{platoBean.plato.nombre}"/>
+            
+                <h:outputText value="Precio del platillo" />
+                <h:outputText id="precioV" value="#{platoBean.plato.precio}"/>
+            
+                <h:outputText value="Porciones" />
+                <h:outputText id="porcionV" value="#{platoBean.plato.porciones}"/>
+            
+                <h:outputText  value="Descripcion del plato" />
+                <h:outputText id="descripcionV" value="#{platoBean.plato.descripcion}"/>
+
+                
+
+            </p:panelGrid>
+          </p:dialog>
+
+        </h:form>
+        <h:form id="otro">       
+
+
+        </h:form> 
+
+      </ui:define>
+    </ui:composition>
+    </h:body>
+</html>
+
