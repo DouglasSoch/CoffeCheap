@@ -2,7 +2,6 @@ package com.coffecheap.bean;
 
 import com.coffecheap.dao.CompraDao;
 import com.coffecheap.dao.Dao;
-import java.util.ArrayList;
 import java.util.List;
 import com.coffecheap.modelo.Compra;
 import javax.faces.bean.ManagedBean;

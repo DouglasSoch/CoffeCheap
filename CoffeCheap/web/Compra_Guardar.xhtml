@@ -13,27 +13,36 @@
             <ui:define name="content">
                 <h:form id="form1">
                     <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
+                    <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
+                    <f:event type="preRenderView" listener="#{orden_comprasBean.Mostrar()}"/>
                     <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
                         <p:outputLabel for="Codigo" value="Codigo de Compra"/>
-                        <p:inputText id="Codigo" value="#{comprarBean.compra.id_compras}"/>
-                        <p:outputLabel for="Orden" value="Codigo de Orden"/>
-                        <p:inputText id="Orden" value="#{comprarBean.compra.ocompras.id_orden_compras}"/>
-                        <p:outputLabel for="Proveedor" value="Id Proveedor"/>
-                        <p:selectOneMenu id="Proveedor" value="#{comprarBean.compra.proveedor.id_provedor}">
-                            <f:selectItems value="#{proveedorBean.mostrar}" var="lista" itemLabel="#{lista.id_provedor}" itemValue="#{lista.id_provedor}"/>
+                        <p:inputText id="Codigo" value="#{compraBean.compra.id_compras}"/>
+                        <p:outputLabel for="Orden" value="No. de Orden"/>
+                        <p:selectOneMenu id="Orden" value="#{compraBean.compra.ocompras.id_orden_compras}">
+                            <f:selectItem itemLabel="Orden..."/>
+                            <f:selectItems value="#{orden_comprasBean.lstOrden_compras}" var="lista" itemLabel="#{lista.id_orden_compras}" itemValue="#{lista.id_orden_compras}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel for="Producto" value="Id Producto"/>
-                        <p:inputText id="Producto" value="#{comprarBean.compra.producto.id_producto}" />
+                        <p:outputLabel for="Proveedor" value="Proveedor"/>
+                        <p:selectOneMenu id="Proveedor" value="#{compraBean.compra.proveedor.id_provedor}">
+                            <f:selectItem itemLabel="Proveedor..."/>
+                            <f:selectItems value="#{proveedorBean.listar}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_provedor}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="Producto" value="Producto"/>
+                        <p:selectOneMenu id="Producto" value="#{compraBean.compra.producto.id_producto}">
+                            <f:selectItem itemLabel="Producto..."/>
+                            <f:selectItems value="#{productoBean.lstProducto}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_producto}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel for="Cantidad" value="Cantidad"/>
-                        <p:inputText id="Cantidad" value="#{comprarBean.compra.cantidad}" />
+                        <p:inputText id="Cantidad" value="#{compraBean.compra.cantidad}" />
                         <p:outputLabel for="Costo" value="Costo"/>
-                        <p:inputText id="Costo" value="#{comprarBean.compra.costo}" />
+                        <p:inputText id="Costo" value="#{compraBean.compra.costo}" />
                         <p:outputLabel for="NoFactura" value="No. de Factura"/>
-                        <p:inputText id="NoFactura" value="#{comprarBean.compra.no_fac}" />
+                        <p:inputText id="NoFactura" value="#{compraBean.compra.no_fac}" />
                         <p:outputLabel for="Serie" value="Serie"/>
-                        <p:inputText id="Serie" value="#{comprarBean.compra.serie}" />
+                        <p:inputText id="Serie" value="#{compraBean.compra.serie}" />
                     </h:panelGrid><br/>
-                    <p:commandButton value="Guardar" action="#{comprarBean.Ingresar()}" update="form1"/>
+                    <p:commandButton value="Guardar" action="#{compraBean.Ingresar()}" update="form1"/>
                 </h:form>
             </ui:define>
         </ui:composition>

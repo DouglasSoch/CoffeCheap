@@ -8,15 +8,15 @@ package com.coffecheap.bean;
 import com.coffecheap.dao.ProductoDao;
 import com.coffecheap.modelo.Producto;
 import java.util.List;
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author medev
  */
-@Named(value = "productoBean")
-@RequestScoped
+@ManagedBean
+@ViewScoped
 public class ProductoBean {
     private Producto producto = new Producto();
     private List<Producto>lstProducto;
@@ -52,7 +52,7 @@ public class ProductoBean {
 
   }
 
-  public void listar() throws Exception {
+  public void Mostrar() throws Exception {
     ProductoDao dao;
 
     try {
