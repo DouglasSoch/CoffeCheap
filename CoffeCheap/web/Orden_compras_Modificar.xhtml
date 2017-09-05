@@ -19,13 +19,13 @@
            <f:event type="preRenderView"  listener="#{orden_comprasBean.Mostrar}"/>
           <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
           <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
-          <p:outputLabel style="color: #ffffff;" value="Lista para escoger tipo de trasaccion a eliminar" />          
+          <p:outputLabel style="color: #ffffff;" value="Lista para escoger orden de transaccion a Modificar" />          
 
         </h:form>
         <h:form id="otro">
 
           <p:panelGrid id="display1" columns="4" columnClasses="label,value">          
-            <p:dataList value="#{orden_comprasBean.lstOrden_compras}" var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+            <p:dataTable value="#{orden_comprasBean.lstOrden_compras}" var="tabla"  paginator="true" rows="10" styleClass="paginated">
 
               <p:column>
                 <f:facet name="header">id_orden compras</f:facet>
@@ -66,7 +66,7 @@
                 <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{orden_comprasBean.modificar(tabla)}"/>                    
               </p:column>                              
 
-            </p:dataList>
+            </p:dataTable>>
           </p:panelGrid>        
 
         </h:form> 
