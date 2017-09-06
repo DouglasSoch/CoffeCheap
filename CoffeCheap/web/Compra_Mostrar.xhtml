@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <f:event type="preRenderView" listener="#{compraBean.Mostrar()}"/>
+                    <b:dataTable value="#{compraBean.lista}" var="compra" col-md="12">
+                        <b:dataTableColumn value="#{compra.id_compras}" label="Codigo" />
+                        <b:dataTableColumn value="#{compra.ocompras.id_orden_compras}" label="Orden"/>
+                        <b:dataTableColumn value="#{compra.proveedor.nombre}" label="Proveedor"/>
+                        <b:dataTableColumn value="#{compra.producto.nombre}" label="Producto"/>
+                        <b:dataTableColumn value="#{compra.cantidad}" label="Cantidad"/>
+                        <b:dataTableColumn value="#{compra.costo}" label="Costo"/>
+                        <b:dataTableColumn value="#{compra.no_fac}" label="No. de Factura"/>
+                        <b:dataTableColumn value="#{compra.serie}" label="Serie"/>
+                    </b:dataTable>
+                </h:form>
+            </ui:define>  
+        </ui:composition>
+    </h:body>
+</html>
+
