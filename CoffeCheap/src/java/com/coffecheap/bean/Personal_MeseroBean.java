@@ -9,14 +9,15 @@ import com.coffecheap.dao.Personal_MeseroDao;
 import com.coffecheap.modelo.Personal_mesero;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
-
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 /**
  *
  * @author medev
  */
 @Named(value = "personal_MeseroBean")
-@RequestScoped
+@ManagedBean
+@ViewScoped
 public class Personal_MeseroBean {
     private Personal_mesero permes = new Personal_mesero();
     private List<Personal_mesero>lstPermes;

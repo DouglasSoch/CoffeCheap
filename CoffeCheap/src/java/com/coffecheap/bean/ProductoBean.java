@@ -8,6 +8,7 @@ package com.coffecheap.bean;
 import com.coffecheap.dao.ProductoDao;
 import com.coffecheap.modelo.Producto;
 import java.util.List;
+import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -15,6 +16,7 @@ import javax.faces.bean.ViewScoped;
  *
  * @author medev
  */
+@Named(value = "productoBean")
 @ManagedBean
 @ViewScoped
 public class ProductoBean {

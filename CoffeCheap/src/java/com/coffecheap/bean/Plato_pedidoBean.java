@@ -9,14 +9,13 @@ import com.coffecheap.dao.Plato_pedidoDao;
 import com.coffecheap.modelo.Plato_pedido;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
-/**
- *
- * @author medev
- */
+
 @Named(value = "plato_pedidoBean")
-@RequestScoped
+@ManagedBean
+@ViewScoped
 public class Plato_pedidoBean {
     private Plato_pedido plapedido = new Plato_pedido();
     private List<Plato_pedido>lstPlapedido;

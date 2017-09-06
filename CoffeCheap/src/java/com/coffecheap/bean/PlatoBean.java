@@ -10,14 +10,18 @@ import com.coffecheap.dao.PlatoDao;
 import com.coffecheap.modelo.Plato;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+
 
 /**
  *
  * @author medev
  */
 @Named(value = "platoBean")
-@RequestScoped
+@ManagedBean
+@ViewScoped
 public class PlatoBean {
 private Plato plato = new Plato();
 private List<Plato>lstPlato;
@@ -68,13 +72,13 @@ private List<Plato>lstPlato;
 
   }
 
-  public void modificar(Plato plato) throws Exception {
+  public void modificar(Plato plat) throws Exception {
     System.out.println("*******************************************************Modificar");
     PlatoDao dao;
 
     try {
       dao = new PlatoDao();
-      dao.modificar(plato);
+      dao.modificar(plat);
 
     } catch (Exception e) {
       throw e;
@@ -83,13 +87,13 @@ private List<Plato>lstPlato;
   }
 
 
-  public void eliminar(Plato plato) throws Exception {
+  public void eliminar(Plato plat) throws Exception {
     System.out.println("*******************************************************eliminar");
     PlatoDao dao;
 
     try {
       dao = new PlatoDao();
-      dao.eliminar(plato);
+      dao.eliminar(plat);
 
     } catch (Exception e) {
       throw e;
