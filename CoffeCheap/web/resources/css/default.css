@@ -63,6 +63,22 @@ input{
 
 }
 
+.even{
+  background-color: burlywood;  
+}
+
+thead{
+    background-color: sienna;
+}
+
+.dataTables_length label{
+ color: white;
+}
+
+.dataTables_info{
+    color:white;
+}
+
 /*de botfaces
 
 .sub-header {

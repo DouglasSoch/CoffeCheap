@@ -10,20 +10,20 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <!--<ui:composition template="./WEB-INF/template/Template.xhtml">
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
 
-            <ui:define name="content">-->
+            <ui:define name="content">
                 <h:form>
                     <f:event type="preRenderView" listener="#{personal_chefBean.Mostrar()}"/>
-                    <b:dataTable value="#{personal_chefBean.lstChef}" var="personal" col-md="12" >
+                    <b:dataTable value="#{personal_chefBean.lstChef}" var="personal" col-md="12">
                         <b:dataTableColumn value="#{personal.id_personal}" label="Codigo" />
                         <b:dataTableColumn value="#{personal.nombre}" label="Nombre"/>
                         <b:dataTableColumn value="#{personal.telefono}" label="Telefono"/>
                         <b:dataTableColumn value="#{personal.turno.horario_turno}" label="Horario del Turno"/>
                     </b:dataTable>
                 </h:form>
-            <!--</ui:define>  
-        </ui:composition>-->
+            </ui:define>  
+        </ui:composition>
     </h:body>
 </html>
 
