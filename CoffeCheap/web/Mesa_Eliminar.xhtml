@@ -13,11 +13,11 @@
   <h:body>
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-          
-        <f:event type="preRenderView" listener="#{tipo_transaccionesBean.listar()}" />
+
+        <f:event type="preRenderView" listener="#{tipo_transaccionesBean.listar()}"/>
         <h:form class="flip">
           
-            <p:outputLabel style="color: #ffffff;" value="Lista para escoger tipo de trasaccion a eliminar"/>          
+            <p:outputLabel style="color: #ffffff;" value="Lista para escoger tipo de trasaccion a eliminar" />          
          
         </h:form>
         <h:form id="otro">
@@ -37,7 +37,7 @@
               </p:column>
 
               <p:column>
-                <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{tipo_transaccionesBean.modificar(tabla)}"/>                    
+                <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{tipo_transaccionesBean.eliminar(tabla)}"/>                    
               </p:column>                              
 
             </p:dataList>
