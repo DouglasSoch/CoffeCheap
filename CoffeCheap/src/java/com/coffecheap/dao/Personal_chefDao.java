@@ -72,16 +72,18 @@ public class Personal_chefDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareCall("SELECT * FROM personal_chef");
+            PreparedStatement st = this.getCon().prepareCall("select chef.idpersonal, chef.nombre_personal, chef.telefono_personal, turnochef.horario_turno\n" +
+            "from personal_chef as chef inner join turno as turnochef\n" +
+            "on(chef.idpersonal = turnochef.idturno);");
             rs = st.executeQuery();
             lista = new ArrayList();
 
             while (rs.next()) {
                 Personal_chef personal = new Personal_chef();
-                personal.setId_personal(rs.getInt(1));
-                personal.setNombre(rs.getString(2));
-                personal.setTelefono(rs.getInt(3));
-                personal.getTurno().setId_turno(rs.getInt(4));
+                personal.setId_personal(rs.getInt("chef.idpersonal"));
+                personal.setNombre(rs.getString("chef.nombre_personal"));
+                personal.setTelefono(rs.getInt("chef.telefono_personal"));
+                personal.getTurno().setHorario_turno(rs.getString("turnochef.horario_turno"));
                 lista.add(personal);
             }
 

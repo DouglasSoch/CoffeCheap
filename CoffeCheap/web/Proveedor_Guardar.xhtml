@@ -19,7 +19,7 @@
                         <p:outputLabel for="nombre" value="Nombre"/>
                         <p:inputText id="nombre" value="#{proveedorBean.proveedor.nombre}"/>
                         <p:outputLabel for="telefono" value="Telefono"/>
-                        <p:inputText id="telefono" value="#{proveedorBean.proveedor.telefono}"/>
+                        <p:inputMask id="telefono" value="#{proveedorBean.proveedor.telefono}" mask="99999999"/>
                         <p:outputLabel for="correo" value="Email"/>
                         <p:inputText id="correo" value="#{proveedorBean.proveedor.mail}"/>
                         <p:outputLabel for="direccion" value="Direccion"/>

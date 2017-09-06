@@ -9,16 +9,16 @@
     </h:head>
     <h:body>
         <ui:composition template="./WEB-INF/template/Template.xhtml">
+
             <ui:define name="content">
                 <h:form id="form1">
-                    <h:panelGrid id="general" columns="2" cellpadding="5">
-                        <p:outputLabel for="codigo" value="Codigo:"/>
-                        <p:inputText id="codigo" value="#{turnoBean.turno.id_turno}"/><br/>
-                    </h:panelGrid>
-                    <p:commandButton value="Ingresar" action="#{turnoBean.Eliminar()}" update="form1"/>
+                    <p:outputLabel for="CodigoEliminar" value="Codigo"/><br/>
+                    <p:inputText id="CodigoEliminar" value="#{personal_chefBean.personal.id_personal}"/><br/>
+                    <p:commandButton value="Eliminar" action="#{personal_chefBean.Eliminar()}" update="form1"/>
                 </h:form>
             </ui:define>
-        </ui:composition>
+
+        </ui:composition>s
     </h:body>
 </html>
 

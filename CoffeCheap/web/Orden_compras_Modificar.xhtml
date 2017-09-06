@@ -13,54 +13,60 @@
   <h:body>
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-          
-        
+
+
         <h:form class="flip">
-          
-            <p:outputLabel style="color: #ffffff;" value="Lista para escoger tipo de trasaccion a eliminar" />          
-         
+           <f:event type="preRenderView"  listener="#{orden_comprasBean.Mostrar}"/>
+          <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
+          <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
+          <p:outputLabel style="color: #ffffff;" value="Lista para escoger orden de transaccion a Modificar" />          
+
         </h:form>
         <h:form id="otro">
 
-          <!-- Modal -->
-
           <p:panelGrid id="display1" columns="4" columnClasses="label,value">          
-            <p:dataList value="#{orden_comprasBean.lstOrden_compras}" var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+            <p:dataTable value="#{orden_comprasBean.lstOrden_compras}" var="tabla"  paginator="true" rows="10" styleClass="paginated">
 
               <p:column>
                 <f:facet name="header">id_orden compras</f:facet>
-                <h:inputText value="#{tabla.id_orden_compras}" style="color: #ffffff; width : 30px" />
+                <h:inputText value="#{tabla.id_orden_compras}" style="color: #ffffff; width : 50px" />
               </p:column>
               <p:column>
                 <f:facet name="header">Fecha Orden</f:facet>
-                <h:inputText value="#{tabla.fecha_orden}" style="color: #ffffff; width : 160px" />
+                <h:inputText value="#{tabla.fecha_orden}" style="color: #ffffff; width : 120px" />
               </p:column>
               <p:column>
                 <f:facet name="header">Fecha Entrega</f:facet>
-                <h:inputText value="#{tabla.fecha_entrega}" style="color: #ffffff; width : 160px" />
+                <h:inputText value="#{tabla.fecha_entrega}" style="color: #ffffff; width : 80px" />
               </p:column>
               <p:column>
                 <f:facet name="header">Cantidad Orden</f:facet>
-                <h:inputText value="#{tabla.cantidad}" style="color: #ffffff; width : 160px" />
+                <h:inputText value="#{tabla.cantidad}" style="color: #ffffff; width : 80px" />
               </p:column>
               <p:column>
-                <f:facet name="header">Id Producto</f:facet>
-                <h:inputText value="#{tabla.pproductos.producto.id_producto}" style="color: #ffffff; width : 160px" />
+                <f:facet name="header">Id Producto</f:facet>              
+                <p:selectOneMenu id="lis2" style="width:125px; background-color: #ffffff" value="#{tabla.pproductos.producto.id_producto}" > 
+                  <f:selectItems value="#{productoBean.lstProducto}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_producto}"/>      
+                  <p:ajax event="change" update="@this" />      
+                </p:selectOneMenu> 
               </p:column>
               <p:column>
                 <f:facet name="header">id proveedor</f:facet>
-                <h:inputText value="#{tabla.pproductos.id_proveedor}" style="color: #ffffff; width : 160px" />
+                <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{tabla.pproductos.id_proveedor}" > 
+                  <f:selectItems value="#{proveedorBean.listar}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_provedor}"/>      
+                  <p:ajax event="change" update="@this" />      
+                </p:selectOneMenu> 
               </p:column>
               <p:column>
                 <f:facet name="header">precio</f:facet>
-                <h:inputText value="#{tabla.precio}" style="color: #ffffff; width : 160px" />
-              </p:column>    
+                <h:inputText value="#{tabla.precio}" style="color: #ffffff; width : 80px" />
+              </p:column>             
 
               <p:column>
                 <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{orden_comprasBean.modificar(tabla)}"/>                    
               </p:column>                              
 
-            </p:dataList>
+            </p:dataTable>>
           </p:panelGrid>        
 
         </h:form> 
