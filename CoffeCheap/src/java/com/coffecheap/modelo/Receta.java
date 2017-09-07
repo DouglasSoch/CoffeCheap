@@ -2,33 +2,33 @@ package com.coffecheap.modelo;
 
 import java.util.Objects;
 
-public class Reseta 
+public class Receta 
 {
     Plato plato = new Plato();
     Producto producto = new Producto();
     int cantidad = 0;
     Unidad_medida Umedida = new Unidad_medida();
 
-    public Reseta() {
+    public Receta() {
     }
 
-    public Reseta(Plato plato) {
+    public Receta(Plato plato) {
         this.plato = plato;
     }
 
-    public Reseta(Producto producto) {
+    public Receta(Producto producto) {
         this.producto = producto;
     }
 
-    public Reseta(int cantidad) {
+    public Receta(int cantidad) {
         this.cantidad = cantidad;
     }
 
-    public Reseta(Unidad_medida Umedida) {
+    public Receta(Unidad_medida Umedida) {
         this.Umedida = Umedida;
     }
 
-    public Reseta(Plato plato, Producto producto, int cantidad, Unidad_medida Umedida) {
+    public Receta(Plato plato, Producto producto, int cantidad, Unidad_medida Umedida) {
         this.plato = plato;
         this.producto = producto;
         this.cantidad = cantidad;
@@ -88,7 +88,7 @@ public class Reseta
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Reseta other = (Reseta) obj;
+        final Receta other = (Receta) obj;
         if (this.cantidad != other.cantidad) {
             return false;
         }
@@ -103,6 +103,6 @@ public class Reseta
 
     @Override
     public String toString() {
-        return "Reseta{" + "plato=" + plato + ", producto=" + producto + ", cantidad=" + cantidad + ", Umedida=" + Umedida + '}';
+        return "Receta{" + "plato=" + plato + ", producto=" + producto + ", cantidad=" + cantidad + ", Umedida=" + Umedida + '}';
     }
 }
