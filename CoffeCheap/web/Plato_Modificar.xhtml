@@ -22,7 +22,8 @@
           <!-- Modal -->
 
           <p:panelGrid id="display1" columns="7" columnClasses="label,value">          
-              <p:dataList value="#{platoBean.lstPlato}" var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+              <p:dataTable value="#{platoBean.lstPlato}" var="tabla"  paginator="true" rows="10" styleClass="paginated">
+              
 
               <p:column>
                 <f:facet name="header">Codigo del platillo</f:facet>
@@ -49,7 +50,8 @@
                   <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{platoBean.modificar(tabla)}"/>                    
               </p:column>                              
 
-            </p:dataList>
+            
+           </p:dataTable>
           </p:panelGrid>        
 
         </h:form> 
