@@ -14,7 +14,7 @@
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
 
-        <f:event type="preRenderView" listener="#{tipo_transaccionesBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
         <h:form class="flip">
           
             <p:outputLabel style="color: #ffffff;" value="Lista para escoger tipo de trasaccion a eliminar" />          
@@ -22,22 +22,32 @@
         </h:form>
         <h:form id="otro">
 
-          <!-- Modal -->
-
           <p:panelGrid id="display1" columns="4" columnClasses="label,value">          
-            <p:dataList value="#{tipo_transaccionesBean.lstTipo_transacciones}" var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+            <p:dataList value="#{mesaBean.lstMesa}" var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
 
               <p:column>
-                <f:facet name="header">Codigo de la trasaccion</f:facet>
-                <h:inputText value="#{tabla.id_tipo_transacciones}" style="color: #ffffff; width : 30px" />
+                <f:facet name="header">Codigo</f:facet>
+                <h:inputText value="#{tabla.id_mesa}" style="color: #ffffff; width : 30px" />
               </p:column>
               <p:column>
-                <f:facet name="header">Nombre de la trasaccion</f:facet>
-                <h:inputText value="#{tabla.nombre}" style="color: #ffffff; width : 160px" />
+                <f:facet name="header">Cantidad</f:facet>
+                <h:inputText value="#{tabla.cantidad_comensales}" style="color: #ffffff; width : 160px" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">Ubicacion</f:facet>
+                <h:inputText value="#{tabla.ubicacion}" style="color: #ffffff; width : 160px" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">id estado</f:facet>
+                <h:inputText value="#{tabla.geteMesa.id_estado}" style="color: #ffffff; width : 160px" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">id reserva</f:facet>
+                <h:inputText value="#{tabla.cliente.id_cliente}" style="color: #ffffff; width : 160px" />
               </p:column>
 
               <p:column>
-                <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{tipo_transaccionesBean.eliminar(tabla)}"/>                    
+                <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{mesaBean.eliminar(tabla)}"/>                    
               </p:column>                              
 
             </p:dataList>

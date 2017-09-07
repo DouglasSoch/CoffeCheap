@@ -15,37 +15,62 @@
       <ui:define name="content">
 
         <h:form class="flip">
+          <f:event type="preRenderView"  listener="#{estado_mesaBean.listar()}"/>
 
           <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
-            <p:outputLabel value="Codigo Trasaccion" />
-            <p:autoComplete id="Codig" value="#{tipo_transaccionesBean.tipo_transacciones.id_tipo_transacciones}" style="color: #ffffff;"/>                         
 
-            <p:outputLabel  value="Nombre" />
-            <p:autoComplete id="Nombre" value="#{tipo_transaccionesBean.tipo_transacciones.nombre}" style="color: #ffffff;"/>
+            <p:outputLabel value="id_mesa" />
+            <p:autoComplete id="Codig" value="#{mesaBean.mesa.id_mesa}" style="color: #ffffff;"/>                         
 
+            <p:outputLabel  value="Cantidad de comensales" />
+            <p:autoComplete id="Nombre" value="#{mesaBean.mesa.cantidad_comensales}" style="color: #ffffff;"/>
+
+            <p:outputLabel  value="Ubicacion" />
+            <p:autoComplete id="Ubicacion" value="#{mesaBean.mesa.ubicacion}" style="color: #ffffff;"/>
+
+            <p:outputLabel  value="id_estado" />            
+            <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{mesaBean.mesa.geteMesa.id_estado}" > 
+              <f:selectItems value="#{estado_mesaBean.lstEstado_mesa}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_estado}"/>                      
+            </p:selectOneMenu> 
+
+            <p:outputLabel  value="id_reserva" />
+            <p:autoComplete id="Reserva" value="#{mesaBean.mesa.reserva.id_reserva}" style="color: #ffffff;"/>
+            
+            <p:outputLabel  value="id_cliente" />
+            <p:autoComplete id="Cliente" value="#{mesaBean.mesa.cliente.id_cliente}" style="color: #ffffff;"/>
+            
           </h:panelGrid>
 
 
-          <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{tipo_transaccionesBean.registrar()}"/>
+          <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{mesaBean.registrar()}"/>
 
 
           <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
 
-              <h:outputText value="Codigo Trasaccion" />
-              <h:outputText id="CodigV" value="#{tipo_transaccionesBean.tipo_transacciones.id_tipo_transacciones}" />                         
+              <h:outputText value="Codigo Mesa" />
+              <h:outputText id="CodigV" value="#{mesaBean.mesa.id_mesa}" />                         
 
-              <h:outputText value="Nombre Trasaccion" />
-              <h:outputText id="NombreV" value="#{tipo_transaccionesBean.tipo_transacciones.nombre}" />
+              <h:outputText value="Cantidad Comensales" />
+              <h:outputText id="CantidadV" value="#{mesaBean.mesa.cantidad_comensales}" />
+              
+              <h:outputText value="Ubicacion" />
+              <h:outputText id="UbicacionV" value="#{mesaBean.mesa.ubicacion}" />
+              
+              <h:outputText value="Estado" />
+              <h:outputText id="EstadoV" value="#{mesaBean.mesa.geteMesa.id_estado}" />
+              
+              <h:outputText value="Reserva" />
+              <h:outputText id="ReservaV" value="#{mesaBean.mesa.reserva.id_reserva}" />
+              
+              <h:outputText value="Cliente" />
+              <h:outputText id="ClienteV" value="#{mesaBean.mesa.cliente.id_cliente}" />
 
             </p:panelGrid>
           </p:dialog>
 
         </h:form>
-        <h:form id="otro">       
-
-
-        </h:form> 
+        
 
       </ui:define>
     </ui:composition>
