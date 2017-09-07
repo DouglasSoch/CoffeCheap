@@ -14,7 +14,7 @@
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
 
-        <f:event type="preRenderView" listener="#{tipo_transaccionesBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{tipo_productoBean.listar()}"/>
         <h:form class="flip">
           
             <p:outputLabel style="color: #ffffff;" value="Lista para escoger tipo de trasaccion a eliminar" />          
@@ -25,11 +25,11 @@
           <!-- Modal -->
 
           <p:panelGrid id="display1" columns="4" columnClasses="label,value">          
-            <p:dataTable value="#{tipo_transaccionesBean.lstTipo_transacciones}" var="tabla" paginator="true" rows="10" styleClass="paginated">
+            <p:dataTable value="#{tipo_productoBean.lstTipo_producto}" var="tabla" paginator="true" rows="10" styleClass="paginated">
 
               <p:column>
                 <f:facet name="header">Codigo de la trasaccion</f:facet>
-                <h:inputText value="#{tabla.id_tipo_transacciones}" style="color: #ffffff; width : 30px" />
+                <h:inputText value="#{tabla.id_tipo}" style="color: #ffffff; width : 30px" />
               </p:column>
               <p:column>
                 <f:facet name="header">Nombre de la trasaccion</f:facet>
@@ -37,7 +37,7 @@
               </p:column>
 
               <p:column>
-                <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{tipo_transaccionesBean.eliminar(tabla)}"/>                    
+                <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{tipo_productoBean.eliminar(tabla)}"/>                    
               </p:column>                              
 
             </p:dataTable>>
