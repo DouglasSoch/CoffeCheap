@@ -23,8 +23,9 @@ public class Proveedor_productosDao extends Dao {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("insert into proveedor_productos values(?,?);");
 
-      //st.setInt(1, Tt.getId_proveedor_productos());
-      //st.setString(2, Tt.getNombre());
+      st.setInt(1, Tt.getId_proveedor());
+       st.setInt(2, Tt.getProducto().getId_producto());
+      st.setInt(3, Tt.getPrecio());
 
       st.executeUpdate();
 
@@ -49,8 +50,10 @@ public class Proveedor_productosDao extends Dao {
       while (rs.next()) {
         Proveedor_productos tt = new Proveedor_productos();
 
-        //tt.setId_proveedor_productos(rs.getInt(1));
-        //tt.setNombre(rs.getString(2));
+        tt.setId_proveedor(rs.getInt(1));
+        tt.getProducto().setId_producto(rs.getInt(2));
+        tt.setPrecio(rs.getInt(3));
+     
 
         lista.add(tt);
       }
@@ -65,15 +68,16 @@ public class Proveedor_productosDao extends Dao {
 
   }
 
-  public void modificar(Proveedor_productos tt) throws Exception {
+  public void modificar(Proveedor_productos Tt) throws Exception {
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  proveedor_productos SET id_proveedor_productos=?, nombre_trasaccion=? WHERE id_proveedor_productos=?;");
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE  proveedor_productos SET id_proveedor=?, id_producto=?, precio_insumo=? WHERE id_proveedor=?;");
 
-      st.setInt(1, tt.getId_proveedor());
-      //st.setString(2, tt.getNombre);
-      //st.setInt(3, tt.getId_proveedor_productos());
+     st.setInt(1, Tt.getId_proveedor());
+       st.setInt(2, Tt.getProducto().getId_producto());
+      st.setInt(3, Tt.getPrecio());
+       st.setInt(4, Tt.getId_proveedor());
 
       st.executeUpdate();
 
@@ -91,7 +95,7 @@ public class Proveedor_productosDao extends Dao {
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("DELETE FROM proveedor_productos WHERE id_proveedor_productos=?;");
-      //st.setInt(1, pac.getId_proveedor_productos());
+      st.setInt(1, pac.getId_proveedor());
       st.executeUpdate();
 
     } catch (Exception ex) {
