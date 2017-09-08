@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+  <h:body>
+
+    <ui:composition template="./WEB-INF/template/Template.xhtml">
+      <ui:define name="content">
+        <f:event type="preRenderView" listener="#{generosBean.listar()}"/>
+        <h:form>
+
+          <h2>Musicica clasificada por Genero</h2>
+
+          <h:panelGrid columns="2" cellpadding="5" border="1">
+
+            <p:outputLabel for="lisb" value="Generos Musicales:" />
+            <p:selectOneMenu id="lisb" style="width:125px" value="#{Generos.nombre}"> 
+
+              <f:selectItems value="#{generosBean.lstGeneros}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.nombre}"/>      
+              <p:ajax event="change" update="@this" />
+            </p:selectOneMenu>
+          </h:panelGrid>
+
+          <p:commandButton value="Listar" update="display1" oncomplete="PF('dlg2').show()" actionListener="#{vistaGeneroBean.listar(Generos.nombre)}"/>
+
+          <p:dialog widgetVar="dlg2" modal="true" resizable="false" header="Values" showEffect="fade"> 
+
+
+            <p:panelGrid id="display1" columns="2" columnClasses="label,value">          
+              <p:dataList value="#{vistaGeneroBean.lstVistaGenero}"  var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+
+                <p:column>
+                  <f:facet name="header">Art Nombre</f:facet>
+                  <h:inputText value="#{tabla.artNombre}" style="color: black; "/>
+                </p:column>
+                <p:column>
+                  <f:facet name="header">Art Apellido</f:facet>
+                  <h:inputText value="#{tabla.artApellido}" style="color: black; "/>
+                </p:column>
+                <p:column>
+                  <f:facet name="header">Correo</f:facet>
+                  <h:inputText value="#{tabla.artCorreo}" style="color: black; "/>
+                </p:column>
+                <p:column>
+                  <f:facet name="header">Gemero</f:facet>
+                  <h:inputText value="#{tabla.genNombre}" style="color: black;"/>
+                </p:column>
+                <p:column>
+                  <f:facet name="header">Canciones</f:facet>
+                  <h:inputText value="#{tabla.canNombre}" style="color: black;"/>
+                </p:column>
+
+
+              </p:dataList>
+            </p:panelGrid>
+          </p:dialog>        
+
+        </h:form> 
+
+      </ui:define>
+    </ui:composition>
+
+  </h:body>
+</html>
+
