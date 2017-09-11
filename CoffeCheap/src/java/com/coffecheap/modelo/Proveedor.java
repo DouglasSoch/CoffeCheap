@@ -4,31 +4,41 @@ import java.util.Objects;
 
 public class Proveedor 
 {
+    int nit_proveedor = 0;
     int id_provedor = 0; 
     String nombre = null;
     int telefono = 0;
     String mail = null;
-    String direccion = null;
+    String direccion = null ;
 
     public Proveedor() {
     }
 
-    public Proveedor(int id_provedor) {
-        this.id_provedor = id_provedor;
+    public Proveedor(int nit_proveedor) {
+        this.nit_proveedor = nit_proveedor;
     }
 
     public Proveedor(String nombre) {
         this.nombre = nombre;
     }
 
-    public Proveedor(int id_provedor, String nombre, int telefono, String mail, String direccion) {
+    public Proveedor(int nit_proveedor, int id_provedor, String nombre, int telefono, String mail, String direccion) {
+        this.nit_proveedor = nit_proveedor;
         this.id_provedor = id_provedor;
         this.nombre = nombre;
         this.telefono = telefono;
         this.mail = mail;
         this.direccion = direccion;
     }
-    
+
+    public int getNit_proveedor() {
+        return nit_proveedor;
+    }
+
+    public void setNit_proveedor(int nit_proveedor) {
+        this.nit_proveedor = nit_proveedor;
+    }
+
     public int getId_provedor() {
         return id_provedor;
     }
@@ -72,11 +82,12 @@ public class Proveedor
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 71 * hash + this.id_provedor;
-        hash = 71 * hash + Objects.hashCode(this.nombre);
-        hash = 71 * hash + this.telefono;
-        hash = 71 * hash + Objects.hashCode(this.mail);
-        hash = 71 * hash + Objects.hashCode(this.direccion);
+        hash = 29 * hash + this.nit_proveedor;
+        hash = 29 * hash + this.id_provedor;
+        hash = 29 * hash + Objects.hashCode(this.nombre);
+        hash = 29 * hash + this.telefono;
+        hash = 29 * hash + Objects.hashCode(this.mail);
+        hash = 29 * hash + Objects.hashCode(this.direccion);
         return hash;
     }
 
@@ -92,6 +103,9 @@ public class Proveedor
             return false;
         }
         final Proveedor other = (Proveedor) obj;
+        if (this.nit_proveedor != other.nit_proveedor) {
+            return false;
+        }
         if (this.id_provedor != other.id_provedor) {
             return false;
         }
@@ -109,6 +123,7 @@ public class Proveedor
 
     @Override
     public String toString() {
-        return "Proveedor{" + "id_provedor=" + id_provedor + ", nombre=" + nombre + ", telefono=" + telefono + ", mail=" + mail + ", direccion=" + direccion + '}';
+        return "Proveedor{" + "nit_proveedor=" + nit_proveedor + ", id_provedor=" + id_provedor + ", nombre=" + nombre + ", telefono=" + telefono + ", mail=" + mail + ", direccion=" + direccion + '}';
     }
+
 }

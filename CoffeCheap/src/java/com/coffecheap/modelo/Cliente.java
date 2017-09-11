@@ -4,9 +4,10 @@ import java.util.Objects;
 
 public class Cliente 
 {
-    int id_cliente = 0 ;
+    int id_cliente = 0;
     String nombre = null;
     String direccion = null;
+    int nit_cliente = 0;
 
     public Cliente() {
     }
@@ -19,12 +20,13 @@ public class Cliente
         this.nombre = nombre;
     }
 
-    public Cliente(int id_cliente, String nombre, String direccion) {
+    public Cliente(int id_cliente, String nombre, String direccion, int nit_cliente) {
         this.id_cliente = id_cliente;
         this.nombre = nombre;
         this.direccion = direccion;
+        this.nit_cliente = nit_cliente;
     }
-    
+
     public int getId_cliente() {
         return id_cliente;
     }
@@ -49,12 +51,21 @@ public class Cliente
         this.direccion = direccion;
     }
 
+    public int getNit_cliente() {
+        return nit_cliente;
+    }
+
+    public void setNit_cliente(int nit_cliente) {
+        this.nit_cliente = nit_cliente;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 79 * hash + this.id_cliente;
-        hash = 79 * hash + Objects.hashCode(this.nombre);
-        hash = 79 * hash + Objects.hashCode(this.direccion);
+        hash = 89 * hash + this.id_cliente;
+        hash = 89 * hash + Objects.hashCode(this.nombre);
+        hash = 89 * hash + Objects.hashCode(this.direccion);
+        hash = 89 * hash + this.nit_cliente;
         return hash;
     }
 
@@ -73,6 +84,9 @@ public class Cliente
         if (this.id_cliente != other.id_cliente) {
             return false;
         }
+        if (this.nit_cliente != other.nit_cliente) {
+            return false;
+        }
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
@@ -81,7 +95,6 @@ public class Cliente
 
     @Override
     public String toString() {
-        return "Cliente{" + "id_cliente=" + id_cliente + ", nombre=" + nombre + ", direccion=" + direccion + '}';
+        return "Cliente{" + "id_cliente=" + id_cliente + ", nombre=" + nombre + ", direccion=" + direccion + ", nit_cliente=" + nit_cliente + '}';
     }
-   
 }

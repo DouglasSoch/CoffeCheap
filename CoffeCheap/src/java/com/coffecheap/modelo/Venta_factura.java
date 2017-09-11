@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Venta_factura 
 {
     int id_venta_factura = 0;
-    int dpi_empresa = 0; 
+    int nit_empresa = 0; 
     int subtotal = 0;
     int iva = 0;
     int propina = 0;
@@ -16,7 +16,7 @@ public class Venta_factura
 
     public Venta_factura() {
     }
-    
+
     public Venta_factura(int id_venta_factura) {
         this.id_venta_factura = id_venta_factura;
     }
@@ -29,9 +29,9 @@ public class Venta_factura
         this.pedido = pedido;
     }
 
-    public Venta_factura(int id_venta_factura, int dpi_empresa, int subtotal, int iva, int propina, int total, Date fecha_emision, Pedido pedido) {
+    public Venta_factura(int id_venta_factura, int nit_empresa, int subtotal, int iva, int propina, int total, Date fecha_emision, Pedido pedido) {
         this.id_venta_factura = id_venta_factura;
-        this.dpi_empresa = dpi_empresa;
+        this.nit_empresa = nit_empresa;
         this.subtotal = subtotal;
         this.iva = iva;
         this.propina = propina;
@@ -48,12 +48,12 @@ public class Venta_factura
         this.id_venta_factura = id_venta_factura;
     }
 
-    public int getDpi_empresa() {
-        return dpi_empresa;
+    public int getNit_empresa() {
+        return nit_empresa;
     }
 
-    public void setDpi_empresa(int dpi_empresa) {
-        this.dpi_empresa = dpi_empresa;
+    public void setNit_empresa(int nit_empresa) {
+        this.nit_empresa = nit_empresa;
     }
 
     public int getSubtotal() {
@@ -107,14 +107,14 @@ public class Venta_factura
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + this.id_venta_factura;
-        hash = 83 * hash + this.dpi_empresa;
-        hash = 83 * hash + this.subtotal;
-        hash = 83 * hash + this.iva;
-        hash = 83 * hash + this.propina;
-        hash = 83 * hash + this.total;
-        hash = 83 * hash + Objects.hashCode(this.fecha_emision);
-        hash = 83 * hash + Objects.hashCode(this.pedido);
+        hash = 37 * hash + this.id_venta_factura;
+        hash = 37 * hash + this.nit_empresa;
+        hash = 37 * hash + this.subtotal;
+        hash = 37 * hash + this.iva;
+        hash = 37 * hash + this.propina;
+        hash = 37 * hash + this.total;
+        hash = 37 * hash + Objects.hashCode(this.fecha_emision);
+        hash = 37 * hash + Objects.hashCode(this.pedido);
         return hash;
     }
 
@@ -133,7 +133,7 @@ public class Venta_factura
         if (this.id_venta_factura != other.id_venta_factura) {
             return false;
         }
-        if (this.dpi_empresa != other.dpi_empresa) {
+        if (this.nit_empresa != other.nit_empresa) {
             return false;
         }
         if (this.subtotal != other.subtotal) {
@@ -156,6 +156,6 @@ public class Venta_factura
 
     @Override
     public String toString() {
-        return "Venta_factura{" + "id_venta_factura=" + id_venta_factura + ", dpi_empresa=" + dpi_empresa + ", subtotal=" + subtotal + ", iva=" + iva + ", propina=" + propina + ", total=" + total + ", fecha_emision=" + fecha_emision + ", pedido=" + pedido + '}';
+        return "Venta_factura{" + "id_venta_factura=" + id_venta_factura + ", nit_empresa=" + nit_empresa + ", subtotal=" + subtotal + ", iva=" + iva + ", propina=" + propina + ", total=" + total + ", fecha_emision=" + fecha_emision + ", pedido=" + pedido + '}';
     }
 }

@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Compra 
 {
-    int id_compras = 0 ;
+    int id_compras  = 0;
     Orden_compras Ocompras = new Orden_compras();
-    int cantidad =0 ;
-    int costo = 0;
-    int no_fac= 0;
+    int cantidad =0;
+    int costo =0;
+    int no_fac=0;
     String serie = null;
 
     public Compra() {
@@ -26,7 +26,7 @@ public class Compra
         this.serie = serie;
     }
 
-    public Compra(int id_compras, Orden_compras Ocompras, Proveedor proveedor, Producto producto, int cantidad, int costo, int no_fac, String serie) {
+    public Compra(int id_compras, Orden_compras Ocompras, int cantidad, int costo, int no_fac, String serie) {
         this.id_compras = id_compras;
         this.Ocompras = Ocompras;
         this.cantidad = cantidad;
@@ -34,8 +34,7 @@ public class Compra
         this.no_fac = no_fac;
         this.serie = serie;
     }
-    
-    
+
     public int getId_compras() {
         return id_compras;
     }
@@ -83,16 +82,17 @@ public class Compra
     public void setSerie(String serie) {
         this.serie = serie;
     }
+    
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + this.id_compras;
-        hash = 79 * hash + Objects.hashCode(this.Ocompras);
-        hash = 79 * hash + this.cantidad;
-        hash = 79 * hash + this.costo;
-        hash = 79 * hash + this.no_fac;
-        hash = 79 * hash + Objects.hashCode(this.serie);
+        hash = 83 * hash + this.id_compras;
+        hash = 83 * hash + Objects.hashCode(this.Ocompras);
+        hash = 83 * hash + this.cantidad;
+        hash = 83 * hash + this.costo;
+        hash = 83 * hash + this.no_fac;
+        hash = 83 * hash + Objects.hashCode(this.serie);
         return hash;
     }
 
@@ -128,7 +128,7 @@ public class Compra
 
     @Override
     public String toString() {
-        return "Compras{" + "id_compras=" + id_compras + ", Ocompras=" + Ocompras + ", cantidad=" + cantidad + ", costo=" + costo + ", no_fac=" + no_fac + ", serie=" + serie + '}';
+        return "Compra{" + "id_compras=" + id_compras + ", Ocompras=" + Ocompras + ", cantidad=" + cantidad + ", costo=" + costo + ", no_fac=" + no_fac + ", serie=" + serie + '}';
     }
     
 }
