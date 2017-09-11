@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.coffecheap.bean;
+package com.coffecheap.dao;
 
 /**
  *
  * @author medev
  */
-public class sdfsdf {
-    
+public class sdfsdfsfsfs {
+  
 }

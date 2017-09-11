@@ -14,7 +14,7 @@ import java.sql.ResultSet;
  *
  * @author medev
  */
-public class ValidarLoginDao extends DAO{
+public class ValidarLoginDao extends DAO1{
      Usuario usuari=new Usuario();
 
     public Usuario getUsuari() {
