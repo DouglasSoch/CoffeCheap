@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author acier
  */
-public class Pedido_MostrarDao extends DAO {
+public class Pedido_MostrarDao extends DAO1 {
 
   public List<Pedido> listar() throws Exception {
     List<Pedido> lista;

@@ -12,7 +12,7 @@ import java.sql.DriverManager;
  *
  * @author medev
  */
-public class DAO {
+public class DAO1 {
 
     private Connection cn;
 
