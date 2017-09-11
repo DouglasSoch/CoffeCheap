@@ -6,6 +6,7 @@
 package com.coffecheap.dao;
 
 import com.coffecheap.modelo.Orden_compras;
+import com.coffecheap.modelo.Proveedor_productos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -116,5 +117,39 @@ public class Orden_comprasDao extends Dao {
     }
 
   }
+  
+  public List<Proveedor_productos> ListarProveedor_Produ(Orden_compras ordenid) throws Exception {
+
+        List<Proveedor_productos> lista;
+        ResultSet rs;
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("select proveedor.id_proveedor, producto.id_producto,"
+                    + "producto.nombre_producto, prov_prod.precio_insumo\n"
+                    + "from proveedor \n"
+                    + "inner join proveedor_productos as prov_prod\n"
+                    + "on(proveedor.id_proveedor = prov_prod.id_proveedor)\n"
+                    + "inner join producto \n"
+                    + "on(prov_prod.id_producto = producto.id_producto) where proveedor.id_proveedor=?;");
+            System.out.println(ordenid.getPproductos().getId_proveedor());
+            st.setInt(1, ordenid.getPproductos().getId_proveedor());
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Proveedor_productos prove_pro = new Proveedor_productos();
+                prove_pro.setId_proveedor(rs.getInt("proveedor.id_proveedor"));
+                prove_pro.getProducto().setId_producto(rs.getInt("producto.id_producto"));
+                prove_pro.getProducto().setNombre(rs.getString("producto.nombre_producto"));
+                prove_pro.setPrecio(rs.getInt("prov_prod.precio_insumo"));
+                lista.add(prove_pro);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Desconecar();
+        }
+        return lista;
+    }
+
 
 }

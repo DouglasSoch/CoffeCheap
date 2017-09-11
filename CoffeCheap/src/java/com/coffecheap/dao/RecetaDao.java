@@ -13,7 +13,7 @@ import java.sql.PreparedStatement;
  * @author medev
  */
 public class RecetaDao extends Dao{
-    public void registrar(Receta receta) throws Exception {
+    /*public void registrar(Receta receta) throws Exception {
 
     try {
       this.Conectar();
@@ -109,5 +109,5 @@ public class RecetaDao extends Dao{
     }
 
   }
-    
+    */
 }

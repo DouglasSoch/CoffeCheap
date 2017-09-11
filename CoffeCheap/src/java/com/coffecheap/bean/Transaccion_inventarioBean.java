@@ -48,7 +48,7 @@ public class Transaccion_inventarioBean {
     public void registrar() throws Exception {
 
         Transaccion_InventarioDAO dao = new Transaccion_InventarioDAO();
-
+//manejo de fecha y registrar
         try {
             
             if (traInv.getTtransaccion().getId_tipo_transacciones() != 0) {

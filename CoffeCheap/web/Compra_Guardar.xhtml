@@ -23,16 +23,7 @@
                             <f:selectItem itemLabel="Orden..."/>
                             <f:selectItems value="#{orden_comprasBean.lstOrden_compras}" var="lista" itemLabel="#{lista.id_orden_compras}" itemValue="#{lista.id_orden_compras}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel for="Proveedor" value="Proveedor"/>
-                        <p:selectOneMenu id="Proveedor" value="#{compraBean.compra.proveedor.id_provedor}">
-                            <f:selectItem itemLabel="Proveedor..."/>
-                            <f:selectItems value="#{proveedorBean.listar}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_provedor}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel for="Producto" value="Producto"/>
-                        <p:selectOneMenu id="Producto" value="#{compraBean.compra.producto.id_producto}">
-                            <f:selectItem itemLabel="Producto..."/>
-                            <f:selectItems value="#{productoBean.lstProducto}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_producto}"/>
-                        </p:selectOneMenu>
+                        
                         <p:outputLabel for="Cantidad" value="Cantidad"/>
                         <p:inputText id="Cantidad" value="#{compraBean.compra.cantidad}" />
                         <p:outputLabel for="Costo" value="Costo"/>

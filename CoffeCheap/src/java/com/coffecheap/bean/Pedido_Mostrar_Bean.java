@@ -35,7 +35,7 @@ public class Pedido_Mostrar_Bean {
   }
 
    
-  public void listar() throws Exception {
+  /*public void listar() throws Exception {
     Pedido_MostrarDao dao;
 
     try {
@@ -45,7 +45,7 @@ public class Pedido_Mostrar_Bean {
       throw e;
     }
 
-  }
+  }*/
 
 
 

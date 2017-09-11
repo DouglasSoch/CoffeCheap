@@ -16,7 +16,7 @@ import java.util.List;
  * @author acier
  */
 public class Pedido_MostrarDao extends DAO {
-
+/*
   public List<Pedido> listar() throws Exception {
     List<Pedido> lista;
     ResultSet rs;
@@ -44,5 +44,5 @@ public class Pedido_MostrarDao extends DAO {
     return lista;
 
   }
-
+*/
 }

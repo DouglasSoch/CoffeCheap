@@ -15,7 +15,7 @@
             <ui:define name="content">
                 <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
                 <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
-
+                <f:event type="preRenderView" listener="#{orden_comprasBean.Mostrar_Prov_Produ()}"/>
                 <h:form class="flip">
 
                     <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
@@ -32,15 +32,17 @@
                         <p:outputLabel  value="Cantidad Orden" />
                         <p:autoComplete id="Cantidad" value="#{orden_comprasBean.orden_compras.cantidad}"/>
 
-                        <p:outputLabel for="lis1" value="Id_proveedor:" />
-                        <p:selectOneMenu id="lis1" style="width:125px" value="#{orden_comprasBean.orden_compras.pproductos.id_proveedor}" > 
-                            <f:selectItems value="#{proveedorBean.listar}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_provedor}"/>      
-                            <p:ajax event="change" update="@this" />      
+                        <p:outputLabel for="Proveedor_lista" value="Id_proveedor:" />
+                        <p:selectOneMenu id="Proveedor_lista" style="width:125px" value="#{orden_comprasBean.orden_compras.pproductos.id_proveedor}"> 
+                            <f:selectItem itemLabel="Proveedor..." itemValue=""/>
+                            <f:selectItems value="#{proveedorBean.listar}" var="lista1" itemLabel="#{lista1.nombre}" itemValue="#{lista1.id_provedor}"/>      
+                            <f:ajax execute="Proveedor_lista" render="Producto_lista"/>
                         </p:selectOneMenu> 
 
-                        <p:outputLabel for="lis" value="Id_producto:" />
-                        <p:selectOneMenu id="lis" style="width:125px" value="#{orden_comprasBean.orden_compras.pproductos.producto.id_producto}"> 
-                            <f:selectItems value="#{productoBean.lstProducto}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_producto}" />      
+                        <p:outputLabel for="Producto_lista" value="Id_producto:" />
+                        <p:selectOneMenu id="Producto_lista" style="width:125px" value="#{orden_comprasBean.orden_compras.pproductos.producto.id_producto}"> 
+                            <f:selectItem itemLabel="Producto..." itemValue=""/>
+                            <f:selectItems value="#{orden_comprasBean.lstProveedor_productos}" var="listapro" itemLabel="#{listapro.producto.nombre}" itemValue="#{listapro.producto.id_producto}"/>      
                         </p:selectOneMenu> 
 
                         <p:outputLabel  value="precio" />

@@ -6,8 +6,6 @@ public class Compra
 {
     int id_compras = 0 ;
     Orden_compras Ocompras = new Orden_compras();
-    Proveedor proveedor = new Proveedor();
-    Producto producto = new Producto();
     int cantidad =0 ;
     int costo = 0;
     int no_fac= 0;
@@ -24,14 +22,6 @@ public class Compra
         this.Ocompras = Ocompras;
     }
 
-    public Compra(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
-
-    public Compra(Producto producto) {
-        this.producto = producto;
-    }
-
     public Compra(String serie) {
         this.serie = serie;
     }
@@ -39,8 +29,6 @@ public class Compra
     public Compra(int id_compras, Orden_compras Ocompras, Proveedor proveedor, Producto producto, int cantidad, int costo, int no_fac, String serie) {
         this.id_compras = id_compras;
         this.Ocompras = Ocompras;
-        this.proveedor = proveedor;
-        this.producto = producto;
         this.cantidad = cantidad;
         this.costo = costo;
         this.no_fac = no_fac;
@@ -62,22 +50,6 @@ public class Compra
 
     public void setOcompras(Orden_compras Ocompras) {
         this.Ocompras = Ocompras;
-    }
-
-    public Proveedor getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
     }
 
     public int getCantidad() {
@@ -117,8 +89,6 @@ public class Compra
         int hash = 7;
         hash = 79 * hash + this.id_compras;
         hash = 79 * hash + Objects.hashCode(this.Ocompras);
-        hash = 79 * hash + Objects.hashCode(this.proveedor);
-        hash = 79 * hash + Objects.hashCode(this.producto);
         hash = 79 * hash + this.cantidad;
         hash = 79 * hash + this.costo;
         hash = 79 * hash + this.no_fac;
@@ -153,18 +123,12 @@ public class Compra
         if (!Objects.equals(this.serie, other.serie)) {
             return false;
         }
-        if (!Objects.equals(this.Ocompras, other.Ocompras)) {
-            return false;
-        }
-        if (!Objects.equals(this.proveedor, other.proveedor)) {
-            return false;
-        }
-        return Objects.equals(this.producto, other.producto);
+        return Objects.equals(this.Ocompras, other.Ocompras);
     }
 
     @Override
     public String toString() {
-        return "Compras{" + "id_compras=" + id_compras + ", Ocompras=" + Ocompras + ", proveedor=" + proveedor + ", producto=" + producto + ", cantidad=" + cantidad + ", costo=" + costo + ", no_fac=" + no_fac + ", serie=" + serie + '}';
+        return "Compras{" + "id_compras=" + id_compras + ", Ocompras=" + Ocompras + ", cantidad=" + cantidad + ", costo=" + costo + ", no_fac=" + no_fac + ", serie=" + serie + '}';
     }
     
 }
