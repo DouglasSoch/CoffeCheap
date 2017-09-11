@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <f:event type="preRenderView" listener="#{turnoBean.Mostrar()}"/>
+                    <b:dataTable value="#{turnoBean.listar}" var="turno" col-md="12">
+                        <b:dataTableColumn value="#{turno.id_turno}" label="Codigo" />
+                        <b:dataTableColumn value="#{turno.horario_turno}" label="Horario"/>
+                        <b:dataTableColumn value="#{turno.observaciones}" label="Descripcion"/>
+                    </b:dataTable>
+                </h:form>
+            </ui:define>  
+        </ui:composition>
+    </h:body>
+</html>
+

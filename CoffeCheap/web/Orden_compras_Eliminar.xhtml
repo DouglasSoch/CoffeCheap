@@ -52,7 +52,7 @@
                 <h:inputText value="#{tabla.pproductos.producto.id_producto}" style="color: #ffffff; width : 80px" />
                 
                 <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{tabla.pproductos.id_proveedor}" > 
-                  <f:selectItems value="#{proveedorBean.listar}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_provedor}"/>      
+                  <f:selectItems value="#{proveedorBean.listar}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_proveedor}"/>      
                   <p:ajax event="change" update="@this" />      
                 </p:selectOneMenu> 
               </p:column>

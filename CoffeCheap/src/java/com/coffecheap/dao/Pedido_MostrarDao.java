@@ -29,8 +29,8 @@ public class Pedido_MostrarDao extends DAO1 {
       lista = new ArrayList();
       while (rs.next()) {
         Pedido Emp = new Pedido();
-        Emp.setCodigo(rs.getInt(1));
-        Emp.setNombre(rs.getString(2));
+        //Emp.setCodigo(rs.getInt(1));
+        //Emp.setNombre(rs.getString(2));
 
         lista.add(Emp);
       }
@@ -44,5 +44,5 @@ public class Pedido_MostrarDao extends DAO1 {
     return lista;
 
   }
-*/
+
 }

@@ -12,7 +12,7 @@ public class ProveedorDao extends Dao {
         try {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("insert into proveedor values(?,?,?,?,?)");
-            st.setInt(1, proveedor.getId_provedor());
+            st.setInt(1, proveedor.getId_proveedor());
             st.setString(2, proveedor.getNombre());
             st.setInt(3, proveedor.getTelefono());
             st.setString(4, proveedor.getMail());
@@ -22,7 +22,7 @@ public class ProveedorDao extends Dao {
             throw e;
         } finally {
             this.Desconecar();
-            proveedor.setId_provedor(0);
+            proveedor.setId_proveedor(0);
             proveedor.setNombre(null);
             proveedor.setTelefono(0);
             proveedor.setMail(null);
@@ -35,13 +35,13 @@ public class ProveedorDao extends Dao {
         try {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("delete from proveedor where id_proveedor=?");
-            st.setInt(1, proveedor.getId_provedor());
+            st.setInt(1, proveedor.getId_proveedor());
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
         } finally {
             this.Desconecar();
-            proveedor.setId_provedor(0);
+            proveedor.setId_proveedor(0);
         }
 
     }
@@ -55,13 +55,13 @@ public class ProveedorDao extends Dao {
             st.setInt(2, proveedor.getTelefono());
             st.setString(3, proveedor.getMail());
             st.setString(4, proveedor.getDireccion());
-            st.setInt(5, proveedor.getId_provedor());
+            st.setInt(5, proveedor.getId_proveedor());
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
         } finally {
             this.Desconecar();
-            proveedor.setId_provedor(0);
+            proveedor.setId_proveedor(0);
             proveedor.setNombre(null);
             proveedor.setTelefono(0);
             proveedor.setMail(null);
@@ -83,11 +83,12 @@ public class ProveedorDao extends Dao {
 
             while (rs.next()) {
                 Proveedor proveedor = new Proveedor();
-                proveedor.setId_provedor(rs.getInt(1));
+                proveedor.setId_proveedor(rs.getInt(1));
                 proveedor.setNombre(rs.getString(2));
-                proveedor.setTelefono(rs.getInt(3));
-                proveedor.setMail(rs.getString(4));
-                proveedor.setDireccion(rs.getString(5));
+                proveedor.setNit(rs.getString(3));
+                proveedor.setTelefono(rs.getInt(4));
+                proveedor.setMail(rs.getString(5));
+                proveedor.setDireccion(rs.getString(6));
                 lista.add(proveedor);
             }
         } catch (Exception e) {

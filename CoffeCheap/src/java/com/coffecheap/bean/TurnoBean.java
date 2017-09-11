@@ -12,7 +12,9 @@ import javax.faces.bean.ViewScoped;
 public class TurnoBean {
 
     Turno turno = new Turno();
-    List <Turno> lista = new ArrayList();
+    List <Turno> listar = new ArrayList();
+    
+    
 
     public Turno getTurno() {
         return turno;
@@ -22,12 +24,12 @@ public class TurnoBean {
         this.turno = turno;
     }
 
-    public List<Turno> getLista() {
-        return lista;
+    public List<Turno> getListar() {
+        return listar;
     }
 
-    public void setLista(List<Turno> lista) {
-        this.lista = lista;
+    public void setListar(List<Turno> listar) {
+        this.listar = listar;
     }
     
     public TurnoBean() {
@@ -75,7 +77,7 @@ public class TurnoBean {
         
         try {
             dao = new TurnoDao();
-            lista = dao.Visualizar();
+            listar = dao.Visualizar();
         } catch (Exception e) {
             throw e;
         }

@@ -27,7 +27,7 @@
                             <p:outputLabel for="TurnoChef" value="Turno"/>
                             <p:selectOneMenu id="TurnoChef" value="#{personal_chefBean.personal.turno.id_turno}">
                                 <f:selectItem itemLabel="Turno..."/>
-                                <f:selectItems value="#{turnoBean.lista}" var="lista" itemLabel="#{lista.horario_turno}" itemValue="#{lista.id_turno}"/>                                
+                                <f:selectItems value="#{turnoBean.listar}" var="lista" itemLabel="#{lista.horario_turno}" itemValue="#{lista.id_turno}"/>                                
                             </p:selectOneMenu>
                         </h:panelGrid><br/>
                         <p:commandButton value="Guardar" action="#{personal_chefBean.Guardar()}" update="form1"/>

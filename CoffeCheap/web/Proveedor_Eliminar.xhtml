@@ -15,7 +15,7 @@
                 <h:form id="form1">
                     <h:panelGrid id="general" columns="2" cellpadding="5">
                         <p:outputLabel for="codigo" value="Codigo"/>
-                        <p:inputText id="codigo" value="#{proveedorBean.proveedor.id_provedor}"/>
+                        <p:inputText id="codigo" value="#{proveedorBean.proveedor.id_proveedor}"/>
                     </h:panelGrid><br/>
                     <p:commandButton value="Eliminar" action="#{proveedorBean.Eliminar()}" update="form1"/>
                 </h:form>

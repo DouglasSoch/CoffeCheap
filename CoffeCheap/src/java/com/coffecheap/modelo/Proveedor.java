@@ -4,47 +4,46 @@ import java.util.Objects;
 
 public class Proveedor 
 {
-    int nit_proveedor = 0;
-    int id_provedor = 0; 
+    int id_proveedor = 0; 
     String nombre = null;
+    String nit = null;
     int telefono = 0;
     String mail = null;
-    String direccion = null ;
+    String direccion = null;
 
     public Proveedor() {
     }
 
-    public Proveedor(int nit_proveedor) {
-        this.nit_proveedor = nit_proveedor;
+    public String getNit() {
+        return nit;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
+
+    public Proveedor(int id_provedor) {
+        this.id_proveedor = id_provedor;
     }
 
     public Proveedor(String nombre) {
         this.nombre = nombre;
     }
 
-    public Proveedor(int nit_proveedor, int id_provedor, String nombre, int telefono, String mail, String direccion) {
-        this.nit_proveedor = nit_proveedor;
-        this.id_provedor = id_provedor;
+    public Proveedor(int id_provedor, String nombre, int telefono, String mail, String direccion) {
+        this.id_proveedor = id_provedor;
         this.nombre = nombre;
         this.telefono = telefono;
         this.mail = mail;
         this.direccion = direccion;
     }
-
-    public int getNit_proveedor() {
-        return nit_proveedor;
+    
+    public int getId_proveedor() {
+        return id_proveedor;
     }
 
-    public void setNit_proveedor(int nit_proveedor) {
-        this.nit_proveedor = nit_proveedor;
-    }
-
-    public int getId_provedor() {
-        return id_provedor;
-    }
-
-    public void setId_provedor(int id_provedor) {
-        this.id_provedor = id_provedor;
+    public void setId_proveedor(int id_proveedor) {
+        this.id_proveedor = id_proveedor;
     }
 
     public String getNombre() {
@@ -82,12 +81,11 @@ public class Proveedor
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 29 * hash + this.nit_proveedor;
-        hash = 29 * hash + this.id_provedor;
-        hash = 29 * hash + Objects.hashCode(this.nombre);
-        hash = 29 * hash + this.telefono;
-        hash = 29 * hash + Objects.hashCode(this.mail);
-        hash = 29 * hash + Objects.hashCode(this.direccion);
+        hash = 71 * hash + this.id_proveedor;
+        hash = 71 * hash + Objects.hashCode(this.nombre);
+        hash = 71 * hash + this.telefono;
+        hash = 71 * hash + Objects.hashCode(this.mail);
+        hash = 71 * hash + Objects.hashCode(this.direccion);
         return hash;
     }
 
@@ -103,10 +101,7 @@ public class Proveedor
             return false;
         }
         final Proveedor other = (Proveedor) obj;
-        if (this.nit_proveedor != other.nit_proveedor) {
-            return false;
-        }
-        if (this.id_provedor != other.id_provedor) {
+        if (this.id_proveedor != other.id_proveedor) {
             return false;
         }
         if (this.telefono != other.telefono) {
@@ -123,7 +118,6 @@ public class Proveedor
 
     @Override
     public String toString() {
-        return "Proveedor{" + "nit_proveedor=" + nit_proveedor + ", id_provedor=" + id_provedor + ", nombre=" + nombre + ", telefono=" + telefono + ", mail=" + mail + ", direccion=" + direccion + '}';
+        return "Proveedor{" + "id_provedor=" + id_proveedor + ", nombre=" + nombre + ", telefono=" + telefono + ", mail=" + mail + ", direccion=" + direccion + '}';
     }
-
 }

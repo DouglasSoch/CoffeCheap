@@ -35,7 +35,7 @@
                         <p:outputLabel for="Proveedor_lista" value="Id_proveedor:" />
                         <p:selectOneMenu id="Proveedor_lista" style="width:125px" value="#{orden_comprasBean.orden_compras.pproductos.id_proveedor}"> 
                             <f:selectItem itemLabel="Proveedor..." itemValue=""/>
-                            <f:selectItems value="#{proveedorBean.listar}" var="lista1" itemLabel="#{lista1.nombre}" itemValue="#{lista1.id_provedor}"/>      
+                            <f:selectItems value="#{proveedorBean.listar}" var="lista1" itemLabel="#{lista1.nombre}" itemValue="#{lista1.id_proveedor}"/>      
                             <f:ajax execute="Proveedor_lista" render="Producto_lista"/>
                         </p:selectOneMenu> 
 
