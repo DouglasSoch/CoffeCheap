@@ -79,6 +79,11 @@ thead{
     color:white;
 }
 
+.ui-selectonemenu-item.ui-selectonemenu-list-item.ui-corner-all{
+  background: black;
+  
+  color:white;
+}
 /*de botfaces
 
 .sub-header {

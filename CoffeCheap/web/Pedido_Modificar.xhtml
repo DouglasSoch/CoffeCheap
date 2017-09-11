@@ -15,6 +15,7 @@
       <ui:define name="content">
 
         <f:event type="preRenderView" listener="#{pedidoBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{personal_MeseroBean.listar()}"/>
         <h:form class="flip">
 
           <p:outputLabel style="color: #ffffff;" value="Lista para escoger Pedido a Modificar" />          
@@ -39,8 +40,12 @@
                 <h:inputText value="#{tabla.hora}" style="color: #ffffff; width : 160px" />
               </p:column>
               <p:column>
-                <f:facet name="header">id personal</f:facet>
-                <h:inputText value="#{tabla.pmesero.id_personal_servicio}" style="color: #ffffff; width : 160px" />
+                <f:facet name="header">id personal</f:facet>            
+              
+                
+                <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{tabla.pmesero.id_personal_servicio}" > 
+                  <f:selectItems value="#{personal_MeseroBean.lstPermes}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_personal_servicio}"/>                      
+                </p:selectOneMenu> 
               </p:column>                    
 
               <p:column>

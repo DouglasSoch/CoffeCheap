@@ -18,25 +18,25 @@
 
           <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
             <p:outputLabel value="Codigo Trasaccion" />
-            <p:autoComplete id="Codig" value="#{tipo_transaccionesBean.tipo_transacciones.id_tipo_transacciones}" style="color: #ffffff;"/>                         
+            <p:autoComplete id="Codig" value="#{tipo_productoBean.tipo_producto.id_tipo}" style="color: #ffffff;"/>                         
 
             <p:outputLabel  value="Nombre" />
-            <p:autoComplete id="Nombre" value="#{tipo_transaccionesBean.tipo_transacciones.nombre}" style="color: #ffffff;"/>
+            <p:autoComplete id="Nombre" value="#{tipo_productoBean.tipo_producto.nombre}" style="color: #ffffff;"/>
 
           </h:panelGrid>
 
 
-          <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{tipo_transaccionesBean.registrar()}"/>
+          <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{tipo_productoBean.registrar()}"/>
 
 
           <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
 
               <h:outputText value="Codigo Trasaccion" />
-              <h:outputText id="CodigV" value="#{tipo_transaccionesBean.tipo_transacciones.id_tipo_transacciones}" />                         
+              <h:outputText id="CodigV" value="#{tipo_productoBean.tipo_producto.id_tipo}" />                         
 
               <h:outputText value="Nombre Trasaccion" />
-              <h:outputText id="NombreV" value="#{tipo_transaccionesBean.tipo_transacciones.nombre}" />
+              <h:outputText id="NombreV" value="#{tipo_productoBean.tipo_producto.nombre}" />
 
             </p:panelGrid>
           </p:dialog>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+  <h:body>
+    <ui:composition template="./WEB-INF/template/Template.xhtml">
+      <ui:define name="content">
+
+        <h:form class="flip">
+          <f:event type="preRenderView"  listener="#{estado_mesaBean.listar()}"/>
+
+          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+
+            <p:outputLabel value="id_mesa" />
+            <p:autoComplete id="Codig" value="#{mesaBean.mesa.id_mesa}" style="color: #ffffff;"/>                         
+
+            <p:outputLabel  value="Cantidad de comensales" />
+            <p:autoComplete id="Nombre" value="#{mesaBean.mesa.cantidad_comensales}" style="color: #ffffff;"/>
+
+            <p:outputLabel  value="Ubicacion" />
+            <p:autoComplete id="Ubicacion" value="#{mesaBean.mesa.ubicacion}" style="color: #ffffff;"/>
+
+            <p:outputLabel  value="id_estado" />            
+            <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{mesaBean.mesa.geteMesa.id_estado}" > 
+              <f:selectItems value="#{estado_mesaBean.lstEstado_mesa}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_estado}"/>                      
+            </p:selectOneMenu> 
+
+            <p:outputLabel  value="id_reserva" />
+            <p:autoComplete id="Reserva" value="#{mesaBean.mesa.reserva.id_reserva}" style="color: #ffffff;"/>
+            
+            <p:outputLabel  value="id_cliente" />
+            <p:autoComplete id="Cliente" value="#{mesaBean.mesa.cliente.id_cliente}" style="color: #ffffff;"/>
+            
+          </h:panelGrid>
+
+
+          <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{mesaBean.registrar()}"/>
+
+
+          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
+            <p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+              <h:outputText value="Codigo Mesa" />
+              <h:outputText id="CodigV" value="#{mesaBean.mesa.id_mesa}" />                         
+
+              <h:outputText value="Cantidad Comensales" />
+              <h:outputText id="CantidadV" value="#{mesaBean.mesa.cantidad_comensales}" />
+              
+              <h:outputText value="Ubicacion" />
+              <h:outputText id="UbicacionV" value="#{mesaBean.mesa.ubicacion}" />
+              
+              <h:outputText value="Estado" />
+              <h:outputText id="EstadoV" value="#{mesaBean.mesa.geteMesa.id_estado}" />
+              
+              <h:outputText value="Reserva" />
+              <h:outputText id="ReservaV" value="#{mesaBean.mesa.reserva.id_reserva}" />
+              
+              <h:outputText value="Cliente" />
+              <h:outputText id="ClienteV" value="#{mesaBean.mesa.cliente.id_cliente}" />
+
+            </p:panelGrid>
+          </p:dialog>
+
+        </h:form>
+        
+
+      </ui:define>
+    </ui:composition>
+  </h:body>
+</html>
+

@@ -14,10 +14,10 @@
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
           
-        <f:event type="preRenderView" listener="#{tipo_transaccionesBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{tipo_transaccionesBean.listar()}" />
         <h:form class="flip">
           
-            <p:outputLabel style="color: #ffffff;" value="Lista para escoger tipo de trasaccion a eliminar" />          
+            <p:outputLabel style="color: #ffffff;" value="Lista para escoger tipo de trasaccion a eliminar"/>          
          
         </h:form>
         <h:form id="otro">
@@ -25,7 +25,7 @@
           <!-- Modal -->
 
           <p:panelGrid id="display1" columns="4" columnClasses="label,value">          
-            <p:dataList value="#{tipo_transaccionesBean.lstTipo_transacciones}" var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+            <p:dataTable value="#{tipo_transaccionesBean.lstTipo_transacciones}" var="tabla" paginator="true" rows="10" styleClass="paginated">
 
               <p:column>
                 <f:facet name="header">Codigo de la trasaccion</f:facet>
@@ -40,7 +40,7 @@
                 <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{tipo_transaccionesBean.modificar(tabla)}"/>                    
               </p:column>                              
 
-            </p:dataList>
+            </p:dataTable>>
           </p:panelGrid>        
 
         </h:form> 

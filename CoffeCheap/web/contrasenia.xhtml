@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+  <h:head>
+    <title>Facelet Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>    
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+ <h:outputStylesheet library="css" name="sweetalert.css"/>
+    <h:outputScript library="js" name="sweetalert.min.js"/>
+    <f:event type="preRenderView" listener="#{verificar_login.vrificarSession()}"/>
+  </h:head>
+  <h:body>
+    <h:form>
+      <p:messages autoUpdate="true"/>
+      <br/>
+      <div class="row">
+        <div class="input-field col s3"> 
+        </div>
+        <div class="input-field col s6"> 
+
+          <div class="card-panel grey lighten-4">
+
+
+            <center>
+              <div class="row">
+                <div class="input-field col s3">  
+                </div>
+                <div class="input-field col s6">
+
+                </div>
+              </div>
+            </center>
+
+            <div class="row">
+              <div class="input-field col s1"></div>
+              <div class="input-field col s10">
+
+                  <h4>Bienvenido #{verificar_login.usu.usua}</h4>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s1">  
+              </div>  
+              <div class="input-field col s6"><b> 
+    <h:outputLabel value="Debes Confirmar Tu Identidad" style="color: grey"/>
+                </b>
+                <br/>
+                <br/>
+              </div>
+            </div>
+            <center>
+              <div class="row">
+                <div class="input-field col s1">  
+                </div>  
+                <div class="input-field col s10">
+               <i class="material-icons prefix">vpn_key</i>
+               <p:password id="pass" value="#{loginBean.usu.pass}" class="validate" required="true" requiredMessage="Necesita Contraseña"/>
+                  <h:outputLabel for="pass" value="Escribe Tu Contraseña" style="color: grey"/>
+                </div>
+
+              </div>
+              <br/>
+              <div class="row">
+                <div class="col s1">
+                </div>
+
+                <div class="col s4">
+
+                  <a class="waves-effect light-blue accent-3 btn" href="index.xhtml"><i class="material-icons left">replay</i>Volver</a>
+
+
+                </div>
+                <div class="col s1">
+                </div>       
+                <div class="col s5">
+                  <p:commandLink value="Siguiente" class="btn light-blue" actionListener="#{loginBean.login()}" ></p:commandLink>
+
+                </div>
+
+              </div>
+
+
+              <br/>
+              <br/>
+              <br/>
+            </center>
+          </div>
+
+        </div>
+
+      </div>
+    </h:form>
+  </h:body>
+</html>
+
