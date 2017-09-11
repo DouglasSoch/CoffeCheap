@@ -7,21 +7,24 @@ package com.coffecheap.dao;
 
 import com.coffecheap.modelo.Receta;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author medev
  */
 public class RecetaDao extends Dao{
-    /*public void registrar(Receta receta) throws Exception {
+    public void registrar(Receta receta) throws Exception {
 
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("insert into receta values(?,?,?,?);");
       st.setInt(1, receta.getPlato().getId_plato());
-      st.setString(2, permes.getNombre());
-      st.setString(3, permes.getTelefono());
-      st.setInt(4, permes.getTurno().getId_turno());    
+      st.setInt(2, receta.getProducto().getId_producto());
+      st.setInt(3, receta.getCantidad());
+      st.setInt(4, receta.getUmedida().getId_unidad());    
       
         
 
@@ -36,27 +39,28 @@ public class RecetaDao extends Dao{
 
   }
 
-  public List<Personal_mesero> listar() throws Exception {
-    List<Personal_mesero> lista;
+  public List<Receta> listar() throws Exception {
+    List<Receta> lista;
     ResultSet rs;
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM personal_mesero;");
+      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM receta;");
       rs = st.executeQuery();
       lista = new ArrayList();
       while (rs.next()) {
-        Personal_mesero permes = new Personal_mesero();
+        Receta receta = new Receta();
 
-        permes.setId_personal_servicio(rs.getInt("id_personal_servicio"));
-        permes.setNombre(rs.getString("nombre"));
-        permes.setTelefono(rs.getString("telefono"));
-        permes.getTurno().setId_turno(rs.getInt("id_turno"));
+        receta.getPlato().setId_plato(rs.getInt("id_plato"));
+        receta.getProducto().setId_producto(rs.getInt("id_producto"));
+        receta.setCantidad(rs.getInt("cantidad"));
+        receta.getUmedida().setId_unidad(rs.getInt("id_unidad"));
         
         
         
         
-        lista.add(permes);
+        
+        lista.add(receta);
       }
 
     } catch (Exception ex) {
@@ -69,18 +73,17 @@ public class RecetaDao extends Dao{
 
   }
 
-  public void modificar(Personal_mesero permes
-  ) throws Exception {
+  public void modificar(Receta receta) throws Exception {
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  personal_mesero SET id_personal_servicio=?, nombre=?, telefono=?, id_turno=? WHERE id_personal_servicio=?;");
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE receta SET id_plato=?, id_producto=?, cantidad=?, id_unidad=? WHERE id_plato=?;");
 
-      st.setInt(1, permes.getId_personal_servicio());
-      st.setString(2, permes.getNombre());
-      st.setString(3, permes.getTelefono());
-      st.setInt(4, permes.getTurno().getId_turno());    
-      st.setInt(5, permes.getId_personal_servicio());   
+      st.setInt(1, receta.getPlato().getId_plato());
+      st.setInt(2, receta.getProducto().getId_producto());
+      st.setInt(3, receta.getCantidad());
+      st.setInt(4, receta.getUmedida().getId_unidad());    
+      st.setInt(5, receta.getPlato().getId_plato());   
       st.executeUpdate();
 
 
@@ -93,12 +96,12 @@ public class RecetaDao extends Dao{
 
   }
 
-  public void eliminar(Personal_mesero permes) throws Exception {
+  public void eliminar(Receta receta) throws Exception {
     System.out.println("*******************************************************eliminar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("DELETE FROM personal_mesero WHERE id_personal_servicio=?;");
-      st.setInt(1, permes.getId_personal_servicio());
+      PreparedStatement st = this.getCon().prepareStatement("DELETE FROM receta WHERE id_plato=?;");
+      st.setInt(1, receta.getPlato().getId_plato());
       st.executeUpdate();
 
     } catch (Exception ex) {
@@ -109,5 +112,5 @@ public class RecetaDao extends Dao{
     }
 
   }
-    */
+    
 }
