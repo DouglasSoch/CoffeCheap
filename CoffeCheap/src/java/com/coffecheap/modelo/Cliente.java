@@ -7,7 +7,7 @@ public class Cliente
     int id_cliente = 0;
     String nombre = null;
     String direccion = null;
-    int nit_cliente = 0;
+    String nit_cliente = null;
 
     public Cliente() {
     }
@@ -20,13 +20,13 @@ public class Cliente
         this.nombre = nombre;
     }
 
-    public Cliente(int id_cliente, String nombre, String direccion, int nit_cliente) {
+    public Cliente(int id_cliente, String nombre, String direccion, String nit_cliente) {
         this.id_cliente = id_cliente;
         this.nombre = nombre;
         this.direccion = direccion;
         this.nit_cliente = nit_cliente;
     }
-
+   
     public int getId_cliente() {
         return id_cliente;
     }
@@ -51,21 +51,21 @@ public class Cliente
         this.direccion = direccion;
     }
 
-    public int getNit_cliente() {
+    public String getNit_cliente() {
         return nit_cliente;
     }
 
-    public void setNit_cliente(int nit_cliente) {
+    public void setNit_cliente(String nit_cliente) {
         this.nit_cliente = nit_cliente;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + this.id_cliente;
-        hash = 89 * hash + Objects.hashCode(this.nombre);
-        hash = 89 * hash + Objects.hashCode(this.direccion);
-        hash = 89 * hash + this.nit_cliente;
+        int hash = 7;
+        hash = 37 * hash + this.id_cliente;
+        hash = 37 * hash + Objects.hashCode(this.nombre);
+        hash = 37 * hash + Objects.hashCode(this.direccion);
+        hash = 37 * hash + Objects.hashCode(this.nit_cliente);
         return hash;
     }
 
@@ -84,13 +84,13 @@ public class Cliente
         if (this.id_cliente != other.id_cliente) {
             return false;
         }
-        if (this.nit_cliente != other.nit_cliente) {
-            return false;
-        }
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
-        return Objects.equals(this.direccion, other.direccion);
+        if (!Objects.equals(this.direccion, other.direccion)) {
+            return false;
+        }
+        return Objects.equals(this.nit_cliente, other.nit_cliente);
     }
 
     @Override
