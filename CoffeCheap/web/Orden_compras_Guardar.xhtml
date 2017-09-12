@@ -24,10 +24,10 @@
                         <p:autoComplete id="Codig" value="#{orden_comprasBean.orden_compras.id_orden_compras}"/>                         
 
                         <p:outputLabel  value="Fecha de Orden" />
-                        <p:autoComplete id="Orden" value="#{orden_comprasBean.orden_compras.fecha_orden}"/>
+                        <p:calendar id="Orden" value="#{orden_comprasBean.orden_compras.fecha_orden}" pattern="yyyy-MM-dd" locale="es"/>
 
                         <p:outputLabel  value="Fecha de Entrega" />
-                        <p:autoComplete id="Entrega" value="#{orden_comprasBean.orden_compras.fecha_entrega}"/>
+                        <p:calendar id="Entrega" value="#{orden_comprasBean.orden_compras.fecha_entrega}" pattern="yyyy-MM-dd" locale="es"/>
 
                         <p:outputLabel  value="Cantidad Orden" />
                         <p:autoComplete id="Cantidad" value="#{orden_comprasBean.orden_compras.cantidad}"/>

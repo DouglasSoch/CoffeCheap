@@ -97,6 +97,7 @@ public class CompraDao extends Dao {
                 compra.setId_compras(rs.getInt("compra.id_compra"));
                 compra.getOcompras().setFecha_orden(rs.getDate("orden.fecha_orden"));
                 compra.getOcompras().setFecha_entrega(rs.getDate("orden.fecha_entrega"));
+                compra.getOcompras().getPproductos().getProveedor().setNombre(rs.getString("proveedor.nombre_proveedor"));
                 compra.getOcompras().getPproductos().getProducto().setNombre(rs.getString("producto.nombre_producto"));
                 compra.setCantidad(rs.getInt("compra.cantidad"));
                 compra.setCosto(rs.getInt("compra.costo"));

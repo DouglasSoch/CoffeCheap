@@ -1,10 +1,29 @@
 package com.coffecheap.modelo;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.Objects;
 
 public class Orden_compras 
 {
+    String temp_fecha_orden;
+    String temp_fecha_entrega;
+
+    public String getTemp_fecha_orden() {
+        return temp_fecha_orden;
+    }
+
+    public void setTemp_fecha_orden(String temp_fecha_orden) {
+        this.temp_fecha_orden = temp_fecha_orden;
+    }
+
+    public String getTemp_fecha_entrega() {
+        return temp_fecha_entrega;
+    }
+
+    public void setTemp_fecha_entrega(String temp_fecha_entrega) {
+        this.temp_fecha_entrega = temp_fecha_entrega;
+    }
     int id_orden_compras = 0;
     Date fecha_orden = null;
     Date fecha_entrega = null;

@@ -22,13 +22,13 @@ public class Orden_comprasDao extends Dao {
   public void registrar(Orden_compras Tt) throws Exception {
 
     try {
-      SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into orden_compras values(?,?,?,?,?,?);");
+      PreparedStatement st = this.getCon().prepareStatement("insert into orden_compras values(?,?,?,?,?,?,?);");
       st.setInt(1, Tt.getId_orden_compras());
-     st.setString(2, formateador.format(Tt.getFecha_orden()));
+     st.setString(2, Tt.getTemp_fecha_orden());
      
-      st.setString(3, formateador.format(Tt.getFecha_entrega()));
+      st.setString(3, Tt.getTemp_fecha_entrega());
       st.setInt(4, Tt.getCantidad());    
       st.setInt(5, Tt.getPproductos().getProducto().getId_producto());   
       st.setInt(6, Tt.getPproductos().getProveedor().getId_proveedor());
@@ -85,8 +85,8 @@ public class Orden_comprasDao extends Dao {
       PreparedStatement st = this.getCon().prepareStatement("UPDATE  orden_compras SET id_orden_compras=?, fecha_orden=?, fecha_entrega=?, cantidad_orden=?, id_producto=?, id_proveedor=?, precio=? WHERE id_orden_compras=?;");
 
      st.setInt(1, tt.getId_orden_compras());
-     st.setDate(2, tt.getFecha_orden());
-      st.setDate(3, tt.getFecha_entrega());
+     //st.setDate(2, tt.getFecha_orden());
+     // st.setDate(3, tt.getFecha_entrega());
       st.setInt(4, tt.getCantidad());    
       st.setInt(5, tt.getPproductos().getProducto().getId_producto());   
       st.setInt(6, tt.getPproductos().getProveedor().getId_proveedor());
