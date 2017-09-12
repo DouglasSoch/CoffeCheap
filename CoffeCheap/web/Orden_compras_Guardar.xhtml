@@ -23,12 +23,12 @@
                         <p:outputLabel value="id orden de compras" />
                         <p:autoComplete id="Codig" value="#{orden_comprasBean.orden_compras.id_orden_compras}"/>                         
 
-                        <p:outputLabel  value="Fecha de Orden" />
-                        <p:autoComplete id="Orden" value="#{orden_comprasBean.orden_compras.fecha_orden}"/>
-
-                        <p:outputLabel  value="Fecha de Entrega" />
-                        <p:autoComplete id="Entrega" value="#{orden_comprasBean.orden_compras.fecha_entrega}"/>
-
+                        <p:outputLabel  for="mask1" value="Fecha de Orden" />
+                         <p:calendar id="mask1" value="#{orden_comprasBean.orden_compras.fecha_orden}" pattern="yyyy-MM-dd" navigator="true" />
+                                                  
+                        <p:outputLabel  for="mask" value="Fecha de Entrega" />
+                        <p:calendar id="mask" value="#{orden_comprasBean.orden_compras.fecha_entrega}" pattern="yyyy-MM-dd" navigator="true" />
+                        
                         <p:outputLabel  value="Cantidad Orden" />
                         <p:autoComplete id="Cantidad" value="#{orden_comprasBean.orden_compras.cantidad}"/>
 
