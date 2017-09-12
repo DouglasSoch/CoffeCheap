@@ -9,16 +9,15 @@ import com.coffecheap.dao.RecetaDao;
 import com.coffecheap.modelo.Receta;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.inject.Named;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
+
 
 /**
  *
  * @author medev
  */
-@Named(value = "recetaBean")
-@ViewScoped
 @ManagedBean
+@ViewScoped
 public class RecetaBean {
 private Receta receta = new Receta();
 private List<Receta>lstReceta;
