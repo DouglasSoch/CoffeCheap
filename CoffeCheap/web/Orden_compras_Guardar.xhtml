@@ -24,16 +24,16 @@
                         <p:autoComplete id="Codig" value="#{orden_comprasBean.orden_compras.id_orden_compras}"/>                         
 
                         <p:outputLabel  value="Fecha de Orden" />
-                        <p:autoComplete id="Orden" value="#{orden_comprasBean.orden_compras.fecha_orden}"/>
+                        <p:calendar id="Orden" value="#{orden_comprasBean.orden_compras.fecha_orden}" pattern="yyyy-MM-dd" locale="es"/>
 
                         <p:outputLabel  value="Fecha de Entrega" />
-                        <p:autoComplete id="Entrega" value="#{orden_comprasBean.orden_compras.fecha_entrega}"/>
+                        <p:calendar id="Entrega" value="#{orden_comprasBean.orden_compras.fecha_entrega}" pattern="yyyy-MM-dd" locale="es"/>
 
                         <p:outputLabel  value="Cantidad Orden" />
                         <p:autoComplete id="Cantidad" value="#{orden_comprasBean.orden_compras.cantidad}"/>
 
                         <p:outputLabel for="Proveedor_lista" value="Id_proveedor:" />
-                        <p:selectOneMenu id="Proveedor_lista" style="width:125px" value="#{orden_comprasBean.orden_compras.pproductos.id_proveedor}"> 
+                        <p:selectOneMenu id="Proveedor_lista" style="width:125px" value="#{orden_comprasBean.orden_compras.pproductos.proveedor.id_proveedor}"> 
                             <f:selectItem itemLabel="Proveedor..." itemValue=""/>
                             <f:selectItems value="#{proveedorBean.listar}" var="lista1" itemLabel="#{lista1.nombre}" itemValue="#{lista1.id_proveedor}"/>      
                             <f:ajax execute="Proveedor_lista" render="Producto_lista"/>
@@ -70,7 +70,7 @@
                             <h:outputText id="producto1" value="#{orden_comprasBean.orden_compras.pproductos.producto.id_producto}" />
 
                             <h:outputText value="id proveedor" />
-                            <h:outputText id="proveedor1" value="#{orden_comprasBean.orden_compras.pproductos.id_proveedor}" />
+                            <h:outputText id="proveedor1" value="#{orden_comprasBean.orden_compras.pproductos.proveedor.id_proveedor}" />
 
                             <h:outputText value="precio" />
                             <h:outputText id="precio1" value="#{orden_comprasBean.orden_compras.precio}" />

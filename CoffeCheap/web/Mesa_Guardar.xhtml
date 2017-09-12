@@ -29,7 +29,7 @@
             <p:autoComplete id="Ubicacion" value="#{mesaBean.mesa.ubicacion}" style="color: #ffffff;"/>
 
             <p:outputLabel  value="id_estado" />            
-            <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{mesaBean.mesa.geteMesa.id_estado}" > 
+            <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{mesaBean.mesa.estMesa.id_estado}" > 
               <f:selectItems value="#{estado_mesaBean.lstEstado_mesa}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_estado}"/>                      
             </p:selectOneMenu> 
 
@@ -58,7 +58,7 @@
               <h:outputText id="UbicacionV" value="#{mesaBean.mesa.ubicacion}" />
               
               <h:outputText value="Estado" />
-              <h:outputText id="EstadoV" value="#{mesaBean.mesa.geteMesa.id_estado}" />
+              <h:outputText id="EstadoV" value="#{mesaBean.mesa.gestMesaid_estado}" />
               
               <h:outputText value="Reserva" />
               <h:outputText id="ReservaV" value="#{mesaBean.mesa.reserva.id_reserva}" />
