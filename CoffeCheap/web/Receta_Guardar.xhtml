@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+         <ui:composition template="./WEB-INF/template/Template.xhtml">
+
+            <ui:define name="content">
+                <f:event type="preRenderView" listener="#{platoBean.listar()}"/>
+                <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
+                <h:panelGrid id="general" columns="3" cellpadding="5">
+                    <h:form id="form1">
+                        <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
+                            <p:outputLabel for="id_plato" value="Plato"/>
+                            <p:selectOneMenu id="id_plato" value="#{recetaBean.receta.plato.id_plato}">
+                                <f:selectItem itemLabel="plato"/>
+                                <f:selectItems value="#{platoBean.lstPlato}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_plato}"/>                                
+                            </p:selectOneMenu>
+                            <p:outputLabel for="id_producto" value="Producto"/>
+                            <p:selectOneMenu id="id_producto" value="#{recetaBean.receta.producto.id_producto}">
+                                <f:selectItem itemLabel="Producto"/>
+                                <f:selectItems value="#{productoBean.lstProducto}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_producto}"/>                                
+                            </p:selectOneMenu>
+                            
+                            <p:outputLabel for="cantidad" value="Cantidad"/>
+                            <p:inputText id="cantidad" value="#{recetaBean.receta.cantidad}" onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;"/>
+                            
+                            
+                        </h:panelGrid><br/>
+                        <p:commandButton value="Guardar" action="#{personal_chefBean.Guardar()}" update="form1"/>
+                    </h:form>
+                </h:panelGrid>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

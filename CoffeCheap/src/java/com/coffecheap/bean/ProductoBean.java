@@ -65,7 +65,17 @@ public class ProductoBean {
     }
 
   }
+  public void listar() throws Exception {
+    ProductoDao dao;
 
+    try {
+      dao = new ProductoDao();
+      lstProducto = dao.listar();
+    } catch (Exception e) {
+      throw e;
+    }
+
+  }
   public void modificar(Producto prod) throws Exception {
     System.out.println("*******************************************************Modificar");
     ProductoDao dao;
