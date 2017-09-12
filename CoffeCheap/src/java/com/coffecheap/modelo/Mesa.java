@@ -7,7 +7,7 @@ public class Mesa
     int id_mesa = 0;
     int cantidad_comensales = 0;
     String ubicacion = null;
-    Estado_mesa eMesa = new Estado_mesa();
+    Estado_mesa EstMesa = new Estado_mesa();
     Reserva reserva = new Reserva();
     Cliente cliente  = new Cliente();
 
@@ -20,7 +20,7 @@ public class Mesa
     }
 
     public Mesa(Estado_mesa eMesa) {
-        this.eMesa = eMesa;
+        this.EstMesa = eMesa;
     }
 
     public Mesa(Reserva reserva) {
@@ -35,7 +35,7 @@ public class Mesa
         this.id_mesa = id_mesa;
         this.cantidad_comensales = cantidad_comensales;
         this.ubicacion = ubicacion;
-        this.eMesa = eMesa;
+        this.EstMesa = eMesa;
         this.reserva = reserva;
         this.cliente = cliente;
     }
@@ -67,12 +67,12 @@ public class Mesa
         this.ubicacion = ubicacion;
     }
 
-    public Estado_mesa geteMesa() {
-        return eMesa;
+    public Estado_mesa getEstMesa() {
+        return EstMesa;
     }
 
-    public void seteMesa(Estado_mesa eMesa) {
-        this.eMesa = eMesa;
+    public void setEstMesa(Estado_mesa EstMesa) {
+        this.EstMesa = EstMesa;
     }
 
     public Reserva getReserva() {
@@ -97,7 +97,7 @@ public class Mesa
         hash = 79 * hash + this.id_mesa;
         hash = 79 * hash + this.cantidad_comensales;
         hash = 79 * hash + Objects.hashCode(this.ubicacion);
-        hash = 79 * hash + Objects.hashCode(this.eMesa);
+        hash = 79 * hash + Objects.hashCode(this.EstMesa);
         hash = 79 * hash + Objects.hashCode(this.reserva);
         hash = 79 * hash + Objects.hashCode(this.cliente);
         return hash;
@@ -124,7 +124,7 @@ public class Mesa
         if (!Objects.equals(this.ubicacion, other.ubicacion)) {
             return false;
         }
-        if (!Objects.equals(this.eMesa, other.eMesa)) {
+        if (!Objects.equals(this.EstMesa, other.EstMesa)) {
             return false;
         }
         if (!Objects.equals(this.reserva, other.reserva)) {
@@ -135,7 +135,7 @@ public class Mesa
 
     @Override
     public String toString() {
-        return "Mesa{" + "id_mesa=" + id_mesa + ", cantidad_comensales=" + cantidad_comensales + ", ubicacion=" + ubicacion + ", eMesa=" + eMesa + ", reserva=" + reserva + ", cliente=" + cliente + '}';
+        return "Mesa{" + "id_mesa=" + id_mesa + ", cantidad_comensales=" + cantidad_comensales + ", ubicacion=" + ubicacion + ", eMesa=" + EstMesa + ", reserva=" + reserva + ", cliente=" + cliente + '}';
     }
         
 }
