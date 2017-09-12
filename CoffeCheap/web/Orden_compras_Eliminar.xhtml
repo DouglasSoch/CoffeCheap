@@ -25,7 +25,7 @@
           <!-- Modal -->
 
           <p:panelGrid id="display1" columns="4" columnClasses="label,value" style="font-size: small">          
-            <p:dataList value="#{orden_comprasBean.lstOrden_compras}" var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+            <p:dataTable value="#{orden_comprasBean.lstOrden_compras}" var="tabla" paginator="true" rows="10" styleClass="paginated">
 
               <p:column>
                 <f:facet name="header">id_orden compras</f:facet>
@@ -44,28 +44,32 @@
                 <h:inputText value="#{tabla.cantidad}" style="color: #ffffff; width : 80px" />
               </p:column>
               <p:column>
-                <f:facet name="header">Id Producto</f:facet>
-                <h:inputText value="#{tabla.pproductos.producto.id_producto}" style="color: #ffffff; width : 80px" />
+                <f:facet name="header">Id Producto</f:facet>              
+                <p:selectOneMenu id="lis2" style="width:125px; background-color: #ffffff" value="#{tabla.pproductos.proveedor.id_proveedor}" > 
+
+                  <f:selectItems value="#{proveedorBean.listar}" var="lista1" itemLabel="#{lista1.nombre}" itemValue="#{lista1.id_proveedor}"/>      
+
+                </p:selectOneMenu> 
               </p:column>
               <p:column>
+
                 <f:facet name="header">id proveedor</f:facet>
-                <h:inputText value="#{tabla.pproductos.producto.id_producto}" style="color: #ffffff; width : 80px" />
-                
-                <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{tabla.pproductos.id_proveedor}" > 
-                  <f:selectItems value="#{proveedorBean.listar}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_proveedor}"/>      
-                  <p:ajax event="change" update="@this" />      
+                <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{tabla.pproductos.producto.id_producto}" > 
+
+                  <f:selectItems value="#{orden_comprasBean.lstProveedor_productos}" var="listapro" itemLabel="#{listapro.producto.nombre}" itemValue="#{listapro.producto.id_producto}"/>      
                 </p:selectOneMenu> 
+
               </p:column>
               <p:column>
                 <f:facet name="header">precio</f:facet>
                 <h:inputText value="#{tabla.precio}" style="color: #ffffff; width : 80px" />
-              </p:column>              
+              </p:column>          
 
               <p:column>
                 <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{orden_comprasBean.eliminar(tabla)}"/>                    
               </p:column>                              
 
-            </p:dataList>
+            </p:dataTable>>
           </p:panelGrid>        
 
         </h:form> 
