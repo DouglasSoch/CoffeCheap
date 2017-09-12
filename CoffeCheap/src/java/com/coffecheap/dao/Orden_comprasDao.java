@@ -9,6 +9,7 @@ import com.coffecheap.modelo.Orden_compras;
 import com.coffecheap.modelo.Proveedor_productos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +22,13 @@ public class Orden_comprasDao extends Dao {
   public void registrar(Orden_compras Tt) throws Exception {
 
     try {
+      SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("insert into orden_compras values(?,?,?,?,?,?);");
       st.setInt(1, Tt.getId_orden_compras());
-     st.setDate(2, Tt.getFecha_orden());
-      st.setDate(3, Tt.getFecha_entrega());
+     st.setString(2, formateador.format(Tt.getFecha_orden()));
+     
+      st.setString(3, formateador.format(Tt.getFecha_entrega()));
       st.setInt(4, Tt.getCantidad());    
       st.setInt(5, Tt.getPproductos().getProducto().getId_producto());   
       st.setInt(6, Tt.getPproductos().getId_proveedor());
