@@ -9,10 +9,7 @@ public class Mesa
     String ubicacion = null;
     Estado_mesa eMesa = new Estado_mesa();
     Reserva reserva = new Reserva();
-    Cliente cliente = new Cliente();
-
-    public Mesa() {
-    }
+    Cliente cliente  = new Cliente();
 
     public Mesa(int id_mesa) {
         this.id_mesa = id_mesa;
@@ -42,7 +39,10 @@ public class Mesa
         this.reserva = reserva;
         this.cliente = cliente;
     }
-    
+
+    public Mesa() {
+    }
+
     public int getId_mesa() {
         return id_mesa;
     }
@@ -94,12 +94,12 @@ public class Mesa
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + this.id_mesa;
-        hash = 83 * hash + this.cantidad_comensales;
-        hash = 83 * hash + Objects.hashCode(this.ubicacion);
-        hash = 83 * hash + Objects.hashCode(this.eMesa);
-        hash = 83 * hash + Objects.hashCode(this.reserva);
-        hash = 83 * hash + Objects.hashCode(this.cliente);
+        hash = 79 * hash + this.id_mesa;
+        hash = 79 * hash + this.cantidad_comensales;
+        hash = 79 * hash + Objects.hashCode(this.ubicacion);
+        hash = 79 * hash + Objects.hashCode(this.eMesa);
+        hash = 79 * hash + Objects.hashCode(this.reserva);
+        hash = 79 * hash + Objects.hashCode(this.cliente);
         return hash;
     }
 
@@ -137,5 +137,5 @@ public class Mesa
     public String toString() {
         return "Mesa{" + "id_mesa=" + id_mesa + ", cantidad_comensales=" + cantidad_comensales + ", ubicacion=" + ubicacion + ", eMesa=" + eMesa + ", reserva=" + reserva + ", cliente=" + cliente + '}';
     }
-    
+        
 }
