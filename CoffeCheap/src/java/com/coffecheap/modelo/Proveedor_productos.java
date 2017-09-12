@@ -22,6 +22,7 @@ public class Proveedor_productos
     public Proveedor_productos(int precio) {
         this.precio = precio;
     }
+    
 
     public Proveedor_productos(Proveedor proveedor, Producto producto, int precio) {
         this.proveedor = proveedor;
