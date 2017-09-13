@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class Plato_pedido 
 {
-    int id_plato_pedido = 0;
+    int id_plato_pedido= 0;
     Plato plato = new Plato();
-    int cantidad = 0;
-    Personal_chef Pchef = new Personal_chef();
+    int cantidad =0 ;
+    Usuario usuario= new Usuario();
 
     public Plato_pedido() {
     }
@@ -20,15 +20,15 @@ public class Plato_pedido
         this.plato = plato;
     }
 
-    public Plato_pedido(Personal_chef Pchef) {
-        this.Pchef = Pchef;
+    public Plato_pedido(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Plato_pedido(int id_plato_pedido, Plato plato, int cantidad, Personal_chef Pchef) {
+    public Plato_pedido(int id_plato_pedido, Plato plato, int cantidad, Usuario usuario) {
         this.id_plato_pedido = id_plato_pedido;
         this.plato = plato;
         this.cantidad = cantidad;
-        this.Pchef = Pchef;
+        this.usuario = usuario;
     }
     
     
@@ -57,21 +57,21 @@ public class Plato_pedido
         this.cantidad = cantidad;
     }
 
-    public Personal_chef getPchef() {
-        return Pchef;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setPchef(Personal_chef Pchef) {
-        this.Pchef = Pchef;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + this.id_plato_pedido;
-        hash = 29 * hash + Objects.hashCode(this.plato);
-        hash = 29 * hash + this.cantidad;
-        hash = 29 * hash + Objects.hashCode(this.Pchef);
+        int hash = 5;
+        hash = 89 * hash + this.id_plato_pedido;
+        hash = 89 * hash + Objects.hashCode(this.plato);
+        hash = 89 * hash + this.cantidad;
+        hash = 89 * hash + Objects.hashCode(this.usuario);
         return hash;
     }
 
@@ -96,11 +96,12 @@ public class Plato_pedido
         if (!Objects.equals(this.plato, other.plato)) {
             return false;
         }
-        return Objects.equals(this.Pchef, other.Pchef);
+        return Objects.equals(this.usuario, other.usuario);
     }
 
     @Override
     public String toString() {
-        return "Plato_pedido{" + "id_plato_pedido=" + id_plato_pedido + ", plato=" + plato + ", cantidad=" + cantidad + ", Pchef=" + Pchef + '}';
+        return "Plato_pedido{" + "id_plato_pedido=" + id_plato_pedido + ", plato=" + plato + ", cantidad=" + cantidad + ", usuario=" + usuario + '}';
     }
+    
 }

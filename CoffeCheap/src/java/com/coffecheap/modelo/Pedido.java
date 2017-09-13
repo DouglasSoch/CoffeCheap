@@ -8,11 +8,13 @@ public class Pedido
     int id_pedido = 0;
     Mesa mesa = new Mesa(); 
     Time hora = null;
-    Personal_mesero Pmesero = new Personal_mesero();
+    Usuario usuario= new Usuario();
 
     public Pedido() {
     }
 
+    
+    
     public Pedido(int id_pedido) {
         this.id_pedido = id_pedido;
     }
@@ -25,16 +27,18 @@ public class Pedido
         this.hora = hora;
     }
 
-    public Pedido(Personal_mesero Pmesero) {
-        this.Pmesero = Pmesero;
+    public Pedido(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Pedido(int id_pedido, Mesa mesa, Time hora, Personal_mesero Pmesero) {
+    public Pedido(int id_pedido, Mesa mesa, Time hora, Usuario usuario) {
         this.id_pedido = id_pedido;
         this.mesa = mesa;
         this.hora = hora;
-        this.Pmesero = Pmesero;
+        this.usuario = usuario;
     }
+
+    
     
     public int getId_pedido() {
         return id_pedido;
@@ -60,21 +64,21 @@ public class Pedido
         this.hora = hora;
     }
 
-    public Personal_mesero getPmesero() {
-        return Pmesero;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setPmesero(Personal_mesero Pmesero) {
-        this.Pmesero = Pmesero;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + this.id_pedido;
-        hash = 67 * hash + Objects.hashCode(this.mesa);
-        hash = 67 * hash + Objects.hashCode(this.hora);
-        hash = 67 * hash + Objects.hashCode(this.Pmesero);
+        int hash = 5;
+        hash = 89 * hash + this.id_pedido;
+        hash = 89 * hash + Objects.hashCode(this.mesa);
+        hash = 89 * hash + Objects.hashCode(this.hora);
+        hash = 89 * hash + Objects.hashCode(this.usuario);
         return hash;
     }
 
@@ -99,11 +103,13 @@ public class Pedido
         if (!Objects.equals(this.hora, other.hora)) {
             return false;
         }
-        return Objects.equals(this.Pmesero, other.Pmesero);
+        return Objects.equals(this.usuario, other.usuario);
     }
 
     @Override
     public String toString() {
-        return "Pedido{" + "id_pedido=" + id_pedido + ", mesa=" + mesa + ", hora=" + hora + ", Pmesero=" + Pmesero + '}';
+        return "Pedido{" + "id_pedido=" + id_pedido + ", mesa=" + mesa + ", hora=" + hora + ", usuario=" + usuario + '}';
     }
+
+    
 }

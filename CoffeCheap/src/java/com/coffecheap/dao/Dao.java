@@ -1,5 +1,4 @@
 package com.coffecheap.dao;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -35,7 +34,5 @@ public class Dao {
         } catch (Exception e) {
             throw e;
         }
-
     }
-
 }

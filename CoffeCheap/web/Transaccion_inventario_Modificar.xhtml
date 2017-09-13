@@ -21,18 +21,23 @@
                     <br/>
                     <p:outputLabel value="Seleccione producto"/>
                     <p:selectOneMenu value="#{transaccion_inventarioBean.traInv.producto.id_producto}">
-                        <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv}"  var="listaa" itemLabel="#{listaa.producto.nombre}" itemValue="#{listaa.producto.id_producto}" />
+                        <f:selectItem itemLabel="producto" itemValue=""/>
+                        <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv2}"  var="listaa" itemLabel="#{listaa.producto.nombre}" itemValue="#{listaa.producto.id_producto}" />
                     </p:selectOneMenu>
                     <br/>
                     <p:outputLabel value="Seleccione Tipo de transaccion"/>
                     <p:selectOneMenu   value="#{transaccion_inventarioBean.traInv.ttransaccion.id_tipo_transacciones}">
+                        <f:selectItem itemLabel="Tipo de transaccion" itemValue=""/>
                         <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv}"  var="lista" itemLabel="#{lista.ttransaccion.nombre}" itemValue="#{lista.ttransaccion.id_tipo_transacciones}" />
+                   
+                    
                     </p:selectOneMenu>
+                    <p:commandButton  value="Buscar" actionListener="#{transaccion_inventarioBean.buscar()}"  update="datos"/>
+                    <p:commandButton  value="Modificar" actionListener="#{transaccion_inventarioBean.buscar()}"  />
                     <br/>
               
-                    </h:form>
-        <h:form>
-            <p:commandButton  value="Buscar" actionListener="#{transaccion_inventarioBean.buscar()}" update=":datos"/>
+                    
+            
         </h:form>
     </h:body>
 </html>

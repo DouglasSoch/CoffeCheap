@@ -211,7 +211,7 @@ public class Transaccion_InventarioDAO extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = getCon().prepareCall("select id_transaccion, fecha, id_producto, id_tipo_transaccion from "
+            PreparedStatement st = getCon().prepareCall("select  fecha, id_producto, id_tipo_transaccion from "
                     + "transaccion_inventario where id_transaccion=?");
             st.setInt(1, traInv.getId_transaccion());
             rs = st.executeQuery();
@@ -219,11 +219,10 @@ public class Transaccion_InventarioDAO extends Dao {
             while (rs.next()) {
                 traInvAden = new Transaccion_inventario();
 
-                traInvAden.setId_transaccion(rs.getInt(1));
-                traInvAden.setFecha((rs.getDate(2)));
-                traInvAden.getProducto().setNombre(rs.getString(3));
-                traInvAden.getTtransaccion().setNombre(rs.getString(4));
-
+                traInvAden.setFecha((rs.getDate(1)));
+                traInvAden.getProducto().setId_producto(rs.getInt(2));
+                traInvAden.getTtransaccion().setId_tipo_transacciones(rs.getInt(3));
+                
             }
         } catch (Exception e) {
             throw e;
