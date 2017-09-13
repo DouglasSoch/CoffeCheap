@@ -48,16 +48,16 @@
               </p:column>
               <p:column id="columna_proveedor">
                 <f:facet name="header">Id Proveedor</f:facet>              
-                <p:selectOneMenu id="lis2" style="width:125px; background-color: #ffffff" value="#{tabla.pproductos.proveedor.id_proveedor}" >   
+                <p:selectOneMenu id="lis2" style="width:125px; background-color: #ffffff" value="#{orden_comprasBean.orden_compras.pproductos.proveedor.id_proveedor}" >   
                   <f:selectItem itemLabel="Proveedor" itemValue=""/>
                   <f:selectItems value="#{proveedorBean.listar}" var="lista1" itemLabel="#{lista1.nombre}" itemValue="#{lista1.id_proveedor}"/>      
-                  <f:ajax execute="lis2" render="columna_proveedor:lis1"/>
+                  <f:ajax execute="lis2" render="lis1"/>
                 </p:selectOneMenu> 
               </p:column>
               <p:column id="columna_producto">
 
                 <f:facet name="header">Id Producto</f:facet>
-                <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{tabla.pproductos.producto.id_producto}" > 
+                <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{orden_comprasBean.orden_compras.pproductos.producto.id_producto}" > 
                   <f:selectItem itemLabel="Producto" itemValue=""/>
                   <f:selectItems value="#{orden_comprasBean.lstProveedor_productos}" var="listapro" itemLabel="#{listapro.producto.nombre}" itemValue="#{listapro.producto.id_producto}"/>      
                 </p:selectOneMenu> 

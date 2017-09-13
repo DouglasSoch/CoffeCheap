@@ -15,7 +15,7 @@ import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @ViewScoped
-public class tipo_productoBean {
+public class Tipo_productoBean {
 
   private Tipo_producto tipo_producto = new Tipo_producto();
   private List<Tipo_producto> lstTipo_producto;
