@@ -2,15 +2,12 @@ package com.coffecheap.modelo;
 
 import java.util.Objects;
 
-public class Cliente 
+public class Cliente  
 {
-    int id_cliente = 0;
+    int id_cliente =0;
     String nombre = null;
     String direccion = null;
     String nit_cliente = null;
-
-    public Cliente() {
-    }
 
     public Cliente(int id_cliente) {
         this.id_cliente = id_cliente;
@@ -26,7 +23,10 @@ public class Cliente
         this.direccion = direccion;
         this.nit_cliente = nit_cliente;
     }
-   
+
+    public Cliente() {
+    }
+    
     public int getId_cliente() {
         return id_cliente;
     }
@@ -62,10 +62,10 @@ public class Cliente
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + this.id_cliente;
-        hash = 37 * hash + Objects.hashCode(this.nombre);
-        hash = 37 * hash + Objects.hashCode(this.direccion);
-        hash = 37 * hash + Objects.hashCode(this.nit_cliente);
+        hash = 59 * hash + this.id_cliente;
+        hash = 59 * hash + Objects.hashCode(this.nombre);
+        hash = 59 * hash + Objects.hashCode(this.direccion);
+        hash = 59 * hash + Objects.hashCode(this.nit_cliente);
         return hash;
     }
 
