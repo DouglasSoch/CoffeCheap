@@ -32,7 +32,8 @@ public class Dao {
                     con.close();
                 }
             }
-        } catch (Exception e) {
+        } catch (Exception e) 
+        {
             throw e;
         }
     }
