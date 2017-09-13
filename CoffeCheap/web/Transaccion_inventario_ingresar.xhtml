@@ -2,11 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Orden Compras</title>
+        <title>Transaccion Inventario</title>
     </h:head>
     <h:body>
+         <f:event type="preRenderView" listener="#{transaccion_inventarioBean.leerParaProducto()}"/>
+        <f:event type="preRenderView" listener="#{transaccion_inventarioBean.leerParaTipoTransacciones()}"/>
         <h:form>
             
          <br/>
@@ -16,11 +19,17 @@
                     <p:outputLabel value="Fecha de transaccion"/>  
                     <p:outputLabel   id="hola" value="#{transaccion_inventarioBean.fechaSus}" />
                     <br/>
+                    
                     <p:outputLabel value="ingrese producto"/>
-                    <p:inputText  value="#{transaccion_inventarioBean.traInv.producto.id_producto}"/>
+                    <p:selectOneMenu value="#{transaccion_inventarioBean.traInv.producto.id_producto}">
+                        <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv2}"  var="listaa" itemLabel="#{listaa.producto.nombre}"  itemValue="#{listaa.producto.id_producto}" />
+                    </p:selectOneMenu>
+                    
                     <br/>
-                    <p:outputLabel value="Indicar el tipo de transaccion"/>
-                    <p:inputText  value="#{transaccion_inventarioBean.traInv.ttransaccion.id_tipo_transacciones}"/>
+                     <p:outputLabel value="Seleccione Tipo de transaccion"/>
+                    <p:selectOneMenu   value="#{transaccion_inventarioBean.traInv.ttransaccion.id_tipo_transacciones}">
+                        <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv}"  var="lista" itemLabel="#{lista.ttransaccion.nombre}" itemValue="#{lista.ttransaccion.id_tipo_transacciones}" />
+                    </p:selectOneMenu>
                      <br/>
                      <p:commandButton value="Guardar" update="hola" actionListener="#{transaccion_inventarioBean.registrar()}"/>
                     </h:form>

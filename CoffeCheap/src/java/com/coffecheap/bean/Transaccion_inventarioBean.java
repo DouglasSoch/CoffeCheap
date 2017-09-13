@@ -18,7 +18,17 @@ public class Transaccion_inventarioBean {
 
     Transaccion_inventario traInv = new Transaccion_inventario();
     List<Transaccion_inventario> lsttraInv = new ArrayList();
+    List<Transaccion_inventario> lsttraInv2 = new ArrayList();
     String fechaSus = null;
+    
+    public List<Transaccion_inventario> getLsttraInv2() {
+        return lsttraInv2;
+    }
+
+    public void setLsttraInv2(List<Transaccion_inventario> lsttraInv2) {
+        this.lsttraInv2 = lsttraInv2;
+    }
+    
  
     
     public String getFechaSus() {
@@ -126,34 +136,34 @@ public class Transaccion_inventarioBean {
             
               
             dao = new Transaccion_InventarioDAO();
-            lsttraInv =dao.mostrarPorRangoEspecial(traInv);
+            lsttraInv=dao.mostrarPorRangoEspecial(traInv);
         }catch(Exception e)
         {
             throw e;
         }
     }
          
-          public void leerParaModificarProducto() throws Exception
+          public void leerParaProducto() throws Exception
     {
         Transaccion_InventarioDAO dao;
         
         try
         {
             dao = new Transaccion_InventarioDAO();
-            lsttraInv =dao.listarParaModificarProducto();
+            lsttraInv2=dao.listarParaProducto();
         }catch(Exception e)
         {
             throw e;
         }
     }
-               public void leerParaModificarTipoTransacciones() throws Exception
+               public void leerParaTipoTransacciones() throws Exception
     {
         Transaccion_InventarioDAO dao;
         
         try
         {
             dao = new Transaccion_InventarioDAO();
-            lsttraInv =dao.listarParaModificarTtransaccion();
+            lsttraInv =dao.listarParaTtransaccion();
         }catch(Exception e)
         {
             throw e;
