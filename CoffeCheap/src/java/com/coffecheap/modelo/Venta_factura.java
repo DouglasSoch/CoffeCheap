@@ -16,8 +16,6 @@ public class Venta_factura
 
     public Venta_factura() {
     }
-
-    
     
     public Venta_factura(int id_venta_factura) {
         this.id_venta_factura = id_venta_factura;
