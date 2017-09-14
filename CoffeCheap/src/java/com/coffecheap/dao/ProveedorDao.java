@@ -87,12 +87,12 @@ public class ProveedorDao extends Dao {
 
             while (rs.next()) {
                 Proveedor proveedor = new Proveedor();
-                proveedor.setId_proveedor(rs.getInt(1));
-                proveedor.setNombre(rs.getString(2));
-                proveedor.setNit(rs.getString(3));                
-                proveedor.setTelefono(rs.getInt(5));
-                proveedor.setMail(rs.getString(6));
-                proveedor.setDireccion(rs.getString(7));
+                proveedor.setId_proveedor(rs.getInt("id_proveedor"));
+                proveedor.setNombre(rs.getString("nombre_proveedor"));
+                proveedor.setNit(rs.getString("nit_proveedor"));                
+                proveedor.setTelefono(rs.getInt("telefono_proveedor"));
+                proveedor.setMail(rs.getString("email_proveedor"));
+                proveedor.setDireccion(rs.getString("direccion_proveedor"));
                 lista.add(proveedor);
             }
         } catch (Exception e) {
