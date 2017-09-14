@@ -30,7 +30,6 @@ public class ProveedorBean {
     }
 
     
-    
     public ProveedorBean() {
     }
     
