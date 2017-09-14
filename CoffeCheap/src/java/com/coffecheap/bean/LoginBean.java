@@ -71,7 +71,7 @@ public class LoginBean implements Serializable{
      
     
       
-              if (usuari.getUsua().equals(usu.getUsua())) {
+              if (usuari.getUsuario().equals(usu.getUsuario())) {
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("nomb", usuari);
      FacesContext.getCurrentInstance().getExternalContext().redirect("contrasenia.xhtml");
         }else{

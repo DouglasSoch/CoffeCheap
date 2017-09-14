@@ -6,7 +6,7 @@
 package com.coffecheap.bean;
 
 import com.coffecheap.dao.Personal_MeseroDao;
-import com.coffecheap.modelo.Personal_mesero;
+import com.coffecheap.modelo.Usuario;
 import java.util.List;
 import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
@@ -19,22 +19,22 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class Personal_MeseroBean {
-    private Personal_mesero permes = new Personal_mesero();
-    private List<Personal_mesero>lstPermes;
+    private Usuario permes = new Usuario();
+    private List<Usuario>lstPermes;
 
-    public Personal_mesero getPermes() {
+    public Usuario getPermes() {
         return permes;
     }
 
-    public void setPermes(Personal_mesero permes) {
+    public void setPermes(Usuario permes) {
         this.permes = permes;
     }
 
-    public List<Personal_mesero> getLstPermes() {
+    public List<Usuario> getLstPermes() {
         return lstPermes;
     }
 
-    public void setLstPermes(List<Personal_mesero> lstPermes) {
+    public void setLstPermes(List<Usuario> lstPermes) {
         this.lstPermes = lstPermes;
     }
  
@@ -65,7 +65,7 @@ public class Personal_MeseroBean {
 
   }
 
-  public void modificar(Personal_mesero permes) throws Exception {
+  public void modificar(Usuario permes) throws Exception {
     System.out.println("*******************************************************Modificar");
     Personal_MeseroDao dao;
 
@@ -80,7 +80,7 @@ public class Personal_MeseroBean {
   }
 
 
-  public void eliminar(Personal_mesero permes) throws Exception {
+  public void eliminar(Usuario permes) throws Exception {
     System.out.println("*******************************************************eliminar");
     Personal_MeseroDao dao;
 
