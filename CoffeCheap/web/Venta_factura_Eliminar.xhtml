@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+  <h:body>
+    <ui:composition template="./WEB-INF/template/Template.xhtml">
+      <ui:define name="content">
+
+
+        <h:form class="flip">
+          <f:event type="preRenderView"  listener="#{venta_facturaBean.Mostrar}"/>
+          <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
+          <p:outputLabel style="color: #ffffff;" value="Lista para escoger orden de transaccion a Modificar" />          
+
+        </h:form>
+        <h:form id="otro">
+
+          <!-- Modal -->
+
+          <p:panelGrid id="display1" columns="4" columnClasses="label,value" style="font-size: small">          
+            <p:dataTable value="#{venta_facturaBean.lstVenta_factura}" var="tabla" paginator="true" rows="10" styleClass="paginated">
+
+              <p:column>
+                <f:facet name="header">id_orden compras</f:facet>
+                <h:inputText value="#{tabla.id_venta_factura}" style="color: #ffffff; width : 50px" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">Fecha Orden</f:facet>
+                <h:inputText value="#{tabla.fecha_orden}" style="color: #ffffff; width : 120px" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">Fecha Entrega</f:facet>
+                <h:inputText value="#{tabla.fecha_entrega}" style="color: #ffffff; width : 80px" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">Cantidad Orden</f:facet>
+                <h:inputText value="#{tabla.cantidad}" style="color: #ffffff; width : 80px" />
+              </p:column>
+              <p:column>
+                <f:facet name="header">Id Producto</f:facet>              
+                <p:selectOneMenu id="lis2" style="width:125px; background-color: #ffffff" value="#{tabla.pproductos.proveedor.id_proveedor}" > 
+
+                  <f:selectItems value="#{proveedorBean.listar}" var="lista1" itemLabel="#{lista1.nombre}" itemValue="#{lista1.id_proveedor}"/>      
+
+                </p:selectOneMenu> 
+              </p:column>
+              <p:column>
+
+                <f:facet name="header">id proveedor</f:facet>
+                <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{tabla.pproductos.producto.id_producto}" > 
+
+                  <f:selectItems value="#{venta_facturaBean.lstProveedor_productos}" var="listapro" itemLabel="#{listapro.producto.nombre}" itemValue="#{listapro.producto.id_producto}"/>      
+                </p:selectOneMenu> 
+
+              </p:column>
+              <p:column>
+                <f:facet name="header">precio</f:facet>
+                <h:inputText value="#{tabla.precio}" style="color: #ffffff; width : 80px" />
+              </p:column>          
+
+              <p:column>
+                <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{venta_facturaBean.eliminar(tabla)}"/>                    
+              </p:column>                              
+
+            </p:dataTable>>
+          </p:panelGrid>        
+
+        </h:form> 
+
+      </ui:define>
+    </ui:composition>
+  </h:body>
+</html>
+
