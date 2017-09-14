@@ -26,7 +26,7 @@ public class PedidoDao extends Dao {
       st.setInt(1, Tt.getId_pedido());
       st.setInt(2, Tt.getMesa().getId_mesa());
       st.setTime(3, Tt.getHora());
-      st.setInt(4, Tt.getPmesero().getId_personal_servicio());
+      st.setInt(4, Tt.getUsuario().getId());
 
       st.executeUpdate();
 
@@ -54,7 +54,7 @@ public class PedidoDao extends Dao {
         tt.setId_pedido(rs.getInt(1));
         tt.getMesa().setId_mesa(rs.getInt(2));
         tt.setHora(rs.getTime(3));
-        tt.getPmesero().setId_personal_servicio(rs.getInt(4));
+        tt.getUsuario().setId(rs.getInt(4));
 
         lista.add(tt);
       }
@@ -78,7 +78,7 @@ public class PedidoDao extends Dao {
       st.setInt(1, Tt.getId_pedido());
       st.setInt(2, Tt.getMesa().getId_mesa());
       st.setTime(3, Tt.getHora());
-      st.setInt(4, Tt.getPmesero().getId_personal_servicio());
+      st.setInt(4, Tt.getUsuario().getId());
       st.setInt(5, Tt.getId_pedido());
 
       st.executeUpdate();

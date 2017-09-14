@@ -25,7 +25,7 @@ public class Plato_pedidoDao extends Dao{
       st.setInt(1, ppedido.getId_plato_pedido());
       st.setInt(2, ppedido.getPlato().getId_plato());
       st.setInt(3, ppedido.getCantidad());
-      st.setInt(4, ppedido.getPchef().getId_personal());    
+      st.setInt(4, ppedido.getUsuario().getId());    
       
         
 
@@ -55,7 +55,7 @@ public class Plato_pedidoDao extends Dao{
         ppedido.setId_plato_pedido(rs.getInt("id_plato_pedido"));
         ppedido.getPlato().setId_plato(rs.getInt("id_plato"));
         ppedido.setCantidad(rs.getInt("cantidad"));
-        ppedido.getPchef().setId_personal(rs.getInt("id_personal"));
+        ppedido.getUsuario().setId(rs.getInt("id_personal"));
       
         
         
@@ -82,7 +82,7 @@ public class Plato_pedidoDao extends Dao{
       st.setInt(1, ppedido.getId_plato_pedido());
       st.setInt(2, ppedido.getPlato().getId_plato());
       st.setInt(3, ppedido.getCantidad());
-      st.setInt(4, ppedido.getPchef().getId_personal());    
+      st.setInt(4, ppedido.getUsuario().getId());    
       st.setInt(5, ppedido.getId_plato_pedido());
      
       st.executeUpdate();
