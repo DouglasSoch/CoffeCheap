@@ -35,7 +35,7 @@
           </h:panelGrid>
           
           <p:outputLabel for="lis" value="id_personal:" />
-          <p:selectOneMenu id="lis" style="width:125px" value="#{pedidoBean.pedido.pmesero.id_personal_servicio}"> 
+          <p:selectOneMenu id="lis" style="width:125px" value="#{pedidoBean.pedido.usuario.id}"> 
               <f:selectItems value="#{personal_chefBean.lstChef}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_personal}"/>      
             <p:ajax event="change" update="@this" />      
           </p:selectOneMenu>          
