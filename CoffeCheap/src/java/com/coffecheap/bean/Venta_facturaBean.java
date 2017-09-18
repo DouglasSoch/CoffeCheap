@@ -8,11 +8,8 @@ import com.coffecheap.modelo.Venta_factura;
 import com.coffecheap.dao.Venta_facturaDao;
 import com.coffecheap.modelo.Proveedor_productos;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-//import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
@@ -78,8 +75,7 @@ public class Venta_facturaBean {
             lstVenta_factura = dao.listar();
         } catch (Exception e) {
             throw e;
-        }
-        
+        }        
     }
     
     public void modificar(Venta_factura mar) throws Exception {
@@ -92,8 +88,7 @@ public class Venta_facturaBean {
             
         } catch (Exception e) {
             throw e;
-        }
-        
+        }        
     }
     
     public void eliminar(Venta_factura mar) throws Exception {
@@ -106,8 +101,7 @@ public class Venta_facturaBean {
             
         } catch (Exception e) {
             throw e;
-        }
-        
+        }        
     }
     
    
