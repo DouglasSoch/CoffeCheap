@@ -6,6 +6,7 @@ import java.util.Objects;
 public class Venta_factura 
 {
      String temp_fecha_emision;
+     boolean obs_propina=false;
     int id_venta_factura = 0;
     String nit_empresa = null; 
      Double subtotal = 0.0;
@@ -15,6 +16,14 @@ public class Venta_factura
     Date fecha_emision = null;
     Pedido pedido =new Pedido();
 
+  public boolean isObs_propina() {
+    return obs_propina;
+  }
+
+  public void setObs_propina(boolean obs_propina) {
+    this.obs_propina = obs_propina;
+  }   
+    
   public String getTemp_fecha_emision() {
     return temp_fecha_emision;
   }

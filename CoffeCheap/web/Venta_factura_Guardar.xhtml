@@ -13,42 +13,31 @@
   <h:body>
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-        <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
-        <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
-        <f:event type="preRenderView" listener="#{venta_facturaBean.Mostrar_Prov_Produ()}"/>
+        <f:event type="preRenderView" listener="#{pedidoBean.listar()}"/>
         <h:form class="flip">
 
           <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
 
-            <p:outputLabel value="id orden de compras" />
+            <p:outputLabel value="id venta_factura" />
             <p:autoComplete id="Codig" value="#{venta_facturaBean.venta_factura.id_venta_factura}"/>                         
 
-            <p:outputLabel  value="Fecha de Orden" />
-            <p:calendar id="Orden" value="#{venta_facturaBean.venta_factura.fecha_orden}" pattern="yyyy-MM-dd" locale="es"/>
+            <p:outputLabel  value="nit empresa" />
+            <p:autoComplete id="nit_empresa" value="#{venta_facturaBean.venta_factura.nit_empresa}"/>
 
-            <p:outputLabel  value="Fecha de Entrega" />
-            <p:calendar id="Entrega" value="#{venta_facturaBean.venta_factura.fecha_entrega}" pattern="yyyy-MM-dd" locale="es"/>
+            <p:outputLabel  value="Total" />
+            <p:autoComplete id="total" value="#{venta_facturaBean.venta_factura.total}"/>
 
-            <p:outputLabel  value="Cantidad Orden" />
-            <p:autoComplete id="Cantidad" value="#{venta_facturaBean.venta_factura.cantidad}"/>
+            <h:outputText value="Propina: "/>
+            <p:selectBooleanButton id="value1" value="#{selectBooleanView.value1}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
 
-            <p:outputLabel for="Proveedor_lista" value="Id_proveedor:" />
-            
-            <p:selectOneMenu id="Proveedor_lista" style="width:125px" value="#{venta_facturaBean.venta_factura.pproductos.proveedor.id_proveedor}"> 
-              <f:selectItem itemLabel="Proveedor..." itemValue=""/>
-              <f:selectItems value="#{proveedorBean.listar}" var="lista1" itemLabel="#{lista1.nombre}" itemValue="#{lista1.id_proveedor}"/>      
-              <f:ajax execute="Proveedor_lista" render="Producto_lista"/>
-            </p:selectOneMenu> 
+            <p:outputLabel  value="Fecha de Emision" />
+            <p:calendar id="Entrega" value="#{venta_facturaBean.venta_factura.fecha_emision}" pattern="yyyy-MM-dd" locale="es"/>
 
             <p:outputLabel for="Producto_lista" value="Id_producto:" />
-            <p:selectOneMenu id="Producto_lista" style="width:125px" value="#{venta_facturaBean.venta_factura.pproductos.producto.id_producto}"> 
+            <p:selectOneMenu id="Producto_lista" style="width:125px" value="#{venta_facturaBean.venta_factura.pedido.id_pedido}"> 
               <f:selectItem itemLabel="Producto..." itemValue=""/>
-              <f:selectItems value="#{venta_facturaBean.lstProveedor_productos}" var="listapro" itemLabel="#{listapro.producto.nombre}" itemValue="#{listapro.producto.id_producto}"/>      
+              <f:selectItems value="#{pedidoBean.lstPedido}" var="listapro" itemLabel="#{listapro.mesa.ubicacion}" itemValue="#{listapro.id_pedido}"/>      
             </p:selectOneMenu> 
-
-            <p:outputLabel  value="precio" />
-            <p:autoComplete id="precio" value="#{venta_facturaBean.venta_factura.precio}"/>
-
           </h:panelGrid>
 
 
@@ -60,21 +49,6 @@
 
               <h:outputText value="id_venta_factura" />
               <h:outputText id="compra1" value="#{venta_facturaBean.venta_factura.id_venta_factura}" />                         
-
-              <h:outputText value="fecha orden" />
-              <h:outputText id="orden1" value="#{venta_facturaBean.venta_factura.fecha_entrega}" />
-
-              <h:outputText value="Fecha entrega" />
-              <h:outputText id="entrega1" value="#{venta_facturaBean.venta_factura.fecha_orden}" />
-
-              <h:outputText value="id producto" />
-              <h:outputText id="producto1" value="#{venta_facturaBean.venta_factura.pproductos.producto.id_producto}" />
-
-              <h:outputText value="id proveedor" />
-              <h:outputText id="proveedor1" value="#{venta_facturaBean.venta_factura.pproductos.proveedor.id_proveedor}" />
-
-              <h:outputText value="precio" />
-              <h:outputText id="precio1" value="#{venta_facturaBean.venta_factura.precio}" />
 
             </p:panelGrid>
           </p:dialog>
