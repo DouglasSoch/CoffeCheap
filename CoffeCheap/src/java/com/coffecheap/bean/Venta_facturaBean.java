@@ -55,11 +55,11 @@ public class Venta_facturaBean {
         
         try {
             
-            String formateador = new SimpleDateFormat("yyyy-MM-dd").format(venta_factura.getFecha_entrega());
-            String formateador2 = new SimpleDateFormat("yyyy-MM-dd").format(venta_factura.getFecha_orden());
+            String formateador = new SimpleDateFormat("yyyy-MM-dd").format(venta_factura.getFecha_emision());
             
-            venta_factura.setTemp_fecha_entrega(formateador);
-            venta_factura.setTemp_fecha_orden(formateador2);
+            
+            venta_factura.setTemp_fecha_emision(formateador);
+            
             
             dao = new Venta_facturaDao();
             dao.registrar(venta_factura);
@@ -110,16 +110,6 @@ public class Venta_facturaBean {
         
     }
     
-    public void Mostrar_Prov_Produ() throws Exception {
-        //Mostrar Proveedor_produc
-        Venta_facturaDao dao;
-        
-        try {
-            dao = new Venta_facturaDao();
-            lstProveedor_productos = dao.ListarProveedor_Produ(venta_factura);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
+   
     
 }

@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class Venta_factura 
 {
+     String temp_fecha_emision;
     int id_venta_factura = 0;
     String nit_empresa = null; 
      Double subtotal = 0.0;
@@ -14,6 +15,14 @@ public class Venta_factura
     Date fecha_emision = null;
     Pedido pedido =new Pedido();
 
+  public String getTemp_fecha_emision() {
+    return temp_fecha_emision;
+  }
+
+  public void setTemp_fecha_emision(String temp_fecha_emision) {
+    this.temp_fecha_emision = temp_fecha_emision;
+  }    
+    
     public Venta_factura() {
     }
     
