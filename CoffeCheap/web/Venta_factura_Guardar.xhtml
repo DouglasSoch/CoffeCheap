@@ -48,7 +48,22 @@
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
 
               <h:outputText value="id_venta_factura" />
-              <h:outputText id="compra1" value="#{venta_facturaBean.venta_factura.id_venta_factura}" />                         
+              <h:outputText id="id1" value="#{venta_facturaBean.venta_factura.id_venta_factura}" />
+              
+              <h:outputText value="nit_empresa" />
+              <h:outputText id="nit1" value="#{venta_facturaBean.venta_factura.nit_empresa}" />
+              
+              <h:outputText value="Total" />
+              <h:outputText id="Total1" value="#{venta_facturaBean.venta_factura.total}" />
+              
+              <h:outputText value="pripina" />
+              <h:outputText id="propina1" value="#{venta_facturaBean.venta_factura.obs_propina}" />                         
+              
+              <h:outputText value="Fecha" />
+              <h:outputText id="Fecha1" value="#{venta_facturaBean.venta_factura.fecha_emision}" />                         
+              
+              <h:outputText value="id_producto" />
+              <h:outputText id="idpro1" value="#{venta_facturaBean.venta_factura.pedido.id_pedido}" />                         
 
             </p:panelGrid>
           </p:dialog>
