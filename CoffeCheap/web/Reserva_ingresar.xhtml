@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:outputLabel value="id" />
+            <p:autoComplete id="Codig" value="#{reservaBean.reserva.id_reserva}"/>              
+            <br/>
+            <p:outputLabel  value="Fecha" />
+            <p:calendar id="Orden" value="#{reservaBean.reserva.fecha}" pattern="yyyy-MM-dd" locale="es"/> 
+            <br/>
+            <p:outputLabel value="Hora inicio" />
+            <p:autoComplete id="Hinicio" value="#{reservaBean.reserva.hora_inicio}"/>  
+            <br/>
+            <p:outputLabel value="Hora final" />
+            <p:autoComplete id="Hfinal" value="#{reservaBean.reserva.hora_final}"/>  
+            <br/>
+            <p:outputLabel value="cantidad" />
+            <p:autoComplete id="cantidad" value="#{reservaBean.reserva.cantidad_personas}"/>        
+            <br/>
+            <p:commandButton value="Guardar" actionListener="#{reservaBean.registrar()}"/>
+        </h:form>
+    </h:body>
+</html>
+

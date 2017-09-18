@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cliente Eliminar</title>
+    </h:head>
+    <h:body>
+        <h:form id="datos">
+            <br/>
+                    <p:outputLabel value="ingrese id  "/>
+                    <p:inputText  value="#{clienteBean.cliente.id_cliente}"/>
+                    <br/>
+                    <br/>
+                    <p:outputLabel value="ingrese nit  "/>
+                    <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
+                    <br/>
+                    <br/>
+                    <p:outputLabel value="ingrese nombre "/>
+                    <p:inputText  value="#{clienteBean.cliente.nombre}"/>
+                    <br/>
+                    <br/>
+                    <p:outputLabel value="ingrese Direccion  "/>
+                    <p:inputText  value="#{clienteBean.cliente.direccion}"/>
+                    <br/>
+                    <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="datos"/>
+                    <p:commandButton value="Eliminar" actionListener="#{clienteBean.eliminar()}" />
+        </h:form>
+    </h:body>
+</html>
+

@@ -8,6 +8,12 @@ public class Orden_compras
 {
     String temp_fecha_orden;
     String temp_fecha_entrega;
+     int id_orden_compras = 0;
+    Date fecha_orden = null;
+    Date fecha_entrega = null;
+    int cantidad =0;
+    Proveedor_productos Pproductos = new Proveedor_productos();
+    Double precio = 0.0;
 
     public String getTemp_fecha_orden() {
         return temp_fecha_orden;
@@ -24,12 +30,7 @@ public class Orden_compras
     public void setTemp_fecha_entrega(String temp_fecha_entrega) {
         this.temp_fecha_entrega = temp_fecha_entrega;
     }
-    int id_orden_compras = 0;
-    Date fecha_orden = null;
-    Date fecha_entrega = null;
-    int cantidad =0;
-    Proveedor_productos Pproductos = new Proveedor_productos();
-    Double precio = 0.0;
+   
 
     public Orden_compras() {
     }
