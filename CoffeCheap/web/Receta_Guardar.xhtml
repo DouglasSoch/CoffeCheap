@@ -14,6 +14,7 @@
       <ui:define name="content">
         <f:event type="preRenderView" listener="#{platoBean.listar()}"/>
         <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{unidad_medidaBean.listar()}"/>
         <h:panelGrid id="general" columns="3" cellpadding="5">
           <h:form id="form1">
             <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
@@ -30,10 +31,39 @@
 
               <p:outputLabel for="cantidad" value="Cantidad"/>
               <p:inputText id="cantidad" value="#{recetaBean.receta.cantidad}" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
-
+              
+              <p:outputLabel for="unidadmedida" value="Unidad Medida"/>
+              <p:selectOneMenu id="unidadmedida" value="#{recetaBean.receta.umedida.id_unidad}">
+                <f:selectItem itemLabel="Unidad Medida"/>
+                <f:selectItems value="#{unidad_medidaBean.lstUnidad_medida}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_unidad}"/>
+              </p:selectOneMenu>
 
             </h:panelGrid><br/>
-            <p:commandButton value="Guardar" action="#{personal_chefBean.Guardar()}" update="form1"/>
+            
+            <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{recetaBean.registrar()}"/>
+
+
+          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
+            <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                
+                <h:outputText value="Plato" />
+                <h:outputText id="codigV" value="#{recetaBean.receta.plato.id_plato}"/>                         
+            
+                <h:outputText value="Producto" />
+                <h:outputText id="nombreV" value="#{recetaBean.receta.producto.id_producto}"/>
+            
+                <h:outputText value="Cantidad" />
+                <h:outputText id="precioV" value="#{recetaBean.receta.cantidad}"/>
+            
+                <h:outputText value="Unidad de Medida" />
+                <h:outputText id="porcionV" value="#{recetaBean.receta.umedida.id_unidad}"/>
+            
+                
+
+                
+
+            </p:panelGrid>
+          </p:dialog>
           </h:form>
         </h:panelGrid>
       </ui:define>
