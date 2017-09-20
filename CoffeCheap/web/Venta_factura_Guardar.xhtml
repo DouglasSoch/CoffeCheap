@@ -21,22 +21,22 @@
             <p:outputLabel value="id venta_factura" />
             <p:autoComplete id="Codig" value="#{venta_facturaBean.venta_factura.id_venta_factura}"/>                         
 
-            <p:outputLabel  value="nit empresa" />
+            <p:outputLabel  value="nit empresa"/>
             <p:autoComplete id="nit_empresa" value="#{venta_facturaBean.venta_factura.nit_empresa}"/>
 
             <p:outputLabel  value="Total" />
-            <p:autoComplete id="total" value="#{venta_facturaBean.venta_factura.total}"/>
+            <p:autoComplete id="total" value="#{venta_facturaBean.venta_factura.tem_total}"/>
 
             <h:outputText value="Propina: "/>
-            <p:selectBooleanButton id="value1" value="#{selectBooleanView.value1}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
+            <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
 
             <p:outputLabel  value="Fecha de Emision" />
             <p:calendar id="Entrega" value="#{venta_facturaBean.venta_factura.fecha_emision}" pattern="yyyy-MM-dd" locale="es"/>
 
             <p:outputLabel for="Producto_lista" value="Id_producto:" />
             <p:selectOneMenu id="Producto_lista" style="width:125px" value="#{venta_facturaBean.venta_factura.pedido.id_pedido}"> 
-              <f:selectItem itemLabel="Producto..." itemValue=""/>
-              <f:selectItems value="#{pedidoBean.lstPedido}" var="listapro" itemLabel="#{listapro.mesa.ubicacion}" itemValue="#{listapro.id_pedido}"/>      
+              <f:selectItem itemLabel="id_pedido..." itemValue=""/>
+              <f:selectItems value="#{pedidoBean.lstPedido}" var="listape" itemLabel="#{listape.id_pedido}" itemValue="#{listape.id_pedido}"/>      
             </p:selectOneMenu> 
           </h:panelGrid>
 
@@ -45,25 +45,25 @@
 
 
           <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
-            <p:panelGrid id="display" columns="2" columnClasses="label,value">
+            <p:panelGrid id="display" columns="2" columnClasses="label,value" style="color: white">
 
               <h:outputText value="id_venta_factura" />
-              <h:outputText id="id1" value="#{venta_facturaBean.venta_factura.id_venta_factura}" />
-              
+              <h:outputText id="id1" value="#{venta_facturaBean.venta_factura.id_venta_factura}" style="color: white" />
+
               <h:outputText value="nit_empresa" />
-              <h:outputText id="nit1" value="#{venta_facturaBean.venta_factura.nit_empresa}" />
-              
+              <h:outputText id="nit1" value="#{venta_facturaBean.venta_factura.nit_empresa}" style="color: white"/>
+
               <h:outputText value="Total" />
-              <h:outputText id="Total1" value="#{venta_facturaBean.venta_factura.total}" />
-              
+              <h:outputText id="Total1" value="#{venta_facturaBean.venta_factura.total}" style="color: white" />
+
               <h:outputText value="pripina" />
-              <h:outputText id="propina1" value="#{venta_facturaBean.venta_factura.obs_propina}" />                         
-              
+              <h:outputText id="propina1" value="#{venta_facturaBean.venta_factura.opc_propina}" style="color: white"/>                         
+
               <h:outputText value="Fecha" />
-              <h:outputText id="Fecha1" value="#{venta_facturaBean.venta_factura.fecha_emision}" />                         
-              
-              <h:outputText value="id_producto" />
-              <h:outputText id="idpro1" value="#{venta_facturaBean.venta_factura.pedido.id_pedido}" />                         
+              <h:outputText id="Fecha1" value="#{venta_facturaBean.venta_factura.fecha_emision}" style="color: white"/>                         
+
+              <h:outputText value="id pedido" />
+              <h:outputText id="idpro1" value="#{venta_facturaBean.venta_factura.pedido.id_pedido}" style="color: white"/>                         
 
             </p:panelGrid>
           </p:dialog>

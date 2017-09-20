@@ -52,6 +52,7 @@ public class Venta_facturaBean {
         
         try {
             
+          
             String formateador = new SimpleDateFormat("yyyy-MM-dd").format(venta_factura.getFecha_emision());
             
             
