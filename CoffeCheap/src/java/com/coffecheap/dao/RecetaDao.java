@@ -77,13 +77,14 @@ public class RecetaDao extends Dao{
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE receta SET id_plato=?, id_producto=?, cantidad=?, id_unidad=? WHERE id_plato=?;");
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE receta SET id_plato=?, id_producto=?, cantidad=?, id_unidad=? WHERE id_plato=? and id_producto=?;");
 
       st.setInt(1, receta.getPlato().getId_plato());
       st.setInt(2, receta.getProducto().getId_producto());
       st.setInt(3, receta.getCantidad());
       st.setInt(4, receta.getUmedida().getId_unidad());    
-      st.setInt(5, receta.getPlato().getId_plato());   
+      st.setInt(5, receta.getPlato().getId_plato());
+      st.setInt(6, receta.getProducto().getId_producto());
       st.executeUpdate();
 
 
@@ -100,8 +101,9 @@ public class RecetaDao extends Dao{
     System.out.println("*******************************************************eliminar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("DELETE FROM receta WHERE id_plato=?;");
+      PreparedStatement st = this.getCon().prepareStatement("DELETE FROM receta WHERE id_plato=? and id_producto=?;");
       st.setInt(1, receta.getPlato().getId_plato());
+      st.setInt(2, receta.getProducto().getId_producto());
       st.executeUpdate();
 
     } catch (Exception ex) {
