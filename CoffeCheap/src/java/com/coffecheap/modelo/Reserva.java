@@ -1,21 +1,21 @@
 package com.coffecheap.modelo;
 
+
 import java.sql.Time;
 import java.util.Date;
+
 import java.util.Objects;
 
 public class Reserva 
 {
-    int id_reserva; 
-    Date fecha ;
-    Time hora_inicio ;
-    Time hora_final ;
-    int cantidad_personas ;
-
-    public Reserva() {
-    }
-    
-    
+    int id_reserva= 0; 
+    Date fecha = null;
+    Time hora_inicio = null ;
+    Time hora_final = null;
+    int cantidad_personas = 0;
+    String hora_entrada= null;
+    String hora_salida= null;
+    String fechaSus= null;
 
     public Reserva(int id_reserva) {
         this.id_reserva = id_reserva;
@@ -29,14 +29,24 @@ public class Reserva
         this.hora_inicio = hora_inicio;
     }
 
-    public Reserva(int id_reserva, Date fecha, Time hora_inicio, Time hora_final, int cantidad_personas) {
+    public Reserva(String hora_entrada) {
+        this.hora_entrada = hora_entrada;
+    }
+
+    public Reserva(int id_reserva, Date fecha, Time hora_inicio, Time hora_final, int cantidad_personas, String hora_entrada, String hora_salida, String fechaSus) {
         this.id_reserva = id_reserva;
         this.fecha = fecha;
         this.hora_inicio = hora_inicio;
         this.hora_final = hora_final;
         this.cantidad_personas = cantidad_personas;
+        this.hora_entrada = hora_entrada;
+        this.hora_salida = hora_salida;
+        this.fechaSus = fechaSus;
     }
-    
+
+    public Reserva() {
+    }
+ 
     public int getId_reserva() {
         return id_reserva;
     }
@@ -77,14 +87,42 @@ public class Reserva
         this.cantidad_personas = cantidad_personas;
     }
 
+    public String getHora_entrada() {
+        return hora_entrada;
+    }
+
+    public void setHora_entrada(String hora_entrada) {
+        //String formateador = new SimpleDateFormat("yyyy-MM-dd").format(this.g);
+        this.hora_entrada = hora_entrada;
+    }
+
+    public String getHora_salida() {
+        return hora_salida;
+    }
+
+    public void setHora_salida(String hora_salida) {
+        this.hora_salida = hora_salida;
+    }
+
+    public String getFechaSus() {
+        return fechaSus;
+    }
+
+    public void setFechaSus(String fechaSus) {
+        this.fechaSus = fechaSus;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + this.id_reserva;
-        hash = 29 * hash + Objects.hashCode(this.fecha);
-        hash = 29 * hash + Objects.hashCode(this.hora_inicio);
-        hash = 29 * hash + Objects.hashCode(this.hora_final);
-        hash = 29 * hash + this.cantidad_personas;
+        int hash = 3;
+        hash = 47 * hash + this.id_reserva;
+        hash = 47 * hash + Objects.hashCode(this.fecha);
+        hash = 47 * hash + Objects.hashCode(this.hora_inicio);
+        hash = 47 * hash + Objects.hashCode(this.hora_final);
+        hash = 47 * hash + this.cantidad_personas;
+        hash = 47 * hash + Objects.hashCode(this.hora_entrada);
+        hash = 47 * hash + Objects.hashCode(this.hora_salida);
+        hash = 47 * hash + Objects.hashCode(this.fechaSus);
         return hash;
     }
 
@@ -106,6 +144,15 @@ public class Reserva
         if (this.cantidad_personas != other.cantidad_personas) {
             return false;
         }
+        if (!Objects.equals(this.hora_entrada, other.hora_entrada)) {
+            return false;
+        }
+        if (!Objects.equals(this.hora_salida, other.hora_salida)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaSus, other.fechaSus)) {
+            return false;
+        }
         if (!Objects.equals(this.fecha, other.fecha)) {
             return false;
         }
@@ -117,8 +164,6 @@ public class Reserva
 
     @Override
     public String toString() {
-        return "Reserva{" + "id_reserva=" + id_reserva + ", fecha=" + fecha + ", hora_inicio=" + hora_inicio + ", hora_final=" + hora_final + ", cantidad_personas=" + cantidad_personas + '}';
+        return "Reserva{" + "id_reserva=" + id_reserva + ", fecha=" + fecha + ", hora_inicio=" + hora_inicio + ", hora_final=" + hora_final + ", cantidad_personas=" + cantidad_personas + ", hora_entrada=" + hora_entrada + ", hora_salida=" + hora_salida + ", fechaSus=" + fechaSus + '}';
     }
-
-    
 }

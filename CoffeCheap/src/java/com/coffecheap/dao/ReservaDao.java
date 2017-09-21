@@ -17,15 +17,15 @@ public class ReservaDao extends Dao
      public void registrar(Reserva reserva) throws Exception {
         try {
            
-           SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd"); 
-           SimpleDateFormat formateadorHora = new SimpleDateFormat("HH:MM"); 
+          
             this.Conectar();
 
             PreparedStatement st = this.getCon().prepareStatement("insert into reserva values (?,?,?,?,?)");
+       
             st.setInt(1, reserva.getId_reserva());
-            st.setString(2, formateador.format(reserva.getFecha()));
-            st.setString(3, formateadorHora.format(reserva.getHora_inicio()));
-            st.setString(4, formateadorHora.format(reserva.getHora_final()));
+            st.setString(2, reserva.getFechaSus());
+            st.setString(3, reserva.getHora_entrada());
+            st.setString(4,reserva.getHora_salida());
             st.setInt(5, reserva.getCantidad_personas());
             st.executeUpdate();
         } catch (Exception e) {

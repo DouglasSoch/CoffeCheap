@@ -1,9 +1,8 @@
 package com.coffecheap.bean;
 
-import com.coffecheap.dao.ClienteDao;
 import com.coffecheap.dao.ReservaDao;
-import com.coffecheap.modelo.Cliente;
 import com.coffecheap.modelo.Reserva;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,13 +37,24 @@ public class ReservaBean
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
     }
+
+    
     
      public void registrar() throws Exception {
-
-        ReservaDao dao = new ReservaDao();
-
+       
+        ReservaDao dao ;
+         
         try {
-                        dao.registrar(reserva);
+            
+
+              String formateador = new SimpleDateFormat("yyyy-MM-dd").format(reserva.getFecha());
+                        reserva.setFechaSus(formateador);
+                    
+                        
+                        
+                       dao = new ReservaDao();
+                       dao.registrar(reserva);
+                       
         } catch (Exception e) {
             System.out.println(e);
         }
