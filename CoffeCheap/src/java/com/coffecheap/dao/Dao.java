@@ -14,7 +14,8 @@ public class Dao {
         this.con = con;
     }
     
-
+  
+    
     public void Conectar() throws Exception {
         try {
             Class.forName("com.mysql.jdbc.Driver");            
