@@ -13,6 +13,7 @@ public class Dao {
     public void setCon(Connection con) {
         this.con = con;
     }
+    
 
     public void Conectar() throws Exception {
         try {
