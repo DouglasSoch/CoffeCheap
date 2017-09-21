@@ -15,7 +15,8 @@
       <ui:define name="content">
 
         <f:event type="preRenderView" listener="#{pedidoBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{personal_MeseroBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{usuarioBean.listarMe()}"/>
         <h:form class="flip">
 
           <p:outputLabel style="color: #ffffff;" value="Lista para escoger Pedido a Modificar" />          
@@ -31,25 +32,31 @@
                 <f:facet name="header">Id Pedido</f:facet>
                 <h:inputText value="#{tabla.id_pedido}" style="color: #ffffff; width : 30px" />
               </p:column>
-              <p:column>
-                <f:facet name="header">Id Mesa</f:facet>
-                <h:inputText value="#{tabla.mesa.id_mesa}" style="color: #ffffff; width : 160px" />
+
+              <p:column>               
+                <p:outputLabel for="lisx" value="mesa:" style="color: #ffffff" />
+                <p:selectOneMenu id="lisx" style="width:200px" value="#{tabla.mesa.id_mesa}"> 
+                  <f:selectItems value="#{mesaBean.lstMesa}" var="tip" itemLabel="#{tip.ubicacion}" itemValue="#{tip.id_mesa}"/>                        
+                </p:selectOneMenu>
               </p:column>
+
               <p:column>
                 <f:facet name="header">hora</f:facet>
                 <h:inputText value="#{tabla.hora}" style="color: #ffffff; width : 160px" />
               </p:column>
-              <p:column>
-                <f:facet name="header">id personal</f:facet>            
-              
-                
-                <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{tabla.usuario.id}" > 
-                  <f:selectItems value="#{personal_MeseroBean.lstPermes}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_personal_servicio}"/>                      
-                </p:selectOneMenu> 
-              </p:column>                    
+
+              <p:column>               
+
+                <p:outputLabel for="lis" value="personal:" style="color: #ffffff"/>
+                <p:selectOneMenu id="lis" style="width:200px" value="#{tabla.usuario.id}"> 
+                  <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
+                  <p:ajax event="change" update="@this" />      
+                </p:selectOneMenu>  
+
+              </p:column>                      
 
               <p:column>
-                <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{pedidoBean.eliminar(tabla)}"/>                    
+                <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{pedidoBean.modificar(tabla)}"/>                    
               </p:column>                               
 
             </p:dataList>
