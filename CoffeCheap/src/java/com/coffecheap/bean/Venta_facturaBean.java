@@ -8,11 +8,8 @@ import com.coffecheap.modelo.Venta_factura;
 import com.coffecheap.dao.Venta_facturaDao;
 import com.coffecheap.modelo.Proveedor_productos;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-//import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
@@ -55,11 +52,12 @@ public class Venta_facturaBean {
         
         try {
             
-            String formateador = new SimpleDateFormat("yyyy-MM-dd").format(venta_factura.getFecha_entrega());
-            String formateador2 = new SimpleDateFormat("yyyy-MM-dd").format(venta_factura.getFecha_orden());
+          
+            String formateador = new SimpleDateFormat("yyyy-MM-dd").format(venta_factura.getFecha_emision());
             
-            venta_factura.setTemp_fecha_entrega(formateador);
-            venta_factura.setTemp_fecha_orden(formateador2);
+            
+            venta_factura.setTemp_fecha_emision(formateador);
+            
             
             dao = new Venta_facturaDao();
             dao.registrar(venta_factura);
@@ -78,8 +76,7 @@ public class Venta_facturaBean {
             lstVenta_factura = dao.listar();
         } catch (Exception e) {
             throw e;
-        }
-        
+        }        
     }
     
     public void modificar(Venta_factura mar) throws Exception {
@@ -92,8 +89,7 @@ public class Venta_facturaBean {
             
         } catch (Exception e) {
             throw e;
-        }
-        
+        }        
     }
     
     public void eliminar(Venta_factura mar) throws Exception {
@@ -106,20 +102,9 @@ public class Venta_facturaBean {
             
         } catch (Exception e) {
             throw e;
-        }
-        
+        }        
     }
     
-    public void Mostrar_Prov_Produ() throws Exception {
-        //Mostrar Proveedor_produc
-        Venta_facturaDao dao;
-        
-        try {
-            dao = new Venta_facturaDao();
-            lstProveedor_productos = dao.ListarProveedor_Produ(venta_factura);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
+   
     
 }

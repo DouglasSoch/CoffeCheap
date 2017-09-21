@@ -21,19 +21,48 @@ import java.util.List;
 public class Venta_facturaDao extends Dao {
 
   public void registrar(Venta_factura Tt) throws Exception {
-
+    
     try {
 
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("insert into venta_factura values(?,?,?,?,?,?,?,?);");
       st.setInt(1, Tt.getId_venta_factura());
       st.setString(2, Tt.getNit_empresa());
+      double  tem1=Tt.getTem_total();
+      double  tem2=tem1-(tem1*0.12);
+      double tem3;
+      double  tem4=tem1*0.12;
+      
+      if(Tt.isOpc_propina()==true){
+      tem3=tem1*0.05;
+      }else{
+      tem3=0;
+      }
+      Tt.setSubtotal(tem2);
+      Tt.setIva(tem4);
+      Tt.setPropina(tem3);
+      Tt.setTotal(tem3+tem2+tem4);
+      
       st.setDouble(3, Tt.getSubtotal());
       st.setDouble(4, Tt.getIva());
       st.setDouble(5, Tt.getPropina());
       st.setDouble(6, Tt.getTotal());
-      st.setDate(7, (Date) Tt.getFecha_emision());
+      st.setString(7,Tt.getTemp_fecha_emision());
       st.setInt(8, Tt.getPedido().getId_pedido());
+      
+      
+    System.out.println("DAO");
+    System.out.println("ID"  + Tt.getId_venta_factura());
+    System.out.println("nit"  + Tt.getNit_empresa());
+    System.out.println("sub"  + Tt.getSubtotal());
+    System.out.println("iva"  + Tt.getIva());
+    System.out.println("pro"  + Tt.getPropina());
+    System.out.println("to"  + Tt.getTotal());
+    System.out.println("date"  + Tt.getFecha_emision());
+    System.out.println("id pe"  + Tt.getPedido().getId_pedido());
+    
+    
+    
       st.executeUpdate();
 
     } catch (Exception ex) {

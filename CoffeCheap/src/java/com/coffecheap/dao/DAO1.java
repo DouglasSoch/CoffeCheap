@@ -27,7 +27,7 @@ public class DAO1 {
     public void conectar() throws Exception {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/LoginAxel?user=root&password=intecap");
+            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/coffechip?user=root&password=intecap");
 
         } catch (Exception ex) {
             throw ex;
