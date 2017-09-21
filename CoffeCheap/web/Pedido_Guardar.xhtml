@@ -15,7 +15,7 @@
       <ui:define name="content">
         
         <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{personal_chefBean.Mostrar()}"/>
+        <f:event type="preRenderView" listener="#{usuarioBean.listarMe()}"/>
 
         <h:form class="flip">
 
@@ -25,21 +25,21 @@
             <p:autoComplete id="Codig" value="#{pedidoBean.pedido.id_pedido}"/>                         
             
             <p:outputLabel for="lisz" value="id_mesa:" />
-            <p:selectOneMenu id="lisz" style="width:125px" value="#{pedidoBean.pedido.mesa.id_mesa}"> 
+            <p:selectOneMenu id="lisz" style="width:200px" value="#{pedidoBean.pedido.mesa.id_mesa}"> 
               <f:selectItems value="#{mesaBean.lstMesa}" var="tip" itemLabel="#{tip.ubicacion}" itemValue="#{tip.id_mesa}"/>      
             <p:ajax event="change" update="@this" />      
           </p:selectOneMenu>
 
              <p:outputLabel value="hora" />
             <p:inputMask id="hora" value="#{pedidoBean.pedido.hora}" mask="99:99:99"/>
-          </h:panelGrid>
+          
           
           <p:outputLabel for="lis" value="id_personal:" />
-          <p:selectOneMenu id="lis" style="width:125px" value="#{pedidoBean.pedido.usuario.id}"> 
-              <f:selectItems value="#{personal_chefBean.lstChef}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_personal}"/>      
+          <p:selectOneMenu id="lis" style="width:200px" value="#{pedidoBean.pedido.usuario.id}"> 
+            <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
             <p:ajax event="change" update="@this" />      
           </p:selectOneMenu>          
-
+           </h:panelGrid>
           <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{pedidoBean.registrar()}"/>
 
           <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
@@ -47,17 +47,13 @@
 
               <h:outputText value="Codigo Trasaccion" />
               <h:outputText id="CodigV" value="#{pedidoBean.pedido.id_pedido}" />                         
-
-             
+            
 
             </p:panelGrid>
           </p:dialog>
-
+         
         </h:form>
-        <h:form id="otro">       
-
-
-        </h:form> 
+       
 
       </ui:define>
     </ui:composition>
