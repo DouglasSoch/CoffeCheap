@@ -21,14 +21,14 @@ public class Plato_pedidoDao extends Dao{
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into plato_pedido values(?,?,?,?);");
+      PreparedStatement st = this.getCon().prepareStatement("insert into plato_pedido values(?,?,?,?,?,?);");
       st.setInt(1, ppedido.getId_plato_pedido());
       st.setInt(2, ppedido.getPlato().getId_plato());
       st.setInt(3, ppedido.getCantidad());
-      st.setInt(4, ppedido.getUsuario().getId());    
+      st.setInt(4, ppedido.getUsuario().getId());
+      st.setInt(5, ppedido.getPedido().getId_pedido());
+      st.setDouble(6, ppedido.getPrecio());
       
-        
-
       st.executeUpdate();
 
     } catch (Exception ex) {
@@ -77,13 +77,15 @@ public class Plato_pedidoDao extends Dao{
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  plato_pedido SET id_plato_pedido=?, id_plato=?, cantidad=?, id_personal=? WHERE id_plato_pedido=?;");
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE  plato_pedido SET id_plato_pedido=?, id_plato=?, cantidad=?, id_personal=?, id_pedido=?, precio=? WHERE id_plato_pedido=?;");
 
       st.setInt(1, ppedido.getId_plato_pedido());
       st.setInt(2, ppedido.getPlato().getId_plato());
       st.setInt(3, ppedido.getCantidad());
       st.setInt(4, ppedido.getUsuario().getId());    
-      st.setInt(5, ppedido.getId_plato_pedido());
+      st.setInt(5, ppedido.getPedido().getId_pedido());
+      st.setDouble(6, ppedido.getPrecio());
+      
      
       st.executeUpdate();
 
