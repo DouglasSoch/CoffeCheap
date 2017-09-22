@@ -56,8 +56,8 @@ public class Plato_pedidoDao extends Dao{
         ppedido.getPlato().setId_plato(rs.getInt("id_plato"));
         ppedido.setCantidad(rs.getInt("cantidad"));
         ppedido.getUsuario().setId(rs.getInt("id_personal"));
-      
-        
+        ppedido.getPedido().setId_pedido(rs.getInt("id_pedido"));
+        ppedido.setPrecio(rs.getDouble("precio"));
         
         
         lista.add(ppedido);
@@ -85,7 +85,7 @@ public class Plato_pedidoDao extends Dao{
       st.setInt(4, ppedido.getUsuario().getId());    
       st.setInt(5, ppedido.getPedido().getId_pedido());
       st.setDouble(6, ppedido.getPrecio());
-      
+      st.setInt(7, ppedido.getId_plato_pedido());
      
       st.executeUpdate();
 
