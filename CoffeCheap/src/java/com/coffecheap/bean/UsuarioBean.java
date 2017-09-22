@@ -19,6 +19,17 @@ public class UsuarioBean {
   private Usuario usuario = new Usuario();
   private List<Usuario> lstUsuario;
   private List<Usuario> lstUsuarioMe;
+  private List<Usuario> lstUsuarioChef;
+
+  public List<Usuario> getLstUsuarioChef() {
+    return lstUsuarioChef;
+  }
+
+  public void setLstUsuarioChef(List<Usuario> lstUsuarioChef) {
+    this.lstUsuarioChef = lstUsuarioChef;
+  }
+  
+  
 
   public List<Usuario> getLstUsuarioMe() {
     return lstUsuarioMe;
@@ -78,6 +89,18 @@ public class UsuarioBean {
     try {
       dao = new UsuarioDao();
       lstUsuarioMe = dao.listarMe();
+    } catch (Exception e) {
+      throw e;
+    }
+
+  }
+  
+    public void listarChef() throws Exception {
+    UsuarioDao dao;
+
+    try {
+      dao = new UsuarioDao();
+      lstUsuarioChef = dao.listarChef();
     } catch (Exception e) {
       throw e;
     }
