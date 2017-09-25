@@ -1,6 +1,4 @@
 package com.coffecheap.dao;
-
-import com.coffecheap.modelo.Cliente;
 import com.coffecheap.modelo.Reserva;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,10 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author bryan
- */
 public class ReservaDao extends Dao
 {
      public void registrar(Reserva reserva) throws Exception {
@@ -103,14 +97,14 @@ public class ReservaDao extends Dao
             st.setInt(1, reservaa.getId_reserva());
             rs = st.executeQuery();
 
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                   reserva = new Reserva();
                 reserva.setId_reserva(rs.getInt(1));
-                reserva.setFecha(rs.getDate(2));
-                reserva.setHora_inicio(rs.getTime(3));
-                reserva.setHora_final(rs.getTime(4));
+                reserva.setFechaSus(rs.getString(2));
+                reserva.setHora_entrada(rs.getString(3));
+                reserva.setHora_salida(rs.getString(4));
                 reserva.setCantidad_personas(rs.getInt(5));
-
             }
         } catch (Exception e) {
             throw e;

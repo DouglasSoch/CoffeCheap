@@ -189,7 +189,7 @@ public class Transaccion_inventarioBean {
                        throw e;
                    }
                }
-    /*         
+    /*      
                  public void eliminar() throws Exception
     {
         

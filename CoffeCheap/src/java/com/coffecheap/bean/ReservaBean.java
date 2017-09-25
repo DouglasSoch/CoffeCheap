@@ -2,10 +2,8 @@ package com.coffecheap.bean;
 
 import com.coffecheap.dao.ReservaDao;
 import com.coffecheap.modelo.Reserva;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.ArrayList;;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -101,6 +99,12 @@ public class ReservaBean
                        if(reserva!=null)
                        {
                            this.reserva= temp;
+                           
+                           System.out.println(reserva.getId_reserva());
+                           System.out.println(reserva.getFechaSus());
+                           System.out.println(reserva.getHora_entrada());
+                           System.out.println(reserva.getHora_salida());
+                           System.out.println(reserva.getCantidad_personas());
                        }
                        
                    }catch(Exception e)
