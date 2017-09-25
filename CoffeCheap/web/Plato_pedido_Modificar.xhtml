@@ -16,7 +16,7 @@
 
         <f:event type="preRenderView" listener="#{pedidoBean.listar()}"/>
         <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{usuarioBean.listarMe()}"/>
+        <f:event type="preRenderView" listener="#{usuarioBean.listarChef()}"/>
         <h:form class="flip">
 
           <p:outputLabel style="color: #ffffff;" value="Lista para escoger Pedido a Modificar" />          
@@ -49,7 +49,7 @@
 
                 <p:outputLabel for="lis" value="personal:" style="color: #ffffff"/>
                 <p:selectOneMenu id="lis" style="width:200px" value="#{tabla.usuario.id}"> 
-                  <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
+                  <f:selectItems value="#{usuarioBean.lstUsuarioChef}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
                   <p:ajax event="change" update="@this" />      
                 </p:selectOneMenu>  
 
