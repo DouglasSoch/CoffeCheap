@@ -17,10 +17,10 @@
         <h:form class="flip">
 
           <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
-            <p:outputLabel value="Codigo Trasaccion" />
-            <p:autoComplete id="Codig" value="#{estado_mesaBean.estado_mesa.id_estado}"/>                         
+            <p:outputLabel value="id_estado" />
+            <p:autoComplete id="id" value="#{estado_mesaBean.estado_mesa.id_estado}"/>                         
 
-            <p:outputLabel  value="Nombre" />
+            <p:outputLabel  value="nombre" />
             <p:autoComplete id="Nombre" value="#{estado_mesaBean.estado_mesa.nombre}" maxlength="7"/>
 
           </h:panelGrid>
@@ -32,8 +32,8 @@
           <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
 
-              <h:outputText value="Codigo Trasaccion" />
-              <h:outputText id="CodigV" value="#{estado_mesaBean.estado_mesa.id_estado_mesa}" />                         
+              <h:outputText value="Id_estado" />
+              <h:outputText id="estadoV" value="#{estado_mesaBean.estado_mesa.id_estado}" />                         
 
               <h:outputText value="Nombre Trasaccion" />
               <h:outputText id="NombreV" value="#{estado_mesaBean.estado_mesa.nombre}" />
