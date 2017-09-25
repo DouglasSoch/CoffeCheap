@@ -18,49 +18,53 @@
         <h:panelGrid id="general" columns="3" cellpadding="5">
           <h:form id="form1">
             <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
-              <p:outputLabel for="id_plato" value="Plato"/>
-              <p:selectOneMenu id="id_plato" value="#{recetaBean.receta.plato.id_plato}">
-                <f:selectItem itemLabel="plato"/>
-                <f:selectItems value="#{platoBean.lstPlato}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_plato}"/>                                
-              </p:selectOneMenu>
+              
               
 
               <p:outputLabel for="id_producto" value="Codigo de Producto"/>
-              <p:inputText id="cantidad" value="#{productoBean.producto.id_producto}" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
+              <p:inputText id="id_producto" value="#{productoBean.producto.id_producto}" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
               
-              <p:outputLabel for="id_producto" value="Codigo de Producto"/>
-              <p:inputText id="cantidad" value="#{productoBean.producto.id_producto}" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
+              <p:outputLabel for="nombre" value="Nombre de producto"/>
+              <p:inputText id="nombre" value="#{productoBean.producto.nombre}"/>
               
-              <p:outputLabel for="id_producto" value="Codigo de Producto"/>
-              <p:inputText id="cantidad" value="#{productoBean.producto.id_producto}" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
+              <p:outputLabel for="existencia" value="Existencia"/>
+              <p:inputText id="existencia" value="#{productoBean.producto.existencia}" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
               
-              <p:outputLabel for="unidadmedida" value="Unidad Medida"/>
-              <p:selectOneMenu id="unidadmedida" value="#{recetaBean.receta.umedida.id_unidad}">
+              <p:outputLabel for="unidadmedida" value="Unidad de Medida"/>
+              <p:selectOneMenu id="unidadmedida" value="#{productoBean.producto.umedida.id_unidad}">
                 <f:selectItem itemLabel="Unidad Medida"/>
                 <f:selectItems value="#{unidad_medidaBean.lstUnidad_medida}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_unidad}"/>
+              </p:selectOneMenu>
+              
+              <p:outputLabel for="tipoproducto" value="Tipo de producto"/>
+              <p:selectOneMenu id="tipoproducto" value="#{productoBean.producto.tproducto.id_tipo}">
+                <f:selectItem itemLabel="Tipo de Producto"/>
+                <f:selectItems value="#{tipo_productoBean.lstTipo_producto}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_tipo}"/>
               </p:selectOneMenu>
 
             </h:panelGrid><br/>
             
-            <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{recetaBean.registrar()}"/>
+            <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{productoBean.registrar()}"/>
 
 
           <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
                 
-                <h:outputText value="Plato" />
-                <h:outputText id="codigV" value="#{recetaBean.receta.plato.id_plato}"/>                         
+                <h:outputText value="Codigo" />
+                <h:outputText id="codigV" value="#{productoBean.producto.id_producto}"/>                         
             
-                <h:outputText value="Producto" />
-                <h:outputText id="nombreV" value="#{recetaBean.receta.producto.id_producto}"/>
+                <h:outputText value="Nombre" />
+                <h:outputText id="nombreV" value="#{productoBean.producto.nombre}"/>
             
-                <h:outputText value="Cantidad" />
-                <h:outputText id="precioV" value="#{recetaBean.receta.cantidad}"/>
+                <h:outputText value="Existencia" />
+                <h:outputText id="exisV" value="#{productoBean.producto.existencia}"/>
             
-                <h:outputText value="Unidad de Medida" />
-                <h:outputText id="porcionV" value="#{recetaBean.receta.umedida.id_unidad}"/>
+                <h:outputText value="Unidad" />
+                <h:outputText id="unidadV" value="#{productoBean.producto.umedida.id_unidad}"/>
             
-                
+                <h:outputText value="Tipo" />
+                <h:outputText id="tipoV" value="#{productoBean.producto.tproducto.id_tipo}"/>
+            
 
                 
 

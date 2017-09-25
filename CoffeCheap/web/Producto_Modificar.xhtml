@@ -10,7 +10,7 @@
         <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
           
-          <f:event type="preRenderView" listener="#{recetaBean.listar()}"/>
+          <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
         <h:form class="flip">
           
             <p:outputLabel style="color: #ffffff;" value="Lista para elegir el plato a modificar" />          
@@ -21,28 +21,32 @@
           <!-- Modal -->
 
           <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:10px 0">          
-              <p:dataTable value="#{recetaBean.lstReceta}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" >
+              <p:dataTable value="#{productoBean.lstProducto}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" >
               
 
                 <p:column width="90">
-                <f:facet name="header">Codigo de Plato</f:facet>
-                <h:inputText value="#{tabla.plato.id_plato}" style="color: #ffffff; width : 60px" />
-                </p:column>
-                <p:column width="90">
                 <f:facet name="header">Codigo de Producto</f:facet>
-                <h:inputText value="#{tabla.producto.id_producto}" style="color: #ffffff; width : 60px" />
+                <h:inputText value="#{tabla.id_producto}" style="color: #ffffff; width : 60px" />
+                </p:column>
+                <p:column width="200">
+                <f:facet name="header">Nombre</f:facet>
+                <h:inputText value="#{tabla.nombre}" style="color: #ffffff; width : 200px" />
                 </p:column>
                 <p:column width="90">
                 <f:facet name="header">Cantidad</f:facet>
-                <h:inputText value="#{tabla.cantidad}" style="color: #ffffff; width : 60px" />
+                <h:inputText value="#{tabla.existencia}" style="color: #ffffff; width : 60px" />
                 </p:column>
-              <p:column width="90">
+                <p:column width="90">
                 <f:facet name="header">Codigo de Unidad de Medida</f:facet>
                 <h:inputText value="#{tabla.umedida.id_unidad}" style="color: #ffffff; width : 60px" />
-              </p:column>               
+                </p:column>    
+                <p:column width="90">
+                <f:facet name="header">Codigo de tipo de producto</f:facet>
+                <h:inputText value="#{tabla.tproducto.id_tipo}" style="color: #ffffff; width : 60px" />
+                </p:column> 
 
                   <p:column width="100">
-                      <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{recetaBean.modificar(tabla)}"/>                    
+                      <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{productoBean.modificar(tabla)}"/>                    
               </p:column>                              
 
             
