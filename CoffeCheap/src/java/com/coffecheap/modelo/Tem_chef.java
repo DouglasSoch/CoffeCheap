@@ -15,6 +15,7 @@ public class Tem_chef {
     int cantidad=0;
     String descripcion= null;
     Estado_plato estadoPlato= new Estado_plato();
+    Tipo_plato tipoPlato= new Tipo_plato();
 
     public Tem_chef() {
     }
@@ -39,15 +40,20 @@ public class Tem_chef {
         this.estadoPlato = estadoPlato;
     }
 
-    public Tem_chef(int id_chef, Pedido pedido, Plato plato, int cantidad, String descripcion, Estado_plato estadoPlato) {
+    public Tem_chef(Tipo_plato tipoPlato) {
+        this.tipoPlato = tipoPlato;
+    }
+
+    public Tem_chef(int id_chef, Pedido pedido, Plato plato, int cantidad, String descripcion, Estado_plato estadoPlato, Tipo_plato tipoPlato) {
         this.id_chef = id_chef;
         this.pedido = pedido;
         this.plato = plato;
         this.cantidad = cantidad;
         this.descripcion = descripcion;
         this.estadoPlato = estadoPlato;
+        this.tipoPlato = tipoPlato;
     }
-
+    
     public int getId_chef() {
         return id_chef;
     }
@@ -96,15 +102,24 @@ public class Tem_chef {
         this.estadoPlato = estadoPlato;
     }
 
+    public Tipo_plato getTipoPlato() {
+        return tipoPlato;
+    }
+
+    public void setTipoPlato(Tipo_plato tipoPlato) {
+        this.tipoPlato = tipoPlato;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + this.id_chef;
-        hash = 37 * hash + Objects.hashCode(this.pedido);
-        hash = 37 * hash + Objects.hashCode(this.plato);
-        hash = 37 * hash + this.cantidad;
-        hash = 37 * hash + Objects.hashCode(this.descripcion);
-        hash = 37 * hash + Objects.hashCode(this.estadoPlato);
+        hash = 17 * hash + this.id_chef;
+        hash = 17 * hash + Objects.hashCode(this.pedido);
+        hash = 17 * hash + Objects.hashCode(this.plato);
+        hash = 17 * hash + this.cantidad;
+        hash = 17 * hash + Objects.hashCode(this.descripcion);
+        hash = 17 * hash + Objects.hashCode(this.estadoPlato);
+        hash = 17 * hash + Objects.hashCode(this.tipoPlato);
         return hash;
     }
 
@@ -135,11 +150,15 @@ public class Tem_chef {
         if (!Objects.equals(this.plato, other.plato)) {
             return false;
         }
-        return Objects.equals(this.estadoPlato, other.estadoPlato);
+        if (!Objects.equals(this.estadoPlato, other.estadoPlato)) {
+            return false;
+        }
+        return Objects.equals(this.tipoPlato, other.tipoPlato);
     }
 
     @Override
     public String toString() {
-        return "Tem_chef{" + "id_chef=" + id_chef + ", pedido=" + pedido + ", plato=" + plato + ", cantidad=" + cantidad + ", descripcion=" + descripcion + ", estadoPlato=" + estadoPlato + '}';
+        return "Tem_chef{" + "id_chef=" + id_chef + ", pedido=" + pedido + ", plato=" + plato + ", cantidad=" + cantidad + ", descripcion=" + descripcion + ", estadoPlato=" + estadoPlato + ", tipoPlato=" + tipoPlato + '}';
     }
+
 }
