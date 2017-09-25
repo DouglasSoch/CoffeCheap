@@ -11,6 +11,7 @@ public class Plato
     String descripcion = null;
     Tipo_plato tipoPlato = new Tipo_plato();
 
+    
     public Plato() {
     }
 
