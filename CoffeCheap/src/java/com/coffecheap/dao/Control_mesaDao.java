@@ -26,7 +26,6 @@ public class Control_mesaDao extends Dao {
 
       //st.setInt(1, Tt.getId_tipo());
       //st.setString(2, Tt.getNombre());
-
       st.executeUpdate();
 
     } catch (Exception ex) {
@@ -38,7 +37,7 @@ public class Control_mesaDao extends Dao {
 
   }
 
-  public List<Control_mesa> listar() throws Exception {
+  public List<Control_mesa> listarMesaOcupadas() throws Exception {
     List<Control_mesa> lista;
     ResultSet rs;
 
@@ -50,9 +49,8 @@ public class Control_mesaDao extends Dao {
       while (rs.next()) {
         Control_mesa tt = new Control_mesa();
 
-      //  tt.setId_tipo(rs.getInt(1));
-      //  tt.setNombre(rs.getString(2));
-
+        //  tt.setId_tipo(rs.getInt(1));
+        //  tt.setNombre(rs.getString(2));
         lista.add(tt);
       }
 
@@ -82,17 +80,16 @@ public class Control_mesaDao extends Dao {
     }
 
   }
-  
-    public void CamBioEstado(int bus) throws Exception{
-    
-System.out.println("*******************************************************modificar dao");
+
+  public void CamBioEstado(int bus) throws Exception {
+
+    System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("UPDATE  mesa SET id_estado=? WHERE id_mesa=?;");
 
       st.setInt(1, 3);
       st.setInt(1, bus);
-      
 
       st.executeUpdate();
 
