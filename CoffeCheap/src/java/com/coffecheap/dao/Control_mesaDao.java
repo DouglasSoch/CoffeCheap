@@ -5,6 +5,7 @@
  */
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.MesaBean;
 import com.coffecheap.modelo.Control_mesa;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -101,6 +102,13 @@ public class Control_mesaDao extends Dao {
 
     }
 
+  }
+  
+  public void asigMesa(int Nmesa){
+   MesaBean Modmesa = new MesaBean();
+   Modmesa=
+  
+   
   }
 
 }
