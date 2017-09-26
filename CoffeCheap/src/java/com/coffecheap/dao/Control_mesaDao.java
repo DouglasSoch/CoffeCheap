@@ -24,8 +24,8 @@ public class Control_mesaDao extends Dao {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("insert into control_mesa values(?,?);");
 
-      st.setInt(1, Tt.getId_tipo());
-      st.setString(2, Tt.getNombre());
+      //st.setInt(1, Tt.getId_tipo());
+      //st.setString(2, Tt.getNombre());
 
       st.executeUpdate();
 
@@ -50,8 +50,8 @@ public class Control_mesaDao extends Dao {
       while (rs.next()) {
         Control_mesa tt = new Control_mesa();
 
-        tt.setId_tipo(rs.getInt(1));
-        tt.setNombre(rs.getString(2));
+      //  tt.setId_tipo(rs.getInt(1));
+      //  tt.setNombre(rs.getString(2));
 
         lista.add(tt);
       }
@@ -66,33 +66,12 @@ public class Control_mesaDao extends Dao {
 
   }
 
-  public void modificar(Control_mesa tt) throws Exception {
-    System.out.println("*******************************************************modificar dao");
-    try {
-      this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  control_mesa SET id_tipo=?, nombre_tipo=? WHERE id_tipo=?;");
-
-      st.setInt(1, tt.getId_tipo());
-      st.setString(2, tt.getNombre());
-      st.setInt(3, tt.getId_tipo());
-
-      st.executeUpdate();
-
-    } catch (Exception ex) {
-      throw ex;
-    } finally {
-      this.Desconecar();
-
-    }
-
-  }
-
   public void eliminar(Control_mesa pac) throws Exception {
     System.out.println("*******************************************************eliminar dao");
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("DELETE FROM control_mesa WHERE id_control_mesa=?;");
-      st.setInt(1, pac.getId_tipo());
+      //st.setInt(1, pac.getId_tipo());
       st.executeUpdate();
 
     } catch (Exception ex) {
@@ -104,11 +83,26 @@ public class Control_mesaDao extends Dao {
 
   }
   
-  public void asigMesa(int Nmesa){
-   MesaBean Modmesa = new MesaBean();
-   Modmesa=
-  
-   
+    public void CamBioEstado(int bus) throws Exception{
+    
+System.out.println("*******************************************************modificar dao");
+    try {
+      this.Conectar();
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE  mesa SET id_estado=? WHERE id_mesa=?;");
+
+      st.setInt(1, 3);
+      st.setInt(1, bus);
+      
+
+      st.executeUpdate();
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+
+    }
+
   }
 
 }

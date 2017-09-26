@@ -96,27 +96,7 @@ public class MesaDao extends Dao {
 
   }
 
-  public void CamBioEstado(int bus) throws Exception{
-    
-System.out.println("*******************************************************modificar dao");
-    try {
-      this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  mesa SET id_estado=? WHERE id_mesa=?;");
 
-      st.setInt(1, 3);
-      st.setInt(1, bus);
-      
-
-      st.executeUpdate();
-
-    } catch (Exception ex) {
-      throw ex;
-    } finally {
-      this.Desconecar();
-
-    }
-
-  }
 
   public void eliminar(Mesa pac) throws Exception {
     System.out.println("*******************************************************eliminar dao");

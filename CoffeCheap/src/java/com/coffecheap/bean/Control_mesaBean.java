@@ -7,6 +7,7 @@ package com.coffecheap.bean;
 
 import com.coffecheap.modelo.Control_mesa;
 import com.coffecheap.dao.Control_mesaDao;
+import com.coffecheap.dao.MesaDao;
 
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -91,4 +92,18 @@ public class Control_mesaBean {
 
   }
 
+  
+  
+    public void CambioEstado(int MesaSelecionada) throws Exception {
+    System.out.println("********************************Cambio Estado de mesa");
+    MesaDao dao;
+
+    try {
+      dao = new MesaDao();
+      dao.CamBioEstado(MesaSelecionada);
+    } catch (Exception e) {
+      throw e;
+    }
+  }
+  
 }

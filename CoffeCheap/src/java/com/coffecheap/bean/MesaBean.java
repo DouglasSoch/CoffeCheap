@@ -76,17 +76,7 @@ public class MesaBean {
 
   }
   
-  public void CambioEstado(int MesaSelecionada) throws Exception {
-    System.out.println("********************************Cambio Estado de mesa");
-    MesaDao dao;
-
-    try {
-      dao = new MesaDao();
-      dao.CamBioEstado(MesaSelecionada);
-    } catch (Exception e) {
-      throw e;
-    }
-  }  
+  
 
   public void eliminar(Mesa mar) throws Exception {
     System.out.println("*********************************************eliminar");
