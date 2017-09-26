@@ -64,20 +64,6 @@ public class Control_mesaBean {
 
   }
 
-  public void modificar(Control_mesa mar) throws Exception {
-    System.out.println("*******************************************************Modificar");
-    Control_mesaDao dao;
-
-    try {
-      dao = new Control_mesaDao();
-      dao.modificar(mar);
-
-    } catch (Exception e) {
-      throw e;
-    }
-
-  }
-
   public void eliminar(Control_mesa mar) throws Exception {
     System.out.println("*******************************************************eliminar");
     Control_mesaDao dao;
@@ -96,10 +82,10 @@ public class Control_mesaBean {
   
     public void CambioEstado(int MesaSelecionada) throws Exception {
     System.out.println("********************************Cambio Estado de mesa");
-    MesaDao dao;
+    Control_mesaDao dao;
 
     try {
-      dao = new MesaDao();
+      dao = new Control_mesaDao();
       dao.CamBioEstado(MesaSelecionada);
     } catch (Exception e) {
       throw e;
