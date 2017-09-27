@@ -57,7 +57,7 @@ public class Control_mesaBean {
 
     try {
       dao = new Control_mesaDao();
-      lstControl_mesa = dao.listar();
+      lstControl_mesa = dao.listarMesaOcupadas();
     } catch (Exception e) {
       throw e;
     }
@@ -91,5 +91,7 @@ public class Control_mesaBean {
       throw e;
     }
   }
+    
+    
   
 }
