@@ -14,38 +14,37 @@
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
 
+        <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{usuarioBean.listarChef()}"/> 
+
         <h:form class="flip">
 
           <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
-            <p:outputLabel value="id_estado" />
-            <p:autoComplete id="id" value="#{estado_mesaBean.estado_mesa.id_estado}"/>                         
 
-            <p:outputLabel  value="nombre" />
-            <p:autoComplete id="Nombre" value="#{estado_mesaBean.estado_mesa.nombre}" maxlength="7"/>
+             <p:outputLabel for="nummesa" value="Numero de Mesa"/>
+              <p:selectOneMenu id="nummesa" value="">
+                <f:selectItem itemLabel="No. de Mesa"/>
+                <f:selectItems value="" var="lista" itemLabel="" itemValue=""/>
+              </p:selectOneMenu>                     
 
+            
+
+              
           </h:panelGrid>
-
-
-          <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{estado_mesaBean.registrar()}"/>
-
+          <!--<p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{pedidoBean.registrar()}"/>
 
           <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
 
-              <h:outputText value="Id_estado" />
-              <h:outputText id="estadoV" value="#{estado_mesaBean.estado_mesa.id_estado}" />                         
+              <h:outputText value="Codigo Trasaccion" />
+              <h:outputText id="CodigV" value="" />                         
 
-              <h:outputText value="Nombre Trasaccion" />
-              <h:outputText id="NombreV" value="#{estado_mesaBean.estado_mesa.nombre}" />
 
             </p:panelGrid>
-          </p:dialog>
+          </p:dialog>-->      
 
         </h:form>
-        <h:form id="otro">       
 
-
-        </h:form> 
 
       </ui:define>
     </ui:composition>
