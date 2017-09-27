@@ -21,8 +21,11 @@
 
           <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
 
-            <p:outputLabel value="No de Mesa" />
-            <p:autoComplete id="nomesa" value=""/>                         
+             <p:outputLabel for="nummesa" value="Numero de Mesa"/>
+              <p:selectOneMenu id="nummesa" value="">
+                <f:selectItem itemLabel="No. de Mesa"/>
+                <f:selectItems value="" var="lista" itemLabel="" itemValue=""/>
+              </p:selectOneMenu>                     
 
             
 
@@ -34,11 +37,11 @@
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
 
               <h:outputText value="Codigo Trasaccion" />
-              <h:outputText id="CodigV" value="#{pedidoBean.pedido.id_pedido}" />     -->                     
+              <h:outputText id="CodigV" value="" />                         
 
 
             </p:panelGrid>
-          </p:dialog>
+          </p:dialog>-->      
 
         </h:form>
 
