@@ -16,10 +16,9 @@
                 <h:form>
                     <f:event type="preRenderView" listener="#{compraBean.Mostrar()}"/>
                     <b:dataTable value="#{compraBean.lista}" var="compra" col-md="12">
-                        <b:dataTableColumn value="#{compra.id_compras}" label="Codigo" />
-                        <b:dataTableColumn value="#{compra.ocompras.fecha_orden}" label="Fecha de Orden"/>
-                        <b:dataTableColumn value="#{compra.ocompras.fecha_entrega}" label="Fecha de Entrega"/>
-                        <b:dataTableColumn value="#{compra.ocompras.pproductos.proveedor.nombre}" label="Proveedor"/>
+                        <b:dataTableColumn value="#{compra.ocompras.id_orden_compras}" label="No. Orden" />
+                        <b:dataTableColumn value="#{compra.ocompras.pproductos.proveedor.nombre}" label="Nombre Proveedor"/>
+                        <b:dataTableColumn value="#{compra.ocompras.cantidad}" label="Cantidad de Orden"/>
                         <b:dataTableColumn value="#{compra.ocompras.pproductos.producto.nombre}" label="Producto"/>
                         <b:dataTableColumn value="#{compra.cantidad}" label="Cantidad"/>
                         <b:dataTableColumn value="#{compra.costo}" label="Costo"/>

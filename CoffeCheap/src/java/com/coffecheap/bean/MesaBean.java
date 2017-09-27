@@ -10,7 +10,6 @@ import com.coffecheap.dao.MesaDao;
 
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-//import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 @ManagedBean
@@ -38,7 +37,7 @@ public class MesaBean {
 
   public void registrar() {
 
-    System.out.println("*******************************************************registrar");
+    System.out.println("********************************************registrar");
 
     MesaDao dao;
 
@@ -64,7 +63,7 @@ public class MesaBean {
   }
 
   public void modificar(Mesa mar) throws Exception {
-    System.out.println("*******************************************************Modificar");
+    System.out.println("********************************************Modificar");
     MesaDao dao;
 
     try {
@@ -76,9 +75,11 @@ public class MesaBean {
     }
 
   }
+  
+  
 
   public void eliminar(Mesa mar) throws Exception {
-    System.out.println("*******************************************************eliminar");
+    System.out.println("*********************************************eliminar");
     MesaDao dao;
 
     try {
