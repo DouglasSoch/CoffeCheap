@@ -8,16 +8,21 @@ import com.coffecheap.modelo.Compra;
 
 public class CompraDao extends Dao {
 
+    ArrayList<Compra> compra1 = new ArrayList();
+
+    
+
     public void Insertar(Compra compra) throws Exception {
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("insert into compra values(?,?,?,?,?,?)");
-            st.setInt(1, compra.getId_compras());
+            PreparedStatement st = this.getCon().prepareStatement("insert into compra values(?,?,?,?,?,?,?,?)");
             st.setInt(2, compra.getOcompras().getId_orden_compras());
-            st.setInt(3, compra.getCantidad());
-            st.setInt(4, compra.getCosto());
-            st.setInt(5, compra.getNo_fac());
-            st.setString(6, compra.getSerie());
+            st.setInt(3, compra.getOcompras().getPproductos().getProducto().getId_producto());
+            st.setInt(4, compra.getCantidad());
+            st.setInt(5, compra.getCosto());
+            st.setInt(6, compra.getNo_fac());
+            st.setString(7, compra.getSerie());
+            st.setString(8, null);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -57,6 +62,7 @@ public class CompraDao extends Dao {
     }
 
     public void Eliminar(Compra compra) throws Exception {
+        System.out.println("Probando Eliminar: " + compra.getId_compras());
         try {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("delete from compra where id_compra=?");
@@ -77,27 +83,22 @@ public class CompraDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("select compra.id_compra, orden.fecha_orden, "
-                    + "orden.fecha_entrega, proveedor.nombre_proveedor,\n"
-                    + "producto.nombre_producto, compra.cantidad, compra.costo, compra.no_factura, compra.serie\n"
+            PreparedStatement st = this.getCon().prepareStatement("select compra.id_orden, "
+                    + "proveedor.nombre_proveedor, orden_compras.cantidad_orden, \n"
+                    + "producto.nombre_producto, compra.cantidad, compra.costo, compra.no_factura, "
+                    + "compra.serie, compra.fecha_entregacompra\n"
                     + "from compra\n"
-                    + "inner join orden_compras as orden\n"
-                    + "on (compra.id_orden=orden.id_orden_compras)\n"
-                    + "inner join proveedor_productos\n"
-                    + "on(orden.id_producto = proveedor_productos.id_producto)\n"
-                    + "inner join producto\n"
-                    + "on (proveedor_productos.id_producto=producto.id_producto)\n"
-                    + "inner join proveedor\n"
-                    + "on (proveedor_productos.id_proveedor=proveedor.id_proveedor);");
+                    + "inner join producto on(producto.id_producto=compra.id_producto)\n"
+                    + "inner join orden_compras on(orden_compras.id_orden_compras=compra.id_orden)\n"
+                    + "inner join proveedor on (proveedor.id_proveedor=orden_compras.id_proveedor);");
             rs = st.executeQuery();
             lista = new ArrayList();
 
             while (rs.next()) {
                 Compra compra = new Compra();
-                compra.setId_compras(rs.getInt("compra.id_compra"));
-                compra.getOcompras().setFecha_orden(rs.getDate("orden.fecha_orden"));
-                compra.getOcompras().setFecha_entrega(rs.getDate("orden.fecha_entrega"));
+                compra.getOcompras().setId_orden_compras(rs.getInt("compra.id_orden"));
                 compra.getOcompras().getPproductos().getProveedor().setNombre(rs.getString("proveedor.nombre_proveedor"));
+                compra.getOcompras().setCantidad(rs.getInt("orden_compras.cantidad_orden"));
                 compra.getOcompras().getPproductos().getProducto().setNombre(rs.getString("producto.nombre_producto"));
                 compra.setCantidad(rs.getInt("compra.cantidad"));
                 compra.setCosto(rs.getInt("compra.costo"));
@@ -111,6 +112,24 @@ public class CompraDao extends Dao {
             this.Desconecar();
         }
         return lista;
+    }
+
+    public void Prueba(Compra compra) {
+        
+        compra1.add (compra);
+        for (int i = 0; i < compra1.size(); i++) {
+            System.out.println("Id Compras 1: " + compra1.get(i).getId_compras());
+            System.out.println("Orden de Compras: " + compra1.get(i).getOcompras().getId_orden_compras());
+            System.out.println("Cantidad: " + compra1.get(i).getCantidad());
+        }
+    }
+    
+    public void Prueba2 (Compra compra){
+        
+        for (int i = 0; i < compra1.size(); i++) {
+            System.out.println("Resultado "+compra1.get(i).getId_compras());
+        }
+        
     }
 
 }

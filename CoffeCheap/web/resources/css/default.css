@@ -90,6 +90,14 @@ thead{
 .ui-datepicker-calendar{
   background: white;
 }
+
+
+
+#desactivado{
+    background-color: rgba(52,52,52,0.05);
+}
+
+
 /*de botfaces
 
 .sub-header {

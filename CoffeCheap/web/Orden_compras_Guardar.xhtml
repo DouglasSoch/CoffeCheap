@@ -46,9 +46,6 @@
               <f:selectItems value="#{orden_comprasBean.lstProveedor_productos}" var="listapro" itemLabel="#{listapro.producto.nombre}" itemValue="#{listapro.producto.id_producto}"/>      
             </p:selectOneMenu> 
 
-            <p:outputLabel  value="precio" />
-            <p:autoComplete id="precio" value="#{orden_comprasBean.orden_compras.precio}"/>
-
           </h:panelGrid>
 
 

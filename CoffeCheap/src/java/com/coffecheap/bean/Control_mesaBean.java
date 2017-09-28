@@ -4,7 +4,6 @@ package com.coffecheap.bean;
  *
  * @marhor acier
  */
-
 import com.coffecheap.modelo.Control_mesa;
 import com.coffecheap.dao.Control_mesaDao;
 import com.coffecheap.dao.MesaDao;
@@ -64,6 +63,20 @@ public class Control_mesaBean {
 
   }
 
+  public int tamano() throws Exception {
+    Control_mesaDao dao;
+    int numero = 0;
+    try {
+      dao = new Control_mesaDao();
+      numero = dao.tamaño();
+    } catch (Exception e) {
+      throw e;
+    }
+    System.out.println("El numero de mesas es "+numero);
+    return numero;
+    
+  }
+
   public void eliminar(Control_mesa mar) throws Exception {
     System.out.println("*******************************************************eliminar");
     Control_mesaDao dao;
@@ -78,9 +91,7 @@ public class Control_mesaBean {
 
   }
 
-  
-  
-    public void CambioEstado(int MesaSelecionada) throws Exception {
+  public void CambioEstado(int MesaSelecionada) throws Exception {
     System.out.println("********************************Cambio Estado de mesa");
     Control_mesaDao dao;
 
@@ -91,7 +102,18 @@ public class Control_mesaBean {
       throw e;
     }
   }
-    
-    
   
+ public boolean pago(int mesa) throws Exception{
+    System.out.println("********************************Pago de mesa");
+    Control_mesaDao dao;
+    boolean pago=true;
+    try {
+      dao = new Control_mesaDao();
+      pago=dao.pago(mesa);
+    } catch (Exception e) {
+      throw e;
+    }
+    return pago;
+  }
+
 }

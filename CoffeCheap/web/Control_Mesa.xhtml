@@ -1,53 +1,67 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 
-  <h:body>
-    <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content">
-
-        <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{usuarioBean.listarChef()}"/> 
-
-        <h:form class="flip">
-
-          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
-
-             <p:outputLabel for="nummesa" value="Numero de Mesa"/>
-              <p:selectOneMenu id="nummesa" value="">
-                <f:selectItem itemLabel="No. de Mesa"/>
-                <f:selectItems value="" var="lista" itemLabel="" itemValue=""/>
-              </p:selectOneMenu>                     
-
-            
-
-              
-          </h:panelGrid>
-          <!--<p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{pedidoBean.registrar()}"/>
-
-          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
-            <p:panelGrid id="display" columns="2" columnClasses="label,value">
-
-              <h:outputText value="Codigo Trasaccion" />
-              <h:outputText id="CodigV" value="" />                         
+    <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
 
 
-            </p:panelGrid>
-          </p:dialog>-->      
 
-        </h:form>
+                <h:form class="flip">
+
+                    <p:panelGrid id="desplegar1" columns="5">
+                        <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
+
+                            <h:button  value="${i}" style="color: white"/>
+
+                           
+
+                            <p:button  value="Pedido" icon="ui-icon-star" style="color: black">
+                                <f:param name="proceso3" value="10" />
+                            </p:button>
+                            
+                            <p:selectBooleanButton id="value1" value="#{control_mesaBean.control_mesa.pago}" onLabel="Pagado" offLabel="No Pagado" style="width:120px; color: black;" disabled="#{control_mesaBean.pago(i)}"/>
+                            
+                            <p:button  value="Vaciar_Mesa" icon="ui-icon-star" style="color: black">
+                                <f:param name="proceso4" value="10" />
+                            </p:button>
+                            <p:button  value="Historial" icon="ui-icon-star" style="color: black">
+                                <f:param name="proceso5" value="10" />
+                            </p:button>
 
 
-      </ui:define>
-    </ui:composition>
-  </h:body>
+
+                        </c:forEach>
+
+
+                    </p:panelGrid>
+                    <!--<p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{pedidoBean.registrar()}"/>
+          
+                    <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
+                      <p:panelGrid id="display" columns="2" columnClasses="label,value">
+          
+                        <h:outputText value="Codigo Trasaccion" />
+                        <h:outputText id="CodigV" value="" />                         
+          
+          
+                      </p:panelGrid>
+                    </p:dialog>-->      
+
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
 

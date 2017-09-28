@@ -64,6 +64,25 @@ public class Control_mesaDao extends Dao {
 
   }
 
+  public int tamaño() throws Exception {
+    int numero = 0;
+    try {
+      this.Conectar();
+      PreparedStatement st = this.getCon().prepareCall("select count(*)from mesa");
+      ResultSet n = st.executeQuery();
+
+      if (n.next()) {
+        numero = n.getInt(1);
+      }
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+    }
+
+    return numero;
+  }
+
   public void eliminar(Control_mesa pac) throws Exception {
     System.out.println("*******************************************************eliminar dao");
     try {
@@ -89,7 +108,7 @@ public class Control_mesaDao extends Dao {
       PreparedStatement st = this.getCon().prepareStatement("UPDATE  mesa SET id_estado=? WHERE id_mesa=?;");
 
       st.setInt(1, 3);
-      st.setInt(1, bus);
+      st.setInt(2, bus);
 
       st.executeUpdate();
 
@@ -100,6 +119,33 @@ public class Control_mesaDao extends Dao {
 
     }
 
+  }
+
+  public boolean pago(int mesa) throws Exception {
+    boolean pago;
+    try {
+      this.Conectar();
+      PreparedStatement st = this.getCon().prepareStatement("SELECT *FROM control_mesa WHERE id_mesa=?;");
+
+      st.setInt(1, mesa);
+      st.executeUpdate();
+      ResultSet n = st.executeQuery();
+      n.next();
+      pago = n.getBoolean(1);
+      if (pago == true) {
+        return false;
+      }else{
+      return true;
+      }
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+
+    }
+
+    
   }
 
 }
