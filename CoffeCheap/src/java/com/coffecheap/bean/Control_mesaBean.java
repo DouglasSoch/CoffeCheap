@@ -102,5 +102,18 @@ public class Control_mesaBean {
       throw e;
     }
   }
+  
+ public boolean pago(int mesa) throws Exception{
+    System.out.println("********************************Pago de mesa");
+    Control_mesaDao dao;
+    boolean pago=true;
+    try {
+      dao = new Control_mesaDao();
+      pago=dao.pago(mesa);
+    } catch (Exception e) {
+      throw e;
+    }
+    return pago;
+  }
 
 }

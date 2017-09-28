@@ -30,7 +30,7 @@
                                 <f:param name="proceso3" value="10" />
                             </p:button>
                             
-                            <p:selectBooleanButton id="value1" value="#{control_mesaBean.control_mesa.pago}" onLabel="Pagado" offLabel="No Pagado" style="width:120px; color: black;"/>
+                            <p:selectBooleanButton id="value1" value="#{control_mesaBean.control_mesa.pago}" onLabel="Pagado" offLabel="No Pagado" style="width:120px; color: black;" disabled="#{control_mesaBean.pago(i)}"/>
                             
                             <p:button  value="Vaciar_Mesa" icon="ui-icon-star" style="color: black">
                                 <f:param name="proceso4" value="10" />
