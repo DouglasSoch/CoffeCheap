@@ -122,20 +122,19 @@ public class Control_mesaDao extends Dao {
   }
 
   public boolean pago(int mesa) throws Exception {
-    boolean pago;
+    int pago;
+    boolean estado = false;
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("SELECT *FROM control_mesa WHERE id_mesa=?;");
-
+      PreparedStatement st = this.getCon().prepareStatement("SELECT mesa.id_mesa, pedido.cancelado from mesa inner join pedido on (mesa.id_mesa=pedido.id_mesa) WHERE mesa.id_mesa=? and pedido.id_pedido=3;");
       st.setInt(1, mesa);
-      st.executeUpdate();
       ResultSet n = st.executeQuery();
-      n.next();
-      pago = n.getBoolean(1);
-      if (pago == true) {
-        return false;
-      }else{
-      return true;
+      if (n.next()) {
+        pago = n.getInt(1);
+
+        if (pago == 1) {
+          estado = true;
+        } 
       }
 
     } catch (Exception ex) {
@@ -144,8 +143,7 @@ public class Control_mesaDao extends Dao {
       this.Desconecar();
 
     }
-
-    
+    return estado;
   }
 
 }

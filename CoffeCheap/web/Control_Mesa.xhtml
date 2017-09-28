@@ -22,15 +22,15 @@
                     <p:panelGrid id="desplegar1" columns="5">
                         <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
 
-                            <h:button  value="${i}" style="color: white"/>
-
-                           
+                            <h:button  value="${i}" style="color: white"/>                           
 
                             <p:button  value="Pedido" icon="ui-icon-star" style="color: black">
                                 <f:param name="proceso3" value="10" />
+                            </p:button>                            
+                                                       
+                            <p:button  value="Cancelado" icon="ui-icon-star" style="color: black" disabled="#{control_mesaBean.pago(i)}">
+                                <f:param name="proceso4" value="10" />
                             </p:button>
-                            
-                            <p:selectBooleanButton id="value1" value="#{control_mesaBean.control_mesa.pago}" onLabel="Pagado" offLabel="No Pagado" style="width:120px; color: black;" disabled="#{control_mesaBean.pago(i)}"/>
                             
                             <p:button  value="Vaciar_Mesa" icon="ui-icon-star" style="color: black">
                                 <f:param name="proceso4" value="10" />
@@ -45,8 +45,8 @@
 
 
                     </p:panelGrid>
-                    <!--<p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{pedidoBean.registrar()}"/>
-          
+                    <!--<p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="{pedidoBean.registrar()}"/>
+          <!--<p:selectBooleanButton id="value1" value="{control_mesaBean.control_mesa.pago}" onLabel="Pagado" offLabel="No Pagado" style="width:120px; color: black;" disabled="{control_mesaBean.pago(i)}"/> -->
                     <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
                       <p:panelGrid id="display" columns="2" columnClasses="label,value">
           
