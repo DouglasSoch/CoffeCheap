@@ -126,15 +126,18 @@ public class Control_mesaDao extends Dao {
     boolean estado = false;
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("SELECT mesa.id_mesa, pedido.cancelado from mesa inner join pedido on (mesa.id_mesa=pedido.id_mesa) WHERE mesa.id_mesa=? and pedido.id_pedido=3;");
-      st.setInt(1, mesa);
-      ResultSet n = st.executeQuery();
+
+      PreparedStatement s2 = this.getCon().prepareStatement("select * from control \n"
+              + "where id_pedido in \n"
+              + "(select max(id_pedido) from control group by id_mesa) and id_mesa=?;");
+      s2.setInt(1, mesa);
+      ResultSet n = s2.executeQuery();
       if (n.next()) {
         pago = n.getInt(1);
 
         if (pago == 1) {
           estado = true;
-        } 
+        }
       }
 
     } catch (Exception ex) {

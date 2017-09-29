@@ -106,13 +106,15 @@ public class Control_mesaBean {
  public boolean pago(int mesa) throws Exception{
     System.out.println("********************************Pago de mesa");
     Control_mesaDao dao;
-    boolean pago=true;
+    boolean pago=false;
     try {
       dao = new Control_mesaDao();
       pago=dao.pago(mesa);
     } catch (Exception e) {
       throw e;
     }
+    
+    System.out.println(""+mesa+"* "+pago+"");
     return pago;
   }
 
