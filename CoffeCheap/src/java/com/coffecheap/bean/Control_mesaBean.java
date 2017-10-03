@@ -115,13 +115,13 @@ public class Control_mesaBean {
     }
   }
   
- public boolean pago(int mesa) throws Exception{
+ public boolean HabilitarPago(int mesa) throws Exception{
     System.out.println("********************************Pago de mesa");
     Control_mesaDao dao;
     boolean pago=false;
     try {
       dao = new Control_mesaDao();
-      pago=dao.pago(mesa);
+      pago=dao.HabilitarPago(mesa);
     } catch (Exception e) {
       throw e;
     }
@@ -130,21 +130,62 @@ public class Control_mesaBean {
     return pago;
   }
  
- public EstadoPago DatosEstados(int mesa) throws Exception {
-     
-     Control_mesaDao dao;
+  public String EstaPago(int mesa) throws Exception{
+    System.out.println("********************************Pago de mesa");
+    Control_mesaDao dao;
+    String pago=null;
+    try {
+      dao = new Control_mesaDao();
+      pago=dao.EstaPago(mesa);
+    } catch (Exception e) {
+      throw e;
+    }
+    
+    System.out.println(""+mesa+"* "+pago+"");
+    return pago;
+  }
+  
+  public String ControlEstado(int mesa) throws Exception{
+    System.out.println("********************************Pago de mesa");
+    Control_mesaDao dao;
+    String estado=null;
+    try {
+      dao = new Control_mesaDao();
+      estado=dao.ControlEstado(mesa);
+    } catch (Exception e) {
+      throw e;
+    }
+    
+    System.out.println(""+mesa+"* "+estado+"");
+    return estado;
+  }
+ 
+  public void RegistrarPago(int Mesa) throws Exception {
+    System.out.println("********************************Registrar Pago");
+    Control_mesaDao dao;
 
     try {
       dao = new Control_mesaDao();
-      datoEstado = dao.FuncionEstadoPago(mesa);
-      
+      dao.RegistrarPago(Mesa);
     } catch (Exception e) {
       throw e;
-      
     }
-    return datoEstado;
-
   }
+// public EstadoPago DatosEstados(int mesa) throws Exception {
+//     
+//     Control_mesaDao dao;
+//
+//    try {
+//      dao = new Control_mesaDao();
+//      datoEstado = dao.FuncionEstadoPago(mesa);
+//      
+//    } catch (Exception e) {
+//      throw e;
+//      
+//    }
+//    return datoEstado;
+//
+//  }
  
  
 
