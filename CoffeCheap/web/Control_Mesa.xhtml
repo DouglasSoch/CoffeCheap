@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -11,57 +11,63 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 
-  <h:body>
-    <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content">
+    <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
 
 
 
-        <h:form class="flip">
+                <h:form class="flip">
 
-          <p:panelGrid id="desplegar1" columns="5">
-            <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
+                    <p:panelGrid id="desplegar1" columns="5">
+                        <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
 
-              <h:button  value="${i}" style="color: white"/>                           
+                            <h:button  value="${i}" style="color: white"/>                           
 
-              <p:button  value="Pedido" icon="ui-icon-star" style="color: black">
-                <f:param name="proceso3" value="10" />
-              </p:button>                            
+                            <p:button  value="Pedido" icon="ui-icon-star" style="color: black">
+                                <f:param name="proceso3" value="10" />
+                            </p:button>      
 
-              <p:button  value="Cancelado" icon="ui-icon-star"  style="color: black" disabled="#{control_mesaBean.pago(i)}">
-                <f:param name="proceso4" value="10" />
-              </p:button>
 
-              <p:button  value="Vaciar_Mesa" icon="ui-icon-star" style="color: black">
-                <f:param name="proceso4" value="10" />
-              </p:button>
-              <p:button  value="Historial" icon="ui-icon-star" style="color: black">
-                <f:param name="proceso5" value="10" />
-              </p:button>
+                            <p:button  value="" icon="ui-icon-star"  style="color: black" disabled="#{control_mesaBean.pago(i)}">
+                                <f:param name="proceso4" value="10" />
+                            </p:button>
 
 
 
-            </c:forEach>
 
 
-          </p:panelGrid>
-          <!--<p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="{pedidoBean.registrar()}"/>
-          <p:selectBooleanButton id="value1" value="{control_mesaBean.control_mesa.pago}" onLabel="Pagado" offLabel="No Pagado" style="width:120px; color: black;" disabled="{control_mesaBean.pago(i)}"/> -->
-          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
-            <p:panelGrid id="display" columns="2" columnClasses="label,value">
 
-              <h:outputText value="Codigo Trasaccion" />
-              <h:outputText id="CodigV" value=""/>                        
-
-
-            </p:panelGrid>
-          </p:dialog>-->      
-
-        </h:form>
+                            <p:button  value="Vaciar_Mesa" icon="ui-icon-star" style="color: black">
+                                <f:param name="proceso5" value="10" />
+                            </p:button>
+                            <p:button  value="Historial" icon="ui-icon-star" style="color: black">
+                                <f:param name="proceso6" value="10" />
+                            </p:button>
 
 
-      </ui:define>
-    </ui:composition>
-  </h:body>
+
+                        </c:forEach>
+
+
+                    </p:panelGrid>
+                    <!--<p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="{pedidoBean.registrar()}"/>
+                    <p:selectBooleanButton id="value1" value="{control_mesaBean.control_mesa.pago}" onLabel="Pagado" offLabel="No Pagado" style="width:120px; color: black;" disabled="{control_mesaBean.pago(i)}"/> -->
+                    <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
+                        <p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+                            <h:outputText value="Codigo Trasaccion" />
+                            <h:outputText id="CodigV" value=""/>                        
+
+
+                        </p:panelGrid>
+                    </p:dialog>-->      
+
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
 

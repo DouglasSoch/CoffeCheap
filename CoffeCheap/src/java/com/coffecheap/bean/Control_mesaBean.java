@@ -5,6 +5,7 @@ package com.coffecheap.bean;
  * @marhor acier
  */
 import com.coffecheap.modelo.Control_mesa;
+import com.coffecheap.modelo.EstadoPago;
 import com.coffecheap.dao.Control_mesaDao;
 import com.coffecheap.dao.MesaDao;
 
@@ -19,6 +20,17 @@ public class Control_mesaBean {
 
   private Control_mesa control_mesa = new Control_mesa();
   private List<Control_mesa> lstControl_mesa;
+  private EstadoPago datoEstado;
+
+    public EstadoPago getDatoEstado() {
+        return datoEstado;
+    }
+
+    public void setDatoEstado(EstadoPago datoEstado) {
+        this.datoEstado = datoEstado;
+    }
+
+    
 
   public Control_mesa getControl_mesa() {
     return control_mesa;
@@ -117,5 +129,24 @@ public class Control_mesaBean {
     System.out.println(""+mesa+"* "+pago+"");
     return pago;
   }
+ 
+ public EstadoPago DatosEstados(int mesa) throws Exception {
+     
+     Control_mesaDao dao;
+
+    try {
+      dao = new Control_mesaDao();
+      datoEstado = dao.FuncionEstadoPago(mesa);
+      
+    } catch (Exception e) {
+      throw e;
+      
+    }
+    return datoEstado;
+
+  }
+ 
+ 
+
 
 }
