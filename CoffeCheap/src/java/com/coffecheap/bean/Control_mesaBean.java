@@ -11,10 +11,20 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import javax.faces.application.FacesMessage;
+
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+
 @ManagedBean
 @ViewScoped
 public class Control_mesaBean {
 
+  static public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+  
     private Control_mesa control_mesa = new Control_mesa();
     private List<Control_mesa> lstControl_mesa;
     private EstadoPago datoEstado;
@@ -161,7 +171,7 @@ public class Control_mesaBean {
 
         try {
             dao = new Control_mesaDao();
-            dao.RegistrarPago(Mesa);
+            dao.RegistrarPago(Mesa);            
         } catch (Exception e) {
             throw e;
         }
@@ -174,26 +184,13 @@ public class Control_mesaBean {
         try {
             dao = new Control_mesaDao();
             dao.LimpiarMesa(Mesa);
+            
         } catch (Exception e) {
             throw e;
         }
     }
 
     
-// public EstadoPago DatosEstados(int mesa) throws Exception {
-//     
-//     Control_mesaDao dao;
-//
-//    try {
-//      dao = new Control_mesaDao();
-//      datoEstado = dao.FuncionEstadoPago(mesa);
-//      
-//    } catch (Exception e) {
-//      throw e;
-//      
-//    }
-//    return datoEstado;
-//
-//  }
+
 
 }

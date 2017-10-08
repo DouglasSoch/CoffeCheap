@@ -98,6 +98,12 @@ thead{
 }
 
 
+
+
+.ui-growl-item-container.ui-state-highlight.ui-corner-all.ui-helper-hidden.ui-shadow{
+   margin-top: 40px;
+}
+ 
 /*de botfaces
 
 .sub-header {

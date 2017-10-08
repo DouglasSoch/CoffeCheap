@@ -10,30 +10,33 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
   <h:body>
+    
+    
+        
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
 
         <h:form class="flip" id="tempo">
-
+          <p:growl id="messages" life="20000"/>
+          
           <p:panelGrid id="desplegar1" columns="5">
             <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
 
               <h:button  value="${i}" style="color: white; background-color: #{control_mesaBean.ControlEstado(i)}; width:40px; align-items: center"/>                           
 
-              <p:commandButton actionListener="#{control_mesaBean.CambioEstado(i)}" update="tempo" value="Pedido" icon="ui-icon-star" style="color: black; background-color: #{control_mesaBean.ControlEstado(i)};"/>
+              <p:commandButton actionListener="#{control_mesaBean.CambioEstado(i)}" update="messages, tempo" value="Pedido" icon="ui-icon-star" style="color: black; background-color: #{control_mesaBean.ControlEstado(i)};"/>
                 
 
-              <p:commandButton  actionListener="#{control_mesaBean.RegistrarPago(i)}" update="tempo" value="#{control_mesaBean.EstaPago(i)}" 
+              <p:commandButton  actionListener="#{control_mesaBean.RegistrarPago(i)}" update="messages, tempo" value="#{control_mesaBean.EstaPago(i)}" 
                                 icon="ui-icon-star"  style="color: black; width:150px; background-color: #{control_mesaBean.ControlEstado(i)};" 
                                 disabled="#{control_mesaBean.HabilitarPago(i)}"/>
 
 
-              <p:commandButton  actionListener="#{control_mesaBean.LimpiarMesa(i)}" update="tempo" value="Vaciar_Mesa" icon="ui-icon-star" 
+              <p:commandButton  actionListener="#{control_mesaBean.LimpiarMesa(i)}" update="messages, tempo" value="Vaciar_Mesa" icon="ui-icon-star" 
                                 style="color: black; background-color: #{control_mesaBean.ControlEstado(i)};"/>
 
-              <p:button  value="Historial" icon="ui-icon-star" style="color: black; background-color: #{control_mesaBean.ControlEstado(i)};">
-                <f:param name="proceso6" value="10" />
-              </p:button>
+              <!-- <p:commandButton  value="Historial" icon="ui-icon-star" style="color: black; background-color: {control_mesaBean.ControlEstado(i)};"/>  -->
+           
 
             </c:forEach>
 
