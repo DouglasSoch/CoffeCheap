@@ -28,7 +28,7 @@ public class MesaDao extends Dao {
       st.setString(3, Tt.getUbicacion());
       st.setInt(4, Tt.getEstMesa().getId_estado());
       st.setInt(5, Tt.getReserva().getId_reserva());
-      st.setInt(6, Tt.getCliente().getId_cliente());
+      
 
       st.executeUpdate();
 
@@ -57,7 +57,7 @@ public class MesaDao extends Dao {
         tt.setUbicacion(rs.getString(3));
         tt.getEstMesa().setId_estado(rs.getInt(4));
         tt.getReserva().setId_reserva(rs.getInt(5));
-        tt.getCliente().setId_cliente(rs.getInt(6));
+        
         lista.add(tt);
       }
 
@@ -82,7 +82,7 @@ public class MesaDao extends Dao {
       st.setString(3, tt.getUbicacion());
       st.setInt(4, tt.getEstMesa().getId_estado());
       st.setInt(5, tt.getReserva().getId_reserva());
-      st.setInt(6, tt.getCliente().getId_cliente());
+      
       st.setInt(7, tt.getId_mesa());
 
       st.executeUpdate();

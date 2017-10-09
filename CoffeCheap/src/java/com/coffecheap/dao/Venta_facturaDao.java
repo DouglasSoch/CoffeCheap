@@ -7,7 +7,7 @@ package com.coffecheap.dao;
 
 import com.coffecheap.modelo.Venta_factura;
 import com.coffecheap.modelo.Proveedor_productos;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -119,7 +119,7 @@ public class Venta_facturaDao extends Dao {
       st.setDouble(4, VF.getIva());
       st.setDouble(5, VF.getPropina());
       st.setDouble(6, VF.getTotal());
-      st.setDate(7, (Date) VF.getFecha_emision());
+     st.setDate(7,  VF.getFecha_emision());
       st.setInt(8, VF.getPedido().getId_pedido());
       st.executeUpdate();
 
@@ -200,7 +200,7 @@ public class Venta_facturaDao extends Dao {
       st.setDouble(3, VF.getIva());
       st.setDouble(4, VF.getPropina());
       st.setDouble(5, VF.getTotal());
-      st.setString(6,VF.getTemp_fecha_emision());
+      st.setDate(6,  VF.getFecha_emision());
       st.setInt(7, idPedido);
       
       

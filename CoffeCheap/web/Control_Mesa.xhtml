@@ -11,8 +11,6 @@
 
   <h:body>
 
-
-
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
 
@@ -36,7 +34,6 @@
 
               <!-- <p:commandButton  value="Historial" icon="ui-icon-star" style="color: black; background-color: {control_mesaBean.ControlEstado(i)};"/>  -->
 
-
             </c:forEach>
 
           </p:panelGrid>
@@ -44,18 +41,13 @@
           <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
            
-            <p:outputLabel  value="Control Pago" />
-           
+            <p:outputLabel  value="Control Pago" />           
 
             <h:outputText value="Propina: "/>
             <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
 
-            <p:outputLabel  value="Fecha de Emision" />
-            <p:calendar id="Entrega" value="#{venta_facturaBean.venta_factura.fecha_emision}" pattern="yyyy-MM-dd HH:mm:ss" locale="es"/>
-
-          <p:commandButton value="Guardar" update="display" actionListener="#{venta_facturaBean.registrar_venta(3)}"/>
+            <p:commandButton value="Guardar" update="display" actionListener="#{venta_facturaBean.registrar_venta(3)}"/>
                       
-
             </p:panelGrid>
           </p:dialog>      
 

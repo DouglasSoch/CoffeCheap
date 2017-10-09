@@ -1,11 +1,11 @@
 package com.coffecheap.modelo;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Objects;
 
 public class Venta_factura {
 
-  String temp_fecha_emision;
+  String temp_fecha_emision= null;
   boolean opc_propina = false;
   Double tem_total = 0.0;
 
@@ -17,50 +17,26 @@ public class Venta_factura {
   Double total = 0.0;
   Date fecha_emision = null;
   Pedido pedido = new Pedido();
-
-  public Double getTem_total() {
-    return tem_total;
-  }
-
-  public void setTem_total(Double tem_total) {
-    this.tem_total = tem_total;
-  }
-
-  public boolean isOpc_propina() {
-    return opc_propina;
-  }
-
-  public void setOpc_propina(boolean opc_propina) {
-    this.opc_propina = opc_propina;
-  }
-
-
+  Cliente cliente = new Cliente();
 
   
-  
- 
-
-  public String getTemp_fecha_emision() {
-    return temp_fecha_emision;
+  public Venta_factura() {
   }
 
-  public void setTemp_fecha_emision(String temp_fecha_emision) {
+  public Venta_factura(String temp_fecha_emision) {
     this.temp_fecha_emision = temp_fecha_emision;
   }
 
-  public Venta_factura() {
+  public Venta_factura(boolean opc_propina) {
+    this.opc_propina = opc_propina;
+  }
+
+  public Venta_factura(Double tem_total) {
+    this.tem_total = tem_total;
   }
 
   public Venta_factura(int id_venta_factura) {
     this.id_venta_factura = id_venta_factura;
-  }
-
-  public Venta_factura(String nit_empresa) {
-    this.nit_empresa = nit_empresa;
-  }
-
-  public Venta_factura(Double subtotal) {
-    this.subtotal = subtotal;
   }
 
   public Venta_factura(Date fecha_emision) {
@@ -71,7 +47,14 @@ public class Venta_factura {
     this.pedido = pedido;
   }
 
-  public Venta_factura(int id_venta_factura, String nit_empresa, Double subtotal, Double iva, Double propina, Double total, Date fecha_emision, Pedido pedido) {
+  public Venta_factura(Cliente cliente) {
+    this.cliente = cliente;
+  }
+
+  public Venta_factura(String temp_fecha_emision, boolean opc_propina, Double tem_total, int id_venta_factura, String nit_empresa, Double subtotal, Double iva, Double propina, Double total, Date fecha_emision, Pedido pedido, Cliente cliente) {
+    this.temp_fecha_emision = temp_fecha_emision;
+    this.opc_propina = opc_propina;
+    this.tem_total = tem_total;
     this.id_venta_factura = id_venta_factura;
     this.nit_empresa = nit_empresa;
     this.subtotal = subtotal;
@@ -80,6 +63,31 @@ public class Venta_factura {
     this.total = total;
     this.fecha_emision = fecha_emision;
     this.pedido = pedido;
+    this.cliente = cliente;
+  }
+
+  public String getTemp_fecha_emision() {
+    return temp_fecha_emision;
+  }
+
+  public void setTemp_fecha_emision(String temp_fecha_emision) {
+    this.temp_fecha_emision = temp_fecha_emision;
+  }
+
+  public boolean isOpc_propina() {
+    return opc_propina;
+  }
+
+  public void setOpc_propina(boolean opc_propina) {
+    this.opc_propina = opc_propina;
+  }
+
+  public Double getTem_total() {
+    return tem_total;
+  }
+
+  public void setTem_total(Double tem_total) {
+    this.tem_total = tem_total;
   }
 
   public int getId_venta_factura() {
@@ -146,17 +154,29 @@ public class Venta_factura {
     this.pedido = pedido;
   }
 
+  public Cliente getCliente() {
+    return cliente;
+  }
+
+  public void setCliente(Cliente cliente) {
+    this.cliente = cliente;
+  }
+
   @Override
   public int hashCode() {
     int hash = 7;
-    hash = 61 * hash + this.id_venta_factura;
-    hash = 61 * hash + Objects.hashCode(this.nit_empresa);
-    hash = 61 * hash + Objects.hashCode(this.subtotal);
-    hash = 61 * hash + Objects.hashCode(this.iva);
-    hash = 61 * hash + Objects.hashCode(this.propina);
-    hash = 61 * hash + Objects.hashCode(this.total);
-    hash = 61 * hash + Objects.hashCode(this.fecha_emision);
-    hash = 61 * hash + Objects.hashCode(this.pedido);
+    hash = 79 * hash + Objects.hashCode(this.temp_fecha_emision);
+    hash = 79 * hash + (this.opc_propina ? 1 : 0);
+    hash = 79 * hash + Objects.hashCode(this.tem_total);
+    hash = 79 * hash + this.id_venta_factura;
+    hash = 79 * hash + Objects.hashCode(this.nit_empresa);
+    hash = 79 * hash + Objects.hashCode(this.subtotal);
+    hash = 79 * hash + Objects.hashCode(this.iva);
+    hash = 79 * hash + Objects.hashCode(this.propina);
+    hash = 79 * hash + Objects.hashCode(this.total);
+    hash = 79 * hash + Objects.hashCode(this.fecha_emision);
+    hash = 79 * hash + Objects.hashCode(this.pedido);
+    hash = 79 * hash + Objects.hashCode(this.cliente);
     return hash;
   }
 
@@ -172,10 +192,19 @@ public class Venta_factura {
       return false;
     }
     final Venta_factura other = (Venta_factura) obj;
+    if (this.opc_propina != other.opc_propina) {
+      return false;
+    }
     if (this.id_venta_factura != other.id_venta_factura) {
       return false;
     }
+    if (!Objects.equals(this.temp_fecha_emision, other.temp_fecha_emision)) {
+      return false;
+    }
     if (!Objects.equals(this.nit_empresa, other.nit_empresa)) {
+      return false;
+    }
+    if (!Objects.equals(this.tem_total, other.tem_total)) {
       return false;
     }
     if (!Objects.equals(this.subtotal, other.subtotal)) {
@@ -193,12 +222,16 @@ public class Venta_factura {
     if (!Objects.equals(this.fecha_emision, other.fecha_emision)) {
       return false;
     }
-    return Objects.equals(this.pedido, other.pedido);
+    if (!Objects.equals(this.pedido, other.pedido)) {
+      return false;
+    }
+    return Objects.equals(this.cliente, other.cliente);
   }
 
   @Override
   public String toString() {
-    return "Venta_factura{" + "id_venta_factura=" + id_venta_factura + ", nit_empresa=" + nit_empresa + ", subtotal=" + subtotal + ", iva=" + iva + ", propina=" + propina + ", total=" + total + ", fecha_emision=" + fecha_emision + ", pedido=" + pedido + '}';
+    return "Venta_factura{" + "temp_fecha_emision=" + temp_fecha_emision + ", opc_propina=" + opc_propina + ", tem_total=" + tem_total + ", id_venta_factura=" + id_venta_factura + ", nit_empresa=" + nit_empresa + ", subtotal=" + subtotal + ", iva=" + iva + ", propina=" + propina + ", total=" + total + ", fecha_emision=" + fecha_emision + ", pedido=" + pedido + ", cliente=" + cliente + '}';
   }
 
+  
 }

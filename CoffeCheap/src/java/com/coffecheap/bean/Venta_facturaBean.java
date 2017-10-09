@@ -8,7 +8,9 @@ import com.coffecheap.dao.Control_mesaDao;
 import com.coffecheap.modelo.Venta_factura;
 import com.coffecheap.dao.Venta_facturaDao;
 import com.coffecheap.modelo.Proveedor_productos;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -116,11 +118,14 @@ public class Venta_facturaBean {
         
         try {
             
-          
-            String formateador = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(venta_factura.getFecha_emision());
+            DateFormat formateador = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date fechaHora = new Date();
+            String fechaString = formateador.format(fechaHora);
+            Date fechaYHoraTranformada = formateador.parse(fechaString);
+                    
+                       
+            venta_factura.setFecha_emision(fechaYHoraTranformada);
             
-            
-            venta_factura.setTemp_fecha_emision(formateador);
             
             
             dao = new Venta_facturaDao();
