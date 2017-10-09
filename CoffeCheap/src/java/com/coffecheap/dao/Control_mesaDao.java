@@ -19,9 +19,6 @@ import java.util.List;
  * @author acier
  */
 public class Control_mesaDao extends Dao {
-  
-  
-  
 
   public void registrar(Control_mesa Tt) throws Exception {
 
@@ -187,10 +184,10 @@ public class Control_mesaDao extends Dao {
           PreparedStatement st = this.getCon().prepareStatement("UPDATE pedido SET cancelado=1 WHERE id_pedido =?;");
           st.setInt(1, idPedido);
           st.executeUpdate();
-           Control_mesaBean.addMessage("Pago Realizado");
+          Control_mesaBean.addMessage("Pago Realizado");
 
-        }else{
-         Control_mesaBean.addMessage("Pago No Realizado");
+        } else {
+          Control_mesaBean.addMessage("Pago No Realizado");
         }
       }
 
@@ -276,21 +273,21 @@ public class Control_mesaDao extends Dao {
       PreparedStatement esme = this.getCon().prepareStatement("select  id_estado from mesa WHERE id_mesa=?;");
       esme.setInt(1, mesa);
       ResultSet n_est = esme.executeQuery();
-      
-PreparedStatement s2 = this.getCon().prepareStatement("select cancelado from control"
+
+      PreparedStatement s2 = this.getCon().prepareStatement("select cancelado from control"
               + " where id_pedido in"
               + " (select max(id_pedido) from control group by id_mesa) and id_mesa=?;");
       s2.setInt(1, mesa);
       ResultSet n = s2.executeQuery();
 
-      int pago=0;
+      int pago = 0;
       if (n.next()) {
         pago = n.getInt(1);
       }
-        
+
       if (n_est.next()) {
 
-        if (n_est.getInt(1) > 1 & pago==1) {
+        if (n_est.getInt(1) > 1 & pago == 1) {
           PreparedStatement st = this.getCon().prepareStatement("UPDATE  mesa SET id_estado=? WHERE id_mesa=?;");
           st.setInt(1, 1);
           st.setInt(2, mesa);
@@ -306,10 +303,10 @@ PreparedStatement s2 = this.getCon().prepareStatement("select cancelado from con
           st2.setInt(4, 0);
           st2.executeUpdate();
           Control_mesaBean.addMessage("Se vacio correctamente");
-        }else{
-         Control_mesaBean.addMessage("Pago obligatoria antes de vaciar");
+        } else {
+          Control_mesaBean.addMessage("Pago obligatoria antes de vaciar");
         }
-          
+
       }
 
     } catch (Exception ex) {

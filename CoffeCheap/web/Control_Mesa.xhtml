@@ -10,24 +10,23 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
   <h:body>
-    
-    
-        
+
+
+
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
 
         <h:form class="flip" id="tempo">
           <p:growl id="messages" life="20000"/>
-          
+
           <p:panelGrid id="desplegar1" columns="5">
             <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
 
               <h:button  value="${i}" style="color: white; background-color: #{control_mesaBean.ControlEstado(i)}; width:40px; align-items: center"/>                           
 
               <p:commandButton actionListener="#{control_mesaBean.CambioEstado(i)}" update="messages, tempo" value="Pedido" icon="ui-icon-star" style="color: black; background-color: #{control_mesaBean.ControlEstado(i)};"/>
-                
 
-              <p:commandButton  actionListener="#{control_mesaBean.RegistrarPago(i)}" update="messages, tempo" value="#{control_mesaBean.EstaPago(i)}" 
+              <p:commandButton  actionListener="#{control_mesaBean.RegistrarPago(i)}" update="display, tempo, messages" oncomplete="PF('dlg').show()" value="#{control_mesaBean.EstaPago(i)}" 
                                 icon="ui-icon-star"  style="color: black; width:150px; background-color: #{control_mesaBean.ControlEstado(i)};" 
                                 disabled="#{control_mesaBean.HabilitarPago(i)}"/>
 
@@ -36,21 +35,29 @@
                                 style="color: black; background-color: #{control_mesaBean.ControlEstado(i)};"/>
 
               <!-- <p:commandButton  value="Historial" icon="ui-icon-star" style="color: black; background-color: {control_mesaBean.ControlEstado(i)};"/>  -->
-           
+
 
             </c:forEach>
 
           </p:panelGrid>
-          <!--<p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="{pedidoBean.registrar()}"/>
-          <p:selectBooleanButton id="value1" value="{control_mesaBean.control_mesa.pago}" onLabel="Pagado" offLabel="No Pagado" style="width:120px; color: black;" disabled="{control_mesaBean.pago(i)}"/> -->
+          
           <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
+           
+            <p:outputLabel  value="Control Pago" />
+           
 
-              <h:outputText value="Codigo Trasaccion" />
-              <h:outputText id="CodigV" value=""/>                        
+            <h:outputText value="Propina: "/>
+            <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
+
+            <p:outputLabel  value="Fecha de Emision" />
+            <p:calendar id="Entrega" value="#{venta_facturaBean.venta_factura.fecha_emision}" pattern="yyyy-MM-dd HH:mm:ss" locale="es"/>
+
+          <p:commandButton value="Guardar" update="display" actionListener="#{venta_facturaBean.registrar_venta(3)}"/>
+                      
 
             </p:panelGrid>
-          </p:dialog>-->      
+          </p:dialog>      
 
         </h:form>
 

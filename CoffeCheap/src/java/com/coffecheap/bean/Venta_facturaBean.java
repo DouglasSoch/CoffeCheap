@@ -4,6 +4,7 @@ package com.coffecheap.bean;
  *
  * @marhor acier
  */
+import com.coffecheap.dao.Control_mesaDao;
 import com.coffecheap.modelo.Venta_factura;
 import com.coffecheap.dao.Venta_facturaDao;
 import com.coffecheap.modelo.Proveedor_productos;
@@ -105,6 +106,33 @@ public class Venta_facturaBean {
         }        
     }
     
-   
+    
+    public void registrar_venta(int mesa) {
+        
+        System.out.println("*******************************************************registrar");
+        
+        Venta_facturaDao dao;
+        Control_mesaDao dao2;
+        
+        try {
+            
+          
+            String formateador = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(venta_factura.getFecha_emision());
+            
+            
+            venta_factura.setTemp_fecha_emision(formateador);
+            
+            
+            dao = new Venta_facturaDao();
+            dao.registrar_venta(venta_factura,mesa);
+            
+//            dao2 = new Control_mesaDao();
+//            dao2.RegistrarPago(mesa);
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+    }
     
 }

@@ -31,9 +31,9 @@
             <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
 
             <p:outputLabel  value="Fecha de Emision" />
-            <p:calendar id="Entrega" value="#{venta_facturaBean.venta_factura.fecha_emision}" pattern="yyyy-MM-dd" locale="es"/>
+            <p:calendar id="Entrega" value="#{venta_facturaBean.venta_factura.fecha_emision}" pattern="yyyy-MM-dd HH:mm:ss" locale="es"/>
 
-            <p:outputLabel for="Producto_lista" value="Id_producto:" />
+            <p:outputLabel for="Producto_lista" value="Id_pedido:" />
             <p:selectOneMenu id="Producto_lista" style="width:125px" value="#{venta_facturaBean.venta_factura.pedido.id_pedido}"> 
               <f:selectItem itemLabel="id_pedido..." itemValue=""/>
               <f:selectItems value="#{pedidoBean.lstPedido}" var="listape" itemLabel="#{listape.id_pedido}" itemValue="#{listape.id_pedido}"/>      
