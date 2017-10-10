@@ -114,26 +114,9 @@ public class Venta_facturaBean {
 
     try {
 
-//      DateFormat formateador = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//      Date fechaHora = new Date();
-//      String fechaString = formateador.format(fechaHora);
-//      Date fechaYHoraTranformada = formateador.parse(fechaString);
-//      java.util.Date dates = new java.util.Date();
-//      long fechaSis = dates.getTime();
-//      java.sql.Date d = new java.sql.Date(fechaSis);
-
-//      System.out.println("////////////");
-//      System.out.println("" + fechaYHoraTranformada);
-//      System.out.println("" + fechaHora);
-//      venta_factura.setFecha_emision(d);
-//      System.out.println(""+d);
-      
-      
       dao = new Venta_facturaDao();
       dao.registrar_venta(venta_factura, mesa);
 
-//            dao2 = new Control_mesaDao();
-//            dao2.RegistrarPago(mesa);
     } catch (Exception e) {
       System.out.println(e);
     }
