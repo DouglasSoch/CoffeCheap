@@ -89,7 +89,7 @@ public class Venta_facturaDao extends Dao {
         tt.setIva(rs.getDouble(4));
         tt.setPropina(rs.getDouble(5));
         tt.setTotal(rs.getDouble(6));
-        tt.setFecha_emision(rs.getDate(7));
+        tt.setFecha_emision(rs.getTimestamp(7));
         tt.getPedido().setId_pedido(rs.getInt(8));
         lista.add(tt);
       }
@@ -116,7 +116,7 @@ public class Venta_facturaDao extends Dao {
       st.setDouble(4, VF.getIva());
       st.setDouble(5, VF.getPropina());
       st.setDouble(6, VF.getTotal());
-      st.setDate(7, VF.getFecha_emision());
+      st.setTimestamp(7, VF.getFecha_emision());
       st.setInt(8, VF.getPedido().getId_pedido());
       st.executeUpdate();
 
@@ -187,18 +187,18 @@ public class Venta_facturaDao extends Dao {
 
       java.util.Date dates = new java.util.Date();
       long fechaSis = dates.getTime();
-      java.sql.Date d = new java.sql.Date(fechaSis);
-      VF.setFecha_emision(d);
-
-      java.util.Date utilDate = new java.util.Date(); //fecha actual
-      long lnMilisegundos = utilDate.getTime();
-      java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
-      java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
-      java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(lnMilisegundos);
-      System.out.println("util.Date: " + utilDate);
-      System.out.println("sql.Date: " + sqlDate);
-      System.out.println("sql.Time: " + sqlTime);
-      System.out.println("sql.Timestamp: " + sqlTimestamp);
+      java.sql.Timestamp d = new java.sql.Timestamp(fechaSis);
+      VF.setFecha_emision(d);      
+      
+//      java.util.Date utilDate = new java.util.Date(); //fecha actual
+//      long lnMilisegundos = utilDate.getTime();
+//      java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
+//      java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
+//      java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(lnMilisegundos);
+//      System.out.println("util.Date: " + utilDate);
+//      System.out.println("sql.Date: " + sqlDate);
+//      System.out.println("sql.Time: " + sqlTime);
+//      System.out.println("sql.Timestamp: " + sqlTimestamp);
 
       PreparedStatement st = this.getCon().prepareStatement("INSERT INTO `venta_factura` (`nit_empresa`, `subtotal`, `iva`, `propina`, `total`, `fecha_emision`, `id_pedido`) "
               + "VALUES (?, ?, ?, ?, ?, ?, ?);");
@@ -208,7 +208,7 @@ public class Venta_facturaDao extends Dao {
       st.setDouble(3, VF.getIva());
       st.setDouble(4, VF.getPropina());
       st.setDouble(5, VF.getTotal());
-      st.setDate(6, VF.getFecha_emision());
+      st.setTimestamp(6, VF.getFecha_emision());
       st.setInt(7, idPedido);
 
       System.out.println("DAO");

@@ -6,9 +6,7 @@
 package com.coffecheap.dao;
 
 import com.coffecheap.bean.Control_mesaBean;
-import com.coffecheap.bean.MesaBean;
 import com.coffecheap.modelo.Control_mesa;
-import com.coffecheap.modelo.EstadoPago;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
