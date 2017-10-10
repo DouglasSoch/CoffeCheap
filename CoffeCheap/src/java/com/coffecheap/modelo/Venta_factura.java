@@ -1,6 +1,9 @@
 package com.coffecheap.modelo;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+
 import java.util.Objects;
 
 public class Venta_factura {
@@ -8,7 +11,7 @@ public class Venta_factura {
   String temp_fecha_emision= null;
   boolean opc_propina = false;
   Double tem_total = 0.0;
-
+  
   int id_venta_factura = 0;
   String nit_empresa = null;
   Double subtotal = 0.0;
@@ -19,7 +22,10 @@ public class Venta_factura {
   Pedido pedido = new Pedido();
   Cliente cliente = new Cliente();
 
+  Time hora;
+  Timestamp fechaHora;
   
+ 
   public Venta_factura() {
   }
 
