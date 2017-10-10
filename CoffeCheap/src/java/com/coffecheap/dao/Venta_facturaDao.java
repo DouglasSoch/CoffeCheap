@@ -156,8 +156,7 @@ public class Venta_facturaDao extends Dao {
     try {
 
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("INSERT INTO `venta_factura` (`nit_empresa`, `subtotal`, `iva`, `propina`, `total`, `fecha_emision`, `id_pedido`) "
-              + "VALUES (?, ?, ?, ?, ?, ?, ?);");
+      
       
        
       PreparedStatement s2 = this.getCon().prepareStatement("select id_pedido from control where id_mesa=?;");
@@ -194,6 +193,13 @@ public class Venta_facturaDao extends Dao {
       VF.setPropina(tem3);
       VF.setTotal(tem3+tem2+tem4);
      
+      java.util.Date dates = new java.util.Date();
+      long fechaSis = dates.getTime();
+      java.sql.Date d = new java.sql.Date(fechaSis);
+      VF.setFecha_emision(d);
+      
+      PreparedStatement st = this.getCon().prepareStatement("INSERT INTO `venta_factura` (`nit_empresa`, `subtotal`, `iva`, `propina`, `total`, `fecha_emision`, `id_pedido`) "
+              + "VALUES (?, ?, ?, ?, ?, ?, ?);");
       
       st.setString(1, VF.getNit_empresa());
       st.setDouble(2, VF.getSubtotal());
@@ -205,14 +211,14 @@ public class Venta_facturaDao extends Dao {
       
       
     System.out.println("DAO");
-    System.out.println("ID"  + VF.getId_venta_factura());
-    System.out.println("nit"  + VF.getNit_empresa());
-    System.out.println("sub"  + VF.getSubtotal());
-    System.out.println("iva"  + VF.getIva());
-    System.out.println("pro"  + VF.getPropina());
-    System.out.println("to"  + VF.getTotal());
-    System.out.println("date"  + VF.getFecha_emision());
-    System.out.println("id pe"  + VF.getPedido().getId_pedido());
+    System.out.println("ID "  + VF.getId_venta_factura());
+    System.out.println("nit "  + VF.getNit_empresa());
+    System.out.println("sub "  + VF.getSubtotal());
+    System.out.println("iva "  + VF.getIva());
+    System.out.println("pro "  + VF.getPropina());
+    System.out.println("to "  + VF.getTotal());
+    System.out.println("date "  + VF.getFecha_emision());
+    System.out.println("id pe "  + VF.getPedido().getId_pedido());
     
     
     
