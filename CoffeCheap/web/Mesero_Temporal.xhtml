@@ -2,68 +2,53 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-  <h:head>
-    <title>Facelet Title</title>
-  </h:head>
-  <h:body>
-    <ui:composition template="./WEB-INF/template/Template.xhtml">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+  <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>    
+    <!-- Compiled and minified JavaScript -->
 
-      <ui:define name="content">
-    
-        
-        <div class="container">
-        <div class="leftpane"></div>
-        <div class="middlepane"></div>
-        <div class="rightpane">
-          <h:form id="form1">
-          <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
-            <p:outputLabel for="numpedido" value="No. Pedido"/>
-            <p:inputText id="numpedido" value="" />
-          </h:panelGrid>    
-          </h:form>
-        </div>
-        <div class="toppane" style="color: #ffffff"><h1>Solicitud</h1></div>
-        
-        <div class="leftpane">
-          
-          <h:form>
-            <p:multiSelectListbox value="#{multiSelectView.selection}" effect="slide" class="multiselect">
-            <f:selectItems  class="multiselect" value="#{multiSelectView.categories}"  />
-            </p:multiSelectListbox>
- 
-            <p:commandButton value="Save" icon="ui-icon-check" update="out" style="display:block;margin:10px 0" />
- 
-            <h:outputText id="out" value="Value: #{multiSelectView.selection}" style="display:block" />
-          </h:form>
-          
-        </div>
-        <div class="middlepane">
-          <h:form id="form2">
-          <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
-            <p:outputLabel for="cantidad" value="Cantidad"/>
-            <p:inputText id="cantidad" value="" />
-          </h:panelGrid>    
-          </h:form>
-        </div>
-        <div class="rightpane">
-          <h:form id="form3">
-          <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
-            <p:outputLabel for="descripcion" value="Descripción"/>
-            <p:inputTextarea id="descripcion" rows="1" cols="25" value=""/>
-          </h:panelGrid>    
-          </h:form>
-        </div>
-        <div class="toppane" style="color: #ffffff"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+
+            <ui:define name="content">
+
+                <f:event type="preRenderView" listener="#{mesero_Temporal.listartipo()}"/>
+                <f:event type="preRenderView" listener="#{mesero_Temporal.listarplato()}"/>
+
+
+                <h:form>
+
+                    <p:selectOneMenu id="console" value="#{mesero_Temporal.tplato.id}" style="width:125px" >
+                        <f:selectItem itemLabel="Tipo"></f:selectItem>
+                        <f:selectItems value="#{mesero_Temporal.listtipo}" var="a" itemLabel="#{a.nombre}" itemValue="#{a.id}" actionListener="#{mesero_Temporal.listarplato()}" />
+                   <f:ajax execute="console" render="plato"/>
+                    </p:selectOneMenu>
+
+                    <p:selectOneMenu id="plato" value="#{mesero_Temporal.tplato.id}" style="width:125px">
+                        <f:selectItems value="#{mesero_Temporal.listplato}" var="a" itemLabel="#{a.nombre}" itemValue="#{a.id_plato}"/>
+                    </p:selectOneMenu>
+
+
+                    
+                    
+                </h:form>
+
+             
   
-        </div><!--fin container -->
-       
-    
-      </ui:define>
-
-    </ui:composition>
-  </h:body>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
 
