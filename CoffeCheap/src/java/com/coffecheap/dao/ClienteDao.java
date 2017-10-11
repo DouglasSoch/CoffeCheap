@@ -34,7 +34,7 @@ public class ClienteDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = getCon().prepareCall(" select id_cliente, nit_cliente ,nombre_cliente, direccion from cliente");
+            PreparedStatement st = getCon().prepareCall(" select *from cliente");
             rs = st.executeQuery();
             lista = new ArrayList();
 
@@ -61,7 +61,7 @@ public class ClienteDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = getCon().prepareCall("select id_cliente, nit_cliente, nombre_cliente, direccion from cliente where id_cliente=?");
+            PreparedStatement st = getCon().prepareCall("select *from cliente where id_cliente=?");
             st.setInt(1, cliente.getId_cliente());
             rs = st.executeQuery();
             lista = new ArrayList();

@@ -11,25 +11,29 @@
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
 
-        <h:form id="datos">
-          <br/>
-          <p:outputLabel value="ingrese id  "/>
-          <p:inputText  value="#{clienteBean.cliente.id_cliente}"/>
-          <br/>
-          <br/>
-          <p:outputLabel value="ingrese nit  "/>
-          <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
-          <br/>
-          <br/>
-          <p:outputLabel value="ingrese nombre "/>
-          <p:inputText  value="#{clienteBean.cliente.nombre}"/>
-          <br/>
-          <br/>
-          <p:outputLabel value="ingrese Direccion  "/>
-          <p:inputText  value="#{clienteBean.cliente.direccion}"/>
-          <br/>
+        <h:form id="datos" style="color: white">
+          <h2></h2>
+          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+
+            <p:outputLabel value="ingrese id a buscar"/>
+            <p:inputText  value="#{clienteBean.cliente.id_cliente}"/>
+
+
+            <p:outputLabel value="nit"/>
+            <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
+
+
+            <p:outputLabel value="nombre"/>
+            <p:inputText  value="#{clienteBean.cliente.nombre}"/>
+
+
+            <p:outputLabel value="Direccion"/>
+            <p:inputText  value="#{clienteBean.cliente.direccion}"/>
+            
+          </h:panelGrid>
           <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="datos"/>
-          <p:commandButton value="Eliminar" actionListener="#{clienteBean.eliminar()}" />
+           <p:outputLabel value="&nbsp;&nbsp;&nbsp;"/>
+            <p:commandButton value="Eliminar" actionListener="#{clienteBean.eliminar()}" />
         </h:form>
       </ui:define>
 

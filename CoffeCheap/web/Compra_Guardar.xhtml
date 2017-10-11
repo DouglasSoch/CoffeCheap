@@ -16,8 +16,7 @@
                     <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
                     <f:event type="preRenderView" listener="#{orden_comprasBean.Mostrar()}"/>
                     <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
-                        <p:outputLabel for="Codigo" value="Codigo de Compra"/>
-                        <p:inputText id="Codigo" value="#{compraBean.compra.id_compras}"/>
+                      
                         <p:outputLabel for="Orden" value="No. de Orden"/>
                         <p:selectOneMenu id="Orden" value="#{compraBean.compra.ocompras.id_orden_compras}">
                             <f:selectItem itemLabel="Orden..."/>

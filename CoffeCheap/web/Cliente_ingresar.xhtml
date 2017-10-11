@@ -4,30 +4,32 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-  <h:head>
+
+  <h:head>    
     <title>Cliente Ingresar</title>
   </h:head>
   <h:body>
     <ui:composition template="./WEB-INF/template/Template.xhtml">
-
+      <p:outputLabel value="Guardar Nuevo Cliente "/>
       <ui:define name="content">
-        <h:form>
-          <br/>
-          <p:outputLabel value="ingrese id  "/>
-          <p:inputText  value="#{clienteBean.cliente.id_cliente}"/>
-          <br/>
-          <br/>
-          <p:outputLabel value="ingrese nit  "/>
-          <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
-          <br/>
-          <br/>
-          <p:outputLabel value="ingrese nombre "/>
-          <p:inputText  value="#{clienteBean.cliente.nombre}"/>
-          <br/>
-          <br/>
-          <p:outputLabel value="ingrese Direccion  "/>
-          <p:inputText  value="#{clienteBean.cliente.direccion}"/>
-          <br/>
+        <h2>Ingresar nuevo Cliente</h2>
+        <h:form style="color: white">
+          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+
+            <p:outputLabel value="ingrese id  "/>
+            <p:inputText  value="#{clienteBean.cliente.id_cliente}"/>
+
+            <p:outputLabel value="ingrese nit  "/>
+            <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
+
+            <p:outputLabel value="ingrese nombre "/>
+            <p:inputText  value="#{clienteBean.cliente.nombre}"/>
+
+            <p:outputLabel value="ingrese Direccion  "/>
+            <p:inputText  value="#{clienteBean.cliente.direccion}"/>
+
+
+          </h:panelGrid>
           <p:commandButton value="Guardar" actionListener="#{clienteBean.registrar()}"/>
         </h:form>
       </ui:define>

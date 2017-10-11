@@ -59,7 +59,7 @@ public class Orden_comprasDao extends Dao {
         tt.setCantidad(rs.getInt(4));
         tt.getPproductos().getProducto().setId_producto(rs.getInt(5));
         tt.getPproductos().getProveedor().setId_proveedor(rs.getInt(6));
-        tt.setPrecio(rs.getDouble(7));
+       // tt.setPrecio(rs.getDouble(7));
         
         lista.add(tt);
       }

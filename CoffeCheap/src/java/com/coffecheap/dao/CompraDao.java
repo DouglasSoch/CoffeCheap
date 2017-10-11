@@ -15,14 +15,14 @@ public class CompraDao extends Dao {
     public void Insertar(Compra compra) throws Exception {
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("insert into compra values(?,?,?,?,?,?,?,?)");
-            st.setInt(2, compra.getOcompras().getId_orden_compras());
-            st.setInt(3, compra.getOcompras().getPproductos().getProducto().getId_producto());
-            st.setInt(4, compra.getCantidad());
-            st.setInt(5, compra.getCosto());
-            st.setInt(6, compra.getNo_fac());
-            st.setString(7, compra.getSerie());
-            st.setString(8, null);
+            PreparedStatement st = this.getCon().prepareStatement("INSERT INTO `compra` (`id_orden`, `id_producto`, `cantidad`, `costo`, `no_factura`, `serie`, `fecha_entregacompra`) VALUES (?,?,?,?,?,?,?)");
+            st.setInt(1, compra.getOcompras().getId_orden_compras());
+            st.setInt(2, compra.getOcompras().getPproductos().getProducto().getId_producto());
+            st.setInt(3, compra.getCantidad());
+            st.setInt(4, compra.getCosto());
+            st.setInt(5, compra.getNo_fac());
+            st.setString(6, compra.getSerie());
+            st.setString(7, null);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;

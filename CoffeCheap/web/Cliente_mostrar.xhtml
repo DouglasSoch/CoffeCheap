@@ -2,54 +2,63 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Cliente Mostrar</title>
-    </h:head>
-    <h:body>
-        <h:form>
-            <label>Mostraar</label>
-            <p:commandButton value="mosrar"  icon="ui-icon-check" actionListener="#{clienteBean.mostar()}" update=":frm2:tabla1" oncomplete="PF('dlg').show()"/>
-        <br/>
-        <br/>
-    
-        <label>mostrar con parametro</label>
-        <br/>
-        <p:outputLabel value="ingrese id"/>
-        <p:inputText  value="#{clienteBean.cliente.id_cliente}"/>
-        <p:commandButton value="mosra por paramero"  icon="ui-icon-check" actionListener="#{clienteBean.mostarPorParametro()}" update=":frm2:tabla1" oncomplete="PF('dlg').show()" />
-        <br/>
-        <br/>
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+  <h:head>
+    <title>Cliente Mostrar</title>
+  </h:head>
+  <h:body>
+
+    <ui:composition template="./WEB-INF/template/Template.xhtml">
+      <ui:define name="content">  
         
-        
+        <h:form style="color: white">
+          <label>Mostrar  &nbsp;&nbsp;</label>
+          <p:commandButton value="mosrar"  icon="ui-icon-check" actionListener="#{clienteBean.mostar()}" update=":frm2:tabla1" oncomplete="PF('dlg').show()"/>
+          <br/>
+          <br/>
+
+          <label>mostrar con parametro</label>
+          <br/>
+          <p:outputLabel value="ingrese id &nbsp;&nbsp;"/>
+          <p:inputText  value="#{clienteBean.cliente.id_cliente}"/>
+          <p:outputLabel value="&nbsp;&nbsp;"/>
+          <p:commandButton value="Buscar"  icon="ui-icon-check" actionListener="#{clienteBean.mostarPorParametro()}" update=":frm2:tabla1" oncomplete="PF('dlg').show()" />
+          <br/>
+          <br/>
+
+
         </h:form>
-        
+
         <h:form id="frm2">
-             <p:dialog header="Selected Values" modal="true" showEffect="fade" widgetVar="dlg" resizable="false">
-                 <p:dataTable var="cliente" value="#{clienteBean.lstCliente}" rows="10" id="tabla1"
-                                     paginator="true"
-                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     rowsPerPageTemplate="5,10,15">
+          <p:dialog header="Selected Values" modal="true" showEffect="fade" widgetVar="dlg" resizable="false">
+            <p:dataTable var="cliente" value="#{clienteBean.lstCliente}" rows="10" id="tabla1"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
 
-                            <p:column headerText="id">
-                                <p:outputLabel value="#{cliente.id_cliente}"/>
-                            </p:column>
+              <p:column headerText="id">
+                <p:outputLabel value="#{cliente.id_cliente}" style="color: white"/>
+              </p:column>
 
-                            <p:column headerText="Nit">
-                                <p:outputLabel value="#{cliente.nit_cliente}"/>
-                            </p:column>
+              <p:column headerText="Nit">
+                <p:outputLabel value="#{cliente.nit_cliente}" style="color: white"/>
+              </p:column>
 
-                            <p:column headerText="Nombre">
-                                <p:outputLabel value="#{cliente.nombre}"/>
-                            </p:column>
+              <p:column headerText="Nombre">
+                <p:outputLabel value="#{cliente.nombre}" style="color: white"/>
+              </p:column>
 
-                            <p:column headerText="Direccion">
-                                <p:outputLabel value="#{cliente.direccion}"/>
-                            </p:column>
-                          
-                        </p:dataTable>
-                    </p:dialog>
-                            </h:form>
-    </h:body>
+              <p:column headerText="Direccion">
+                <p:outputLabel value="#{cliente.direccion}" style="color: white"/>
+              </p:column>
+
+            </p:dataTable>
+          </p:dialog>
+        </h:form>
+      </ui:define>
+
+    </ui:composition>
+  </h:body>
 </html>
 
