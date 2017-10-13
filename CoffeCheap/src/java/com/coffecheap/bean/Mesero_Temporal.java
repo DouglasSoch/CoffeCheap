@@ -7,6 +7,7 @@ package com.coffecheap.bean;
 
 import com.coffecheap.dao.MeseroTemporalDao;
 import com.coffecheap.modelo.Plato;
+import com.coffecheap.modelo.Tem_chef;
 import com.coffecheap.modelo.Tipo_plato;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
@@ -21,17 +22,31 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class Mesero_Temporal {
     private Tipo_plato tplato=new Tipo_plato();
-        private Plato tplato2=new Plato();
-    private ArrayList<Tipo_plato> listtipo=new ArrayList();
-    private ArrayList<Plato> listplato=new ArrayList();
+        private Tem_chef chef=new Tem_chef();
+        private ArrayList<Tem_chef> listchef=new ArrayList();
 
-    public ArrayList<Plato> getListplato() {
-     
-        return listplato;
+    public Tipo_plato getTplato() {
+        return tplato;
     }
 
-    public void setListplato(ArrayList<Plato> listplato) {
-        this.listplato = listplato;
+    public void setTplato(Tipo_plato tplato) {
+        this.tplato = tplato;
+    }
+
+    public Tem_chef getChef() {
+        return chef;
+    }
+
+    public void setChef(Tem_chef chef) {
+        this.chef = chef;
+    }
+
+    public ArrayList<Tem_chef> getListchef() {
+        return listchef;
+    }
+
+    public void setListchef(ArrayList<Tem_chef> listchef) {
+        this.listchef = listchef;
     }
 
     public ArrayList<Tipo_plato> getListtipo() {
@@ -42,13 +57,21 @@ public class Mesero_Temporal {
         this.listtipo = listtipo;
     }
 
-    public Tipo_plato getTplato() {
-        return tplato;
+    public ArrayList<Plato> getListplato() {
+        return listplato;
     }
 
-    public void setTplato(Tipo_plato tplato) {
-        this.tplato = tplato;
+    public void setListplato(ArrayList<Plato> listplato) {
+        this.listplato = listplato;
     }
+
+    private ArrayList<Tipo_plato> listtipo=new ArrayList();
+    private ArrayList<Plato> listplato=new ArrayList();
+
+  
+    
+
+    
     
     
     
@@ -68,13 +91,28 @@ public class Mesero_Temporal {
         MeseroTemporalDao dao;
         try{
             dao=new MeseroTemporalDao();
-            listplato=dao.listar2(tplato);
+            listplato=dao.listar2(chef);
 
         }catch(Exception ex){
             throw ex;
         }
         return listplato;
     }
+   
+   
+
+        
+   
+       
+   
+   
+   public void listar(){
+       
+       listchef.add(chef);
+          
+       chef=new Tem_chef();
+        
+   }
     
     
 }

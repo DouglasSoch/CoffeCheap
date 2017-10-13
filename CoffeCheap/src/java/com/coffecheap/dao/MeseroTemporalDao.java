@@ -6,6 +6,7 @@
 package com.coffecheap.dao;
 
 import com.coffecheap.modelo.Plato;
+import com.coffecheap.modelo.Tem_chef;
 import com.coffecheap.modelo.Tipo_plato;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,19 +44,20 @@ public class MeseroTemporalDao extends Dao{
       throw ex;
     } finally {
       this.Desconecar();
+      
     }
 
     return lista;
 
   }
     
-       public ArrayList<Plato> listar2(Tipo_plato pl) throws Exception {
+       public ArrayList<Plato> listar2(Tem_chef pl) throws Exception {
     ArrayList<Plato> lista;
     ResultSet rs;
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM plato where id_tipo="+pl.getId());
+      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM plato where id_tipo="+pl.getTipoPlato().getId());
       rs = st.executeQuery();
       lista = new ArrayList();
       while (rs.next()) {
