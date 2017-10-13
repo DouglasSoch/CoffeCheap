@@ -78,11 +78,12 @@ thead{
   color:white;
 }
 
-.ui-selectonemenu-item.ui-selectonemenu-list-item.ui-corner-all{
-  background: black;
+/*.ui-selectonemenu-item.ui-selectonemenu-list-item.ui-corner-all{
+  background: white;
 
-  color:white;
-}
+  color:black;
+}*/
+/* este campo modifica el color de fondo de las listas en general */
 
 
 
@@ -241,8 +242,24 @@ body, html {
   background: white;
 }
 
+.ui-selectonemenu-item  {
+  color: black;
+  background: red;
+}
+.ui-selectonemenu-list-item{
+  color: black;
+  background: whitesmoke;
+}
 
+/*.ui-corner-all{
+  color: black;
+  background: white;
+}*/ /* Este cambia el color de fondo de todos los elementos usar con precaucion*/
 
+.ui-state-highlight{
+  background: buttonshadow;
+  color: whitesmoke;
+}
 
 /* Fin Galileo CSS */
 
