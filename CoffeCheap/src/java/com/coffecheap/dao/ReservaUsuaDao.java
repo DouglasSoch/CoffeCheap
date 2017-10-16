@@ -11,7 +11,7 @@ public class ReservaUsuaDao extends Dao
     public List<Mesa> mesas()
     {
         ResultSet rs;
-        List<Mesa> lstMesa;
+        List<Mesa> lstMesa = null;
         
         try{
          this.Conectar();
@@ -22,12 +22,14 @@ public class ReservaUsuaDao extends Dao
             while(rs.next())
             {
                 Mesa mesa = new Mesa();
-                
+                mesa.setId_mesa(rs.getInt(1));
+                lstMesa.add(mesa);
             }
         }catch(Exception e )
         {
         
         }
+        return lstMesa;
         
     }
     
