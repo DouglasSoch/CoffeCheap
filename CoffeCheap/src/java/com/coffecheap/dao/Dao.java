@@ -21,7 +21,7 @@ public class Dao {
             Class.forName("com.mysql.jdbc.Driver");            
            con = DriverManager.getConnection("jdbc:mysql://localhost/coffechip?user=root&password=intecap");
             
-            //con = DriverManager.getConnection("jdbc:mysql://localhost/coffechip?user=root");
+            //con = DriverManager.getConnection("jdbc:mysql://localhost/coffechip2?user=root");
             //con = DriverManager.getConnection("jdbc:mysql://192.168.22.52/coffechip?user=lezana&password=lezana");
         } catch (Exception e) {
             throw e;
