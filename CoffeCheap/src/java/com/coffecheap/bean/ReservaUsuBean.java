@@ -36,4 +36,57 @@ public class ReservaUsuBean
     }
     
     }
+    
+    public String ControlEstado(int mesa) throws Exception {
+    ReservaUsuaDao dao;
+    String estado = null;
+    try {
+      dao = new ReservaUsuaDao();
+      estado = dao.ControlEstado(mesa);
+    } catch (Exception e) {
+      throw e;
+    }
+    System.out.println("" + mesa + "* " + estado + "");
+    return estado;
+  }
+    
+    
+    public int tamano() throws Exception {
+    ReservaUsuaDao dao;
+    int numero = 0;
+    try {
+      dao = new ReservaUsuaDao();   
+      numero = dao.tamaño();
+    } catch (Exception e) {
+      throw e;
+    }
+    System.out.println("El numero de mesas es " + numero);
+    return numero;
+  }
+    
+      public void CambioEstado(int MesaSelecionada) throws Exception {
+   
+    ReservaUsuaDao dao;
+
+    try {
+      dao = new ReservaUsuaDao();
+      dao.CamBioEstado(MesaSelecionada);
+    } catch (Exception e) {
+      throw e;
+    }
+  }
+         public int comensales(int MesaSelecionada) throws Exception {
+   int numero=0;
+    ReservaUsuaDao dao;
+
+    try {
+      dao = new ReservaUsuaDao();
+      numero =dao.comensales(MesaSelecionada);
+    } catch (Exception e) {
+      throw e;
+    }
+    return numero;
+  
+  }
 }
+
