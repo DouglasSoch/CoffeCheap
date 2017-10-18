@@ -5,6 +5,7 @@
  */
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.Mesero_Temporal;
 import com.coffecheap.modelo.Plato;
 import com.coffecheap.modelo.Tem_chef;
 import com.coffecheap.modelo.Tipo_plato;
@@ -20,7 +21,7 @@ import java.util.List;
 public class MeseroTemporalDao extends Dao{
     
     
-    
+   
     
     public ArrayList<Tipo_plato> listar() throws Exception {
     ArrayList<Tipo_plato> lista;
@@ -36,6 +37,9 @@ public class MeseroTemporalDao extends Dao{
 
         plat.setId(rs.getInt("id_tipo_plato"));
         plat.setNombre(rs.getString("nombre"));
+        
+         
+        
         
         lista.add(plat);
       }
@@ -80,4 +84,7 @@ public class MeseroTemporalDao extends Dao{
     return lista;
 
   }
+       
+      
+       
 }

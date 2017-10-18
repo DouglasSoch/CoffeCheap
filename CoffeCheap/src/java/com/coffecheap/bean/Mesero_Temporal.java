@@ -24,6 +24,16 @@ public class Mesero_Temporal {
     private Tipo_plato tplato=new Tipo_plato();
         private Tem_chef chef=new Tem_chef();
         private ArrayList<Tem_chef> listchef=new ArrayList();
+        private ArrayList<Tem_chef> listchefunico=new ArrayList();
+
+    public ArrayList<Tem_chef> getListchefunico() {
+        return listchefunico;
+    }
+
+    public void setListchefunico(ArrayList<Tem_chef> listchefunico) {
+        this.listchefunico = listchefunico;
+    }
+        int a=-1;
 
     public Tipo_plato getTplato() {
         return tplato;
@@ -88,6 +98,7 @@ public class Mesero_Temporal {
     }
     
    public ArrayList listarplato() throws Exception{
+       
         MeseroTemporalDao dao;
         try{
             dao=new MeseroTemporalDao();
@@ -107,12 +118,41 @@ public class Mesero_Temporal {
    
    
    public void listar(){
-       
+     
+             
+       a=a+1;
+     
+      
+           chef.setCodigounico(a);
        listchef.add(chef);
-          
+     
+         
        chef=new Tem_chef();
+    
         
    }
-    
+   
+     public void leerId(Tem_chef espe) throws Exception{
+      
+            try{
+                listchefunico=new ArrayList();
+                   chef=espe;
+                   listchefunico.add(chef);
+                        
+          chef=new Tem_chef();
+   
+        }catch(Exception ex){
+            throw ex;
+        }
+           
+      
+           
+    }
+   
+    public void eliminar(Tem_chef espe){
+        listchef.remove(espe.getCodigounico());
+                
+        
+      }
     
 }
