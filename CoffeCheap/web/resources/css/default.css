@@ -1,5 +1,6 @@
 body {
-/*  background: url(../fondo1.jpg) ;    blanco color de fondo*/
+ background: url(../fondo1.jpg) ;   /*  blanco color de fondo*/
+
   background-size: 1400px;
   font-size: 16px;
   font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
@@ -39,15 +40,16 @@ a:link:hover, a:visited:hover  {
 
 .ui-datalist-content.ui-widget-content{  
   background-image: none;
-  /*background-color: rgba(83,72,63,0.5);*/
-  background-color: rgba(25,25,25,0.5);
+
+ background-color: rgba(83,72,63,0.5);
+/*  background-color: rgba(25,25,25,0.5);*/
   font-size: 16px;  
 }
 
 .ui-widget-content{
-
   background-image: none;
-  background-color: rgba(83,72,63,0.1);
+   background-color: rgba(83,72,63,0.1);
+/*    background-color: #DEB887;*/
   font-size: 16px;  
 }
 
@@ -112,15 +114,15 @@ thead{
 */
 
 
-.navbar-collapse{
+/*.navbar-collapse{
   background-color:#503512;
-/* hay que modificar el top de otro css*/
+ hay que modificar el top de otro css
 }
 
 .navbar-header{
    background-color:#503512;;
-   /*este y el de ariba son los colores de la barra de asta ariba*/
-}
+   este y el de ariba son los colores de la barra de asta ariba
+}*/
 
 /*
 .container-fluid{
