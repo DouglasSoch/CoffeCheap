@@ -1,5 +1,5 @@
 body {
-  background: url(../fondo1.jpg) ;    /*blanco color de fondo*/
+/*  background: url(../fondo1.jpg) ;    blanco color de fondo*/
   background-size: 1400px;
   font-size: 16px;
   font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
@@ -111,10 +111,22 @@ thead{
 }
 */
 
-.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all{
-  background-color: white;
+
+.navbar-collapse{
+  background-color:#503512;
+/* hay que modificar el top de otro css*/
 }
 
+.navbar-header{
+   background-color:#503512;;
+   /*este y el de ariba son los colores de la barra de asta ariba*/
+}
+
+/*
+.container-fluid{
+  background-color: appworkspace;
+  
+}*/
 
 /*de botfaces
 

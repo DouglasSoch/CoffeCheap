@@ -1,7 +1,8 @@
 
 #top {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.5);
+   background-color: rgba(0, 0, 0, 0.5);
+ 
     align-items: center; 
 
     padding: 5px;
@@ -50,7 +51,7 @@
 }
 
 .right_content {
-     background-color: rgba(119, 80, 46, 0.5);
+    background-color: rgba(119, 80, 46, 0.5);
     margin: 0px 170px 0px 170px;
 }
 
@@ -58,12 +59,15 @@
   color: white;
   font-weight : bold;
   text-decoration: none;
+  background-color:#503512; /* cambia toda el aria de los botones*/
+   
 }
 
 #top a:link:hover, #top a:visited:hover  {
   color: black;
   font-weight : bold;
   text-decoration : underline;
+/*   background-color: blue; / modfica el color cuando se le pone el raton en sima del botn de la barra*/
 }
 
 
