@@ -1,6 +1,5 @@
 body {
- background: url(../fondo8.jpg) ;   /*  blanco color de fondo*/
-
+  background: url(../fondo8.jpg) ;   /*  blanco color de fondo*/
   background-size: 1400px;
   font-size: 16px;
   font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
@@ -34,22 +33,22 @@ a:link:hover, a:visited:hover  {
 
 .ui-dialog.ui-widget-content {
   background-image: none;
-  background-color: rgba(83,72,63,0.5);
+  background-color: rgba(83,72,63,0.8);
   font-size: 16px;
 }
 
 .ui-datalist-content.ui-widget-content{  
   background-image: none;
 
- background-color: rgba(83,72,63,0.5);
-/*  background-color: rgba(25,25,25,0.5);*/
+  background-color: rgba(83,72,63,0.5);
+  /*  background-color: rgba(25,25,25,0.5);*/
   font-size: 16px;  
 }
 
 .ui-widget-content{
   background-image: none;
-   background-color: rgba(83,72,63,0.1);
-/*    background-color: #DEB887;*/
+  background-color: rgba(83,72,63,0.1);
+  /*    background-color: #DEB887;*/
   font-size: 16px;  
 }
 
@@ -278,3 +277,8 @@ body, html {
 /* Fin Galileo CSS */
 
 
+.coins-icon {
+    background-image: url("#{facesContext.externalContext.request.contextPath}/resources/icono/icono5.png") !important;
+   width: 100px;
+   height: 100px;
+}
