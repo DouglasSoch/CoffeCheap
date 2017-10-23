@@ -12,24 +12,24 @@
   <h:body>
 
     <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content">
+      <ui:define name="content" >
 
-        <h:form class="flip" id="tempo">
-          <p:growl id="messages" life="20000"/>
+        <h:form class="flip, ui-g" id="tempo">
+          <p:growl id="messages" life="2000"/>
 
           <p:panelGrid id="desplegar1" columns="6">
             <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
-
-              <h:button  value="${i}" style="color: white; background-color: #{control_mesaBean.ControlEstado(i)}; width:40px; align-items: center"/>                           
+              
+              <h:button  value="${i}" style="color: white; background-color: #{control_mesaBean.ControlEstado(i)}; align-items: center"/>                           
 
               <p:commandButton actionListener="#{control_mesaBean.CambioEstado(i)}" update="messages, tempo" value="Pedido" icon="ui-icon-star" style="color: black; background-color: #{control_mesaBean.ControlEstado(i)};"/>
 
               <p:commandButton  update="display, tempo, messages" oncomplete="PF('dlg').show()" value="Generar Factura" 
-                                icon="ui-icon-star"  style="color: black; width:180px; background-color: #{control_mesaBean.ControlEstado(i)};" 
-                                disabled="#{control_mesaBean.HabilitarPago(i)}" />
-              
+                                 icon="ui-icon-star"  style="color: black; background-color: #{control_mesaBean.ControlEstado(i)};" 
+                                  disabled="#{control_mesaBean.HabilitarPago(i)}" />
+
               <p:commandButton  actionListener="#{control_mesaBean.RegistrarPago(i)}" update="tempo, messages" value="#{control_mesaBean.EstaPago(i)}" 
-                                icon="ui-icon-star"  style="color: black; width:120px; background-color: #{control_mesaBean.ControlEstado(i)};" 
+                                icon="ui-icon-star"  style="color: black;  background-color: #{control_mesaBean.ControlEstado(i)};" 
                                 disabled="#{control_mesaBean.HabilitarPago(i)}"/>
 
 
@@ -48,7 +48,7 @@
             <p:outputLabel  value="Control Pago" />           
 
             <h:outputText value="Propina: "/>
-            <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
+            <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style=" align-content: center;" />
 
             <p:commandButton value="Guardar" update="display" actionListener="#{venta_facturaBean.registrar_venta(3)}"  oncomplete="PF('dlg').hide();"/>
                       
