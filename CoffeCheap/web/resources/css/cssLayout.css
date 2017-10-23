@@ -89,7 +89,8 @@
 
 .ui-widget-content {
   /*modifica el contenido de la tabla*/
-    background-image:linear-gradient(90deg,rgba(77, 38, 0,0.5), rgba(153, 77, 0,0.5), rgba(77, 38, 0,0.5));
+    /*background-image:linear-gradient(90deg,rgba(77, 38, 0,0.5), rgba(153, 77, 0,0.5), rgba(77, 38, 0,0.5));*/
+    background-image:linear-gradient(90deg,rgba(77, 38, 0,0.5), rgba(115, 55, 24,0.5), rgba(77, 38, 0,0.5));
     background-color: rgba(83,72,63,0.1);
     /* background-color: #DEB887; */
     font-size: 16px;
