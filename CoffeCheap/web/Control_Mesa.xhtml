@@ -10,14 +10,13 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
   <h:body>
-
     <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content" >
+      <ui:define name="content">
 
-        <h:form class="flip, ui-g" id="tempo">
+        <h:form class="flip,ui-g" id="tempo">
           <p:growl id="messages" life="2000"/>
 
-          <p:panelGrid id="desplegar1" columns="6">
+          <p:panelGrid id="desplegar1" columns="6" >
             <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
               
               <h:button  value="${i}" style="color: white; background-color: #{control_mesaBean.ControlEstado(i)}; align-items: center"/>                           
@@ -32,18 +31,16 @@
                                 icon="ui-icon-star"  style="color: black;  background-color: #{control_mesaBean.ControlEstado(i)};" 
                                 disabled="#{control_mesaBean.HabilitarPago(i)}"/>
 
-
               <p:commandButton  actionListener="#{control_mesaBean.LimpiarMesa(i)}" update="messages, tempo" value="Vaciar_Mesa" icon="ui-icon-star" 
                                 style="color: black; background-color: #{control_mesaBean.ControlEstado(i)};"/>
 
               <!-- <p:commandButton  value="Historial" icon="ui-icon-star" style="color: black; background-color: {control_mesaBean.ControlEstado(i)};"/>  -->
-
             </c:forEach>
 
           </p:panelGrid>
           
-          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
-            <p:panelGrid id="display" columns="2" columnClasses="label,value">
+          <p:dialog widgetVar="dlg2" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
+            <p:panelGrid id="display2" columns="2" columnClasses="label,value">
            
             <p:outputLabel  value="Control Pago" />           
 
@@ -51,6 +48,31 @@
             <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style=" align-content: center;" />
 
             <p:commandButton value="Guardar" update="display" actionListener="#{venta_facturaBean.registrar_venta(3)}"  oncomplete="PF('dlg').hide();"/>
+                      
+            </p:panelGrid>
+          </p:dialog>
+          
+          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Registrar Cliente" showEffect="fade"> 
+            <p:panelGrid id="display" columns="2" columnClasses="label,value">
+           
+            
+
+            <p:outputLabel value="ingrese id  "/>
+            <p:inputText  value="#{clienteBean.cliente.id_cliente}"/>
+
+            <p:outputLabel value="ingrese nit  "/>
+            <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
+
+            <p:outputLabel value="ingrese nombre "/>
+            <p:inputText  value="#{clienteBean.cliente.nombre}"/>
+
+            <p:outputLabel value="ingrese Direccion  "/>
+            <p:inputText  value="#{clienteBean.cliente.direccion}"/>
+          
+          <br/>
+          <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>
+          <p:outputLabel value="&nbsp;&nbsp;"/>
+          <p:commandButton value="Registrar" actionListener="#{clienteBean.registrar()}" />   
                       
             </p:panelGrid>
           </p:dialog>      

@@ -28,11 +28,11 @@
 
             <p:outputLabel value="ingrese Direccion  "/>
             <p:inputText  value="#{clienteBean.cliente.direccion}"/>
-             </h:panelGrid>
+          </h:panelGrid>
           <br/>
-            <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="datos"/>
-            <p:outputLabel value="&nbsp;&nbsp;"/>
-            <p:commandButton value="Registrar" actionListener="#{clienteBean.registrar()}" />         
+          <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="datos"/>
+          <p:outputLabel value="&nbsp;&nbsp;"/>
+          <p:commandButton value="Registrar" actionListener="#{clienteBean.registrar()}" />         
         </h:form>
 
       </ui:define>
