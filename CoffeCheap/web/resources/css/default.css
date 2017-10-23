@@ -45,23 +45,13 @@ a:link:hover, a:visited:hover  {
   font-size: 16px;  
 }
 
-.ui-widget-content{
-  background-image: none;
-  background-color: rgba(83,72,63,0.1);
-  /*    background-color: #DEB887;*/
-  font-size: 16px;  
-}
+
 
 .ui-button-text.ui-c{
   /*background-color: rgba(83,72,63,0.5);*/
 }
 
-input{
-  /*background-color: rgba(83,72,63,0.5);*/
-  background-color: rgba(25,25,25,0.5);
-  font-size: 16px;
 
-}
 
 .even{
   background-color: burlywood;  
