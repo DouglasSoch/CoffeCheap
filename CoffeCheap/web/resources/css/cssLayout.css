@@ -93,11 +93,40 @@
     background-color: rgba(83,72,63,0.1);
     /* background-color: #DEB887; */
     font-size: 16px;
-    border-color: black;
+    border-color: rgba(0,0,0,1);
     border-top-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
+}
+
+.ui-widget-content .ui-widget-content {
+/*  modifica el contenido de la tabla*/
+/*    background-image:linear-gradient(90deg,rgba(77, 38, 0,0.5), rgba(153, 77, 0,0.5), rgba(77, 38, 0,0.5));
+    background-color: rgba(83,72,63,0.1);*/
+/*     background-color: #DEB887; */
+    font-size: 16px;
+    border-color: rgba(0,0,0,0);
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+  
+}
+
+
+.ui-widget-content  .ui-datatable td {
+/*  modifica el contenido de la tabla*/
+/*    background-image:linear-gradient(90deg,rgba(77, 38, 0,0.5), rgba(153, 77, 0,0.5), rgba(77, 38, 0,0.5));
+    background-color: rgba(83,72,63,0.1);*/
+/*     background-color: #DEB887; */
+    font-size: 16px;
+    border-color: rgba(0,0,0,1);
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+  
 }
 
 input{
@@ -124,16 +153,16 @@ input{
 }
 
 
-.ui-state-default, .ui-widget-content .ui-state-default {
+.ui-widget-content .ui-state-default {
     border-bottom: 1px solid rgba(0,0,0,1);
     border-top: 1px solid rgba(0,0,0,1);
     border-left: 1px solid rgba(0,0,0,1);
     border-right: 1px solid rgba(0,0,0,1);
-    /*background: rgba(0,0,0,1) url(/CoffeChip/faces/javax.faces.resource/images/ui-bg_highlight-hard_80_c4c4c4_1x100.png?ln=primefaces-aristo) 50% 50% repeat-x;*/
+    background: rgba(0,0,0,0) url(/CoffeChip/faces/javax.faces.resource/images/ui-bg_highlight-hard_80_c4c4c4_1x100.png?ln=primefaces-aristo) 50% 50% repeat-x;
     /*background: rgba(0,0,0,1) linear-gradient(top,rgba(255,255,255,0.8),rgba(255,255,255,0));*/
-    /*background: rgba(0,0,0,1) -webkit-gradient(linear,left top,left bottom,from(rgba(21, 19, 19, 0.8)),to(rgba(0, 0, 0, 0)));*/
+    background: rgba(0,0,0,1) -webkit-gradient(linear,left top,left bottom,from(rgba(21, 19, 19, 0.8)),to(rgba(0, 0, 0, 0)));
     /*background: rgba(0,0,0,1) -moz-linear-gradient(top,rgba(255,255,255,0.8),rgba(255,255,255,0));*/
-    background-image:linear-gradient(90deg,rgba(0, 0, 0,1), rgba(0, 0, 0,1));
+    /*background-image:linear-gradient(90deg,rgba(0, 0, 0,1), rgba(0, 0, 0,1));*/
     font-weight: bold;
     color: #fbf6f6;
     text-shadow: 0 1px 0 rgba(255, 253, 253, 0.7);
