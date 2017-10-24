@@ -89,9 +89,9 @@
 
 .ui-widget-content {
   /*modifica el contenido de la tabla*/
-    /*background-image:linear-gradient(90deg,rgba(77, 38, 0,0.5), rgba(153, 77, 0,0.5), rgba(77, 38, 0,0.5));*/
-    background-image:linear-gradient(90deg,rgba(57, 77, 0,0.5), rgba(57, 77, 0,0.5), rgba(57, 77, 0,0.5));
-    background-color: rgba(83,72,63,0.1);
+    background-image:linear-gradient(90deg,rgba(77, 38, 0,0.5), rgba(153, 77, 0,0.5), rgba(77, 38, 0,0.5));
+    /*background-image:linear-gradient(90deg,rgba(115, 153, 0,1), rgba(115, 153, 0,1), rgba(115, 153, 0,1));*/
+    background-color: rgba(255,255,255,0.1);
     /* background-color: #DEB887; */
     font-size: 16px;
     border-color: rgba(0,0,0,1);
@@ -146,7 +146,7 @@ input{
     border: 1px solid rgba(0,0,0,1) ;
     background: rgba(0,0,0,1) url(/CoffeChip/faces/javax.faces.resource/images/ui-bg_highlight-soft_100_c4c4c4_1x100.png?ln=primefaces-aristo) 50% 50% repeat-x;
     /*background: rgba(0,0,0,1) linear-gradient(top,rgba(255,255,255,0.8),rgba(255,255,255,0));*/
-    background: rgba(0,0,255,0) -webkit-gradient(linear,left top,left bottom,from(rgba(66, 62, 10,1)),to(rgba(66, 62, 10, 1)));
+    background: rgba(0,0,0,0) -webkit-gradient(linear,left top,left bottom,from(rgba(0, 0, 0,1)),to(rgba(0, 0, 0, 1)));
     /*background: rgba(0,0,0,1) -moz-linear-gradient(top,rgba(255,255,255,0.8),rgba(255,255,255,0));*/
     color: rgba(0,0,0,1);
     font-weight: bold;
@@ -161,7 +161,7 @@ input{
     border-right: 1px solid rgba(0,0,0,1);
     background: rgba(0,0,0,0) url(/CoffeChip/faces/javax.faces.resource/images/ui-bg_highlight-hard_80_c4c4c4_1x100.png?ln=primefaces-aristo) 50% 50% repeat-x;
     /*background: rgba(0,0,0,1) linear-gradient(top,rgba(255,255,255,0.8),rgba(255,255,255,0));*/
-    background: rgba(66, 62, 10,1) -webkit-gradient(linear,left top,left bottom,from(rgba(66, 62, 10, 0)),to(rgba(66, 62, 10, 0)));
+    background: rgba(0, 0, 0,1) -webkit-gradient(linear,left top,left bottom,from(rgba(66, 62, 10, 0)),to(rgba(66, 62, 10, 0)));
     /*background: rgba(0,0,0,1) -moz-linear-gradient(top,rgba(255,255,255,0.8),rgba(255,255,255,0));*/
     /*background-image:linear-gradient(90deg,rgba(0, 0, 0,1), rgba(0, 0, 0,1));*/
     font-weight: bold;
