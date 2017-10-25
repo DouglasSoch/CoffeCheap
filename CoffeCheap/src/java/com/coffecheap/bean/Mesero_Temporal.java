@@ -9,9 +9,16 @@ import com.coffecheap.dao.MeseroTemporalDao;
 import com.coffecheap.modelo.Plato;
 import com.coffecheap.modelo.Tem_chef;
 import com.coffecheap.modelo.Tipo_plato;
+import com.coffecheap.modelo.Usuario;
+
 import java.util.ArrayList;
+
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
+
+import javax.faces.context.FacesContext;
+
 
 
 /**
@@ -19,8 +26,8 @@ import javax.faces.bean.ViewScoped;
  * @author medev
  */
 @ManagedBean
-@ViewScoped
-public class Mesero_Temporal {
+@SessionScoped
+public class Mesero_Temporal implements Serializable {
     private Tipo_plato tplato=new Tipo_plato();
         private Tem_chef chef=new Tem_chef();
         private ArrayList<Tem_chef> listchef=new ArrayList();
@@ -150,9 +157,24 @@ public class Mesero_Temporal {
     }
    
     public void eliminar(Tem_chef espe){
+        
         listchef.remove(espe.getCodigounico());
-                
+        a=-1;
+        for (int i = 0; i < listchef.size(); i++) {
+            a=a+1;
+            listchef.get(i).setCodigounico(a);
+            
+          
+        }
+        
         
       }
+    
+    public void todo(){
+        
+         Usuario usuario=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("nomb");
+       int a=usuario.getId();
+        
+    }
     
 }
