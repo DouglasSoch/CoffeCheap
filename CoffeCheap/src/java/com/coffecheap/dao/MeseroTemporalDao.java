@@ -85,6 +85,25 @@ public class MeseroTemporalDao extends Dao{
 
   }
        
+       
+          public void Insertar(Tem_chef chef, int a, int b) throws Exception {
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("INSERT INTO plato_pedido (id_plato,cantidad,id_personal,id_pedido,precio) VALUES (?,?,?,?,?)");
+            st.setInt(1, chef.getPlato().getId_plato());
+            st.setInt(2, chef.getCantidad());
+            st.setInt(3, a);
+            st.setInt(4, b);
+           // st.setInt(5, compra.getNo_fac());
+
+            st.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Desconecar();
+        }
+    }
+       
       
        
 }

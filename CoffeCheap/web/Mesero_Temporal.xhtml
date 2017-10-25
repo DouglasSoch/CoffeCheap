@@ -48,22 +48,26 @@
                     <b:dataTable value="#{mesero_Temporal.listchef}"  var="lst" col-md="12">
                         <b:dataTableColumn value="#{lst.codigounico}" label="Num" />
                         <b:dataTableColumn value="#{lst.tipoPlato.id}" label="Tipo Plato" />
-                        
+
                         <b:dataTableColumn value="#{lst.plato.id_plato}" label="Plato"/>
                         <b:dataTableColumn value="#{lst.cantidad}" label="Cantidad"/>
                         <b:dataTableColumn value="#{lst.descripcion}" label="Descripcion"/>
-                         <b:dataTableColumn> 
-                     <b:commandButton value="Modificar" actionListener="#{mesero_Temporal.leerId(lst)}" oncomplete="PF('wdlgdatos').show();" update=":dlgdatos"/>
-                    <b:commandButton value="Eliminar" actionListener="#{mesero_Temporal.eliminar(lst)}" update="hola"/>
-                    </b:dataTableColumn>
+                        <b:dataTableColumn label="Opciones"> 
+                            <b:commandButton value="Modificar" actionListener="#{mesero_Temporal.leerId(lst)}" oncomplete="PF('wdlgdatos').show();" update=":dlgdatos"/>
+                            <b:commandButton value="Eliminar" actionListener="#{mesero_Temporal.eliminar(lst)}" update="hola"/>
+                        </b:dataTableColumn>
+
+
+
                     </b:dataTable>
-                   
-                    
+
+                    <b:commandButton value="Enviar Orden" actionListener="#{mesero_Temporal.todo()}" update="hola" style="width: 300px"/>
 
 
 
-                    
-                    
+
+
+
                 </h:form>
 
                 <p:dialog header="Datos" widgetVar="wdlgdatos" id="dlgdatos">

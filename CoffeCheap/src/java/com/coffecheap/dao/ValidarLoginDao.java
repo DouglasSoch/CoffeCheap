@@ -44,6 +44,7 @@ public class ValidarLoginDao extends DAO1{
             usuari.setNombre(rs.getString("nombre"));
             usuari.getTipo().setId(rs.getInt("tipouser"));
             usuari.setApellido(rs.getString("apellido"));
+            usuari.setId(rs.getInt("iduser"));
         
             
            
