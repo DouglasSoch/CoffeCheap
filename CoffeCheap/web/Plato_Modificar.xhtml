@@ -14,7 +14,7 @@
           <f:event type="preRenderView" listener="#{platoBean.listar()}"/>
         <h:form class="flip">
           
-            <p:outputLabel style="color: #ffffff;" value="Lista para elegir el plato a modificar" />          
+            <p:outputLabel value="Lista para elegir el plato a modificar" />          
          
         </h:form>
         <h:form id="otro">
@@ -27,27 +27,27 @@
 
                 <p:column width="90">
                 <f:facet name="header">Codigo del platillo</f:facet>
-                <h:inputText value="#{tabla.id_plato}" style="color: #ffffff; width : 30px" />
+                <h:inputText value="#{tabla.id_plato}" style=" width : 30px" />
                 </p:column>
                 <p:column width="200">
                 <f:facet name="header">Nombre del platillo</f:facet>
-                <h:inputText value="#{tabla.nombre}" style="color: #ffffff; width : 200px" />
+                <h:inputText value="#{tabla.nombre}" style=" width : 200px" />
                 </p:column>
                 <p:column width="90">
                 <f:facet name="header">Precio del platillo</f:facet>
-                <h:inputText value="#{tabla.precio}" style="color: #ffffff; width : 60px" />
+                <h:inputText value="#{tabla.precio}" style=" width : 60px" />
                 </p:column>
               <p:column width="90">
                 <f:facet name="header">Porciones</f:facet>
-                <h:inputText value="#{tabla.porciones}" style="color: #ffffff; width : 60px" />
+                <h:inputText value="#{tabla.porciones}" style=" width : 60px" />
               </p:column>    
               <p:column width="400">
                 <f:facet name="header">Descripcion del platillo</f:facet>
-                <h:inputText value="#{tabla.descripcion}" style="color: #ffffff; width : 400px" />
+                <h:inputText value="#{tabla.descripcion}" style=" width : 400px" />
               </p:column>    
 
                   <p:column width="100">
-                  <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{platoBean.modificar(tabla)}"/>                    
+                  <h:commandLink value="Modificar"  actionListener="#{platoBean.modificar(tabla)}"/>                    
               </p:column>                              
 
             
