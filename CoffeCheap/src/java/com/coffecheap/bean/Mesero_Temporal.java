@@ -170,10 +170,23 @@ public class Mesero_Temporal implements Serializable {
         
       }
     
-    public void todo(){
+    public void todo() throws Exception{
         
-         Usuario usuario=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("nomb");
-       int a=usuario.getId();
+//         Usuario usuario=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("nomb");
+//       int a=usuario.getId();
+       
+        for (int i = 0; i < listchef.size(); i++) {
+            MeseroTemporalDao dao=new  MeseroTemporalDao();
+            
+            try{
+                Tem_chef che=listchef.get(i);
+                dao.Insertar(che, 1, 3);
+                
+            }catch(Exception ex){
+                throw ex;
+            }
+            
+        }
         
     }
     
