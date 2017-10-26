@@ -91,14 +91,14 @@
   /*modifica el contenido de la tabla*/
     /*background-image:linear-gradient(90deg,rgba(77, 38, 0,0.5), rgba(153, 77, 0,0.5), rgba(77, 38, 0,0.5));*/
     /*background-image:linear-gradient(90deg,rgba(115, 153, 0,1), rgba(115, 153, 0,1), rgba(115, 153, 0,1));*/
-    background-color: rgba(255,255,255,0);
+   /* background-color: rgba(255,255,255,0);
  
     font-size: 16px;
-    border-color: rgba(0,0,0,0);
+    border-color: rgba(0,0,0,1);
     border-top-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
-    border-left-style: solid;
+    border-left-style: solid;*/
 }
 
 .ui-widget-content .ui-widget-content {
@@ -106,13 +106,13 @@
 /*    background-image:linear-gradient(90deg,rgba(77, 38, 0,0.5), rgba(153, 77, 0,0.5), rgba(77, 38, 0,0.5));
     background-color: rgba(83,72,63,0.1);*/
 /*     background-color: #DEB887; */
-    font-size: 16px;
+   /* font-size: 16px;
     border-color: rgba(0,0,0,0);
     border-top-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
     border-left-style: solid;
-  
+  */
 }
 
 

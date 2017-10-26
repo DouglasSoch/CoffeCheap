@@ -9,30 +9,71 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
         <ui:composition template="./WEB-INF/template/Template.xhtml">
             <ui:define name="content">
+                <f:event type="preRenderView" listener="#{orden_comprasBean.Mostrar()}"/>
+                <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
                 <h:form id="form1">
-                    <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
-                    <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
-                    <f:event type="preRenderView" listener="#{orden_comprasBean.Mostrar()}"/>
-                    <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
-                      
+                    <br/>
+                    <h:panelGrid id="panel1" columns="6" cellpadding="3" style="color: #ffffff" width="890PX">
+                        
                         <p:outputLabel for="Orden" value="No. de Orden"/>
                         <p:selectOneMenu id="Orden" value="#{compraBean.compra.ocompras.id_orden_compras}">
                             <f:selectItem itemLabel="Orden..."/>
                             <f:selectItems value="#{orden_comprasBean.lstOrden_compras}" var="lista" itemLabel="#{lista.id_orden_compras}" itemValue="#{lista.id_orden_compras}"/>
                         </p:selectOneMenu>
-                        
+
+                        <p:outputLabel for="Producto" value="Producto"/>
+                        <p:selectOneMenu id="Producto" value="#{compraBean.compra.producto.id_producto}">
+                            <f:selectItem itemLabel="Producto..."/>
+                            <f:selectItems value="#{productoBean.lstProducto}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_producto}"/>
+                        </p:selectOneMenu>  
+
                         <p:outputLabel for="Cantidad" value="Cantidad"/>
-                        <p:inputText id="Cantidad" value="#{compraBean.compra.cantidad}" />
+                        <p:inputText id="Cantidad" value="#{compraBean.compra.cantidad}" style="width: 150px"/>
                         <p:outputLabel for="Costo" value="Costo"/>
-                        <p:inputText id="Costo" value="#{compraBean.compra.costo}" />
+                        <p:inputText id="Costo" value="#{compraBean.compra.costo}" style="width: 150px"/>
                         <p:outputLabel for="NoFactura" value="No. de Factura"/>
-                        <p:inputText id="NoFactura" value="#{compraBean.compra.no_fac}" />
+                        <p:inputText id="NoFactura" value="#{compraBean.compra.no_fac}" style="width: 150px"/>
                         <p:outputLabel for="Serie" value="Serie"/>
-                        <p:inputText id="Serie" value="#{compraBean.compra.serie}" />
-                    </h:panelGrid><br/>
-                    <p:commandButton value="Guardar" action="#{compraBean.Ingresar()}" update="form1"/>
+                        <p:inputText id="Serie" value="#{compraBean.compra.serie}" style="width: 150px"/>
+                        <p:outputLabel for="Fecha" value="Fecha" style="height: 31PX"/>
+                        <p:inputMask id="Fecha" value="#{compraBean.compra.fechaEntrega}" mask="99-99-9999" style="width: 150px"/>
+                    </h:panelGrid>
+                    
+                    <p:commandButton value="Intermediario" actionListener="#{compraBean.Intermedio()}" update="TablaCheckBox: form1"/>
+                    <br/><br/>
+                    <p:dataTable id="TablaCheckBox" value="#{compraBean.intermedio}" var="comprainter" selection="#{compraBean.intermedio}" rowKey="#{comprainter.identificacion}" style="margin-bottom:0">
+                        <f:facet name="header">
+                            Selección de Compras
+                        </f:facet>
+                        <p:column selectionMode="multiple" style="width:40px;text-align:center"/>
+                        <p:column headerText="No. Orden">
+                            <h:outputText value="#{comprainter.ocompras.id_orden_compras}" />
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{comprainter.producto.id_producto}" />
+                        </p:column>
+                        <p:column headerText="Cantidad">
+                            <h:outputText value="#{comprainter.cantidad}" />
+                        </p:column>
+                        <p:column headerText="Costo">
+                            <h:outputText value="#{comprainter.costo}" />
+                        </p:column>
+                        <p:column headerText="No. de Factura">
+                            <h:outputText value="#{comprainter.no_fac}" />
+                        </p:column>
+                        <p:column headerText="Serie">
+                            <h:outputText value="#{comprainter.serie}" />
+                        </p:column>
+                        <p:column headerText="Fecha">
+                            <h:outputText value="#{comprainter.fechaEntrega}" />
+                        </p:column>
+                    </p:dataTable><br/><br/>
+                    <p:commandButton value="Guardar" actionListener="#{compraBean.Ingresar()}" update="TablaCheckBox"/>
+                    <!--<p:commandButton value="Intermediario" actionListener="{compraBean.Ingresar()}"/>-->
+                    <br/>
                 </h:form>
             </ui:define>
         </ui:composition>
