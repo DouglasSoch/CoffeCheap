@@ -15,15 +15,15 @@ import java.util.List;
  *
  * @author acier
  */
-public class Pedido_MostrarDao extends DAO1 {
+public class Pedido_MostrarDao extends Dao {
 
   public List<Pedido> listar() throws Exception {
     List<Pedido> lista;
     ResultSet rs;
 
     try {
-      this.conectar();
-      PreparedStatement st = this.getCn().prepareCall("SELECT * FROM pedido;");
+      this.Conectar();
+      PreparedStatement st = this.getCon().prepareCall("SELECT * FROM pedido;");
 
       rs = st.executeQuery();
       lista = new ArrayList();
@@ -38,7 +38,7 @@ public class Pedido_MostrarDao extends DAO1 {
     } catch (Exception ex) {
       throw ex;
     } finally {
-      this.cerrar();
+      this.Desconecar();
     }
 
     return lista;
