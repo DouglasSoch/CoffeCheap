@@ -7,7 +7,8 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:b="http://bootsfaces.net/ui">
 
   <h:body class="ui-g">
     <ui:composition template="./WEB-INF/template/Template.xhtml">
@@ -19,22 +20,22 @@
           <p:panelGrid id="desplegar1" columns="6" >
             <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
               
-              <h:button  value="${i}" style="color: white; background-image: #{control_mesaBean.ControlEstado(i)}; align-items: center"/>                           
+              <p:outputLabel value="${i}" style="color: black; align-items: center" class="#{control_mesaBean.ControlEstado(i)};"/>                           
 
-              <p:commandButton actionListener="#{control_mesaBean.CambioEstado(i)}" update="messages, tempo" value="Pedido" icon="ui-icon-star" style="color: black; background-image: #{control_mesaBean.ControlEstado(i)};"/>
+              <b:commandButton actionListener="#{control_mesaBean.CambioEstado(i)}" update="messages, tempo" value="Pedido"  style="color: black;" look="#{control_mesaBean.ControlEstado(i)};"/>
 
-              <p:commandButton  update="display, tempo, messages" oncomplete="PF('dlg').show()" value="Generar Factura" 
-                                 icon="ui-icon-star"  style="color: black; background-image: #{control_mesaBean.ControlEstado(i)};" 
+              <b:commandButton  update="display, tempo, messages" oncomplete="PF('dlg').show()" value="Generar Factura" 
+                                   style="color: black; " look="#{control_mesaBean.ControlEstado(i)};" 
                                   disabled="#{control_mesaBean.HabilitarPago(i)}" />
 
-              <p:commandButton  actionListener="#{control_mesaBean.RegistrarPago(i)}" update="tempo, messages" value="#{control_mesaBean.EstaPago(i)}" 
-                                icon="ui-icon-star"  style="color: black;  background-image: #{control_mesaBean.ControlEstado(i)};" 
+              <b:commandButton  actionListener="#{control_mesaBean.RegistrarPago(i)}" update="tempo, messages" value="#{control_mesaBean.EstaPago(i)}" 
+                                  style="color: black; " look="#{control_mesaBean.ControlEstado(i)};" 
                                 disabled="#{control_mesaBean.HabilitarPago(i)}"/>
 
-              <p:commandButton  actionListener="#{control_mesaBean.LimpiarMesa(i)}" update="messages, tempo" value="Vaciar_Mesa" icon="ui-icon-star" 
-                                style="color: black; background-image: #{control_mesaBean.ControlEstado(i)};"/>
+              <b:commandButton  actionListener="#{control_mesaBean.LimpiarMesa(i)}" update="messages, tempo" value="Vaciar_Mesa"  
+                                style="color: black; " look="bg-gradient-dark"/>
 
-            <!-- <p:commandButton  value="Historial" icon="ui-icon-star" style="color: black; background-color: {control_mesaBean.ControlEstado(i)};"/>  -->
+            <!-- <p:commandButton  value="Historial"  style="color: black; background-color: {control_mesaBean.ControlEstado(i)};"/>  -->
             </c:forEach>
 
           </p:panelGrid>
