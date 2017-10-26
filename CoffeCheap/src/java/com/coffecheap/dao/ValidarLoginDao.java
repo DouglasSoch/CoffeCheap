@@ -14,7 +14,7 @@ import java.sql.ResultSet;
  *
  * @author medev
  */
-public class ValidarLoginDao extends DAO1{
+public class ValidarLoginDao extends Dao{
      Usuario usuari=new Usuario();
 
     public Usuario getUsuari() {
@@ -33,9 +33,9 @@ public class ValidarLoginDao extends DAO1{
             usuari.getTipo().setId(53168412);
             usuari.setApellido("as1d5as1d51a");
         try{
-            this.conectar();
+            this.Conectar();
             System.out.println(usu.getUsuario());
-            PreparedStatement st=this.getCn().prepareStatement("select * from usuario where user='"+usu.getUsuario()+"'");
+            PreparedStatement st=this.getCon().prepareStatement("select * from usuario where user='"+usu.getUsuario()+"'");
             ResultSet rs=st.executeQuery();
             rs.next();
             
@@ -53,7 +53,7 @@ public class ValidarLoginDao extends DAO1{
         }catch(Exception ex){
           
         }finally{
-            this.cerrar();
+            this.Desconecar();
             
         }
         return usuari;

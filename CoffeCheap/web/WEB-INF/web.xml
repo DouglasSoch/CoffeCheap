@@ -15,7 +15,7 @@
     </servlet-mapping>
     <context-param>
       <param-name>primefaces.THEME</param-name>
-      <param-value>hot-sneaks</param-value>
+      <param-value>humanity</param-value>
     </context-param>
     <session-config>
         <session-timeout>
