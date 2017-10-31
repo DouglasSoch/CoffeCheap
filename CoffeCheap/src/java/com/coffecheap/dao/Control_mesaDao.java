@@ -130,7 +130,8 @@ public class Control_mesaDao extends Dao {
 
   public String ControlEstado(int mesa) throws Exception {
     //String color = "rgb(115, 191, 209)";
-    String color = "bg-gradient-warning";
+    //String color = "bg-gradient-warning";
+    String color = "defaul";
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
@@ -140,9 +141,9 @@ public class Control_mesaDao extends Dao {
 
       if (n.next()) {
         if (n.getInt(1) == 1) {
-          color = "bg-gradient-warning";
+          color = "defaul";
         } else {
-          color = "bg-gradient-warning";
+          color = "warning";
         }
 
       }
@@ -249,7 +250,7 @@ public class Control_mesaDao extends Dao {
         if (pago == 1) {
           estado = "Cancelado";
         } else {
-          estado = "Pago";
+          estado = "__Pago__";
         }
       }
 
