@@ -16,6 +16,7 @@ public class Control_mesa {
     Mesa mesa= new Mesa();
     Boolean pago= false;
     Boolean vaciar= false;
+    
 
     public Control_mesa() {
     }
