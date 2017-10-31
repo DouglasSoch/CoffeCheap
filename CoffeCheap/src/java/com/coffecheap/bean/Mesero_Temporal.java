@@ -187,7 +187,7 @@ public class Mesero_Temporal implements Serializable {
             }
             
         }
-        
+        listchef=new ArrayList();
     }
     
 }
