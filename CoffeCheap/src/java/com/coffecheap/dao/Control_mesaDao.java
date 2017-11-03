@@ -18,6 +18,9 @@ import java.util.List;
  */
 public class Control_mesaDao extends Dao {
 
+  
+
+  
   public void registrar(Control_mesa Tt) throws Exception {
 
     try {
@@ -316,4 +319,8 @@ public class Control_mesaDao extends Dao {
     }
 
   }
+  
+  
+  
+  
 }

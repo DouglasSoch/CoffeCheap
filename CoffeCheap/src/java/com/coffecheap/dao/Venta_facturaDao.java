@@ -161,7 +161,7 @@ public class Venta_facturaDao extends Dao {
         idPedido = n.getInt(1);
       }
 
-      PreparedStatement s3 = this.getCon().prepareStatement("select sum(precio) from plato_pedido WHERE id_pedido=?");
+      PreparedStatement s3 = this.getCon().prepareStatement("select sum(cantidad*precio) from plato_pedido WHERE id_pedido=?");
       s3.setInt(1, idPedido);
       ResultSet n2 = s3.executeQuery();
 
