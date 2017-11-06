@@ -20,6 +20,17 @@ public class Venta_factura {
   Cliente cliente= new Cliente();
   Timestamp fecha_emision= null;
 
+  static boolean EstadoFactura=false;
+
+  public boolean isEstadoFactura() {
+    return EstadoFactura;
+  }
+
+  public void setEstadoFactura(boolean EstadoFactura) {
+    this.EstadoFactura = EstadoFactura;
+    System.out.println("el estado de factura "+EstadoFactura);
+  }
+  
   public Venta_factura() {
   }
   

@@ -26,7 +26,7 @@
 
               <b:commandButton  update="display, tempo, messages" oncomplete="PF('dlg').show()" value="Generar Factura" 
                                 style="color: black" look="#{control_mesaBean.ControlEstado(i)}" 
-                                disabled="#{control_mesaBean.HabilitarPago(i)}"  actionListener="#{control_mesaBean.control_mesa.setNMesa(i)}"/>
+                                disabled="#{venta_facturaBean.controlGenerarFactura(i)}"  actionListener="#{control_mesaBean.control_mesa.setNMesa(i)}"/>
 
               <b:commandButton  actionListener="#{control_mesaBean.RegistrarPago(i)}" update="tempo, messages" value="#{control_mesaBean.EstaPago(i)}" 
                                 style="color: black" look="#{control_mesaBean.ControlEstado(i)}" 
@@ -53,17 +53,17 @@
                 <p:inputText  value="#{clienteBean.cliente.direccion}"/>
                 <h:outputText value="Propina: " style="color: black"/>
                 <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
-                 <p:outputLabel value="&nbsp;"/>
-                 
-                 <p:commandButton value="Factura" actionListener="#{venta_facturaBean.registrar_venta(control_mesaBean.control_mesa.getNMesa())}" style="width:200px; align-content: center;height: 30px" onselect="PF(dlg).hide;"/>
-              
+                <p:outputLabel value="&nbsp;"/>
+
+                <p:commandButton value="Factura" actionListener="#{venta_facturaBean.registrar_venta(control_mesaBean.control_mesa.getNMesa())}" style="width:200px; align-content: center;height: 30px" onselect="PF(dlg).hide;" />
+
               </c:if>              
               <c:if test="#{clienteBean.cliente.nombre==null}">
-               
-                 <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>                
+
+                <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>                
               </c:if>
 
-              
+
 
 
             </p:panelGrid>
