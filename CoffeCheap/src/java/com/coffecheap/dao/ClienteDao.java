@@ -15,11 +15,11 @@ public class ClienteDao extends Dao {
 
             this.Conectar();
 
-            PreparedStatement st = this.getCon().prepareStatement("insert into cliente values (?,?,?,?)");
-            st.setInt(1, cli.getId_cliente());
-            st.setString(2, cli.getNit_cliente());
-            st.setString(3, cli.getNombre());
-            st.setString(4, cli.getDireccion());
+            PreparedStatement st = this.getCon().prepareStatement("insert into cliente values (?,?,?)");
+           
+            st.setString(1, cli.getNit_cliente());
+            st.setString(2, cli.getNombre());
+            st.setString(3, cli.getDireccion());
             st.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -61,18 +61,17 @@ public class ClienteDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = getCon().prepareCall("select *from cliente where id_cliente=?");
-            st.setInt(1, cliente.getId_cliente());
+            PreparedStatement st = getCon().prepareCall("select nit_cliente, nombre_cliente, direccion from cliente where nit_cliente=?");
+            st.setString(1, cliente.getNit_cliente());
             rs = st.executeQuery();
             lista = new ArrayList();
 
             while (rs.next()) {
 
-                Cliente cli = new Cliente();
-                cli.setId_cliente(rs.getInt(1));
-                cli.setNit_cliente(rs.getString(2));
-                cli.setNombre(rs.getString(3));
-                cli.setDireccion(rs.getString(4));
+                Cliente cli = new Cliente();                
+                cli.setNit_cliente(rs.getString(1));
+                cli.setNombre(rs.getString(2));
+                cli.setDireccion(rs.getString(3));
                 lista.add(cli);
 
             }
@@ -90,16 +89,15 @@ public class ClienteDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = getCon().prepareCall("select id_cliente, nit_cliente, nombre_cliente, direccion from cliente where id_cliente=?");
-            st.setInt(1, cliente.getId_cliente());
+            PreparedStatement st = getCon().prepareCall("select nit_cliente, nombre_cliente, direccion from cliente where nit_cliente=?");
+            st.setString(1, cliente.getNit_cliente());
             rs = st.executeQuery();
 
             while (rs.next()) {
-                 cli = new Cliente();
-                cli.setId_cliente(rs.getInt(1));
-                cli.setNit_cliente(rs.getString(2));
-                cli.setNombre(rs.getString(3));
-                cli.setDireccion(rs.getString(4));
+                cli = new Cliente();
+                cli.setNit_cliente(rs.getString(1));
+                cli.setNombre(rs.getString(2));
+                cli.setDireccion(rs.getString(3));
 
             }
         } catch (Exception e) {
@@ -116,8 +114,8 @@ public class ClienteDao extends Dao {
         try
         {
          this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("delete from cliente where id_cliente= ?");
-            st.setInt(1, cliente.getId_cliente());
+            PreparedStatement st = this.getCon().prepareStatement("delete from cliente where nit_cliente= ?");
+            st.setString(1, cliente.getNit_cliente());
             st.executeUpdate();
         }catch(Exception e)
         {
@@ -131,7 +129,7 @@ public class ClienteDao extends Dao {
     public void modificar(Cliente cliente) throws Exception {
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("update cliente set direccion=? where id_cliente=?");
+            PreparedStatement st = this.getCon().prepareStatement("update cliente set direccion=? where nit_cliente=?");
             st.setString(1, cliente.getDireccion());
             st.setInt(2, cliente.getId_cliente());
             st.executeUpdate();

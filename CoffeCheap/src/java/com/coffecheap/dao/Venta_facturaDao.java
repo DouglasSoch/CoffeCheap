@@ -146,6 +146,54 @@ public class Venta_facturaDao extends Dao {
 
   }
 
+  public boolean controlGenerarFactura(Venta_factura VF, int mesa) throws Exception {
+
+    int es = 0;
+    int idPedido = 0;
+    String Ten = null;
+    boolean estado = false;
+
+    try {
+
+      this.Conectar();
+
+      PreparedStatement s4 = this.getCon().prepareStatement("select id_pedido from control where id_mesa=?;");
+      s4.setInt(1, mesa);
+      ResultSet n4 = s4.executeQuery();
+
+      if (n4.next()) {
+
+        if (n4.getInt(1) == 2) {
+
+          PreparedStatement s2 = this.getCon().prepareStatement("select id_pedido from control where id_mesa=?;");
+          s2.setInt(1, mesa);
+          ResultSet n = s2.executeQuery();
+
+          if (n.next()) {
+            idPedido = n.getInt(1);
+          }
+
+          PreparedStatement s3 = this.getCon().prepareStatement("select *from venta_factura where id_pedido=?;");
+          s3.setInt(1, idPedido);
+          ResultSet n2 = s3.executeQuery();
+
+          if (n2.next()) {
+            estado = true;
+          } else {
+            estado = false;
+          }
+
+        }
+      }
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+    }
+    return estado;
+  }
+
   public void registrar_venta(Venta_factura VF, int mesa) throws Exception {
     int idPedido = 0;
     double TenToT = 0.0;
@@ -161,7 +209,7 @@ public class Venta_facturaDao extends Dao {
         idPedido = n.getInt(1);
       }
 
-      PreparedStatement s3 = this.getCon().prepareStatement("select sum(precio) from plato_pedido WHERE id_pedido=?");
+      PreparedStatement s3 = this.getCon().prepareStatement("select sum(cantidad*precio) from plato_pedido WHERE id_pedido=?");
       s3.setInt(1, idPedido);
       ResultSet n2 = s3.executeQuery();
 
@@ -188,8 +236,8 @@ public class Venta_facturaDao extends Dao {
       java.util.Date dates = new java.util.Date();
       long fechaSis = dates.getTime();
       java.sql.Timestamp d = new java.sql.Timestamp(fechaSis);
-      VF.setFecha_emision(d);      
-      
+      VF.setFecha_emision(d);
+
 //      java.util.Date utilDate = new java.util.Date(); //fecha actual
 //      long lnMilisegundos = utilDate.getTime();
 //      java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
@@ -199,7 +247,6 @@ public class Venta_facturaDao extends Dao {
 //      System.out.println("sql.Date: " + sqlDate);
 //      System.out.println("sql.Time: " + sqlTime);
 //      System.out.println("sql.Timestamp: " + sqlTimestamp);
-
       PreparedStatement st = this.getCon().prepareStatement("INSERT INTO `venta_factura` (`nit_empresa`, `subtotal`, `iva`, `propina`, `total`, `fecha_emision`, `id_pedido`) "
               + "VALUES (?, ?, ?, ?, ?, ?, ?);");
 

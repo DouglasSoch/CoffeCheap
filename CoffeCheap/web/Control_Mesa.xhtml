@@ -15,65 +15,57 @@
       <ui:define name="content">
 
         <h:form class="flip" id="tempo">
-          <p:growl id="messages" life="2000"/>
+          <p:growl id="messages" life="1500"/>
 
-          <p:panelGrid id="desplegar1" columns="6" >
+          <p:panelGrid id="desplegar1" columns="5">
             <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
-              
+
               <p:outputLabel value="${i}" style="color: black; align-items: center" class="#{control_mesaBean.ControlEstado(i)};"/>                           
 
-              <b:commandButton actionListener="#{control_mesaBean.CambioEstado(i)}" update="messages, tempo" value="Pedido"  style="color: black;" look="#{control_mesaBean.ControlEstado(i)};"/>
+              <b:commandButton actionListener="#{control_mesaBean.CambioEstado(i)}" update="messages, tempo" value="Pedido"  style="color: black" look="#{control_mesaBean.ControlEstado(i)}"/>
 
               <b:commandButton  update="display, tempo, messages" oncomplete="PF('dlg').show()" value="Generar Factura" 
-                                   style="color: black; " look="#{control_mesaBean.ControlEstado(i)};" 
-                                  disabled="#{control_mesaBean.HabilitarPago(i)}" />
+                                style="color: black" look="#{control_mesaBean.ControlEstado(i)}" 
+                                disabled="#{venta_facturaBean.controlGenerarFactura(i)}"  actionListener="#{control_mesaBean.control_mesa.setNMesa(i)}"/>
 
               <b:commandButton  actionListener="#{control_mesaBean.RegistrarPago(i)}" update="tempo, messages" value="#{control_mesaBean.EstaPago(i)}" 
-                                  style="color: black; " look="#{control_mesaBean.ControlEstado(i)};" 
+                                style="color: black" look="#{control_mesaBean.ControlEstado(i)}" 
                                 disabled="#{control_mesaBean.HabilitarPago(i)}"/>
 
-              <b:commandButton  actionListener="#{control_mesaBean.LimpiarMesa(i)}" update="messages, tempo" value="Vaciar_Mesa"  
-                                style="color: black; " look="bg-gradient-dark"/>
-
-            <!-- <p:commandButton  value="Historial"  style="color: black; background-color: {control_mesaBean.ControlEstado(i)};"/>  -->
-            </c:forEach>
-
+              <b:commandButton   actionListener="#{control_mesaBean.LimpiarMesa(i)}" update="messages, tempo" value="Vaciar_Mesa"  
+                                 style="color: black" look="#{control_mesaBean.ControlEstado(i)}"/>          
+            </c:forEach>              
           </p:panelGrid>
-          
-          <p:dialog widgetVar="dlg2" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
-            <p:panelGrid id="display2" columns="2" columnClasses="label,value">
-           
-            <p:outputLabel  value="Control Pago" />           
 
-            <h:outputText value="Propina: "/>
-            <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style=" align-content: center;" />
+          <!-- <p:commandButton  value="Historial"  style="color: black; background-color: {control_mesaBean.ControlEstado(i)};"/>  -->
 
-            <p:commandButton value="Guardar" update="display" actionListener="#{venta_facturaBean.registrar_venta(3)}"  oncomplete="PF('dlg').hide();"/>
-                      
-            </p:panelGrid>
-          </p:dialog>
-          
           <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Registrar Cliente" showEffect="fade"> 
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
-           
 
-            <p:outputLabel value="ingrese id  "/>
-            <p:inputText  value="#{clienteBean.cliente.id_cliente}"/>
 
-            <p:outputLabel value="ingrese nit  "/>
-            <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
+              <p:outputLabel value="ingrese nit  " style="color: black"/>
+              <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
 
-            <p:outputLabel value="ingrese nombre "/>
-            <p:inputText  value="#{clienteBean.cliente.nombre}"/>
+              <c:if test="#{clienteBean.cliente.nombre!=null}">
+                <p:outputLabel value="ingrese nombre " style="color: black" />
+                <p:inputText  value="#{clienteBean.cliente.nombre}" />
+                <p:outputLabel value="ingrese Direccion  " style="color: black"/>
+                <p:inputText  value="#{clienteBean.cliente.direccion}"/>
+                <h:outputText value="Propina: " style="color: black"/>
+                <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
+                <p:outputLabel value="&nbsp;"/>
 
-            <p:outputLabel value="ingrese Direccion  "/>
-            <p:inputText  value="#{clienteBean.cliente.direccion}"/>
-          
-          
-          <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>
-          <p:outputLabel value="&nbsp;&nbsp;"/>
-          <p:commandButton value="Registrar" actionListener="#{clienteBean.registrar()}" />   
-                      
+                <p:commandButton value="Factura" actionListener="#{venta_facturaBean.registrar_venta(control_mesaBean.control_mesa.getNMesa())}" style="width:200px; align-content: center;height: 30px" onselect="PF(dlg).hide;" />
+
+              </c:if>              
+              <c:if test="#{clienteBean.cliente.nombre==null}">
+
+                <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>                
+              </c:if>
+
+
+
+
             </p:panelGrid>
           </p:dialog>      
 

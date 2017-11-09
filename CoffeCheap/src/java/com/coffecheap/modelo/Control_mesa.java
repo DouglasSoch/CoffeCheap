@@ -16,7 +16,17 @@ public class Control_mesa {
     Mesa mesa= new Mesa();
     Boolean pago= false;
     Boolean vaciar= false;
+    int NMesa;
+   
+   
+  public int getNMesa() {
+    return NMesa;
+  }
 
+  public void setNMesa(int NMesa) {
+    this.NMesa = NMesa;
+  }
+  
     public Control_mesa() {
     }
 

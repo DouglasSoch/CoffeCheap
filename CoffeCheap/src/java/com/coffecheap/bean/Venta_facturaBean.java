@@ -7,6 +7,7 @@ package com.coffecheap.bean;
 import com.coffecheap.dao.Control_mesaDao;
 import com.coffecheap.modelo.Venta_factura;
 import com.coffecheap.dao.Venta_facturaDao;
+import com.coffecheap.modelo.Control_mesa;
 import com.coffecheap.modelo.Proveedor_productos;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -107,6 +108,8 @@ public class Venta_facturaBean {
 
   public void registrar_venta(int mesa) {
 
+    venta_factura.setEstadoFactura(true);
+    
     System.out.println("*******************************************************registrar");
 
     Venta_facturaDao dao;
@@ -121,6 +124,25 @@ public class Venta_facturaBean {
       System.out.println(e);
     }
 
+  }
+  
+    public boolean controlGenerarFactura(int mesa) {
+
+    boolean estado=false;
+    
+    System.out.println("*******************************************************registrar");
+    Venta_facturaDao dao;
+    
+
+    try {
+
+      dao = new Venta_facturaDao();
+      estado=dao.controlGenerarFactura(venta_factura, mesa);
+
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+    return estado;
   }
 
 }

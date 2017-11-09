@@ -18,17 +18,7 @@ public class Transaccion_inventarioBean {
 
     Transaccion_inventario traInv = new Transaccion_inventario();
     List<Transaccion_inventario> lsttraInv = new ArrayList();
-    List<Transaccion_inventario> lsttraInv2 = new ArrayList();
     String fechaSus = null;
-    
-    public List<Transaccion_inventario> getLsttraInv2() {
-        return lsttraInv2;
-    }
-
-    public void setLsttraInv2(List<Transaccion_inventario> lsttraInv2) {
-        this.lsttraInv2 = lsttraInv2;
-    }
-    
  
     
     public String getFechaSus() {
@@ -58,7 +48,7 @@ public class Transaccion_inventarioBean {
     public void registrar() throws Exception {
 
         Transaccion_InventarioDAO dao = new Transaccion_InventarioDAO();
-//manejo de fecha y registrar
+
         try {
             
             if (traInv.getTtransaccion().getId_tipo_transacciones() != 0) {
@@ -136,34 +126,34 @@ public class Transaccion_inventarioBean {
             
               
             dao = new Transaccion_InventarioDAO();
-            lsttraInv=dao.mostrarPorRangoEspecial(traInv);
+            lsttraInv =dao.mostrarPorRangoEspecial(traInv);
         }catch(Exception e)
         {
             throw e;
         }
     }
          
-          public void leerParaProducto() throws Exception
+          public void leerParaModificarProducto() throws Exception
     {
         Transaccion_InventarioDAO dao;
         
         try
         {
             dao = new Transaccion_InventarioDAO();
-            lsttraInv2=dao.listarParaProducto();
+            lsttraInv =dao.listarParaModificarProducto();
         }catch(Exception e)
         {
             throw e;
         }
     }
-               public void leerParaTipoTransacciones() throws Exception
+               public void leerParaModificarTipoTransacciones() throws Exception
     {
         Transaccion_InventarioDAO dao;
         
         try
         {
             dao = new Transaccion_InventarioDAO();
-            lsttraInv =dao.listarParaTtransaccion();
+            lsttraInv =dao.listarParaModificarTtransaccion();
         }catch(Exception e)
         {
             throw e;
@@ -189,7 +179,7 @@ public class Transaccion_inventarioBean {
                        throw e;
                    }
                }
-    /*      
+    /*         
                  public void eliminar() throws Exception
     {
         
