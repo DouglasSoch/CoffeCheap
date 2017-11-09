@@ -6,112 +6,88 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      >
 
-  <h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <h:outputStylesheet name="/css/default.css"/>
-    <h:outputStylesheet name="/css/cssLayout.css"/>
-    <h:outputStylesheet name="/css/animate.css"/>
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-     
-  <!-- <f:event type="preRenderView" listener="{verificar_login.vrificarSession()}"/> -->
-  
-    <link href="../../resources/css/animate.css" rel="stylesheet" type="text/css"/>
-    
-    <title>Empresa de Parqueo</title>
-  </h:head>
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="/css/default.css"/>
+        <h:outputStylesheet name="/css/cssLayout.css"/>
+        <h:outputStylesheet name="/css/animate.css"/>
 
-  <h:body>
 
-    <div id="top" class="top" align="center"><B>
+        <!-- <f:event type="preRenderView" listener="{verificar_login.vrificarSession()}"/> -->
 
-        <ui:insert name="top">
-          <b:navBar brand="Brand" brandHref="#" inverse="true" fixed="top">
-            <b:navbarLinks>
-              <b:navLink value="Link" href="#"></b:navLink>
-              <b:navLink value="Link" href="#"></b:navLink>
-              <b:dropMenu value="Dropdown">
-                <b:navLink value="Action" href="#"></b:navLink>
-                <b:navLink value="Another action" href="#"></b:navLink>
-                <b:navLink value="Something else here" href="#"></b:navLink>
-                <b:navLink></b:navLink>
-                <b:navLink header="Nav header"></b:navLink>
-                <b:navLink value="Separated link" href="#"></b:navLink>
-                <b:navLink value="One more separated link" href="#"></b:navLink>
-              </b:dropMenu>
-            </b:navbarLinks>
-            <h:form styleClass="navbar-form navbar-right">
-              <div class="form-group">
-                <b:inputText placeholder="Email" fieldSize="sm"/>
-                <!--input type="text" class="form-control" placeholder="Search"/-->
-              </div>
-              <div class="form-group">
-                <b:inputText placeholder="Password" fieldSize="sm"/>
-              </div> 
-              #{' '}
-              <b:commandButton action="a" value="Sign in" look="success" icon="chevron-right" iconAlign="right"/>
-            </h:form>
-          </b:navBar>
+        <link href="../../resources/css/animate.css" rel="stylesheet" type="text/css"/>
 
-        </ui:insert>
-      </B></div>
-    <div>
-      <!--
-      <div id="left" align="center">
-        <ui:insert name="left"> 
-          
-          <h:form>
-            <p:growl id="messages" showDetail="true" />
+        <title>Empresa de Parqueo</title>
+    </h:head>
 
-            <p:slideMenu style="width:auto;height:auto" class="col-ms-3">
-              <p:submenu label="Ajax Menuitems" icon="ui-icon-refresh">
-                <p:menuitem value="Save" actionListener="#{menuView.save()}" update="messages" icon="ui-icon-disk" />
-                <p:menuitem value="Update" actionListener="#{menuView.update()}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
-              </p:submenu>
-              <p:submenu label="Non-Ajax Menuitem" icon="ui-icon-newwin">
-                <p:menuitem value="Delete" actionListener="#{menuView.delete()}"  ajax="false" icon="ui-icon-close"/>
-              </p:submenu>
-              <p:separator />
-              <p:submenu label="Navigations" icon="ui-icon-extlink">
-                <p:submenu label="Prime Links">
-                  <p:menuitem value="Prime" url="http://www.prime.com.tr" />
-                  <p:menuitem value="PrimeFaces" url="http://www.primefaces.org" />
-                </p:submenu>
-                <p:menuitem value="Mobile" outcome="index" />
-              </p:submenu>
-            </p:slideMenu>
-            
-            <p:slideMenu style="width:auto;height:auto" class="col-ms-3">
-              <p:submenu label="Ajax Menuitems" icon="ui-icon-refresh">
-                <p:menuitem value="Save" actionListener="#{menuView.save()}" update="messages" icon="ui-icon-disk" />
-                <p:menuitem value="Update" actionListener="#{menuView.update()}" update="messages" icon="ui-icon-arrowrefresh-1-w" />
-              </p:submenu>
-              <p:submenu label="Non-Ajax Menuitem" icon="ui-icon-newwin">
-                <p:menuitem value="Delete" actionListener="#{menuView.delete()}"  ajax="false" icon="ui-icon-close"/>
-              </p:submenu>
-              <p:separator />
-              <p:submenu label="Navigations" icon="ui-icon-extlink">
-                <p:submenu label="Prime Links">
-                  <p:menuitem value="Prime" url="http://www.prime.com.tr" />
-                  <p:menuitem value="PrimeFaces" url="http://www.primefaces.org" />
-                </p:submenu>
-                <p:menuitem value="Mobile" outcome="index" />
-              </p:submenu>
-            </p:slideMenu>
-            
-          </h:form>
-          
-        </ui:insert>
-      </div>
-      -->
-      <div id="content" class="left_content flip" align="center"><B>
-          <ui:insert name="content">
+    <h:body>
 
-          </ui:insert>
-        </B></div>
-    </div>
+        <div id="top" class="top" align="center"><B>
 
-  </h:body>
+                <ui:insert name="top">
+                    <b:navBar brand="Brand" brandHref="#" inverse="true" fixed="top">
+                        <b:navbarLinks>
+                            <b:navLink value="Link" href="#"></b:navLink>
+                            <b:navLink value="Link" href="#"></b:navLink>
+                            <b:dropMenu value="Dropdown">
+                                <b:navLink value="Action" href="#"></b:navLink>
+                                <b:navLink value="Another action" href="#"></b:navLink>
+                                <b:navLink value="Something else here" href="#"></b:navLink>
+                                <b:navLink></b:navLink>
+                                <b:navLink header="Nav header"></b:navLink>
+                                <b:navLink value="Separated link" href="#"></b:navLink>
+                                <b:navLink value="One more separated link" href="#"></b:navLink>
+                            </b:dropMenu>
+                        </b:navbarLinks>
+                        <h:form styleClass="navbar-form navbar-right">
+                            <div class="form-group">
+                                <b:inputText placeholder="Email" fieldSize="sm"/>
+                                <!--input type="text" class="form-control" placeholder="Search"/-->
+                            </div>
+                            <div class="form-group">
+                                <b:inputText placeholder="Password" fieldSize="sm"/>
+                            </div> 
+                            <b:commandButton action="a" value="Sign in" look="success" icon="chevron-right" iconAlign="right"/>
+                        </h:form>
+                    </b:navBar>
+
+                </ui:insert>
+            </B></div>
+        <div>
+
+            <div id="left" align="center">
+                <ui:insert name="left"> 
+                    <!--<f:event type="preRenderView" listener="{menuBean.usu()}"/>-->
+                    <h:form>
+                        <p:growl id="messages" showDetail="true" />
+                        <!--<p:slideMenu style="width:auto;height:auto" class="col-ms-3">            
+                            <c:forEach var = "i" begin = "1" end = "{menuBean.Cantidad1()}" step="1">
+                                <p:submenu label="{menuBean.Mostrar(menuBean.CodigoEnvio(i))}">
+                                    <c:forEach var = "j" begin = "1" end = "{menuBean.Cantidad2(menuBean.CodigoEnvio(i))}" step="1">
+                                        <p:menuitem value="{menuBean.Submenu(menuBean.CodigoEnvio(i), menuBean.CodigoEnvio2(menuBean.CodigoEnvio(i), j))}" 
+                                                    url="{menuBean.PaginaLlamado(menuBean.CodigoEnvio(i), menuBean.CodigoEnvio2(menuBean.CodigoEnvio(i), j))}"/>
+                                    </c:forEach>
+                                    
+                                </p:submenu>
+                            </c:forEach>
+                            <p:separator />
+                        </p:slideMenu>-->
+                    </h:form>
+
+
+                </ui:insert>
+            </div>
+
+            <div id="content" class="left_content flip" align="center"><B>
+                    <ui:insert name="content">
+
+                    </ui:insert>
+                </B></div>
+        </div>
+
+    </h:body>
 
 </html>
