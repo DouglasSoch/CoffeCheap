@@ -61,5 +61,10 @@ public class Chef_temporal_bean {
     System.out.println("" + valor + "* " + estado + "");
     return estado;
   }
+      
+      public void estado(){
+          
+      }
+             
     
 }

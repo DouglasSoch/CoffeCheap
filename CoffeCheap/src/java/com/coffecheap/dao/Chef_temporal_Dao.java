@@ -82,4 +82,23 @@ public class Chef_temporal_Dao extends Dao{
 
   }
  
+ 
+ 
+//   public void modificar(Tem_chef tt) throws Exception {
+//    try {
+//      this.Conectar();
+//      PreparedStatement st = this.getCon().prepareStatement("UPDATE  tem_chef SET id_estado=? WHERE id_chef_temporal=?;");
+//
+//      st.setInt(1, tt.getId_estado());
+//      st.setString(2, tt.getNombre());
+//      st.setInt(3, tt.getId_estado());
+//
+//      st.executeUpdate();
+//
+//    } catch (Exception ex) {
+//      throw ex;
+//    } finally {
+//      this.Desconecar();
+//    }
+//  }
 }
