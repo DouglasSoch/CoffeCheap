@@ -8,8 +8,11 @@ package com.coffecheap.bean;
 import com.coffecheap.dao.Chef_temporal_Dao;
 import com.coffecheap.modelo.Tem_chef;
 import java.util.ArrayList;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.RowEditEvent;
 
 /**
  *
@@ -49,7 +52,7 @@ public class Chef_temporal_bean {
     }
 
     public String ControlColor(int valor) throws Exception {
-        System.out.println("********************************Pago de mesa");
+        //System.out.println("********************************Pago de mesa");
         Chef_temporal_Dao dao;
         String estado = null;
         try {
@@ -59,35 +62,32 @@ public class Chef_temporal_bean {
             throw e;
         }
 
-        System.out.println("" + valor + "* " + estado + "");
+        // System.out.println("" + valor + "* " + estado + "");
         return estado;
     }
 
-    public void Eliminar(int codigo) throws Exception {
+    public String Eliminar(int codigo, int codigo2) throws Exception {
+
+        String respuesta = null;
         Chef_temporal_Dao dao;
         try {
             dao = new Chef_temporal_Dao();
-            dao.Eliminar(codigo);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-    
-    public int beliminar(int codigoenvio) throws Exception {
-        
-        int respuesta;
-        Chef_temporal_Dao dao;
-        try {
-            System.out.println("codigoenvio: " + codigoenvio);
-            dao = new Chef_temporal_Dao();
-            respuesta = dao.BotonEliminar(codigoenvio);
-            System.out.println("respuesta del boton eliminar: " + respuesta);
+            if (codigo2 == 2) {
+                dao.Eliminar(codigo);
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminado Correctamente",""));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Tiene que preparar el platillo para eliminar el registro"));
+            }
+
         } catch (Exception e) {
             throw e;
         }
         return respuesta;
     }
-    
+
+    public void info() {
+        
+    }
 
     public void estado(int codigo) throws Exception {
 
@@ -106,7 +106,6 @@ public class Chef_temporal_bean {
         try {
             dao = new Chef_temporal_Dao();
             respuesta = dao.NombreBoton(codigo);
-            System.out.println("repuesta: " + respuesta);
         } catch (Exception e) {
             throw e;
         }
