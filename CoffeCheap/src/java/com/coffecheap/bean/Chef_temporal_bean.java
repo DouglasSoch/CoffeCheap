@@ -89,6 +89,19 @@ public class Chef_temporal_bean {
         
     }
 
+    public int beliminar(int codigoenvio) throws Exception {
+
+        int respuesta;
+        Chef_temporal_Dao dao;
+        try {
+            dao = new Chef_temporal_Dao();
+            respuesta = dao.BotonEliminar(codigoenvio);
+        } catch (Exception e) {
+            throw e;
+        }
+        return respuesta;
+    }
+
     public void estado(int codigo) throws Exception {
 
         Chef_temporal_Dao dao;
