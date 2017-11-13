@@ -15,7 +15,18 @@ public class Estado_plato {
     
     int id=0;
     String nombre= null;
+    int id2=0;
 
+    public int getId2() {
+        return id2;
+    }
+
+    public void setId2(int id2) {
+        this.id2 = id2;
+    }
+    
+    
+    
     public Estado_plato() {
     }
 

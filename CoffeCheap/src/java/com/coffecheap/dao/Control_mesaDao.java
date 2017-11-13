@@ -132,8 +132,6 @@ public class Control_mesaDao extends Dao {
   }
 
   public String ControlEstado(int mesa) throws Exception {
-    //String color = "rgb(115, 191, 209)";
-    //String color = "bg-gradient-warning";
     String color = "defaul";
     System.out.println("*******************************************************modificar dao");
     try {
@@ -320,6 +318,33 @@ public class Control_mesaDao extends Dao {
 
   }
   
+ public void controlreserva(int mesa) throws Exception {
+
+    
+    System.out.println("*******************************************************control de reserva dao");
+    try {
+      this.Conectar();
+      PreparedStatement s2 = this.getCon().prepareStatement("select id_estado from mesa WHERE id_mesa=?;");
+      s2.setInt(1, mesa);
+      ResultSet n = s2.executeQuery();
+
+      if (n.next()) {
+        if (n.getInt(1) == 1) {
+          //color = "defaul";
+        } else {
+          //color = "warning";
+        }
+
+      }
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+    }
+
+    
+}
   
   
   
