@@ -17,7 +17,7 @@ public class Reserva
     String hora_salida = null;
     String fechaSus = null;
     Cliente cliente = new Cliente();
-    Mesa mesa = new Mesa(9);
+    Mesa mesa = new Mesa();
 
     public Reserva() {
     }
