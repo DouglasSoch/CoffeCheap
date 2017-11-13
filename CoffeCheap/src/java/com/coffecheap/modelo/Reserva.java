@@ -8,14 +8,19 @@ import java.util.Objects;
 
 public class Reserva 
 {
-    int id_reserva= 0; 
+    int id_reserva =0 ; 
     Date fecha = null;
     Time hora_inicio = null ;
-    Time hora_final = null;
+    Time hora_final= null;
     int cantidad_personas = 0;
-    String hora_entrada= null;
-    String hora_salida= null;
-    String fechaSus= null;
+    String hora_entrada = null;
+    String hora_salida = null;
+    String fechaSus = null;
+    Cliente cliente = new Cliente();
+    Mesa mesa = new Mesa(9);
+
+    public Reserva() {
+    }
 
     public Reserva(int id_reserva) {
         this.id_reserva = id_reserva;
@@ -33,7 +38,15 @@ public class Reserva
         this.hora_entrada = hora_entrada;
     }
 
-    public Reserva(int id_reserva, Date fecha, Time hora_inicio, Time hora_final, int cantidad_personas, String hora_entrada, String hora_salida, String fechaSus) {
+    public Reserva(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Reserva(Mesa mesa) {
+        this.mesa = mesa;
+    }
+
+    public Reserva(int id_reserva, Date fecha, Time hora_inicio, Time hora_final, int cantidad_personas, String hora_entrada, String hora_salida, String fechaSus, Cliente cliente, Mesa mesa) {
         this.id_reserva = id_reserva;
         this.fecha = fecha;
         this.hora_inicio = hora_inicio;
@@ -42,11 +55,10 @@ public class Reserva
         this.hora_entrada = hora_entrada;
         this.hora_salida = hora_salida;
         this.fechaSus = fechaSus;
+        this.cliente = cliente;
+        this.mesa = mesa;
     }
 
-    public Reserva() {
-    }
- 
     public int getId_reserva() {
         return id_reserva;
     }
@@ -92,7 +104,6 @@ public class Reserva
     }
 
     public void setHora_entrada(String hora_entrada) {
-        //String formateador = new SimpleDateFormat("yyyy-MM-dd").format(this.g);
         this.hora_entrada = hora_entrada;
     }
 
@@ -112,17 +123,35 @@ public class Reserva
         this.fechaSus = fechaSus;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Mesa getMesa() {
+        return mesa;
+    }
+
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 47 * hash + this.id_reserva;
-        hash = 47 * hash + Objects.hashCode(this.fecha);
-        hash = 47 * hash + Objects.hashCode(this.hora_inicio);
-        hash = 47 * hash + Objects.hashCode(this.hora_final);
-        hash = 47 * hash + this.cantidad_personas;
-        hash = 47 * hash + Objects.hashCode(this.hora_entrada);
-        hash = 47 * hash + Objects.hashCode(this.hora_salida);
-        hash = 47 * hash + Objects.hashCode(this.fechaSus);
+        int hash = 7;
+        hash = 37 * hash + this.id_reserva;
+        hash = 37 * hash + Objects.hashCode(this.fecha);
+        hash = 37 * hash + Objects.hashCode(this.hora_inicio);
+        hash = 37 * hash + Objects.hashCode(this.hora_final);
+        hash = 37 * hash + this.cantidad_personas;
+        hash = 37 * hash + Objects.hashCode(this.hora_entrada);
+        hash = 37 * hash + Objects.hashCode(this.hora_salida);
+        hash = 37 * hash + Objects.hashCode(this.fechaSus);
+        hash = 37 * hash + Objects.hashCode(this.cliente);
+        hash = 37 * hash + Objects.hashCode(this.mesa);
         return hash;
     }
 
@@ -159,11 +188,20 @@ public class Reserva
         if (!Objects.equals(this.hora_inicio, other.hora_inicio)) {
             return false;
         }
-        return Objects.equals(this.hora_final, other.hora_final);
+        if (!Objects.equals(this.hora_final, other.hora_final)) {
+            return false;
+        }
+        if (!Objects.equals(this.cliente, other.cliente)) {
+            return false;
+        }
+        return Objects.equals(this.mesa, other.mesa);
     }
 
     @Override
     public String toString() {
-        return "Reserva{" + "id_reserva=" + id_reserva + ", fecha=" + fecha + ", hora_inicio=" + hora_inicio + ", hora_final=" + hora_final + ", cantidad_personas=" + cantidad_personas + ", hora_entrada=" + hora_entrada + ", hora_salida=" + hora_salida + ", fechaSus=" + fechaSus + '}';
+        return "Reserva{" + "id_reserva=" + id_reserva + ", fecha=" + fecha + ", hora_inicio=" + hora_inicio + ", hora_final=" + hora_final + ", cantidad_personas=" + cantidad_personas + ", hora_entrada=" + hora_entrada + ", hora_salida=" + hora_salida + ", fechaSus=" + fechaSus + ", cliente=" + cliente + ", mesa=" + mesa + '}';
     }
+
+    
+    
 }

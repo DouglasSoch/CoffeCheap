@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:outputLabel value="ingrese id  "/>
+            <p:inputText  value="#{reservaBean.cliente.id_cliente}"/>
+            <br/>
+            <p:outputLabel value="ingrese nit  "/>
+            <p:inputText  value="#{reservaBean.cliente.nit_cliente}"/>
+            <br/>
+            <p:outputLabel value="ingrese nombre "/>
+            <p:inputText  value="#{reservaBean.cliente.nombre}"/>
+            <br/>
+            <p:outputLabel value="ingrese Direccion  "/>
+            <p:inputText  value="#{reservaBean.cliente.direccion}"/>
+            <br/>
+             <p:outputLabel value="ingrese id Reserva "/>
+             <p:inputText  value="#{reservaBean.reserva.id_reserva}"/>
+            <br/>
+            <p:outputLabel value="ingrese fecha  "/>
+              <p:calendar id="Orden" value="#{reservaBean.reserva.fecha}" pattern="yyyy-MM-dd" locale="es"/> 
+            <br/>
+              <h:outputLabel value="Hora inicio" />
+            <h:inputText class="timepicker" value="#{reservaBean.reserva.hora_entrada}"/>
+            <br/> 
+            <h:outputLabel value="Hora final" />
+            <h:inputText class="timepicker" value="#{reservaBean.reserva.hora_salida}"/>
+            <br/>
+               <p:outputLabel value="cantidad de personas "/>
+               <p:inputText  value="#{reservaBean.reserva.cantidad_personas}"/>
+            <br/>
+            <p:outputLabel value="id cliente  "/>
+            <p:inputText  value="#{reservaBean.reserva.cliente.id_cliente}"/>
+            <br/>
+            <p:commandButton value="Guardar" actionListener="#{reservaBean.registrarCyR()}"/>
+
+        </h:form>
+    </h:body>
+</html>
+
