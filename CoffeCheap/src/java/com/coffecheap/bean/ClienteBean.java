@@ -31,12 +31,10 @@ public class ClienteBean {
   }
 
   public void registrar() throws Exception {
-
     ClienteDao dao;
     try {
       dao = new ClienteDao();
       dao.registrar(cliente);
-
     } catch (Exception e) {
       System.out.println(e);
     }

@@ -17,9 +17,19 @@ import javax.faces.bean.ViewScoped;
 public class Transaccion_inventarioBean {
 
     Transaccion_inventario traInv = new Transaccion_inventario();
+    List<Transaccion_inventario> lsttraInv2 = new ArrayList();
     List<Transaccion_inventario> lsttraInv = new ArrayList();
     String fechaSus = null;
+
+    public List<Transaccion_inventario> getLsttraInv2() {
+        return lsttraInv2;
+    }
+
+    public void setLsttraInv2(List<Transaccion_inventario> lsttraInv2) {
+        this.lsttraInv2 = lsttraInv2;
+    }
  
+    
     
     public String getFechaSus() {
         return fechaSus;
@@ -140,7 +150,7 @@ public class Transaccion_inventarioBean {
         try
         {
             dao = new Transaccion_InventarioDAO();
-            lsttraInv =dao.listarParaModificarProducto();
+            lsttraInv2 =dao.listarParaModificarProducto();
         }catch(Exception e)
         {
             throw e;

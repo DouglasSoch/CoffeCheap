@@ -12,14 +12,12 @@ public class ClienteDao extends Dao {
 
     public void registrar(Cliente cli) throws Exception {
         try {
-
             this.Conectar();
-
-            PreparedStatement st = this.getCon().prepareStatement("insert into cliente values (?,?,?)");
-           
-            st.setString(1, cli.getNit_cliente());
-            st.setString(2, cli.getNombre());
-            st.setString(3, cli.getDireccion());
+            PreparedStatement st = this.getCon().prepareStatement("insert into cliente values (?,?,?,?)");
+            st.setInt(1, cli.getId_cliente());
+            st.setString(2, cli.getNit_cliente());
+            st.setString(3, cli.getNombre());
+            st.setString(4, cli.getDireccion());            
             st.executeUpdate();
         } catch (Exception e) {
             throw e;

@@ -15,11 +15,11 @@ import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @ViewScoped
-public class ReservaBean 
+public class ReservaBean extends ClienteBean
 {
     List<Reserva> lstReserva = new ArrayList();
     Reserva reserva = new Reserva();
-
+  
     public List<Reserva> getLstReserva() {
         return lstReserva;
     }
@@ -36,6 +36,27 @@ public class ReservaBean
         this.reserva = reserva;
     }
 
+    
+         public void registrarCyR() throws Exception {
+       
+        ReservaDao dao ;
+        
+         
+        try {             
+             String formateador = new SimpleDateFormat("yyyy-MM-dd").format(reserva.getFecha());
+                        reserva.setFechaSus(formateador);
+            
+                       dao = new ReservaDao();
+                       
+                       System.out.println("id del cliente"+cliente.getId_cliente());
+                       System.out.println("cantidad de personas"+reserva.getCantidad_personas());
+                       
+                       dao.registrarclienteYReserva(reserva, cliente);
+                       
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
     
     
      public void registrar() throws Exception {

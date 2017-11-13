@@ -5,12 +5,8 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"/>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>    
-    <!-- Compiled and minified JavaScript -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>   
+     
+ 
     </h:head>
     
     <h:body>
@@ -30,22 +26,11 @@
             <p:outputLabel value="cantidad" />
             <p:autoComplete id="cantidad" value="#{reservaBean.reserva.cantidad_personas}"/>        
             <br/>
+             <p:outputLabel value="id cliente" />
+             <p:autoComplete id="cliente" value="#{reservaBean.reserva.cliente.id_cliente}"/> 
             <p:commandButton value="Guardar" actionListener="#{reservaBean.registrar()}"/>
         </h:form>
-        <script>
-                       
-         $('.timepicker').pickatime({
-    //default: 'now', // Set default time: 'now', '1:30AM', '16:30'
-    //fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
-    twelvehour: false, // Use AM/PM or 24-hour format
-    donetext: 'OK', // text for done-button
-    cleartext: 'Clear', // text for clear-button
-    canceltext: 'Cancel', // Text for cancel-button
-    autoclose: false, // automatic close timepicker
-    aftershow: function(){} //Function for after opening timepicker
-  });
-        
-    </script>    
+   
     </h:body>
 </html>
 
