@@ -319,10 +319,15 @@ public class Control_mesaDao extends Dao {
   }
   
  public void controlreserva(int mesa) throws Exception {
-
-    
+   
     System.out.println("*******************************************************control de reserva dao");
     try {
+      
+      java.util.Date utilDate = new java.util.Date(); //fecha actual
+      long lnMilisegundos = utilDate.getTime();
+      java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
+      System.out.println("sql.Date: " + sqlDate);
+      
       this.Conectar();
       PreparedStatement s2 = this.getCon().prepareStatement("select id_estado from mesa WHERE id_mesa=?;");
       s2.setInt(1, mesa);
@@ -334,7 +339,6 @@ public class Control_mesaDao extends Dao {
         } else {
           //color = "warning";
         }
-
       }
 
     } catch (Exception ex) {

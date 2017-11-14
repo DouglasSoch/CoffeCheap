@@ -87,15 +87,16 @@ public class ClienteDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = getCon().prepareCall("select nit_cliente, nombre_cliente, direccion from cliente where nit_cliente=?");
+            PreparedStatement st = getCon().prepareCall("select id_cliente, nit_cliente, nombre_cliente, direccion from cliente where nit_cliente=?");
             st.setString(1, cliente.getNit_cliente());
             rs = st.executeQuery();
 
             while (rs.next()) {
                 cli = new Cliente();
-                cli.setNit_cliente(rs.getString(1));
-                cli.setNombre(rs.getString(2));
-                cli.setDireccion(rs.getString(3));
+                cli.setId_cliente(rs.getInt(1));
+                cli.setNit_cliente(rs.getString(2));
+                cli.setNombre(rs.getString(3));
+                cli.setDireccion(rs.getString(4));
 
             }
         } catch (Exception e) {

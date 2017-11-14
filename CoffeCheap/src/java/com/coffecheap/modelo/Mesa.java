@@ -8,7 +8,7 @@ public class Mesa
     int cantidad_comensales = 0 ;
     String ubicacion = null;
     Estado_mesa EstMesa = new Estado_mesa();
-    Reserva reserva = new Reserva();
+    
 
   public Mesa() {
   }
@@ -25,16 +25,14 @@ public class Mesa
     this.EstMesa = EstMesa;
   }
 
-  public Mesa(Reserva reserva) {
-    this.reserva = reserva;
-  }
+
 
   public Mesa(int id_mesa, int cantidad_comensales, String ubicacion, Estado_mesa EstMesa, Reserva reserva) {
     this.id_mesa = id_mesa;
     this.cantidad_comensales = cantidad_comensales;
     this.ubicacion = ubicacion;
     this.EstMesa = EstMesa;
-    this.reserva = reserva;
+   
   }
 
   public int getId_mesa() {
@@ -69,13 +67,9 @@ public class Mesa
     this.EstMesa = EstMesa;
   }
 
-  public Reserva getReserva() {
-    return reserva;
-  }
 
-  public void setReserva(Reserva reserva) {
-    this.reserva = reserva;
-  }
+
+
 
   @Override
   public int hashCode() {
@@ -84,7 +78,7 @@ public class Mesa
     hash = 71 * hash + this.cantidad_comensales;
     hash = 71 * hash + Objects.hashCode(this.ubicacion);
     hash = 71 * hash + Objects.hashCode(this.EstMesa);
-    hash = 71 * hash + Objects.hashCode(this.reserva);
+
     return hash;
   }
 
@@ -112,12 +106,13 @@ public class Mesa
     if (!Objects.equals(this.EstMesa, other.EstMesa)) {
       return false;
     }
-    return Objects.equals(this.reserva, other.reserva);
+      return false;
+    
   }
 
   @Override
   public String toString() {
-    return "Mesa{" + "id_mesa=" + id_mesa + ", cantidad_comensales=" + cantidad_comensales + ", ubicacion=" + ubicacion + ", EstMesa=" + EstMesa + ", reserva=" + reserva + '}';
+    return "Mesa{" + "id_mesa=" + id_mesa + ", cantidad_comensales=" + cantidad_comensales + ", ubicacion=" + ubicacion + ", EstMesa=" + EstMesa + '}';
   }
         
 }

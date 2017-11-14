@@ -24,22 +24,25 @@
 
               <b:commandButton actionListener="#{control_mesaBean.CambioEstado(i)}" update="messages, tempo" value="Pedido"  style="color: black" look="#{control_mesaBean.ControlEstado(i)}"/>
 
-              <b:commandButton  update="display, tempo, messages" oncomplete="PF('dlg').show()" value="Generar Factura" 
-                                style="color: black" look="#{control_mesaBean.ControlEstado(i)}" 
-                                disabled="#{venta_facturaBean.controlGenerarFactura(i)}"  actionListener="#{control_mesaBean.control_mesa.setNMesa(i)}"/>
+              <b:commandButton id="juna" update="display, tempo, messages" oncomplete="PF('dlg').show()" value="Facturar" 
+                               style="color: black" look="#{control_mesaBean.ControlEstado(i)}" 
+                               disabled="#{venta_facturaBean.controlGenerarFactura(i)}"  actionListener="#{control_mesaBean.control_mesa.setNMesa(i)}"/>
+
+
 
               <b:commandButton  actionListener="#{control_mesaBean.RegistrarPago(i)}" update="tempo, messages" value="#{control_mesaBean.EstaPago(i)}" 
                                 style="color: black" look="#{control_mesaBean.ControlEstado(i)}" 
                                 disabled="#{control_mesaBean.HabilitarPago(i)}"/>
 
               <b:commandButton   actionListener="#{control_mesaBean.LimpiarMesa(i)}" update="messages, tempo" value="Vaciar_Mesa"  
-                                 style="color: black" look="#{control_mesaBean.ControlEstado(i)}"/>          
+                                 style="color: black" look="#{control_mesaBean.ControlEstado(i)}"/>               
+
             </c:forEach>              
           </p:panelGrid>
 
           <!-- <p:commandButton  value="Historial"  style="color: black; background-color: {control_mesaBean.ControlEstado(i)};"/>  -->
 
-          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Registrar Cliente" showEffect="fade"> 
+          <p:dialog id="asd" widgetVar="dlg" modal="true" resizable="false" header="Generar factura" showEffect="fade"> 
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
 
               <p:outputLabel value="ingrese nit  " style="color: black"/>
@@ -54,21 +57,49 @@
                 <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
                 <p:outputLabel value="&nbsp;"/>
 
-                <p:commandButton value="Factura" actionListener="#{venta_facturaBean.registrar_venta(control_mesaBean.control_mesa.getNMesa())}" style="width:200px; align-content: center;height: 30px" onselect="PF(dlg).hide;" />
+                <p:commandButton value="Factura" actionListener="#{venta_facturaBean.registrar_venta(control_mesaBean.control_mesa.getNMesa(), clienteBean.cliente.id_cliente)}" style="width:200px; align-content: center;height: 30px" onselect="PF(dlg).hide;" />
 
               </c:if>              
               <c:if test="#{clienteBean.cliente.nombre==null}">
 
-                <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>                
+                <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>
+                <p:commandButton value="Effects" type="button" onclick="PF('dlg3').show();" />
+                <h:outputLink onclick="PF('dlg5').show();" title="login">
+                  <p:graphicImage name="/demo/images/login.png" />
+                </h:outputLink>
               </c:if>
 
+              <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
+                <h:outputText value="This dialog has nice effects." />
+                <p:outputLabel value="ingrese nombre " style="color: black" />
+               
+              </p:dialog>
+
+              <p:dialog header="Login" widgetVar="dlg5" resizable="false">
+                <h:panelGrid columns="2" cellpadding="5">
+                  <h:outputLabel for="username" value="Username:" />
+                 
+
+                  <h:outputLabel for="password" value="Password:" />
+                  
+
+                  <f:facet name="footer">
+                    <p:commandButton value="Login" onclick="PF('dlg').hide()" />
+                  </f:facet>  
+                </h:panelGrid>
+              </p:dialog>
 
 
 
             </p:panelGrid>
-          </p:dialog>      
+          </p:dialog>   
+
+
+
 
         </h:form>
+        
+        
 
       </ui:define>
     </ui:composition>

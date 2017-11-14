@@ -65,7 +65,7 @@ public class MenuBean implements Serializable {
         Usuario usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("nomb");
         try {
             dao = new MenuDao();
-            respuesta = dao.CantidadFor1(usuario.getTipo().getId());
+            //respuesta = dao.CantidadFor1(usuario.getTipo().getId());
         } catch (Exception e) {
             throw e;
         }

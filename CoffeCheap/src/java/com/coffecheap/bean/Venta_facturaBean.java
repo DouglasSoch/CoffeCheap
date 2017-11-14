@@ -106,7 +106,7 @@ public class Venta_facturaBean {
     }
   }
 
-  public void registrar_venta(int mesa) {
+  public void registrar_venta(int mesa, int clienteid) {
 
     venta_factura.setEstadoFactura(true);
     
@@ -118,7 +118,7 @@ public class Venta_facturaBean {
     try {
 
       dao = new Venta_facturaDao();
-      dao.registrar_venta(venta_factura, mesa);
+      dao.registrar_venta(venta_factura, mesa, clienteid);
 
     } catch (Exception e) {
       System.out.println(e);

@@ -194,7 +194,7 @@ public class Venta_facturaDao extends Dao {
     return estado;
   }
 
-  public void registrar_venta(Venta_factura VF, int mesa) throws Exception {
+  public void registrar_venta(Venta_factura VF, int mesa, int clienteid) throws Exception {
     int idPedido = 0;
     double TenToT = 0.0;
     try {
@@ -247,8 +247,8 @@ public class Venta_facturaDao extends Dao {
 //      System.out.println("sql.Date: " + sqlDate);
 //      System.out.println("sql.Time: " + sqlTime);
 //      System.out.println("sql.Timestamp: " + sqlTimestamp);
-      PreparedStatement st = this.getCon().prepareStatement("INSERT INTO `venta_factura` (`nit_empresa`, `subtotal`, `iva`, `propina`, `total`, `fecha_emision`, `id_pedido`) "
-              + "VALUES (?, ?, ?, ?, ?, ?, ?);");
+      PreparedStatement st = this.getCon().prepareStatement("INSERT INTO `venta_factura` (`nit_empresa`, `subtotal`, `iva`, `propina`, `total`, `fecha_emision`, `id_pedido`, `id_cliente`) "
+              + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
 
       st.setString(1, VF.getNit_empresa());
       st.setDouble(2, VF.getSubtotal());
@@ -257,6 +257,7 @@ public class Venta_facturaDao extends Dao {
       st.setDouble(5, VF.getTotal());
       st.setTimestamp(6, VF.getFecha_emision());
       st.setInt(7, idPedido);
+      st.setInt(8, clienteid);
 
       System.out.println("DAO");
       System.out.println("ID " + VF.getId_venta_factura());
