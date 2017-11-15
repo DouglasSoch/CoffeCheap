@@ -38,6 +38,9 @@
             <p:outputLabel value="id cliente  "/>
             <p:inputText  value="#{reservaBean.reserva.cliente.id_cliente}"/>
             <br/>
+             <p:outputLabel value="id mesa" />
+             <p:autoComplete id="cliente" value="#{reservaBean.reserva.mesa.id_mesa}"/>
+             <br/>
             <p:commandButton value="Guardar" actionListener="#{reservaBean.registrarCyR()}"/>
 
         </h:form>

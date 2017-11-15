@@ -33,13 +33,14 @@ public class ReservaDao extends Dao {
 
                 if (rs.getInt(1) == reserva.getCliente().getId_cliente()) 
                 {
-                    PreparedStatement psir = this.getCon().prepareStatement("insert into reserva values(?,?,?,?,?,?)");
+                    PreparedStatement psir = this.getCon().prepareStatement("insert into reserva values(?,?,?,?,?,?,?)");
                     psir.setInt(1, reserva.getId_reserva());
                     psir.setString(2, reserva.getFechaSus());
                     psir.setString(3, reserva.getHora_entrada());
                     psir.setString(4, reserva.getHora_salida());
                     psir.setInt(5, reserva.getCantidad_personas());
-                    psir.setInt(6, reserva.getCliente().getId_cliente());
+                    psir.setInt(6, reserva.getMesa().getId_mesa());
+                    psir.setInt(7, reserva.getCliente().getId_cliente());
                     psir.executeUpdate();
                 }
             }
@@ -53,14 +54,15 @@ public class ReservaDao extends Dao {
     public void registrar(Reserva reserva) throws Exception {
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("insert into reserva values (?,?,?,?,?,?)");
-            st.setInt(1, reserva.getId_reserva());
-            st.setString(2, reserva.getFechaSus());
-            st.setString(3, reserva.getHora_entrada());
-            st.setString(4, reserva.getHora_salida());
-            st.setInt(5, reserva.getCantidad_personas());
-            st.setInt(6, reserva.getCliente().getId_cliente());
-            st.executeUpdate();
+           PreparedStatement psir = this.getCon().prepareStatement("insert into reserva values(?,?,?,?,?,?,?)");
+                    psir.setInt(1, reserva.getId_reserva());
+                    psir.setString(2, reserva.getFechaSus());
+                    psir.setString(3, reserva.getHora_entrada());
+                    psir.setString(4, reserva.getHora_salida());
+                    psir.setInt(5, reserva.getCantidad_personas());
+                    psir.setInt(6, reserva.getMesa().getId_mesa());
+                    psir.setInt(7, reserva.getCliente().getId_cliente());
+                    psir.executeUpdate();
         } catch (Exception e) {
             throw e;
         } finally {
