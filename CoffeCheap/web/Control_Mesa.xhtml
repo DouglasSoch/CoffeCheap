@@ -42,7 +42,7 @@
 
           <!-- <p:commandButton  value="Historial"  style="color: black; background-color: {control_mesaBean.ControlEstado(i)};"/>  -->
 
-          <p:dialog id="asd" widgetVar="dlg" modal="true" resizable="false" header="Generar factura" showEffect="fade"> 
+          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Generar factura" showEffect="fade"> 
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
 
               <p:outputLabel value="ingrese nit  " style="color: black"/>
@@ -64,42 +64,33 @@
 
                 <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>
                 <p:commandButton value="Effects" type="button" onclick="PF('dlg3').show();" />
-                <h:outputLink onclick="PF('dlg5').show();" title="login">
-                  <p:graphicImage name="/demo/images/login.png" />
-                </h:outputLink>
+
               </c:if>
 
               <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
                 <h:outputText value="This dialog has nice effects." />
                 <p:outputLabel value="ingrese nombre " style="color: black" />
-               
+
+
               </p:dialog>
 
-              <p:dialog header="Login" widgetVar="dlg5" resizable="false">
-                <h:panelGrid columns="2" cellpadding="5">
-                  <h:outputLabel for="username" value="Username:" />
-                 
 
-                  <h:outputLabel for="password" value="Password:" />
-                  
-
-                  <f:facet name="footer">
-                    <p:commandButton value="Login" onclick="PF('dlg').hide()" />
-                  </f:facet>  
-                </h:panelGrid>
-              </p:dialog>
 
 
 
             </p:panelGrid>
           </p:dialog>   
 
+          <p:dialog header="Effects" widgetVar="dlg50" showEffect="explode" hideEffect="bounce" height="100">
 
+
+
+          </p:dialog>
 
 
         </h:form>
-        
-        
+
+
 
       </ui:define>
     </ui:composition>

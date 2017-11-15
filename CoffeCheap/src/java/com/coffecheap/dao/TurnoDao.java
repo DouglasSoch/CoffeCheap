@@ -67,15 +67,15 @@ public class TurnoDao extends Dao{
         
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("select * from turno");
+            PreparedStatement st = this.getCon().prepareStatement("select *from turno");
             rs = st.executeQuery();
             lista = new ArrayList();
             
             while (rs.next()) {
                 Turno turno = new Turno();
-                turno.setId_turno(rs.getInt("idturno"));
-                turno.setHorario_turno(rs.getString("horario_turno"));
-                turno.setObservaciones(rs.getString("observaciones"));
+                turno.setId_turno(rs.getInt(1));
+                turno.setHorario_turno(rs.getString(2));
+                turno.setObservaciones(rs.getString(3));
                 lista.add(turno);
             }
         } catch (Exception e) {

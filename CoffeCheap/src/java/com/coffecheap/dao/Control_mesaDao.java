@@ -349,7 +349,45 @@ public class Control_mesaDao extends Dao {
 
     
 }
-  
+ public void ListaPedido(int mesa) throws Exception {
+   
+ 
+ 
+ 
+  System.out.println("*******************************************************modificar dao");
+    try {
+      this.Conectar();
+      int idPedido = 0;
+      PreparedStatement s2 = this.getCon().prepareStatement("select id_pedido from control where id_mesa=?;");
+      s2.setInt(1, mesa);
+      ResultSet n = s2.executeQuery();
+
+      if (n.next()) {
+        idPedido = n.getInt(1);
+
+        System.out.println("El pedido = " + idPedido);
+      }
+
+      PreparedStatement esme = this.getCon().prepareStatement("select *from plato_pedido where id_pedido=?;");
+      esme.setInt(1, idPedido);
+      ResultSet n_est = esme.executeQuery();
+
+      if (n_est.next()) {
+
+        
+      }
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+
+    }
+ 
+ 
+ 
+ 
+ }
   
   
 }
