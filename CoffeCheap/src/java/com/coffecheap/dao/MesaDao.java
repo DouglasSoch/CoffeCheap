@@ -21,13 +21,13 @@ public class MesaDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into mesa values(?,?,?,?,?,?);");
+      PreparedStatement st = this.getCon().prepareStatement("insert into mesa values(?,?,?,?);");
 
       st.setInt(1, Tt.getId_mesa());
       st.setInt(2, Tt.getCantidad_comensales());
       st.setString(3, Tt.getUbicacion());
       st.setInt(4, Tt.getEstMesa().getId_estado());
-      st.setInt(5, Tt.getReserva().getId_reserva());
+      
       
 
       st.executeUpdate();
@@ -56,7 +56,7 @@ public class MesaDao extends Dao {
         tt.setCantidad_comensales(rs.getInt(2));
         tt.setUbicacion(rs.getString(3));
         tt.getEstMesa().setId_estado(rs.getInt(4));
-        tt.getReserva().setId_reserva(rs.getInt(5));
+        
         
         lista.add(tt);
       }
@@ -75,13 +75,13 @@ public class MesaDao extends Dao {
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  mesa SET id_mesa=?, cantidad_comensales=?, ubicacion=?, id_estado=?, id_reserva=?, id_cliente=? WHERE id_mesa=?;");
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE  mesa SET id_mesa=?, cantidad_comensales=?, ubicacion=?, id_estado=?, id_cliente=? WHERE id_mesa=?;");
 
       st.setInt(1, tt.getId_mesa());
       st.setInt(2, tt.getCantidad_comensales());
       st.setString(3, tt.getUbicacion());
       st.setInt(4, tt.getEstMesa().getId_estado());
-      st.setInt(5, tt.getReserva().getId_reserva());
+      
       
       st.setInt(7, tt.getId_mesa());
 
