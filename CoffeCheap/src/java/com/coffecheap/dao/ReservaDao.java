@@ -11,16 +11,16 @@ import java.util.Date;
 
 public class ReservaDao extends Dao {
 
-    public void registrarclienteYReserva(Reserva reserva, Cliente cliente) throws Exception {
-        System.out.println("hola");
+    public void registrarclienteYReserva(Reserva reserva, Cliente cliente) throws Exception 
+    {        
         try {
             this.Conectar();
             ResultSet rs = null;
             PreparedStatement ps = this.getCon().prepareStatement("select id_cliente from cliente where id_cliente=?");
             ps.setInt(1, cliente.getId_cliente());
             rs = ps.executeQuery();
-            int numero = 0;
-            rs.next();
+            
+            if(rs.next()){
             
             if (cliente.getId_cliente() != rs.getInt(1)) 
             {
@@ -44,6 +44,7 @@ public class ReservaDao extends Dao {
                     psir.executeUpdate();
                 }
             }
+        }
         } catch (Exception e) {
             throw e;
         } finally {
