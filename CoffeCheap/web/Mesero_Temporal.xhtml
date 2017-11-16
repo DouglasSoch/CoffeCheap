@@ -20,6 +20,7 @@
     <h:body>
         <ui:composition template="./WEB-INF/template/Template.xhtml">
             <ui:define name="content">
+              
                 <f:event type="preRenderView" listener="#{mesero_Temporal.listartipo()}"/>
                 <f:event type="preRenderView" listener="#{mesero_Temporal.listarplato()}"/>
                 <h:form id="hola">
@@ -70,34 +71,7 @@
 
                 </h:form>
 
-                <p:dialog header="Datos" widgetVar="wdlgdatos" id="dlgdatos">
-                    <h:form>
-                        <b:dataTable value="#{mesero_Temporal.listchefunico}" var="lista" col-md="12">
-                            <b:dataTableColumn label="Tipo Plato" >
-                                <p:selectOneMenu id="consola" value="#{lista.tipoPlato.id}" style="width:125px" >
-                                    <f:selectItem itemLabel="Tipo"></f:selectItem>
-                                    <f:selectItems value="#{mesero_Temporal.listtipo}" var="c" itemLabel="#{c.nombre}" itemValue="#{c.id}" actionListener="#{mesero_Temporal.listarplato()}" />
-                                    <f:ajax execute="consola" render="platos"/>
-                                </p:selectOneMenu>
-                            </b:dataTableColumn>
-                            <b:dataTableColumn label="Plato"> 
-                                <p:selectOneMenu id="platos" value="#{lista.plato.id_plato}" style="width:125px">
-                                    <f:selectItems value="#{mesero_Temporal.listplato}" var="d" itemLabel="#{d.nombre}" itemValue="#{d.id_plato}"/>
-                                </p:selectOneMenu>
-                            </b:dataTableColumn>
-                            <b:dataTableColumn label="Cantidad">
-                                <p:selectOneMenu  id="cantidad" value="#{lista.cantidad}" style="width:125px">
-                                    <c:forEach begin="1"  end="10" var="i">
-                                        <f:selectItem itemLabel="${i}" itemValue="${i}"/>
-                                    </c:forEach>
-                                </p:selectOneMenu>
-                            </b:dataTableColumn>
-                            <b:dataTableColumn  label="Descripcion">
-                                <p:inputTextarea id="desc" value="#{lista.descripcion}" rows="3" cols="20" placeholder="Descripcion"/>
-                            </b:dataTableColumn>
-                        </b:dataTable>
-                    </h:form>
-                </p:dialog>
+               
 
 
 
