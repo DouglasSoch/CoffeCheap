@@ -7,78 +7,77 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:b="http://bootsfaces.net/ui">
-    <h:head>
-        <title>Mesero_Temporal</title>
-        <!-- Compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"/>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>    
-        <!-- Compiled and minified JavaScript -->
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    </h:head>
-    <h:body>
-        <ui:composition template="./WEB-INF/template/Template.xhtml">
-            <ui:define name="content">
-              
-                <f:event type="preRenderView" listener="#{mesero_Temporal.listartipo()}"/>
-                <f:event type="preRenderView" listener="#{mesero_Temporal.listarplato()}"/>
-                <h:form id="hola">
-                    <p:selectOneMenu id="console" value="#{mesero_Temporal.chef.tipoPlato.id}" style="width:125px" >
-                        <f:selectItem itemLabel="Tipo"></f:selectItem>
-                        <f:selectItems value="#{mesero_Temporal.listtipo}" var="a" itemLabel="#{a.nombre}" itemValue="#{a.id}" actionListener="#{mesero_Temporal.listarplato()}" />
-                        <f:ajax execute="console" render="plato"/>
-                    </p:selectOneMenu>
-                    <p:selectOneMenu id="plato" value="#{mesero_Temporal.chef.plato.id_plato}" style="width:125px">
-                        <f:selectItems value="#{mesero_Temporal.listplato}" var="b" itemLabel="#{b.nombre}" itemValue="#{b.id_plato}"/>
-                    </p:selectOneMenu>
-                    <p:selectOneMenu  id="cantidad"    value="#{mesero_Temporal.chef.cantidad}" style="width:125px">
-                        <c:forEach begin="1"  end="10" var="i">
-                            <f:selectItem itemLabel="${i}" itemValue="${i}"/>
-                        </c:forEach>
-                    </p:selectOneMenu>
-                    <p:inputTextarea id="desc" value="#{mesero_Temporal.chef.descripcion}" rows="3" cols="20" placeholder="Descripcion"/>
-
-                    <p:commandButton value="Aceptar"  actionListener="#{mesero_Temporal.listar()}" update="hola"/>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-
-
-                    <b:dataTable value="#{mesero_Temporal.listchef}"  var="lst" col-md="12">
-                        <b:dataTableColumn value="#{lst.codigounico}" label="Num" />
-                        <b:dataTableColumn value="#{lst.tipoPlato.id}" label="Tipo Plato" />
-
-                        <b:dataTableColumn value="#{lst.plato.id_plato}" label="Plato"/>
-                        <b:dataTableColumn value="#{lst.cantidad}" label="Cantidad"/>
-                        <b:dataTableColumn value="#{lst.descripcion}" label="Descripcion"/>
-                        <b:dataTableColumn label="Opciones"> 
-                            
-                            <b:commandButton value="Eliminar" actionListener="#{mesero_Temporal.eliminar(lst)}" update="hola"/>
-                        </b:dataTableColumn>
+  <h:body>
 
 
 
-                    </b:dataTable>
 
-                    <b:commandButton value="Enviar Orden" actionListener="#{mesero_Temporal.todo()}" update="hola" style="width: 300px"/>
+    <ui:composition template="./WEB-INF/template/Template.xhtml">
+      <ui:define name="content">
 
+        <h:panelGrid columns="1" cellpadding="5">
+
+          <p:commandButton value="Effects" type="button" onclick="PF('dlg3').show();" /> 
+        </h:panelGrid>
+
+
+        <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
+          <f:event type="preRenderView" listener="#{mesero_Temporal.listartipo()}"/>
+          <f:event type="preRenderView" listener="#{mesero_Temporal.listarplato()}"/>
+          <h:form id="hola">
+            <p:selectOneMenu id="console" value="#{mesero_Temporal.chef.tipoPlato.id}" style="width:125px" >
+              <f:selectItem itemLabel="Tipo"></f:selectItem>
+              <f:selectItems value="#{mesero_Temporal.listtipo}" var="a" itemLabel="#{a.nombre}" itemValue="#{a.id}" actionListener="#{mesero_Temporal.listarplato()}" />
+              <f:ajax execute="console" render="plato"/>
+            </p:selectOneMenu>
+            <p:selectOneMenu id="plato" value="#{mesero_Temporal.chef.plato.id_plato}" style="width:125px">
+              <f:selectItems value="#{mesero_Temporal.listplato}" var="b" itemLabel="#{b.nombre}" itemValue="#{b.id_plato}"/>
+            </p:selectOneMenu>
+            <p:selectOneMenu  id="cantidad"    value="#{mesero_Temporal.chef.cantidad}" style="width:125px">
+              <c:forEach begin="1"  end="10" var="i">
+                <f:selectItem itemLabel="${i}" itemValue="${i}"/>
+              </c:forEach>
+            </p:selectOneMenu>
+            <p:inputTextarea id="desc" value="#{mesero_Temporal.chef.descripcion}" rows="3" cols="20" placeholder="Descripcion"/>
+
+            <p:commandButton value="Aceptar"  actionListener="#{mesero_Temporal.listar()}" update="hola"/>
+            <br></br>
+            <br></br>
+
+            <b:dataTable value="#{mesero_Temporal.listchef}"  var="lst" col-md="12">
+              <b:dataTableColumn value="#{lst.codigounico}" label="Num" />
+              <b:dataTableColumn value="#{lst.tipoPlato.id}" label="Tipo Plato" />
+
+              <b:dataTableColumn value="#{lst.plato.id_plato}" label="Plato"/>
+              <b:dataTableColumn value="#{lst.cantidad}" label="Cantidad"/>
+              <b:dataTableColumn value="#{lst.descripcion}" label="Descripcion"/>
+              <b:dataTableColumn label="Opciones"> 
+
+                <b:commandButton value="Eliminar" actionListener="#{mesero_Temporal.eliminar(lst)}" update="hola"/>
+              </b:dataTableColumn>
+
+
+
+            </b:dataTable>
+
+            <b:commandButton value="Enviar Orden" actionListener="#{mesero_Temporal.todo()}" update="hola" style="width: 300px"/>
 
 
 
 
 
-                </h:form>
 
-               
+          </h:form>
 
-
-
+        </p:dialog>
 
 
-            </ui:define>
-        </ui:composition>
-    </h:body>
+
+
+
+      </ui:define>
+    </ui:composition>
+  </h:body>
 </html>
 

@@ -11,24 +11,23 @@
       xmlns:b="http://bootsfaces.net/ui">
 
   <h:body class="ui-g">
+
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-
+   //<p:growl id="messages"/>
         <h:form class="flip" id="tempo">
-          <p:growl id="messages" life="1500"/>
+        
 
           <p:panelGrid id="desplegar1" columns="5">
             <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
 
               <p:outputLabel value="${i}" style="color: black; align-items: center" class="#{control_mesaBean.ControlEstado(i)};"/>                           
 
-              <b:commandButton actionListener="#{control_mesaBean.CambioEstado(i)}" value="Pedido"  style="color: black" look="#{control_mesaBean.ControlEstado(i)}" onclick="PF('dlg50').show();" />
-
-              <b:commandButton id="juna" update="display, tempo, messages" oncomplete="PF('dlg').show()" value="Facturar" 
+              <b:commandButton actionListener="#{control_mesaBean.CambioEstado(i)}" value="Pedido"  style="color: black" look="#{control_mesaBean.ControlEstado(i)}"  onclick="PF('dlg3').show();"/>
+                             
+              <b:commandButton  update="display, tempo, messages" oncomplete="PF('dlg').show()" value="Facturar" 
                                style="color: black" look="#{control_mesaBean.ControlEstado(i)}" 
                                disabled="#{venta_facturaBean.controlGenerarFactura(i)}"  actionListener="#{control_mesaBean.control_mesa.setNMesa(i)}"/>
-
-
 
               <b:commandButton  actionListener="#{control_mesaBean.RegistrarPago(i)}" update="tempo, messages" value="#{control_mesaBean.EstaPago(i)}" 
                                 style="color: black" look="#{control_mesaBean.ControlEstado(i)}" 
@@ -63,11 +62,10 @@
               <c:if test="#{clienteBean.cliente.nombre==null}">
 
                 <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>
-                <p:commandButton value="Effects" type="button" onclick="PF('dlg3').show();" />
-
+                <p:commandButton value="Effects" type="button" onclick="PF('dlg31').show();" />
               </c:if>
 
-              <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
+              <p:dialog header="Effects" widgetVar="dlg31" showEffect="explode" hideEffect="bounce" height="100">
                 <h:outputText value="This dialog has nice effects." />
                 <p:outputLabel value="ingrese nombre " style="color: black" />
 
@@ -75,73 +73,69 @@
               </p:dialog>
 
 
-
-
-
             </p:panelGrid>
           </p:dialog>   
 
-           </h:form>
-          <!-- Esta parte de aqui es para pedir el plato  -->
-          
-          <p:dialog header="Dialog" widgetVar="dlg50" minimizable="true" maximizable="true">
+        </h:form>
+        <!-- Esta parte de aqui es para pedir el plato  -->
 
+        <p:dialog header="Dialog" widgetVar="dlg50" minimizable="true" maximizable="true">         
 
-            <f:event type="preRenderView" listener="#{mesero_Temporal.listartipo()}"/>
+        </p:dialog>
+
+        <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
+          <f:event type="preRenderView" listener="#{mesero_Temporal.listartipo()}"/>
           <f:event type="preRenderView" listener="#{mesero_Temporal.listarplato()}"/>
-          
-            <h:form id="hola">
-              <p:selectOneMenu id="console" value="#{mesero_Temporal.chef.tipoPlato.id}" style="width:125px" >
-                <f:selectItem itemLabel="Tipo"></f:selectItem>
-                <f:selectItems value="#{mesero_Temporal.listtipo}" var="a" itemLabel="#{a.nombre}" itemValue="#{a.id}" actionListener="#{mesero_Temporal.listarplato()}" />
-                <f:ajax execute="console" render="plato"/>
-              </p:selectOneMenu>
-              <p:selectOneMenu id="plato" value="#{mesero_Temporal.chef.plato.id_plato}" style="width:125px">
-                <f:selectItems value="#{mesero_Temporal.listplato}" var="b" itemLabel="#{b.nombre}" itemValue="#{b.id_plato}"/>
-              </p:selectOneMenu>
-              <p:selectOneMenu  id="cantidad"    value="#{mesero_Temporal.chef.cantidad}" style="width:125px">
-                <c:forEach begin="1"  end="10" var="i">
-                  <f:selectItem itemLabel="${i}" itemValue="${i}"/>
-                </c:forEach>
-              </p:selectOneMenu>
-              <p:inputTextarea id="desc" value="#{mesero_Temporal.chef.descripcion}" rows="3" cols="20" placeholder="Descripcion"/>
+          <h:form id="hola">
+            <p:selectOneMenu id="console" value="#{mesero_Temporal.chef.tipoPlato.id}" style="width:125px" >
+              <f:selectItem itemLabel="Tipo"></f:selectItem>
+              <f:selectItems value="#{mesero_Temporal.listtipo}" var="a" itemLabel="#{a.nombre}" itemValue="#{a.id}" actionListener="#{mesero_Temporal.listarplato()}" />
+              <f:ajax execute="console" render="plato"/>
+            </p:selectOneMenu>
+            <p:selectOneMenu id="plato" value="#{mesero_Temporal.chef.plato.id_plato}" style="width:125px">
+              <f:selectItems value="#{mesero_Temporal.listplato}" var="b" itemLabel="#{b.nombre}" itemValue="#{b.id_plato}"/>
+            </p:selectOneMenu>
+            <p:selectOneMenu  id="cantidad"    value="#{mesero_Temporal.chef.cantidad}" style="width:125px">
+              <c:forEach begin="1"  end="10" var="i">
+                <f:selectItem itemLabel="${i}" itemValue="${i}"/>
+              </c:forEach>
+            </p:selectOneMenu>
+            <p:inputTextarea id="desc" value="#{mesero_Temporal.chef.descripcion}" rows="3" cols="20" placeholder="Descripcion"/>
 
-              <p:commandButton value="Aceptar"  actionListener="#{mesero_Temporal.listar()}" update="hola"/>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-
-
-              <b:dataTable value="#{mesero_Temporal.listchef}"  var="lst" col-md="12">
-                <b:dataTableColumn value="#{lst.codigounico}" label="Num" />
-                <b:dataTableColumn value="#{lst.tipoPlato.id}" label="Tipo Plato" />
-
-                <b:dataTableColumn value="#{lst.plato.id_plato}" label="Plato"/>
-                <b:dataTableColumn value="#{lst.cantidad}" label="Cantidad"/>
-                <b:dataTableColumn value="#{lst.descripcion}" label="Descripcion"/>
-                <b:dataTableColumn label="Opciones"> 
-
-                  <b:commandButton value="Eliminar" actionListener="#{mesero_Temporal.eliminar(lst)}" update="hola"/>
-                </b:dataTableColumn>
+            <p:commandButton value="Aceptar"  actionListener="#{mesero_Temporal.listar()}" update="hola"/>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
 
 
+            <b:dataTable value="#{mesero_Temporal.listchef}"  var="lst" col-md="12">
+              <b:dataTableColumn value="#{lst.codigounico}" label="Num" />
+              <b:dataTableColumn value="#{lst.tipoPlato.id}" label="Tipo Plato" />
 
-              </b:dataTable>
+              <b:dataTableColumn value="#{lst.plato.id_plato}" label="Plato"/>
+              <b:dataTableColumn value="#{lst.cantidad}" label="Cantidad"/>
+              <b:dataTableColumn value="#{lst.descripcion}" label="Descripcion"/>
+              <b:dataTableColumn label="Opciones"> 
 
-              <b:commandButton value="Enviar Orden" actionListener="#{mesero_Temporal.todo()}" update="hola" style="width: 300px"/>
+                <b:commandButton value="Eliminar" actionListener="#{mesero_Temporal.eliminar(lst)}" update="hola"/>
+              </b:dataTableColumn>
 
+
+
+            </b:dataTable>
+
+            <b:commandButton value="Enviar Orden" actionListener="#{mesero_Temporal.todo()}" update="hola" style="width: 300px"/>
 
 
 
 
 
-            </h:form>
 
-         </p:dialog>
+          </h:form>
 
+        </p:dialog>
 
-       
 
 
 
