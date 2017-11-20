@@ -132,7 +132,7 @@ public class Control_mesaDao extends Dao {
   }
 
   public String ControlEstado(int mesa) throws Exception {
-    String color = "defaul";
+    String color = "btn-default";
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
@@ -142,9 +142,10 @@ public class Control_mesaDao extends Dao {
 
       if (n.next()) {
         if (n.getInt(1) == 1) {
-          color = "defaul";
+          color = "btn-default";
         } else {
-          color = "warning";
+          color = "btn-warning";
+          
         }
 
       }
