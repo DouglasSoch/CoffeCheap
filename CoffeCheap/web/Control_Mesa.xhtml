@@ -18,15 +18,14 @@
 
         <h:form class="flip" id="tempo">
 
-          <p:panelGrid id="desplegar1" columns="6">
+          <p:panelGrid id="desplegar1" columns="5">
             <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
 
               <p:outputLabel value="${i}" style="color: black; align-items: center" class="#{control_mesaBean.ControlEstado(i)};"/>                           
 
-              <p:commandButton actionListener="#{control_mesaBean.CambioEstado(i)}" value="Pedido"  style="color: black" class="#{control_mesaBean.ControlEstado(i)}"  onclick="PF('dlg3').show();"/>
-
               <p:commandLink id="ajax" onclick="PF('dlg3').show();" actionListener="#{control_mesaBean.CambioEstado(i)}">
-                <img src="resources/icono/checklist.png" alt=""/>            
+                <img src="resources/icono/checklist.png" alt="100"/>
+                <f:ajax listener="#{control_mesaBean.control_mesa.setNMesa(i)}" />          
               </p:commandLink>
 
               <b:commandButton  update="display, tempo, messages" oncomplete="PF('dlg').show()" value="Facturar" 
@@ -84,12 +83,13 @@
 
         </p:dialog>
 
-        <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="bounce" height="100">
+
+        <p:dialog header="Effects" widgetVar="dlg3" showEffect="explode" hideEffect="explode" minimizable="true" maximizable="true">
 
           <f:event type="preRenderView" listener="#{mesero_Temporal.listartipo()}"/>
           <f:event type="preRenderView" listener="#{mesero_Temporal.listarplato()}"/>
 
-          <h:form id="hola">
+          <h:form id="hola" style="font-size: 10px">
             <p:selectOneMenu id="console" value="#{mesero_Temporal.chef.tipoPlato.id}" style="width:125px" >
               <f:selectItem itemLabel="Tipo"></f:selectItem>
               <f:selectItems value="#{mesero_Temporal.listtipo}" var="a" itemLabel="#{a.nombre}" itemValue="#{a.id}" actionListener="#{mesero_Temporal.listarplato()}" />
@@ -111,7 +111,6 @@
             <br></br>
             <br></br>
 
-
             <b:dataTable value="#{mesero_Temporal.listchef}"  var="lst" col-md="12">
               <b:dataTableColumn value="#{lst.codigounico}" label="Num" />
               <b:dataTableColumn value="#{lst.tipoPlato.id}" label="Tipo Plato" />
@@ -119,14 +118,13 @@
               <b:dataTableColumn value="#{lst.plato.id_plato}" label="Plato"/>
               <b:dataTableColumn value="#{lst.cantidad}" label="Cantidad"/>
               <b:dataTableColumn value="#{lst.descripcion}" label="Descripcion"/>
-              <b:dataTableColumn label="Opciones"> 
 
+              <b:dataTableColumn label="Opciones">
                 <b:commandButton value="Eliminar" actionListener="#{mesero_Temporal.eliminar(lst)}" update="hola"/>
               </b:dataTableColumn>
-
             </b:dataTable>
 
-            <b:commandButton value="Enviar Orden" actionListener="#{mesero_Temporal.todo()}" update="hola" style="width: 300px"/>
+            <b:commandButton value="Enviar Orden" actionListener="#{mesero_Temporal.EnviarOrden(control_mesaBean.control_mesa.getNMesa())}" update="hola" style="width: 300px"/>
 
           </h:form>
 
@@ -138,3 +136,4 @@
   </h:body>
 </html>
 
+<!-- <p:commandButton actionListener="{control_mesaBean.CambioEstado(i)}" value="Pedido"  style="color: black" class="{control_mesaBean.ControlEstado(i)}"  onclick="PF('dlg3').show();"/> -->

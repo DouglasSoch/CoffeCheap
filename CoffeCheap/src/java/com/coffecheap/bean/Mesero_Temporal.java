@@ -9,17 +9,10 @@ import com.coffecheap.dao.MeseroTemporalDao;
 import com.coffecheap.modelo.Plato;
 import com.coffecheap.modelo.Tem_chef;
 import com.coffecheap.modelo.Tipo_plato;
-import com.coffecheap.modelo.Usuario;
-
 import java.util.ArrayList;
-
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
-import javax.faces.context.FacesContext;
-
-
 
 /**
  *
@@ -85,13 +78,7 @@ public class Mesero_Temporal implements Serializable {
     private ArrayList<Tipo_plato> listtipo=new ArrayList();
     private ArrayList<Plato> listplato=new ArrayList();
 
-  
-    
-
-    
-    
-    
-    
+     
     public ArrayList listartipo() throws Exception{
         MeseroTemporalDao dao;
         try{
@@ -117,12 +104,7 @@ public class Mesero_Temporal implements Serializable {
         return listplato;
     }
    
-   
-
-        
-   
-       
-   
+  
    
    public void listar(){
      
@@ -181,6 +163,26 @@ public class Mesero_Temporal implements Serializable {
             try{
                 Tem_chef che=listchef.get(i);
                 dao.Insertar(che, 1, 3);
+                
+            }catch(Exception ex){
+                throw ex;
+            }
+            
+        }
+        listchef=new ArrayList();
+    }
+    
+        public void EnviarOrden(int mesa) throws Exception{
+        
+//         Usuario usuario=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("nomb");
+//       int a=usuario.getId();
+       
+        for (int i = 0; i < listchef.size(); i++) {
+            MeseroTemporalDao dao=new  MeseroTemporalDao();
+            
+            try{
+                Tem_chef che=listchef.get(i);
+                dao.Insertar(che, 1, mesa);
                 
             }catch(Exception ex){
                 throw ex;
