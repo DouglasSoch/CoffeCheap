@@ -42,9 +42,7 @@ public class MeseroTemporalDao extends Dao {
       this.Desconecar();
 
     }
-
     return lista;
-
   }
 
   public ArrayList<Plato> listar2(Tem_chef pl) throws Exception {
@@ -70,12 +68,10 @@ public class MeseroTemporalDao extends Dao {
     } finally {
       this.Desconecar();
     }
-
     return lista;
-
   }
 
-  public void Insertar(Tem_chef chef, int a, int pedido) throws Exception {
+  public void Insertar(Tem_chef chef, int a, int mesa) throws Exception {
     ResultSet rs;
     try {
       this.Conectar();
@@ -87,22 +83,28 @@ public class MeseroTemporalDao extends Dao {
       // ---------------------------------------------------------------
       PreparedStatement st = this.getCon().prepareStatement("INSERT INTO plato_pedido (id_plato,cantidad,id_personal,id_pedido,precio) VALUES (?,?,?,?,?)");
 
-      st.setInt(1, chef.getPlato().getId_plato());
-      st.setInt(2, chef.getCantidad());
-      st.setInt(3, a);
-      st.setInt(4, pedido);
-      st.setInt(5, rs.getInt("precio_plato"));
-      st.executeUpdate();
-      //---------------------------------------------------------------------
-      PreparedStatement st3 = this.getCon().prepareStatement("INSERT INTO tem_chef (cod_pedido,id_plato,cantidad,descripcion,id_estado) VALUES (?,?,?,?,?)");
+      PreparedStatement s2 = this.getCon().prepareStatement("select id_pedido from control where id_mesa=?;");
+      s2.setInt(1, mesa);
+      ResultSet pedido = s2.executeQuery();
 
-      st3.setInt(1, pedido);
-      st3.setInt(2, chef.getPlato().getId_plato());
-      st3.setInt(3, chef.getCantidad());
-      st3.setString(4, chef.getDescripcion());
-      st3.setInt(5, 1);
-      st3.executeUpdate();
+      if (pedido.next()) {
+        st.setInt(1, chef.getPlato().getId_plato());
+        st.setInt(2, chef.getCantidad());
+        st.setInt(3, a);
+        st.setInt(4, pedido.getInt(1));
+        st.setInt(5, rs.getInt("precio_plato"));
+        st.executeUpdate();
 
+        //---------------------------------------------------------------------
+        PreparedStatement st3 = this.getCon().prepareStatement("INSERT INTO tem_chef (cod_pedido,id_plato,cantidad,descripcion,id_estado) VALUES (?,?,?,?,?)");
+
+        st3.setInt(1, pedido.getInt(1));
+        st3.setInt(2, chef.getPlato().getId_plato());
+        st3.setInt(3, chef.getCantidad());
+        st3.setString(4, chef.getDescripcion());
+        st3.setInt(5, 1);
+        st3.executeUpdate();
+      }
     } catch (Exception e) {
       throw e;
     } finally {

@@ -37,8 +37,8 @@
                                 disabled="#{control_mesaBean.HabilitarPago(i)}"/>
 
               <b:commandButton   actionListener="#{control_mesaBean.LimpiarMesa(i)}" update="messages, tempo" value="Vaciar_Mesa"  
-                                 style="color: black" class="#{control_mesaBean.ControlEstado(i)}"/>               
-
+                                 style="color: black" class="#{control_mesaBean.ControlEstado(i)}"/>
+              
             </c:forEach>              
           </p:panelGrid>
 
@@ -63,15 +63,10 @@
 
               </c:if>              
               <c:if test="#{clienteBean.cliente.nombre==null}">
-
-                <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>
-                <p:commandButton value="Effects" type="button" onclick="PF('dlg31').show();" />
+                <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>                
               </c:if>
 
-              <p:dialog header="Effects" widgetVar="dlg31" showEffect="explode" hideEffect="bounce" height="100">
-                <h:outputText value="This dialog has nice effects." />
-                <p:outputLabel value="ingrese nombre " style="color: black" />
-              </p:dialog>
+             
 
             </p:panelGrid>
           </p:dialog>   
@@ -109,7 +104,6 @@
             <br></br>
             <br></br>
             <br></br>
-            <br></br>
 
             <b:dataTable value="#{mesero_Temporal.listchef}"  var="lst" col-md="12">
               <b:dataTableColumn value="#{lst.codigounico}" label="Num" />
@@ -129,7 +123,6 @@
           </h:form>
 
         </p:dialog>
-
 
       </ui:define>
     </ui:composition>
