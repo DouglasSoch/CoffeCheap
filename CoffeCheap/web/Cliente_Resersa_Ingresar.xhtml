@@ -52,13 +52,12 @@
 
                 <p:commandButton value="Guardar" actionListener="#{reservaBean.registrarCyR()}"/>
 
-                <p:commandButton value="verificar Disponibilidad" actionListener="#{reservaBean.registrarCyR()}" oncomplete="PF('dispo').show();"/>
+                <p:commandButton value="verificar Disponibilidad" actionListener="#{reservaBean.mostrar()}" update="tabla1" />
               </p:panelGrid>
             </b:column>
             
             <b:column span="8"><h:outputText/>
-              <p:commandButton value="Mostrar reservas" actionListener="#{reservaBean.mostrar()}" update="tabla1" />
-              <br/>
+              
 
               <p:dataTable var="reser" value="#{reservaBean.lstReserva}" rows="10" id="tabla1"
                            paginator="true"
