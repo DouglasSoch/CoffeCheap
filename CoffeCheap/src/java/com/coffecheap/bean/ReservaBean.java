@@ -79,6 +79,29 @@ public class ReservaBean extends ClienteBean
         }
     }
      
+     public void Dispo()throws Exception
+     {
+           ReservaDao dao;
+           
+           try
+           {
+               dao = new ReservaDao();
+               lstReserva= dao.consultaDeDispo(reserva);
+           }catch(Exception e){throw e;
+           }
+     }
+     
+       public void mostrar ()
+     {
+         ReservaDao dao;
+         
+         try
+         {
+             dao = new ReservaDao();
+             lstReserva = dao.mostrarr();
+         }catch(Exception e){System.out.println(e);}
+     }
+     
      public void mostar() throws Exception
     {
         ReservaDao dao;

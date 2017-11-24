@@ -10,6 +10,41 @@ import java.util.List;
 import java.util.Date;
 
 public class ReservaDao extends Dao {
+    
+    
+    public List<Reserva> consultaDeDispo (Reserva reserva) throws Exception
+    {
+        List<Reserva> lstReserva = null;
+        try
+        {
+        this.Conectar();
+        
+        ResultSet rs;
+        PreparedStatement ps = getCon().prepareCall("select id_mesa, hora_inicio, hora_final, fecha from reserva where hora_inicio BETWEEN  ? and ? AND fecha=?");
+        ps.setString(1, reserva.getHora_entrada());
+        ps.setString(2, reserva.getHora_salida());
+        ps.setString(3, reserva.getFechaSus());
+        rs=ps.executeQuery();
+        lstReserva = new ArrayList();
+        while(rs.next())
+        {
+            Reserva reser = new Reserva();
+            reser.setId_reserva(rs.getInt(1));
+            reser.setHora_entrada(rs.getString(2));
+            reser.setHora_salida(rs.getString(3));
+            reser.setFechaSus(rs.getString(4));
+            lstReserva.add(reser);
+        }
+        }catch(Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            this.Desconecar();
+        }
+        return lstReserva;
+    }
 
     public void registrarclienteYReserva(Reserva reserva, Cliente cliente) throws Exception 
     {        
@@ -189,5 +224,38 @@ public class ReservaDao extends Dao {
         } finally {
             this.Desconecar();
         }
+    }
+    
+      public List<Reserva> mostrarr () throws Exception
+    {
+        List<Reserva> lstReserva = null;
+        System.out.println("entro");
+        try
+        {
+        this.Conectar();
+        
+        ResultSet rs;
+        PreparedStatement ps = getCon().prepareCall("select id_mesa, hora_inicio, hora_final, fecha from reserva");
+        rs=ps.executeQuery();
+        
+        lstReserva = new ArrayList();
+        while(rs.next())
+        {
+            Reserva reser = new Reserva();
+            reser.getMesa().setId_mesa(rs.getInt(1));
+            reser.setHora_entrada(rs.getString(2));
+            reser.setHora_salida(rs.getString(3));
+            reser.setFecha(rs.getDate(4));
+            lstReserva.add(reser);
+        }
+        }catch(Exception e)
+        {
+            throw e;
+        }
+        finally
+        {
+            this.Desconecar();
+        }
+        return lstReserva;
     }
 }
