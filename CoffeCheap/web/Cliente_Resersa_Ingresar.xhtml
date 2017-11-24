@@ -3,11 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
         <h:form>
             <b:row>
                 <b:column span="4"><h:outputText/>
@@ -49,7 +52,7 @@
              <p:commandButton value="verificar Disponibilidad" actionListener="#{reservaBean.registrarCyR()}" oncomplete="PF('dispo').show();"/>
         </b:column>
           <b:column span="8"><h:outputText/>
-                <p:commandButton value="Mostrar" actionListener="#{reservaBean.mostrar()}" update="tabla1" />
+                <p:commandButton value="Mostrar reservas" actionListener="#{reservaBean.mostrar()}" update="tabla1" />
             <br/>
             
                 <p:dataTable var="reser" value="#{reservaBean.lstReserva}" rows="10" id="tabla1"
@@ -124,6 +127,8 @@
                         </p:dataTable>
             </p:dialog>
         </h:form>
+                    </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 
