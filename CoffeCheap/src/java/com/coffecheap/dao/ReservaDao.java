@@ -10,76 +10,78 @@ import java.util.List;
 import java.util.Date;
 
 public class ReservaDao extends Dao {
-    
-    
-    public List<Reserva> consultaDeDispo (Reserva reserva) throws Exception
-    {
+
+    public List<Reserva> consultaDeDispo(Reserva reserva) throws Exception {
         List<Reserva> lstReserva = null;
-        try
-        {
-        this.Conectar();
-        
-        ResultSet rs;
-        PreparedStatement ps = getCon().prepareCall("select id_mesa, hora_inicio, hora_final, fecha from reserva where hora_inicio BETWEEN  ? and ? AND fecha=?");
-        ps.setString(1, reserva.getHora_entrada());
-        ps.setString(2, reserva.getHora_salida());
-        ps.setString(3, reserva.getFechaSus());
-        rs=ps.executeQuery();
-        lstReserva = new ArrayList();
-        while(rs.next())
-        {
-            Reserva reser = new Reserva();
-            reser.setId_reserva(rs.getInt(1));
-            reser.setHora_entrada(rs.getString(2));
-            reser.setHora_salida(rs.getString(3));
-            reser.setFechaSus(rs.getString(4));
-            lstReserva.add(reser);
-        }
-        }catch(Exception e)
-        {
+        try {
+            this.Conectar();
+
+            ResultSet rs;
+            PreparedStatement ps = getCon().prepareCall("select id_mesa, hora_inicio, hora_final, fecha from reserva where hora_inicio BETWEEN  ? and ? AND fecha=?");
+            ps.setString(1, reserva.getHora_entrada());
+            ps.setString(2, reserva.getHora_salida());
+            ps.setString(3, reserva.getFechaSus());
+            rs = ps.executeQuery();
+            lstReserva = new ArrayList();
+            while (rs.next()) {
+                Reserva reser = new Reserva();
+                reser.setId_reserva(rs.getInt(1));
+                reser.setHora_entrada(rs.getString(2));
+                reser.setHora_salida(rs.getString(3));
+                reser.setFechaSus(rs.getString(4));
+                lstReserva.add(reser);
+            }
+        } catch (Exception e) {
             throw e;
-        }
-        finally
-        {
+        } finally {
             this.Desconecar();
         }
         return lstReserva;
     }
 
-    public void registrarclienteYReserva(Reserva reserva, Cliente cliente) throws Exception 
-    {        
+    public void registrarclienteYReserva(Reserva reserva, Cliente cliente) throws Exception {
+        System.out.println("id del cliente2" + cliente.getId_cliente());
+        System.out.println("nit2" + cliente.getNit_cliente());
+        System.out.println("nombre2" + cliente.getNombre());
+        System.out.println("direcion2" + cliente.getDireccion());
+        System.out.println("id reserva2" + reserva.getId_reserva());
+        System.out.println("fecha2" + reserva.getFechaSus());
+        System.out.println("hora entrada2" + reserva.getHora_entrada());
+        System.out.println("hora salida2" + reserva.getHora_salida());
+        System.out.println("cantidad2" + reserva.getCantidad_personas());
+        System.out.println("id cliente2" + cliente.getId_cliente());
+        System.out.println("id mesa2" + reserva.getMesa().getId_mesa());
+
         try {
             this.Conectar();
             ResultSet rs = null;
             PreparedStatement ps = this.getCon().prepareStatement("select id_cliente from cliente where id_cliente=?");
             ps.setInt(1, cliente.getId_cliente());
             rs = ps.executeQuery();
-            
-            if(rs.next()){
-            
-            if (cliente.getId_cliente() != rs.getInt(1)) 
-            {
-                PreparedStatement psi = this.getCon().prepareStatement("insert into cliente values (?,?,?,?)");
-                psi.setInt(1, cliente.getId_cliente());
-                psi.setString(2, cliente.getNit_cliente());
-                psi.setString(3, cliente.getNombre());
-                psi.setString(4, cliente.getDireccion());
-                psi.executeUpdate();
 
-                if (rs.getInt(1) == reserva.getCliente().getId_cliente()) 
-                {
-                    PreparedStatement psir = this.getCon().prepareStatement("insert into reserva values(?,?,?,?,?,?,?)");
-                    psir.setInt(1, reserva.getId_reserva());
-                    psir.setString(2, reserva.getFechaSus());
-                    psir.setString(3, reserva.getHora_entrada());
-                    psir.setString(4, reserva.getHora_salida());
-                    psir.setInt(5, reserva.getCantidad_personas());
-                    psir.setInt(6, reserva.getMesa().getId_mesa());
-                    psir.setInt(7, reserva.getCliente().getId_cliente());
-                    psir.executeUpdate();
+            if (rs.next()) {
+
+                if (cliente.getId_cliente() != rs.getInt(1)) {
+                    PreparedStatement psi = this.getCon().prepareStatement("insert into cliente values (?,?,?,?)");
+                    psi.setInt(1, cliente.getId_cliente());
+                    psi.setString(2, cliente.getNit_cliente());
+                    psi.setString(3, cliente.getNombre());
+                    psi.setString(4, cliente.getDireccion());
+                    psi.executeUpdate();
+
+                    if (rs.getInt(1) == reserva.getCliente().getId_cliente()) {
+                        PreparedStatement psir = this.getCon().prepareStatement("insert into reserva values(?,?,?,?,?,?,?)");
+                        psir.setInt(1, reserva.getId_reserva());
+                        psir.setString(2, reserva.getFechaSus());
+                        psir.setString(3, reserva.getHora_entrada());
+                        psir.setString(4, reserva.getHora_salida());
+                        psir.setInt(5, reserva.getCantidad_personas());
+                        psir.setInt(6, reserva.getMesa().getId_mesa());
+                        psir.setInt(7, reserva.getCliente().getId_cliente());
+                        psir.executeUpdate();
+                    }
                 }
             }
-        }
         } catch (Exception e) {
             throw e;
         } finally {
@@ -90,15 +92,15 @@ public class ReservaDao extends Dao {
     public void registrar(Reserva reserva) throws Exception {
         try {
             this.Conectar();
-           PreparedStatement psir = this.getCon().prepareStatement("insert into reserva values(?,?,?,?,?,?,?)");
-                    psir.setInt(1, reserva.getId_reserva());
-                    psir.setString(2, reserva.getFechaSus());
-                    psir.setString(3, reserva.getHora_entrada());
-                    psir.setString(4, reserva.getHora_salida());
-                    psir.setInt(5, reserva.getCantidad_personas());
-                    psir.setInt(6, reserva.getMesa().getId_mesa());
-                    psir.setInt(7, reserva.getCliente().getId_cliente());
-                    psir.executeUpdate();
+            PreparedStatement psir = this.getCon().prepareStatement("insert into reserva values(?,?,?,?,?,?,?)");
+            psir.setInt(1, reserva.getId_reserva());
+            psir.setString(2, reserva.getFechaSus());
+            psir.setString(3, reserva.getHora_entrada());
+            psir.setString(4, reserva.getHora_salida());
+            psir.setInt(5, reserva.getCantidad_personas());
+            psir.setInt(6, reserva.getMesa().getId_mesa());
+            psir.setInt(7, reserva.getCliente().getId_cliente());
+            psir.executeUpdate();
         } catch (Exception e) {
             throw e;
         } finally {
@@ -225,35 +227,29 @@ public class ReservaDao extends Dao {
             this.Desconecar();
         }
     }
-    
-      public List<Reserva> mostrarr () throws Exception
-    {
+
+    public List<Reserva> mostrarr() throws Exception {
         List<Reserva> lstReserva = null;
         System.out.println("entro");
-        try
-        {
-        this.Conectar();
-        
-        ResultSet rs;
-        PreparedStatement ps = getCon().prepareCall("select id_mesa, hora_inicio, hora_final, fecha from reserva");
-        rs=ps.executeQuery();
-        
-        lstReserva = new ArrayList();
-        while(rs.next())
-        {
-            Reserva reser = new Reserva();
-            reser.getMesa().setId_mesa(rs.getInt(1));
-            reser.setHora_entrada(rs.getString(2));
-            reser.setHora_salida(rs.getString(3));
-            reser.setFecha(rs.getDate(4));
-            lstReserva.add(reser);
-        }
-        }catch(Exception e)
-        {
+        try {
+            this.Conectar();
+
+            ResultSet rs;
+            PreparedStatement ps = getCon().prepareCall("select id_mesa, hora_inicio, hora_final, fecha from reserva");
+            rs = ps.executeQuery();
+
+            lstReserva = new ArrayList();
+            while (rs.next()) {
+                Reserva reser = new Reserva();
+                reser.getMesa().setId_mesa(rs.getInt(1));
+                reser.setHora_entrada(rs.getString(2));
+                reser.setHora_salida(rs.getString(3));
+                reser.setFecha(rs.getDate(4));
+                lstReserva.add(reser);
+            }
+        } catch (Exception e) {
             throw e;
-        }
-        finally
-        {
+        } finally {
             this.Desconecar();
         }
         return lstReserva;

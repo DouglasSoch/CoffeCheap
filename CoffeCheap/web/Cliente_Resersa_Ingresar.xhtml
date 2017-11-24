@@ -36,10 +36,10 @@
                 <p:calendar id="Orden" value="#{reservaBean.reserva.fecha}" pattern="yyyy-MM-dd" locale="es"/> 
 
                 <h:outputLabel value="Hora inicio" />
-                <h:inputText class="timepicker" value="#{reservaBean.reserva.hora_entrada}"/>
+                <p:inputText class="timepicker" value="#{reservaBean.reserva.hora_entrada}"/>
 
                 <h:outputLabel value="Hora final" />
-                <h:inputText class="timepicker" value="#{reservaBean.reserva.hora_salida}"/>
+                <p:inputText class="timepicker" value="#{reservaBean.reserva.hora_salida}"/>
 
                 <p:outputLabel value="cantidad de personas "/>
                 <p:inputText  value="#{reservaBean.reserva.cantidad_personas}"/>
