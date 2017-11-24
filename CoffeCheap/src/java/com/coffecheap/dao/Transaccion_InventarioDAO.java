@@ -37,7 +37,6 @@ public class Transaccion_InventarioDAO extends Dao
     {
         List<Transaccion_inventario> lista;
         ResultSet rs;
-        
         try
         {
             this.Conectar();
@@ -111,15 +110,11 @@ public class Transaccion_InventarioDAO extends Dao
         try
         {
             this.Conectar();
-            
-                  SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-                    
+               
             PreparedStatement st = getCon().prepareCall("select traInv.id_transaccion, traInv.fecha, pro.nombre_producto, "
                     + "tipTran.nombre_trasaccion from transaccion_inventario as traInv inner join producto as pro on(traInv.id_producto = "
                     + "pro.id_producto) inner join tipo_transacciones as tipTran on(traInv.id_tipo_transaccion = tipTran.id_tipo_transacciones) "
                     + "where traInv.fecha=?");
-            
-            //String nu=formateador.format(traInv.getFecha());
            
             st.setString(1, traInv.getProducto().getNombre());
             rs=st.executeQuery();
