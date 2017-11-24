@@ -3,132 +3,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <ui:composition template="./WEB-INF/template/Template.xhtml">
-            <ui:define name="content">
-        <h:form>
-            <b:row>
-                <b:column span="4"><h:outputText/>
-            <p:outputLabel value="id "/>
-            <p:inputText  value="#{reservaBean.cliente.id_cliente}"/>
-            <br/>
-            <p:outputLabel value="Nit"/>
-            <p:inputText  value="#{reservaBean.cliente.nit_cliente}"/>
-            <br/>
-            <p:outputLabel value="Nombre"/>
-            <p:inputText  value="#{reservaBean.cliente.nombre}"/>
-            <br/>
-            <p:outputLabel value="Direccion"/>
-            <p:inputText  value="#{reservaBean.cliente.direccion}"/>
-            <br/>
-             <p:outputLabel value="id Reserva"/>
-             <p:inputText  value="#{reservaBean.reserva.id_reserva}"/>
-            <br/>
-            <p:outputLabel value="Fecha"/>
-              <p:calendar id="Orden" value="#{reservaBean.reserva.fecha}" pattern="yyyy-MM-dd" locale="es"/> 
-            <br/>
-              <h:outputLabel value="Hora inicio" />
-            <h:inputText class="timepicker" value="#{reservaBean.reserva.hora_entrada}"/>
-            <br/> 
-            <h:outputLabel value="Hora final" />
-            <h:inputText class="timepicker" value="#{reservaBean.reserva.hora_salida}"/>
-            <br/>
-               <p:outputLabel value="cantidad de personas "/>
-               <p:inputText  value="#{reservaBean.reserva.cantidad_personas}"/>
-            <br/>
-            <p:outputLabel value="id cliente  "/>
-            <p:inputText  value="#{reservaBean.reserva.cliente.id_cliente}"/>
-            <br/>
-             <p:outputLabel value="id mesa" />
-             <p:autoComplete id="cliente" value="#{reservaBean.reserva.mesa.id_mesa}"/>
-             <br/>
-            <p:commandButton value="Guardar" actionListener="#{reservaBean.registrarCyR()}"/>
-             <br/>
-             <p:commandButton value="verificar Disponibilidad" actionListener="#{reservaBean.registrarCyR()}" oncomplete="PF('dispo').show();"/>
-        </b:column>
-          <b:column span="8"><h:outputText/>
-                <p:commandButton value="Mostrar reservas" actionListener="#{reservaBean.mostrar()}" update="tabla1" />
-            <br/>
-            
-                <p:dataTable var="reser" value="#{reservaBean.lstReserva}" rows="10" id="tabla1"
-                             paginator="true"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rowsPerPageTemplate="5,10,15">
+  <h:head>
+    <title>Cliente Mostrar</title>
+  </h:head>
+  <h:body>
 
-                    <p:column headerText="Mesa" filterBy="#{reser.mesa.id_mesa}" filterMatchMode="exact">
-                        <p:outputLabel value="#{reser.mesa.id_mesa}"/>
-                    </p:column>
+    <ui:composition template="./WEB-INF/template/Template.xhtml">
+      <ui:define name="content">  
 
-                    <p:column headerText="Hora inicio" filterBy="#{reser.hora_entrada}" filterMatchMode="exact">
-                        <p:outputLabel value="#{reser.hora_entrada}"/>
-                    </p:column>
+        <h:form id="datos" style="color: white">
+          <h2>Modificar Cliente</h2>
 
-                    <p:column headerText="Hora salida" filterBy="#{reser.hora_salida}" filterMatchMode="exact">
-                        <p:outputLabel value="#{reser.hora_entrada}"/>
-                    </p:column>
+          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
 
-                    <p:column headerText="Fecha" filterBy="#{reser.fecha}" filterMatchMode="exact">
-                        <p:outputLabel value="#{reser.fecha}"/>
-                    </p:column>
+            <p:outputLabel value="ingrese id  "/>
+            <p:inputText  value="#{clienteBean.cliente.id_cliente}"/>
 
-                </p:dataTable>
+            <p:outputLabel value="ingrese nit  "/>
+            <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
 
-          </b:column>
-        </b:row>
-            
-             </h:form>
-        
-        <h:form id="busqueda">
-            <p:dialog id="dispo" widgetVar="dispo" header="Verificacion de Mesas">
-               <p:outputLabel value="ingrese Hora de ingreso "/>
-            <p:inputText  value="#{reservaBean.reserva.hora_entrada}"/>
-            <br/>
-            <p:outputLabel value="ingrese Hora de salida "/>
-            <p:inputText  value="#{reservaBean.reserva.hora_salida}"/>
-            <br/>
-            <p:outputLabel value="ingrese Fecha  "/>
-            <p:inputText  value="#{reservaBean.reserva.fechaSus}"/>
-            <br/>
-            <p:commandButton value="Buscar" actionListener="#{reservaBean.dispo()}" oncomplete="PF('tabla').show();"/>
-            <br/>
-            <p:commandButton value="cerrar" actionListener="#{reservaBean.dispo()}" oncomplete="PF('dispo').hide();"/>
-            </p:dialog>
+            <p:outputLabel value="ingrese nombre "/>
+            <p:inputText  value="#{clienteBean.cliente.nombre}"/>
+
+            <p:outputLabel value="ingrese Direccion  "/>
+            <p:inputText  value="#{clienteBean.cliente.direccion}"/>
+          </h:panelGrid>
+          <br/>
+          <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="datos"/>
+          <p:outputLabel value="&nbsp;&nbsp;"/>
+          <p:commandButton value="Registrar" actionListener="#{clienteBean.registrar()}" />         
         </h:form>
-        
-        
-        <h:form>
-            <p:dialog id="tabla" widgetVar="tabla" header="Datos de las Reservas">
-                <p:dataTable var="reser" value="#{reservaBean.lstReserva}" rows="10" id="tabla1"
-                                     paginator="true"
-                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     rowsPerPageTemplate="5,10,15">
 
-                            <p:column headerText="Mesa">
-                                <p:outputLabel value="#{reser.mesa.id_mesa}"/>
-                            </p:column>
+      </ui:define>
 
-                            <p:column headerText="Hora inicio">
-                                <p:outputLabel value="#{reser.hora_entrada}"/>
-                            </p:column>
-
-                            <p:column headerText="Hora salida">
-                                <p:outputLabel value="#{reser.hora_salida}"/>
-                            </p:column>
-
-                            <p:column headerText="Fecha">
-                                <p:outputLabel value="#{reser.fechaSus}"/>
-                            </p:column>
-                          
-                        </p:dataTable>
-            </p:dialog>
-        </h:form>
-                    </ui:define>
-        </ui:composition>
-    </h:body>
+    </ui:composition>
+  </h:body>
 </html>
 
