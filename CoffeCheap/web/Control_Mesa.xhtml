@@ -25,12 +25,15 @@
 
               <p:commandLink id="ajax" onclick="PF('dlg3').show();" actionListener="#{control_mesaBean.CambioEstado(i)}">
                 <img src="resources/icono/checklist.png" alt="100"/>
-                <f:ajax listener="#{control_mesaBean.control_mesa.setNMesa(i)}" />          
-              </p:commandLink>
+                <f:ajax listener="#{control_mesaBean.control_mesa.setNMesa(i)}"/>          
+              </p:commandLink >
 
-              <b:commandButton  update="display, tempo, messages" oncomplete="PF('dlg').show()" value="Facturar" 
+              <b:commandButton  update="tempo" oncomplete="PF('dlg').show()" value="Facturar" 
                                 style="color: black" class="#{control_mesaBean.ControlEstado(i)}" 
-                                disabled="#{venta_facturaBean.controlGenerarFactura(i)}"  actionListener="#{control_mesaBean.control_mesa.setNMesa(i)}"/>
+                                disabled="#{venta_facturaBean.controlGenerarFactura(i)}"  actionListener="#{control_mesaBean.control_mesa.setNMesa(i)}">
+                
+             
+              </b:commandButton>
 
               <b:commandButton  actionListener="#{control_mesaBean.RegistrarPago(i)}" update="tempo, messages" value="#{control_mesaBean.EstaPago(i)}" 
                                 style="color: black" class="#{control_mesaBean.ControlEstado(i)}" 
@@ -40,7 +43,8 @@
                                  style="color: black" class="#{control_mesaBean.ControlEstado(i)}"/>
 
               <b:commandButton   actionListener="#{control_mesaBean.init()}" oncomplete="PF('dlgM').show()" update="tempo" value="V Mesa"  
-                                 style="color: black" class="#{control_mesaBean.ControlEstado(i)}"/>
+                                 style="color: black" class="#{control_mesaBean.ControlEstado(i)}">
+              </b:commandButton>
 
             </c:forEach>              
           </p:panelGrid>
@@ -53,21 +57,29 @@
               <p:outputLabel value="ingrese nit  " style="color: black"/>
               <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
 
-              <c:if test="#{clienteBean.cliente.nombre!=null}">
+              
                 <p:outputLabel value="ingrese nombre " style="color: black" />
                 <p:inputText  value="#{clienteBean.cliente.nombre}" />
                 <p:outputLabel value="ingrese Direccion  " style="color: black"/>
                 <p:inputText  value="#{clienteBean.cliente.direccion}"/>
                 <h:outputText value="Propina: " style="color: black"/>
-                <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
-                <p:outputLabel value="&nbsp;"/>
+                <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" 
+                                       offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
+                 <p:outputLabel value="&nbsp;"/>
+                <p:commandButton style="width:200px; align-content: center;height: 30px" value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>
+                <p:commandButton style="width:200px; align-content: center;height: 30px" value="Registrar" actionListener="#{clienteBean.registrarN()}" update="display"/>
 
-                <p:commandButton value="Factura" actionListener="#{venta_facturaBean.registrar_venta(control_mesaBean.control_mesa.getNMesa(), clienteBean.cliente.id_cliente)}" style="width:200px; align-content: center;height: 30px" onselect="PF(dlg).hide;" />
-
-              </c:if>              
-              <c:if test="#{clienteBean.cliente.nombre==null}">
-                <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>                
-              </c:if>
+                <p:commandButton value="Factura" actionListener="#{venta_facturaBean.registrar_venta(control_mesaBean.control_mesa.getNMesa(), clienteBean.cliente.id_cliente)}" 
+                                 style="width:200px; align-content: center;height: 30px" onselect="PF(dlg).hide;" update="tempo, display">
+                  
+                  <f:actionListener   binding="#{clienteBean.cliente.setDireccion(null)}"/>  
+                  <f:actionListener   binding="#{clienteBean.cliente.setId_cliente(0)}"/>
+                  <f:actionListener   binding="#{clienteBean.cliente.setNit_cliente(null)}"/>
+                  <f:actionListener   binding="#{clienteBean.cliente.setNombre(null)}"/>
+                  
+                </p:commandButton>                         
+                                           
+              
 
             </p:panelGrid>
           </p:dialog>
@@ -148,7 +160,7 @@
               </b:dataTableColumn>
             </b:dataTable>
 
-            <b:commandButton value="Enviar Orden" actionListener="#{mesero_Temporal.EnviarOrden(control_mesaBean.control_mesa.getNMesa())}" update="hola" style="width: 300px"/>
+            <b:commandButton value="Enviar Orden" actionListener="#{mesero_Temporal.EnviarOrden(control_mesaBean.control_mesa.getNMesa())}" update="tempo" onclick="PF('dlg3').hide();" style="width: 300px"/>
 
           </h:form>
 

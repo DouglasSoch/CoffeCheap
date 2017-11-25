@@ -5,6 +5,7 @@
  */
 package com.coffecheap.dao;
 
+import com.coffecheap.modelo.Cliente;
 import com.coffecheap.modelo.Venta_factura;
 import com.coffecheap.modelo.Proveedor_productos;
 
@@ -275,7 +276,20 @@ public class Venta_facturaDao extends Dao {
       throw ex;
     } finally {
       this.Desconecar();
+      VF.setId_venta_factura(0);
+      VF.setNit_empresa(null);
+      VF.setSubtotal(0.0);
+      VF.setIva(0.0);
+      VF.setPropina(0.0);
+      VF.setTotal(0.0);
+      VF.setFecha_emision(null);
+      VF.getPedido().setId_pedido(0);
 
+      Cliente cli = new Cliente();
+      cli.setId_cliente(0);
+      cli.setNit_cliente(null);
+      cli.setNombre(null);
+      cli.setDireccion(null);
     }
 
   }

@@ -39,6 +39,16 @@ public class ClienteBean {
       System.out.println(e);
     }
   }
+  
+  public void registrarN() throws Exception {
+    ClienteDao dao;
+    try {
+      dao = new ClienteDao();
+      dao.registrarN(cliente);
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+  }
 
   public void mostar() throws Exception {
     ClienteDao dao;
@@ -76,6 +86,7 @@ public class ClienteBean {
 
     } catch (Exception e) {
       throw e;
+      
     }
   }
 

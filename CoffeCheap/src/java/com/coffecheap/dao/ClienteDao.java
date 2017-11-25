@@ -25,6 +25,21 @@ public class ClienteDao extends Dao {
             this.Desconecar();
         }
     }
+    
+    public void registrarN(Cliente cli) throws Exception {
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("insert into cliente values (?,?,?)");            
+            st.setString(2, cli.getNit_cliente());
+            st.setString(3, cli.getNombre());
+            st.setString(4, cli.getDireccion());            
+            st.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Desconecar();
+        }
+    }
 
     public List<Cliente> mostrar() throws Exception {
         List<Cliente> lista;
