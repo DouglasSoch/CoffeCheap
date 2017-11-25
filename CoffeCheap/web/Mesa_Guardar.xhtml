@@ -20,22 +20,19 @@
           <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
 
             <p:outputLabel value="id_mesa" />
-            <p:autoComplete id="Codig" value="#{mesaBean.mesa.id_mesa}" style="color: #ffffff;"/>                         
+            <p:autoComplete id="Codig" value="#{mesaBean.mesa.id_mesa}" style="color: black;"/>                         
 
             <p:outputLabel  value="Cantidad de comensales" />
-            <p:autoComplete id="Nombre" value="#{mesaBean.mesa.cantidad_comensales}" style="color: #ffffff;"/>
+            <p:autoComplete id="Nombre" value="#{mesaBean.mesa.cantidad_comensales}" style="color: black;"/>
 
             <p:outputLabel  value="Ubicacion" />
-            <p:autoComplete id="Ubicacion" value="#{mesaBean.mesa.ubicacion}" style="color: #ffffff;"/>
+            <p:autoComplete id="Ubicacion" value="#{mesaBean.mesa.ubicacion}" style="color: black;"/>
 
             <p:outputLabel  value="id_estado" />            
-            <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{mesaBean.mesa.estMesa.id_estado}" > 
+            <p:selectOneMenu id="lis1" style="width:125px; background-color: black" value="#{mesaBean.mesa.estMesa.id_estado}" > 
               <f:selectItems value="#{estado_mesaBean.lstEstado_mesa}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_estado}"/>                      
             </p:selectOneMenu> 
-
-            <p:outputLabel  value="id_reserva" />
-            <p:autoComplete id="Reserva" value="#{mesaBean.mesa.reserva.id_reserva}" style="color: #ffffff;"/>
-                                   
+                                               
           </h:panelGrid>
 
 
@@ -56,9 +53,7 @@
               
               <h:outputText value="Estado" />
               <h:outputText id="EstadoV" value="#{mesaBean.mesa.estMesa.id_estado}" />
-              
-              <h:outputText value="Reserva" />
-              <h:outputText id="ReservaV" value="#{mesaBean.mesa.reserva.id_reserva}" />
+                           
               
             </p:panelGrid>
           </p:dialog>
@@ -70,4 +65,6 @@
     </ui:composition>
   </h:body>
 </html>
+
+
 

@@ -26,10 +26,7 @@ public class MesaDao extends Dao {
       st.setInt(1, Tt.getId_mesa());
       st.setInt(2, Tt.getCantidad_comensales());
       st.setString(3, Tt.getUbicacion());
-      st.setInt(4, Tt.getEstMesa().getId_estado());
-      
-      
-
+      st.setInt(4, Tt.getEstMesa().getId_estado()); 
       st.executeUpdate();
 
     } catch (Exception ex) {
@@ -81,9 +78,8 @@ public class MesaDao extends Dao {
       st.setInt(2, tt.getCantidad_comensales());
       st.setString(3, tt.getUbicacion());
       st.setInt(4, tt.getEstMesa().getId_estado());
-      
-      
-      st.setInt(7, tt.getId_mesa());
+          
+      st.setInt(5, tt.getId_mesa());
 
       st.executeUpdate();
 

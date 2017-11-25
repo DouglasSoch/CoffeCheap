@@ -18,9 +18,6 @@ import java.util.List;
  */
 public class Control_mesaDao extends Dao {
 
-  
-
-  
   public void registrar(Control_mesa Tt) throws Exception {
 
     try {
@@ -145,7 +142,7 @@ public class Control_mesaDao extends Dao {
           color = "btn-default";
         } else {
           color = "btn-warning";
-          
+
         }
 
       }
@@ -299,8 +296,14 @@ public class Control_mesaDao extends Dao {
                   + "(id_mesa, hora, id_personal, cancelado)"
                   + " VALUES (?, ?, ?, ?);");
 
+          java.util.Date utilDate = new java.util.Date(); //fecha actual
+          long lnMilisegundos = utilDate.getTime();     
+          java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);      
+          System.out.println("sql.Time: " + sqlTime);    
+
+          
           st2.setInt(1, mesa);
-          st2.setString(2, "00:00:00");
+          st2.setTime(2, sqlTime);
           st2.setInt(3, 3);
           st2.setInt(4, 0);
           st2.executeUpdate();
@@ -318,17 +321,17 @@ public class Control_mesaDao extends Dao {
     }
 
   }
-  
- public void controlreserva(int mesa) throws Exception {
-   
+
+  public void controlreserva(int mesa) throws Exception {
+
     System.out.println("*******************************************************control de reserva dao");
     try {
-      
+
       java.util.Date utilDate = new java.util.Date(); //fecha actual
       long lnMilisegundos = utilDate.getTime();
       java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
       System.out.println("sql.Date: " + sqlDate);
-      
+
       this.Conectar();
       PreparedStatement s2 = this.getCon().prepareStatement("select id_estado from mesa WHERE id_mesa=?;");
       s2.setInt(1, mesa);
@@ -348,14 +351,11 @@ public class Control_mesaDao extends Dao {
       this.Desconecar();
     }
 
-    
-}
- public void ListaPedido(int mesa) throws Exception {
-   
- 
- 
- 
-  System.out.println("*******************************************************modificar dao");
+  }
+
+  public void ListaPedido(int mesa) throws Exception {
+
+    System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
       int idPedido = 0;
@@ -375,7 +375,6 @@ public class Control_mesaDao extends Dao {
 
       if (n_est.next()) {
 
-        
       }
 
     } catch (Exception ex) {
@@ -384,11 +383,51 @@ public class Control_mesaDao extends Dao {
       this.Desconecar();
 
     }
- 
- 
- 
- 
- }
-  
-  
+
+  }
+
+  public void asigTodo1mesa(String[] mesas, int MesaPrincipal) throws Exception {
+
+    try {
+
+      this.Conectar();
+      int idPedido;
+      PreparedStatement s2 = this.getCon().prepareStatement("select id_pedido from control where id_mesa=?;");
+      s2.setInt(1, MesaPrincipal);
+      ResultSet n = s2.executeQuery();
+
+      if (n.next()) {
+        idPedido = n.getInt(1);
+        System.out.println("El pedido = " + idPedido);
+
+        PreparedStatement p2 = this.getCon().prepareStatement("select *from plato_pedido where id_pedido=?;");
+        p2.setInt(1, idPedido);
+        ResultSet L = p2.executeQuery();
+
+        int idPlatoPedido;
+        while (L.next()) {
+
+          idPlatoPedido = L.getInt(1);
+          System.out.println("el id plato pedido = " + idPlatoPedido);
+
+          this.Conectar();
+          PreparedStatement st = this.getCon().prepareStatement("UPDATE plato_pedido SET id_pedido=? WHERE id_plato_pedido=?;");
+
+          st.setInt(1, idPedido);
+          st.setInt(2, idPlatoPedido);
+          st.executeUpdate();
+
+        }
+
+      }
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+
+    }
+
+  }
+
 }
