@@ -7,14 +7,15 @@ package com.coffecheap.bean;
 import com.coffecheap.modelo.Control_mesa;
 import com.coffecheap.modelo.EstadoPago;
 import com.coffecheap.dao.Control_mesaDao;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
 import javax.faces.application.FacesMessage;
-
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 
 @ManagedBean
 @ViewScoped
@@ -188,6 +189,52 @@ public class Control_mesaBean {
     } catch (Exception e) {
       throw e;
     }
+  }
+
+  private String[] selectedMesa;
+  private List<String> cities;
+
+  
+  public void init() {
+    cities = new ArrayList<String>();
+    String m=null;
+    try {
+      for (int i = 0; i <= tamano(); i++) {
+         m=Integer.toString(i);
+         System.out.println(""+i);
+         cities.add(m);
+      }
+    } catch (Exception ex) {
+      Logger.getLogger(Control_mesaBean.class.getName()).log(Level.SEVERE, null, ex);
+    }    
+         
+  }
+
+  public String[] getSelectedMesa() {
+          
+    return selectedMesa;
+    
+//    hacer los cambios de mesa aqui
+  }
+  
+  public void unirMesa(int mesa){
+    Control_mesaDao dao;
+    try {
+      dao = new Control_mesaDao();
+      dao.asigTodo1mesa(selectedMesa,mesa);
+      
+    } catch (Exception ex) {
+      Logger.getLogger(Control_mesaBean.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+  }
+
+  public void setSelectedMesa(String[] selectedMesa) {
+    this.selectedMesa = selectedMesa;
+  }
+
+  public List<String> getCities() {
+    return cities;
   }
 
 }

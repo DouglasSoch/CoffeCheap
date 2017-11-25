@@ -18,7 +18,7 @@
 
         <h:form class="flip" id="tempo">
 
-          <p:panelGrid id="desplegar1" columns="5">
+          <p:panelGrid id="desplegar1" columns="6">
             <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
 
               <p:outputLabel value="${i}" style="color: black; align-items: center" class="#{control_mesaBean.ControlEstado(i)};"/>                           
@@ -38,7 +38,10 @@
 
               <b:commandButton   actionListener="#{control_mesaBean.LimpiarMesa(i)}" update="messages, tempo" value="Vaciar_Mesa"  
                                  style="color: black" class="#{control_mesaBean.ControlEstado(i)}"/>
-              
+
+              <b:commandButton   actionListener="#{control_mesaBean.init()}" oncomplete="PF('dlgM').show()" update="tempo" value="V Mesa"  
+                                 style="color: black" class="#{control_mesaBean.ControlEstado(i)}"/>
+
             </c:forEach>              
           </p:panelGrid>
 
@@ -66,10 +69,37 @@
                 <p:commandButton value="Buscar" actionListener="#{clienteBean.buscar()}" update="display"/>                
               </c:if>
 
-             
-
             </p:panelGrid>
-          </p:dialog>   
+          </p:dialog>
+
+          <p:dialog widgetVar="dlgM" modal="true" resizable="false" header="Generar factura" showEffect="fade"> 
+            <p:panelGrid id="displayM" columns="2" columnClasses="label,value">
+              <h:form>
+                <h:outputLabel for="multiple" value="Mesa" />
+                <p:selectCheckboxMenu id="multiple" value="#{control_mesaBean.selectedMesa}" label="Cities" multiple="true">
+                  <f:selectItems value="#{control_mesaBean.cities}" />                
+                </p:selectCheckboxMenu>
+
+                <p:commandButton value="Submit" actionListener="#{control_mesaBean.unirMesa(mesa)}" update="dis" style="margin-top:10px;" />
+
+                <p:dialog header="Selected Items" modal="true" showEffect="fade" hideEffect="fade" widgetVar="itemDialog" width="250">                 
+                  <!-- oncomplete="PF('itemDialog').show()" -->
+                  <p:outputPanel id="dis">
+
+                    <p:dataList value="#{control_mesaBean.selectedMesa}" var="mesa" emptyMessage="No mesas selected">
+                      <f:facet name="header">
+                        Multi Mesa
+                      </f:facet>
+                      #{mesa}
+                    </p:dataList>
+
+                  </p:outputPanel>
+                </p:dialog>
+              </h:form>
+            </p:panelGrid>
+          </p:dialog>
+
+
 
         </h:form>
         <!-- Esta parte de aqui es para pedir el plato  -->
