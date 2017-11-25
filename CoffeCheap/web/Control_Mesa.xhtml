@@ -94,6 +94,7 @@
 
                 <p:commandButton value="Submit" actionListener="#{control_mesaBean.unirMesa(mesa)}" update="dis" style="margin-top:10px;" />
 
+                
                 <p:dialog header="Selected Items" modal="true" showEffect="fade" hideEffect="fade" widgetVar="itemDialog" width="250">                 
                   <!-- oncomplete="PF('itemDialog').show()" -->
                   <p:outputPanel id="dis">
@@ -104,9 +105,10 @@
                       </f:facet>
                       #{mesa}
                     </p:dataList>
-
                   </p:outputPanel>
                 </p:dialog>
+                
+                
               </h:form>
             </p:panelGrid>
           </p:dialog>
