@@ -45,16 +45,11 @@ public class ReservaBean extends ClienteBean
         try {             
              String formateador = new SimpleDateFormat("yyyy-MM-dd").format(reserva.getFecha());
                         reserva.setFechaSus(formateador);
-            
-                       dao = new ReservaDao();
-                       
-                       System.out.println("id del cliente"+cliente.getId_cliente());
-                       System.out.println("cantidad de personas"+reserva.getCantidad_personas());
-                       
+                       dao = new ReservaDao(); 
                        dao.registrarclienteYReserva(reserva, cliente);
                        
         } catch (Exception e) {
-            System.out.println(e);
+            throw e;
         }
     }
     

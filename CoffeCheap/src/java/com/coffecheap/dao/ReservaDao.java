@@ -51,17 +51,20 @@ public class ReservaDao extends Dao {
         System.out.println("cantidad2" + reserva.getCantidad_personas());
         System.out.println("id cliente2" + cliente.getId_cliente());
         System.out.println("id mesa2" + reserva.getMesa().getId_mesa());
-
+        int numero;
+        ResultSet rs;
         try {
             this.Conectar();
-            ResultSet rs = null;
+
             PreparedStatement ps = this.getCon().prepareStatement("select id_cliente from cliente where id_cliente=?");
             ps.setInt(1, cliente.getId_cliente());
             rs = ps.executeQuery();
-
             if (rs.next()) {
-
-                if (cliente.getId_cliente() != rs.getInt(1)) {
+            numero=rs.getInt(1);                    
+                    System.out.println("El id cliente es adentro if de resulset: "+numero);
+                if (cliente.getId_cliente() != numero) {
+                    
+                    System.out.println("El id cliente es adentro id comparacion: "+numero);
                     PreparedStatement psi = this.getCon().prepareStatement("insert into cliente values (?,?,?,?)");
                     psi.setInt(1, cliente.getId_cliente());
                     psi.setString(2, cliente.getNit_cliente());
