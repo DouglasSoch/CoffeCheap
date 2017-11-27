@@ -5,6 +5,9 @@ import java.util.Objects;
 public class Producto 
 {
     int id_producto =0;
+    int id_producto_eliminar;
+    int cantidad;
+    int cantidad_eliminar;
     String nombre =null;
     int existencia =0;
     Unidad_medida Umedida = new Unidad_medida();
@@ -13,6 +16,34 @@ public class Producto
     public Producto() {
     }
 
+    public int getCantidad_eliminar() {
+        return cantidad_eliminar;
+    }
+
+    public void setCantidad_eliminar(int cantidad_eliminar) {
+        this.cantidad_eliminar = cantidad_eliminar;
+    }
+
+    
+    
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    
+    
+    public int getId_producto_eliminar() {
+        return id_producto_eliminar;
+    }
+
+    public void setId_producto_eliminar(int id_producto_eliminar) {
+        this.id_producto_eliminar = id_producto_eliminar;
+    }
+    
     public Producto(int id_producto) {
         this.id_producto = id_producto;
     }

@@ -104,7 +104,11 @@ public class CompraBean extends Dao {
 
     try {
       dao = new CompraDao();
-      dao.Eliminar(compra);      
+        int codigoproducto = dao.CodigoProducto(compra.getId_compras());
+        int cantidadproducto = dao.CantidadProducto(compra.getId_compras());
+        int existencia = dao.CantidadEnTabla(codigoproducto);
+        dao.ActualizarExistencia(existencia-cantidadproducto, codigoproducto);
+        dao.Eliminar(compra);      
     } catch (Exception e) {
       throw e;
     }
@@ -136,8 +140,7 @@ public class CompraBean extends Dao {
     CompraDao dao;
     try {
       dao = new CompraDao();
-      lista = dao.Mostrar();
-
+      lista = dao.Mostrar();      
     } catch (Exception e) {
       throw e;
     }
