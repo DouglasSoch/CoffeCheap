@@ -3,13 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         <ui:composition template="./WEB-INF/template/Template.xhtml">
             <ui:define name="content">
+                <f:event type="preRenderView" listener="#{turnoBean.Mostrar()}"/>  
                 <h:form id="form1">
                     <h:panelGrid id="general" columns="2" cellpadding="5">
                         <p:outputLabel for="codigomodificar" value="Codigo"/>
@@ -20,6 +23,12 @@
                         <p:inputText id="observacionesmodificar" value="#{turnoBean.turno.observaciones}"/>
                     </h:panelGrid><br/>
                     <p:commandButton value="Modificar" action="#{turnoBean.Editar()}" update="form1"/>
+                    
+                    <b:dataTable value="#{turnoBean.listar}" var="turno" col-md="12">
+                        <b:dataTableColumn value="#{turno.id_turno}" label="Codigo" />
+                        <b:dataTableColumn value="#{turno.horario_turno}" label="Horario"/>
+                        <b:dataTableColumn value="#{turno.observaciones}" label="Descripcion"/>
+                    </b:dataTable>
                 </h:form> 
             </ui:define>
         </ui:composition>
