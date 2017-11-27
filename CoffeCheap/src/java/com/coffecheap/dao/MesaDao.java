@@ -70,7 +70,7 @@ public class MesaDao extends Dao {
         tt.setUbicacion(rs.getString(3));
         tt.getEstMesa().setId_estado(rs.getInt(4));
         
-        
+         
         lista.add(tt);
       }
 
