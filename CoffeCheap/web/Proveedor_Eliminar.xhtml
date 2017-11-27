@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -11,13 +13,23 @@
         <ui:composition template="./WEB-INF/template/Template.xhtml">
 
             <ui:define name="content">
-
+                <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
                 <h:form id="form1">
                     <h:panelGrid id="general" columns="2" cellpadding="5">
                         <p:outputLabel for="codigo" value="Codigo"/>
                         <p:inputText id="codigo" value="#{proveedorBean.proveedor.id_proveedor}"/>
                     </h:panelGrid><br/>
                     <p:commandButton value="Eliminar" action="#{proveedorBean.Eliminar()}" update="form1"/>
+                    
+                    
+                    <b:dataTable value="#{proveedorBean.listar}" var="proveedor" col-md="12">
+                        <b:dataTableColumn value="#{proveedor.id_proveedor}" label="Codigo" />
+                        <b:dataTableColumn value="#{proveedor.nombre}" label="Nombre"/>
+                        <b:dataTableColumn value="#{proveedor.nit}" label="Nit"/>
+                        <b:dataTableColumn value="#{proveedor.telefono}" label="Telefono"/>
+                        <b:dataTableColumn value="#{proveedor.mail}" label="E-mail"/>
+                        <b:dataTableColumn value="#{proveedor.direccion}" label="Dirección"/>
+                    </b:dataTable>
                 </h:form>
             </ui:define>
 
