@@ -93,7 +93,6 @@ public class CompraDao extends Dao {
   }
 
   public void Eliminar(Compra compra) throws Exception {
-    System.out.println("Probando Eliminar: " + compra.getId_compras());
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("delete from compra where id_compra=?");

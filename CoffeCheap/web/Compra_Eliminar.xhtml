@@ -10,12 +10,12 @@
     <h:body>
         <ui:composition template="./WEB-INF/template/Template.xhtml">
             <ui:define name="content">
-                <h:form>
+                <h:form id="form1">
                     <h:panelGrid id="panel1" columns="2" cellpadding="5" style="color: #ffffff">
                     <p:outputLabel for="Codigo" value="Codigo"/>
                     <p:inputText id="Codigo" value="#{compraBean.compra.id_compras}"/>
                     </h:panelGrid><br/>
-                    <p:commandButton value="Eliminar" action="#{compraBean.Eliminar()}"/>
+                    <p:commandButton value="Eliminar" action="#{compraBean.Eliminar()}" update="form1"/>
                 </h:form>
             </ui:define>
         </ui:composition>

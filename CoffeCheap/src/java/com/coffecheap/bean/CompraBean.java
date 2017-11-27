@@ -104,7 +104,7 @@ public class CompraBean extends Dao {
 
     try {
       dao = new CompraDao();
-      dao.Eliminar(compra);
+      dao.Eliminar(compra);      
     } catch (Exception e) {
       throw e;
     }
