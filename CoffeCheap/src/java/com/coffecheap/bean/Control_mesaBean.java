@@ -190,6 +190,19 @@ public class Control_mesaBean {
       throw e;
     }
   }
+  
+  public void AsignarMesaUnida(int Mesa) throws Exception {
+    System.out.println("********************************Asignar Mesa Unida");
+    Control_mesaDao dao;
+
+    try {
+      dao = new Control_mesaDao();
+      dao.AsignarMesaUnida(Mesa);
+
+    } catch (Exception e) {
+      throw e;
+    }
+  }
 
   private String[] selectedMesa;
   private List<String> cities;
@@ -217,11 +230,11 @@ public class Control_mesaBean {
 //    hacer los cambios de mesa aqui
   }
   
-  public void unirMesa(int mesa){
+  public void unirMesa(String[] selec, int mesa){
     Control_mesaDao dao;
     try {
       dao = new Control_mesaDao();
-      dao.asigTodo1mesa(selectedMesa,mesa);
+      dao.asigTodo1mesa(selec,mesa);
       
     } catch (Exception ex) {
       Logger.getLogger(Control_mesaBean.class.getName()).log(Level.SEVERE, null, ex);
@@ -237,4 +250,19 @@ public class Control_mesaBean {
     return cities;
   }
 
+  
+  public void controlreserva(int Mesa) throws Exception {
+    System.out.println("********************************controlreserva");
+    Control_mesaDao dao;
+
+    try {
+      dao = new Control_mesaDao();
+      dao.controlreserva(Mesa);
+
+    } catch (Exception e) {
+      throw e;
+    }
+  }  
+  
+  
 }

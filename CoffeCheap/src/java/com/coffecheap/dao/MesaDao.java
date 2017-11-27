@@ -28,6 +28,22 @@ public class MesaDao extends Dao {
       st.setString(3, Tt.getUbicacion());
       st.setInt(4, Tt.getEstMesa().getId_estado()); 
       st.executeUpdate();
+      
+      PreparedStatement st2 = this.getCon().prepareStatement("INSERT INTO pedido "
+                  + "(id_mesa, hora, id_personal, cancelado)"
+                  + " VALUES (?, ?, ?, ?);");
+
+          java.util.Date utilDate = new java.util.Date(); //fecha actual
+          long lnMilisegundos = utilDate.getTime();     
+          java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);      
+          System.out.println("sql.Time: " + sqlTime);    
+
+          
+          st2.setInt(1, Tt.getId_mesa());
+          st2.setTime(2, sqlTime);
+          st2.setInt(3, 3);
+          st2.setInt(4, 0);
+          st2.executeUpdate();
 
     } catch (Exception ex) {
       throw ex;

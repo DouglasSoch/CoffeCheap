@@ -9,7 +9,10 @@ import com.coffecheap.bean.Control_mesaBean;
 import com.coffecheap.modelo.Control_mesa;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -131,18 +134,26 @@ public class Control_mesaDao extends Dao {
   public String ControlEstado(int mesa) throws Exception {
     String color = "btn-default";
     System.out.println("*******************************************************modificar dao");
+    controlreserva(mesa);
     try {
       this.Conectar();
+
       PreparedStatement s2 = this.getCon().prepareStatement("select id_estado from mesa WHERE id_mesa=?;");
       s2.setInt(1, mesa);
       ResultSet n = s2.executeQuery();
 
       if (n.next()) {
-        if (n.getInt(1) == 1) {
-          color = "btn-default";
-        } else {
+        if (n.getInt(1) == 1) { //Libre               Verde
+          color = "btn-success";
+        }
+        if (n.getInt(1) == 3) { //Ocupada             Amarillo       
           color = "btn-warning";
-
+        }
+        if (n.getInt(1) == 4) {//Unida con otra mesa  Blanco
+          color = "btn-default";
+        }
+        if (n.getInt(1) == 2) {//reserva              Celeste
+          color = "btn-info";
         }
 
       }
@@ -293,19 +304,23 @@ public class Control_mesaDao extends Dao {
           st.executeUpdate();
 
           PreparedStatement st2 = this.getCon().prepareStatement("INSERT INTO pedido "
-                  + "(id_mesa, hora, id_personal, cancelado)"
-                  + " VALUES (?, ?, ?, ?);");
+                  + "(id_mesa, hora, id_personal, cancelado, fecha)"
+                  + " VALUES (?, ?, ?, ?, ?);");
 
           java.util.Date utilDate = new java.util.Date(); //fecha actual
-          long lnMilisegundos = utilDate.getTime();     
-          java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);      
-          System.out.println("sql.Time: " + sqlTime);    
+          long lnMilisegundos = utilDate.getTime();
+          java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
+          System.out.println("sql.Time: " + sqlTime);
 
-          
           st2.setInt(1, mesa);
           st2.setTime(2, sqlTime);
           st2.setInt(3, 3);
           st2.setInt(4, 0);
+          java.util.Date dates = new java.util.Date();
+          long fechaSis = dates.getTime();
+          java.sql.Timestamp d = new java.sql.Timestamp(fechaSis);
+
+          st2.setTimestamp(5, d);
           st2.executeUpdate();
           Control_mesaBean.addMessage("Se vacio correctamente");
         } else {
@@ -330,19 +345,26 @@ public class Control_mesaDao extends Dao {
       java.util.Date utilDate = new java.util.Date(); //fecha actual
       long lnMilisegundos = utilDate.getTime();
       java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
+      java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
       System.out.println("sql.Date: " + sqlDate);
+      System.out.println("sql.Time: " + sqlTime);
 
       this.Conectar();
-      PreparedStatement s2 = this.getCon().prepareStatement("select id_estado from mesa WHERE id_mesa=?;");
-      s2.setInt(1, mesa);
+      PreparedStatement s2 = this.getCon().prepareStatement("select fecha, hora_inicio, hora_final, id_mesa from reserva WHERE hora_inicio BETWEEN ? AND ? AND id_mesa=? AND fecha=?;");
+      s2.setTime(1, getAddSubtractTime(sqlTime, -30));
+      s2.setTime(2, getAddSubtractTime(sqlTime, 30));
+      s2.setInt(3, mesa);
+      s2.setDate(4, sqlDate);
       ResultSet n = s2.executeQuery();
 
+      System.out.println("hora restada" + getAddSubtractTime(sqlTime, 30));
+      System.out.println("la mesa entrada =" + mesa);
+
       if (n.next()) {
-        if (n.getInt(1) == 1) {
-          //color = "defaul";
-        } else {
-          //color = "warning";
-        }
+        PreparedStatement st = this.getCon().prepareStatement("UPDATE  mesa SET id_estado=? WHERE id_mesa=?;");
+        st.setInt(1, 2);
+        st.setInt(2, mesa);
+        st.executeUpdate();
       }
 
     } catch (Exception ex) {
@@ -351,6 +373,13 @@ public class Control_mesaDao extends Dao {
       this.Desconecar();
     }
 
+  }
+
+  public java.sql.Time getAddSubtractTime(java.sql.Time time, int minutes) {
+    Calendar cal = new GregorianCalendar();
+    cal.setTimeInMillis(time.getTime());
+    cal.add(cal.MINUTE, minutes);
+    return new Time(cal.getTimeInMillis());
   }
 
   public void ListaPedido(int mesa) throws Exception {
@@ -426,6 +455,26 @@ public class Control_mesaDao extends Dao {
     } finally {
       this.Desconecar();
 
+    }
+
+  }
+
+  public void AsignarMesaUnida(int mesa) throws Exception {
+
+    System.out.println("*******************************************************control de reserva dao");
+    try {
+
+      this.Conectar();
+
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE  mesa SET id_estado=? WHERE id_mesa=?;");
+      st.setInt(1, 4);
+      st.setInt(2, mesa);
+      st.executeUpdate();
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
     }
 
   }
