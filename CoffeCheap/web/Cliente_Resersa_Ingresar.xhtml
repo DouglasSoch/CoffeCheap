@@ -11,15 +11,17 @@
   <h:body>
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-
-        <h:form>
+          
+     <p:growl id="mess"/>
+     
+     <h:form id="forma">
+         
           <b:row>
-            <b:column span="4"><h:outputText/>
-              
-              <p:panelGrid id="desplegar1" columns="2">
-                <p:outputLabel value="id "/>
-                <p:inputText  value="#{reservaBean.cliente.id_cliente}"/>
-
+            <b:column span="4">
+                <h:outputText/>
+                
+                <p:panelGrid id="desplegar1" columns="2">
+                  
                 <p:outputLabel value="Nit"/>
                 <p:inputText  value="#{reservaBean.cliente.nit_cliente}"/>
 
@@ -29,6 +31,8 @@
                 <p:outputLabel value="Direccion"/>
                 <p:inputText  value="#{reservaBean.cliente.direccion}"/>
 
+                <p:outputLabel value="Buscar"/>
+                <p:commandButton value="Buscar" actionListener="#{reservaBean.registrarCyR()}" update="mess, forma"/>
                 <p:outputLabel value="id Reserva"/>
                 <p:inputText  value="#{reservaBean.reserva.id_reserva}"/>
 

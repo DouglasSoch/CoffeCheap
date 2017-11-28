@@ -1,5 +1,6 @@
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.ReservaBean;
 import com.coffecheap.modelo.Cliente;
 import com.coffecheap.modelo.Reserva;
 import java.sql.PreparedStatement;
@@ -7,7 +8,6 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
 public class ReservaDao extends Dao {
 
@@ -39,54 +39,30 @@ public class ReservaDao extends Dao {
         return lstReserva;
     }
 
-    public void registrarclienteYReserva(Reserva reserva, Cliente cliente) throws Exception {
-        System.out.println("id del cliente2" + cliente.getId_cliente());
-        System.out.println("nit2" + cliente.getNit_cliente());
-        System.out.println("nombre2" + cliente.getNombre());
-        System.out.println("direcion2" + cliente.getDireccion());
-        System.out.println("id reserva2" + reserva.getId_reserva());
-        System.out.println("fecha2" + reserva.getFechaSus());
-        System.out.println("hora entrada2" + reserva.getHora_entrada());
-        System.out.println("hora salida2" + reserva.getHora_salida());
-        System.out.println("cantidad2" + reserva.getCantidad_personas());
-        System.out.println("id cliente2" + cliente.getId_cliente());
-        System.out.println("id mesa2" + reserva.getMesa().getId_mesa());
-        int numero=0;
-   
+    public void registrarclienteYReserva(String nit) throws Exception 
+    {
+           
         try {
             this.Conectar();
-
-            PreparedStatement ps = this.getCon().prepareStatement("select id_cliente from cliente where id_cliente=?");
-            ps.setInt(1, cliente.getId_cliente());
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                   
-                    System.out.println("El id cliente es adentro if de resulset: "+numero);
-                    
-                if (rs.getInt(1) != cliente.getId_cliente()  ) {
-                    
-                    System.out.println("El id cliente es adentro id comparacion: "+numero);
-                    
-                    PreparedStatement psi = this.getCon().prepareStatement("insert into cliente values (?,?,?,?)");
-                    psi.setInt(1, cliente.getId_cliente());
-                    psi.setString(2, cliente.getNit_cliente());
-                    psi.setString(3, cliente.getNombre());
-                    psi.setString(4, cliente.getDireccion());
-                    psi.executeUpdate();
-
-                    if (rs.getInt(1) == reserva.getCliente().getId_cliente()) {
-                        PreparedStatement psir = this.getCon().prepareStatement("insert into reserva values(?,?,?,?,?,?,?)");
-                        psir.setInt(1, reserva.getId_reserva());
-                        psir.setString(2, reserva.getFechaSus());
-                        psir.setString(3, reserva.getHora_entrada());
-                        psir.setString(4, reserva.getHora_salida());
-                        psir.setInt(5, reserva.getCantidad_personas());
-                        psir.setInt(6, reserva.getMesa().getId_mesa());
-                        psir.setInt(7, reserva.getCliente().getId_cliente());
-                        psir.executeUpdate();
-                    }
+            String resultado=null;
+            
+            PreparedStatement ps = this.getCon().prepareStatement("select nit_cliente from cliente where nit_cliente=?");
+            ps.setString(1, nit);
+            ResultSet rs =ps.executeQuery();
+            
+            
+            rs.next(); 
+            
+                if (rs.getString(1).equals(nit)) 
+                {
+                    System.out.println("el nit es correcto :  "+resultado);
+                    ReservaBean.addMessage("El cliente existe");
                 }
-                System.out.println("El valor de numero es : "+numero);
+                if (rs.getString(1).isEmpty())
+                {
+                    System.out.println("el nit es incorrecto:  "+resultado);
+                    ReservaBean.addMessage("El cliente no existe");
+                
             }
         } catch (Exception e) {
             throw e;

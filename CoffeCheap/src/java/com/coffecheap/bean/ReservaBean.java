@@ -5,8 +5,10 @@ import com.coffecheap.modelo.Reserva;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -17,6 +19,11 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ReservaBean extends ClienteBean
 {
+    
+  static public void addMessage(String summary) {
+    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+    FacesContext.getCurrentInstance().addMessage(null, message);
+  }
     List<Reserva> lstReserva = new ArrayList();
     Reserva reserva = new Reserva();
   
@@ -40,13 +47,13 @@ public class ReservaBean extends ClienteBean
          public void registrarCyR() throws Exception {
        
         ReservaDao dao ;
-        
-         
+      String nit= cliente.getNit_cliente();
         try {             
-             String formateador = new SimpleDateFormat("yyyy-MM-dd").format(reserva.getFecha());
-                        reserva.setFechaSus(formateador);
+            System.out.println("el nit es:  "+nit);
+//             String formateador = new SimpleDateFormat("yyyy-MM-dd").format(reserva.getFecha());
+//                        reserva.setFechaSus(formateador);
                        dao = new ReservaDao(); 
-                       dao.registrarclienteYReserva(reserva, cliente);
+                       dao.registrarclienteYReserva(nit);
                        
         } catch (Exception e) {
             throw e;
