@@ -92,7 +92,7 @@ public class ClienteBean {
         System.out.println("EL id es "+cliente.getId_cliente());
     try {
       dao = new ClienteDao();
-      temp = dao.leerParaModificar(cliente);
+      temp = dao.leerParaModificarS(cliente);
 
       if (cliente != null) {
         this.cliente = temp;

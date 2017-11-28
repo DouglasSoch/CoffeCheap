@@ -29,7 +29,7 @@ public class ClienteDao extends Dao {
     public void registrarN(Cliente cli) throws Exception {
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("insert into cliente values (?,?,?)");            
+            PreparedStatement st = this.getCon().prepareStatement("INSERT INTO cliente (`nit_cliente`, `nombre_cliente`, `direccion`) VALUES (?, ?, ?);");            
             st.setString(1, cli.getNit_cliente());
             st.setString(2, cli.getNombre());
             st.setString(3, cli.getDireccion());            
@@ -143,7 +143,8 @@ public class ClienteDao extends Dao {
         return cli;
     }
 
-        public Cliente leerParaModificarS(Cliente cliente) throws Exception {
+        
+    public Cliente leerParaModificarS(Cliente cliente) throws Exception {
         Cliente cli= null;
         ResultSet rs;
 
@@ -153,13 +154,22 @@ public class ClienteDao extends Dao {
             st.setString(1, cliente.getNit_cliente());
             rs = st.executeQuery();
 
-            while (rs.next()) {
+            
+            if (rs!=null && rs.next()) {
                 cli = new Cliente();
                 cli.setId_cliente(rs.getInt(1));
                 cli.setNit_cliente(rs.getString(2));
                 cli.setNombre(rs.getString(3));
                 cli.setDireccion(rs.getString(4));
 
+            }
+            else
+            {
+            cli = new Cliente();
+                cli.setId_cliente(0);
+                cli.setNit_cliente(null);
+                cli.setNombre(null);
+                cli.setDireccion(null);
             }
         } catch (Exception e) {
             throw e;
