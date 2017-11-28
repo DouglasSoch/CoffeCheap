@@ -60,6 +60,18 @@ public class ClienteBean {
       throw e;
     }
   }
+  
+    public void listar() throws Exception {
+    ClienteDao dao;
+        System.out.println("esta corriendo"+cliente.getId_cliente());
+        System.out.println("El id del cliente "+cliente.getId_cliente());
+    try {
+      dao = new ClienteDao();
+      lstCliente = dao.listarNombre();
+    } catch (Exception e) {
+      throw e;
+    }
+  }
 
   public void mostarPorParametro() throws Exception {
     ClienteDao dao;
@@ -72,10 +84,12 @@ public class ClienteBean {
     }
   }
 
-  public void buscar() throws Exception {
+  public void buscar() throws Exception 
+  {
+        System.out.println("EL id es "+cliente.getId_cliente());
     ClienteDao dao;
     Cliente temp;
-
+        System.out.println("EL id es "+cliente.getId_cliente());
     try {
       dao = new ClienteDao();
       temp = dao.leerParaModificar(cliente);
