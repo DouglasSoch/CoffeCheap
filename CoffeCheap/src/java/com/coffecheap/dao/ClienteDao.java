@@ -143,6 +143,33 @@ public class ClienteDao extends Dao {
         return cli;
     }
 
+        public Cliente leerParaModificarS(Cliente cliente) throws Exception {
+        Cliente cli= null;
+        ResultSet rs;
+
+        try {
+            this.Conectar();
+            PreparedStatement st = getCon().prepareCall("select id_cliente, nit_cliente, nombre_cliente, direccion from cliente where nit_cliente=?");
+            st.setString(1, cliente.getNit_cliente());
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                cli = new Cliente();
+                cli.setId_cliente(rs.getInt(1));
+                cli.setNit_cliente(rs.getString(2));
+                cli.setNombre(rs.getString(3));
+                cli.setDireccion(rs.getString(4));
+
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Desconecar();
+        }
+        return cli;
+    }
+
+    
     
          public void eliminar(Cliente cliente) throws Exception
     {
