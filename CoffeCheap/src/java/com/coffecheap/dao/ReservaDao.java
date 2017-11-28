@@ -51,19 +51,20 @@ public class ReservaDao extends Dao {
             ResultSet rs =ps.executeQuery();
             
             
-            rs.next(); 
+            if(rs!=null && rs.next()){ 
             
                 if (rs.getString(1).equals(nit)) 
                 {
                     System.out.println("el nit es correcto :  "+resultado);
                     ReservaBean.addMessage("El cliente existe");
                 }
-                if (rs.getString(1).isEmpty())
+
+            }                
+            else
                 {
                     System.out.println("el nit es incorrecto:  "+resultado);
                     ReservaBean.addMessage("El cliente no existe");
-                
-            }
+                }
         } catch (Exception e) {
             throw e;
         } finally {
