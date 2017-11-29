@@ -103,6 +103,26 @@ public class ClienteBean {
       
     }
   }
+  
+   public void buscarr() throws Exception 
+  {
+        System.out.println("EL id es "+cliente.getId_cliente());
+    ClienteDao dao;
+    Cliente temp;
+        System.out.println("EL id es "+cliente.getId_cliente());
+    try {
+      dao = new ClienteDao();
+      temp = dao.leerParaModificar(cliente);
+
+      if (cliente != null) {
+        this.cliente = temp;
+      }
+
+    } catch (Exception e) {
+      throw e;
+      
+    }
+  }
 
   public void modificar() throws Exception {
     ClienteDao dao;

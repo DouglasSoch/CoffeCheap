@@ -2,6 +2,7 @@ package com.coffecheap.dao;
 
 import com.coffecheap.bean.ReservaBean;
 import com.coffecheap.modelo.Cliente;
+import com.coffecheap.modelo.Mesa;
 import com.coffecheap.modelo.Reserva;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,38 +40,88 @@ public class ReservaDao extends Dao {
         return lstReserva;
     }
 
-    public void registrarclienteYReserva(String nit) throws Exception 
+    public Boolean registrarclienteYReserva(String nit) throws Exception 
     {
-           
-        try {
+       Boolean estado=false;           
+        try 
+        {
             this.Conectar();
-            String resultado=null;
-            
+
             PreparedStatement ps = this.getCon().prepareStatement("select nit_cliente from cliente where nit_cliente=?");
             ps.setString(1, nit);
             ResultSet rs =ps.executeQuery();
             
-            
-            if(rs!=null && rs.next()){ 
-            
+            if(rs!=null && rs.next())
+            { 
                 if (rs.getString(1).equals(nit)) 
                 {
-                    System.out.println("el nit es correcto :  "+resultado);
                     ReservaBean.addMessage("El cliente existe");
+                    estado=false;
                 }
-
             }                
             else
                 {
-                    System.out.println("el nit es incorrecto:  "+resultado);
                     ReservaBean.addMessage("El cliente no existe");
+                    estado=true;
                 }
         } catch (Exception e) {
             throw e;
         } finally {
             this.Desconecar();
         }
+        System.out.println("el valor final es: "+estado);
+        return estado;
+        
     }
+    
+    
+      public List<Cliente> listarNombre() throws Exception{
+        List<Cliente> lista;
+        ResultSet rs;
+        try{
+            this.Conectar();
+            PreparedStatement ps = getCon().prepareCall("select  id_cliente, nombre_cliente from cliente");
+            rs = ps.executeQuery();
+            lista = new ArrayList();
+            while(rs.next()){
+                Cliente cli = new Cliente();
+                cli.setId_cliente(rs.getInt(1));
+                cli.setNombre(rs.getString(2));
+                lista.add(cli);
+            }   
+        }catch(Exception e)
+        {
+           throw e;
+        } finally {
+            this.Desconecar();
+        }
+        return lista;
+    }
+      
+      
+            public List<Mesa> listarMesa() throws Exception{
+        List<Mesa> lista;
+        ResultSet rs;
+        try{
+            this.Conectar();
+            PreparedStatement ps = getCon().prepareCall("select id_mesa from mesa ORDER BY id_mesa ASC");
+            rs = ps.executeQuery();
+            lista = new ArrayList();
+            while(rs.next()){
+                Mesa cli = new Mesa();
+                cli.setId_mesa(rs.getInt(1));
+                
+                lista.add(cli);
+            }   
+        }catch(Exception e)
+        {
+           throw e;
+        } finally {
+            this.Desconecar();
+        }
+        return lista;
+    }
+
 
     public void registrar(Reserva reserva) throws Exception {
         try {
