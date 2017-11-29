@@ -153,7 +153,7 @@ public class UsuarioDao extends Dao {
   {
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("DELETE FROM usuario WHERE iduser=?;");
+      PreparedStatement st = this.getCon().prepareStatement("DELETE FROM usuario WHERE iduser=?");
       st.setInt(1, pac.getId());
       st.executeUpdate();
 

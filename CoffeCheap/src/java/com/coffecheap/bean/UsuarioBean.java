@@ -88,13 +88,13 @@ public class UsuarioBean {
 
   }
 
-  public void eliminar(Usuario mar) throws Exception {
-    System.out.println("*******************************************************eliminar");
+  public void eliminar() throws Exception 
+  {
     UsuarioDao dao;
 
     try {
       dao = new UsuarioDao();
-      dao.eliminar(mar);
+      dao.eliminar(usuario);
 
     } catch (Exception e) {
       throw e;

@@ -1,12 +1,76 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h:form>
+            <b:row>
+                <b:column span="4">
+                    <p:outputLabel value="ingrese el id"/>
+                    <p:inputText  value="#{usuarioBean.usuario.id}"/>
+                    <p:commandButton value="Eliminar"  icon="ui-icon-check" actionListener="#{usuarioBean.eliminar()}" />
+                    <p:commandButton value="Ver Registros"  icon="ui-icon-check" actionListener="#{usuarioBean.listar()}" update="tabla1"/>
+
+                </b:column>
+                <b:column span="8">
+                    <p:dataTable var="usuario" value="#{usuarioBean.lstUsuario}" rows="10" id="tabla1"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+
+
+                        <p:column headerText="id" filterBy="#{usuario.id}" filterMatchMode="exact">
+                            <p:outputLabel value="#{usuario.id}"/>
+                        </p:column>
+
+                        <p:column headerText="user">
+                            <p:outputLabel value="#{usuario.usuario}"/>
+                        </p:column>
+
+                        <p:column headerText="contraseña">
+                            <p:outputLabel value="#{usuario.pass}"/>
+                        </p:column>
+
+                        <p:column headerText="Tipo de usuario">
+                            <p:outputLabel value="#{usuario.tipo.id}"/>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <p:outputLabel value="#{usuario.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Apellido">
+                            <p:outputLabel value="#{usuario.apellido}"/>
+                        </p:column>
+                        <p:column headerText="Codigo">
+                            <p:outputLabel value="#{usuario.codigo}"/>
+                        </p:column>
+                        <p:column headerText="Turno">
+                            <p:outputLabel value="#{usuario.turno.id_turno}"/>
+                        </p:column>
+                        <p:column headerText="Telefono">
+                            <p:outputLabel value="#{usuario.telefono}"/>
+                        </p:column>
+                        <p:column headerText="direccion">
+                            <p:outputLabel value="#{usuario.direccion}"/>
+                        </p:column>
+                        <p:column headerText="DPI">
+                            <p:outputLabel value="#{usuario.dpi}"/>
+                        </p:column>
+                        <p:column headerText="Nit">
+                            <p:outputLabel value="#{usuario.nit}"/>
+                        </p:column>
+                        <p:column headerText="Correo">
+                            <p:outputLabel value="#{usuario.correo}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </b:column>
+            </b:row>
+        </h:form>
     </h:body>
 </html>
 
