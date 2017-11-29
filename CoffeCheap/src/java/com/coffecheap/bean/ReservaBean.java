@@ -2,6 +2,7 @@ package com.coffecheap.bean;
 
 import com.coffecheap.dao.ClienteDao;
 import com.coffecheap.dao.ReservaDao;
+import com.coffecheap.modelo.Cliente;
 import com.coffecheap.modelo.Mesa;
 import com.coffecheap.modelo.Reserva;
 import java.text.SimpleDateFormat;
@@ -19,7 +20,7 @@ import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
-public class ReservaBean extends ClienteBean
+public class ReservaBean 
 {
     
   static public void addMessage(String summary) {
@@ -29,6 +30,26 @@ public class ReservaBean extends ClienteBean
     List<Reserva> lstReserva = new ArrayList();
     List<Mesa> lstMesa = new ArrayList();
     Reserva reserva = new Reserva();
+    Cliente cliente = new Cliente();
+  List<Cliente> lstCliente = new ArrayList();
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<Cliente> getLstCliente() {
+        return lstCliente;
+    }
+
+    public void setLstCliente(List<Cliente> lstCliente) {
+        this.lstCliente = lstCliente;
+    }
+  
+  
     
     String nombreBoton= "Buscar";
 
@@ -124,12 +145,13 @@ public class ReservaBean extends ClienteBean
         }
         
     }
+         
+         
      public void listar() throws Exception {
-    ClienteDao dao;
-        System.out.println("esta corriendo"+cliente.getId_cliente());
-        System.out.println("El id del cliente "+cliente.getId_cliente());
+    ReservaDao dao;
+       
     try {
-      dao = new ClienteDao();
+      dao = new ReservaDao();
       lstCliente = dao.listarNombre();
     } catch (Exception e) {
       throw e;
@@ -138,8 +160,7 @@ public class ReservaBean extends ClienteBean
      
        public void listarMesa() throws Exception {
     ReservaDao dao;
-        System.out.println("esta corriendo"+cliente.getId_cliente());
-        System.out.println("El id del cliente "+cliente.getId_cliente());
+      
     try {
       dao = new ReservaDao();
       lstMesa = dao.listarMesa();
@@ -153,11 +174,11 @@ public class ReservaBean extends ClienteBean
         ReservaDao dao ;
          
         try {
-            
+          
 
               String formateador = new SimpleDateFormat("yyyy-MM-dd").format(reserva.getFecha());
                         reserva.setFechaSus(formateador);
-                    
+                       
                         
                         
                        dao = new ReservaDao();
@@ -233,11 +254,7 @@ public class ReservaBean extends ClienteBean
                        {
                            this.reserva= temp;
                            
-                           System.out.println(reserva.getId_reserva());
-                           System.out.println(reserva.getFechaSus());
-                           System.out.println(reserva.getHora_entrada());
-                           System.out.println(reserva.getHora_salida());
-                           System.out.println(reserva.getCantidad_personas());
+                       
                        }
                        
                    }catch(Exception e)

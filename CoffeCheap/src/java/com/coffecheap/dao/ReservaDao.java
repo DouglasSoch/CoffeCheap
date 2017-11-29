@@ -99,6 +99,8 @@ public class ReservaDao extends Dao {
     }
       
       
+      
+      
             public List<Mesa> listarMesa() throws Exception{
         List<Mesa> lista;
         ResultSet rs;
@@ -124,16 +126,21 @@ public class ReservaDao extends Dao {
 
 
     public void registrar(Reserva reserva) throws Exception {
+        System.out.println("la fecha es: "+ reserva.getFechaSus());
+        System.out.println("la hora de entrada es: "+ reserva.getHora_entrada());
+        System.out.println("la hora de salida es: "+reserva.getHora_salida());
+        System.out.println("la cantidad de personas es: "+reserva.getCantidad_personas());
+        System.out.println("el id de la mesa es: "+reserva.getMesa().getId_mesa());
+        System.out.println("el id del cliente es: "+reserva.getCliente().getId_cliente());
         try {
             this.Conectar();
-            PreparedStatement psir = this.getCon().prepareStatement("insert into reserva values(?,?,?,?,?,?,?)");
-            psir.setInt(1, reserva.getId_reserva());
-            psir.setString(2, reserva.getFechaSus());
-            psir.setString(3, reserva.getHora_entrada());
-            psir.setString(4, reserva.getHora_salida());
-            psir.setInt(5, reserva.getCantidad_personas());
-            psir.setInt(6, reserva.getMesa().getId_mesa());
-            psir.setInt(7, reserva.getCliente().getId_cliente());
+            PreparedStatement psir = this.getCon().prepareStatement("insert into reserva (fecha, hora_inicio, hora_final, cantidad_personas, id_mesa, id_cliente) values(?,?,?,?,?,?)");
+            psir.setString(1, reserva.getFechaSus());
+            psir.setString(2, reserva.getHora_entrada());
+            psir.setString(3, reserva.getHora_salida());
+            psir.setInt(4, reserva.getCantidad_personas());
+            psir.setInt(5, reserva.getMesa().getId_mesa());
+            psir.setInt(6, reserva.getCliente().getId_cliente());
             psir.executeUpdate();
         } catch (Exception e) {
             throw e;

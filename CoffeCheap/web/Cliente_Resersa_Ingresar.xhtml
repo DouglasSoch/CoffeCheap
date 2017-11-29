@@ -12,7 +12,7 @@
   <h:body>
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-          <f:event type="preRenderView" listener="#{clienteBean.listar()}"/>
+          <f:event type="preRenderView" listener="#{reservaBean.listar()}"/>
           <f:event type="preRenderView" listener="#{reservaBean.listarMesa()}"/>
      <p:growl id="mess"/>
      
@@ -49,9 +49,9 @@
                 <p:inputText  value="#{reservaBean.reserva.cantidad_personas}"/>
 
                 <p:outputLabel value="Cliente  "/>
-                 <p:selectOneMenu  value="#{clienteBean.cliente.id_cliente}">
+                <p:selectOneMenu  value="#{reservaBean.reserva.cliente.id_cliente}">
             <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-            <f:selectItems value="#{clienteBean.lstCliente}" var="cliente" itemLabel="#{cliente.nombre}" itemValue="#{cliente.id_cliente}" />
+            <f:selectItems value="#{reservaBean.lstCliente}" var="cliente" itemLabel="#{cliente.nombre}" itemValue="#{cliente.id_cliente}" />
            </p:selectOneMenu>
 
                 <p:outputLabel value="mesa" />
@@ -60,7 +60,7 @@
             <f:selectItems value="#{reservaBean.lstMesa}" var="mesa" itemLabel="#{mesa.id_mesa}" itemValue="#{mesa.id_mesa}" />
            </p:selectOneMenu>
 
-                <p:commandButton value="Guardar" actionListener="#{reservaBean.registrarCyR()}"/>
+                <p:commandButton value="Guardar" actionListener="#{reservaBean.registrar()}"/>
 
                 <p:commandButton value="verificar Disponibilidad" actionListener="#{reservaBean.mostrar()}" update="tabla1" />
               </p:panelGrid>

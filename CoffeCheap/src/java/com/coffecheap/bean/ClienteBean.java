@@ -63,8 +63,7 @@ public class ClienteBean {
   
     public void listar() throws Exception {
     ClienteDao dao;
-        System.out.println("esta corriendo"+cliente.getId_cliente());
-        System.out.println("El id del cliente "+cliente.getId_cliente());
+ 
     try {
       dao = new ClienteDao();
       lstCliente = dao.listarNombre();
