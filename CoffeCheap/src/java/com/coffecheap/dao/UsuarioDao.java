@@ -1,5 +1,7 @@
 package com.coffecheap.dao;
 
+import com.coffecheap.modelo.Tipo;
+import com.coffecheap.modelo.Turno;
 import com.coffecheap.modelo.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -74,7 +76,61 @@ public class UsuarioDao extends Dao {
         return lista;
 
     }
+    
+    
+    public List<Turno> listarTurno() throws Exception {
+        List<Turno> lista;
+        ResultSet rs;
 
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareCall("select idturno, horario_turno from turno");
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Turno turno = new Turno();
+                turno.setId_turno(rs.getInt(1));
+                turno.setHorario_turno(rs.getString(2));
+                lista.add(turno);
+            }
+
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            this.Desconecar();
+        }
+
+        return lista;
+
+    }
+
+    public List<Tipo> listarTipo() throws Exception {
+        List<Tipo> lista;
+        ResultSet rs;
+
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareCall("select idtipo, nombretipo from tipo");
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Tipo tipo = new Tipo();
+                tipo.setId(rs.getInt(1));
+                tipo.setNombre(rs.getString(2));
+                lista.add(tipo);
+            }
+
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            this.Desconecar();
+        }
+
+        return lista;
+
+    }
+
+    
     public List<Usuario> listarPorParametro(Usuario usuarioS) throws Exception {
         List<Usuario> lista;
         ResultSet rs;
