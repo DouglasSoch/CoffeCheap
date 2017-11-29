@@ -2,41 +2,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-         <h:form style="color: white">
-          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
-             <p:outputLabel value="id  "/>
-             <p:inputText  value="#{usuarioBean.usuario.id}"/>
-            <p:outputLabel value="Usuario "/>
-            <p:inputText  value="#{usuarioBean.usuario.usuario}"/>
-            <p:outputLabel value="contraseña  "/>
-            <p:inputText  value="#{usuarioBean.usuario.pass}"/>
-            <p:outputLabel value="tipo de usuario  "/>
-            <p:inputText  value="#{usuarioBean.usuario.tipo.id}"/>
-             <p:outputLabel value="nombre  "/>
-             <p:inputText  value="#{usuarioBean.usuario.nombre}"/>
-            <p:outputLabel value="apellido "/>
-            <p:inputText  value="#{usuarioBean.usuario.apellido}"/>
-            <p:outputLabel value="codigo "/>
-            <p:inputText  value="#{usuarioBean.usuario.codigo}"/>
-            <p:outputLabel value="turnot  "/>
-            <p:inputText  value="#{usuarioBean.usuario.turno.id_turno}"/>
-           <p:outputLabel value="telefono "/>
-           <p:inputText  value="#{usuarioBean.usuario.telefono}"/>
-            <p:outputLabel value="direccion "/>
-            <p:inputText  value="#{usuarioBean.usuario.direccion}"/>
-            <p:outputLabel value="dpi "/>
-            <p:inputText  value="#{usuarioBean.usuario.dpi}"/>
-            <p:outputLabel value="nit  "/>
-            <p:inputText  value="#{usuarioBean.usuario.nit}"/>
-             <p:outputLabel value="Correo "/>
-             <p:inputText  value="#{usuarioBean.usuario.correo}"/>
-          </h:panelGrid>
-             <p:commandButton value="Guardar" actionListener="#{usuarioBean.registrar()}"/>
+        <f:event type="preRenderView" listener="#{usuarioBean.listarTipo()}"/>
+        <f:event type="preRenderView" listener="#{usuarioBean.listarTurno()}"/>
+        <h:form >
+            <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+                <p:outputLabel value="id  "/>
+                <p:inputText  value="#{usuarioBean.usuario.id}"/>
+                <p:outputLabel value="Usuario "/>
+                <p:inputText  value="#{usuarioBean.usuario.usuario}"/>
+                <p:outputLabel value="contraseña  "/>
+                <p:inputText  value="#{usuarioBean.usuario.pass}"/>
+                
+                <p:outputLabel value="tipo de usuario  "/>
+                <p:selectOneMenu  value="#{usuarioBean.usuario.tipo.id}">
+                                <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                <f:selectItems value="#{usuarioBean.lstUsuario}" var="lista" itemLabel="#{lista.tipo.nombre}" itemValue="#{lista.tipo.id}" />
+                            </p:selectOneMenu>
+                
+                <p:outputLabel value="nombre  "/>
+                <p:inputText  value="#{usuarioBean.usuario.nombre}"/>
+                <p:outputLabel value="apellido "/>
+                <p:inputText  value="#{usuarioBean.usuario.apellido}"/>
+                <p:outputLabel value="codigo "/>
+                <p:inputText  value="#{usuarioBean.usuario.codigo}"/>
+                
+                <p:outputLabel value="turnot  "/>
+                <p:selectOneMenu  value="#{usuarioBean.usuario.turno.id_turno}">
+                                <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                <f:selectItems value="#{usuarioBean.lstUsuario}" var="list" itemLabel="#{list.turno.horario_turno}" itemValue="#{list.turno.id_turno}" />
+                            </p:selectOneMenu>
+                
+                <p:outputLabel value="telefono "/>
+                <p:inputText  value="#{usuarioBean.usuario.telefono}"/>
+                <p:outputLabel value="direccion "/>
+                <p:inputText  value="#{usuarioBean.usuario.direccion}"/>
+                <p:outputLabel value="dpi "/>
+                <p:inputText  value="#{usuarioBean.usuario.dpi}"/>
+                <p:outputLabel value="nit  "/>
+                <p:inputText  value="#{usuarioBean.usuario.nit}"/>
+                <p:outputLabel value="Correo "/>
+                <p:inputText  value="#{usuarioBean.usuario.correo}"/>
+            </h:panelGrid>
+            <p:commandButton value="Guardar" actionListener="#{usuarioBean.registrar()}"/>
         </h:form>
     </h:body>
 </html>

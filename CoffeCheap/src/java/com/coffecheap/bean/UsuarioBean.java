@@ -9,6 +9,7 @@ import com.coffecheap.modelo.Usuario;
 import com.coffecheap.dao.UsuarioDao;
 import com.coffecheap.modelo.Tipo;
 import com.coffecheap.modelo.Turno;
+import java.util.ArrayList;
 
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -19,9 +20,9 @@ import javax.faces.bean.ViewScoped;
 public class UsuarioBean {
 
   private Usuario usuario = new Usuario();
-  private List<Usuario> lstUsuario;
-   private List<Tipo> lstTipo;
-     private List<Turno> lstTurno;
+  private List<Usuario> lstUsuario= new ArrayList();
+   private List<Tipo> lstTipo= new ArrayList();
+     private List<Turno> lstTurno= new ArrayList();
 
     public List<Tipo> getLstTipo() {
         return lstTipo;
