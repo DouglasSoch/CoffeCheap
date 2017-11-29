@@ -15,7 +15,7 @@ public class UsuarioDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into usuario values(?,?,?,?,?,?,?,?);");
+      PreparedStatement st = this.getCon().prepareStatement("insert into usuario values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
       st.setInt(1, Tt.getId());
       st.setString(2, Tt.getUsuario());
       st.setString(3, Tt.getPass());
@@ -25,10 +25,10 @@ public class UsuarioDao extends Dao {
       st.setInt(7, Tt.getCodigo());
       st.setInt(8, Tt.getTurno().getId_turno());
       st.setInt(9, Tt.getTelefono());
-      st.setString(6, Tt.getDireccion());
-      st.setInt(6, Tt.getDpi());
-      st.setString(6, Tt.getNit());
-      st.setString(6, Tt.getCorreo());
+      st.setString(10, Tt.getDireccion());
+      st.setInt(11, Tt.getDpi());
+      st.setString(12, Tt.getNit());
+      st.setString(13, Tt.getCorreo());
       
       
       st.executeUpdate();
