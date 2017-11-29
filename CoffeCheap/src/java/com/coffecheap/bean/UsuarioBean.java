@@ -73,14 +73,33 @@ public class UsuarioBean {
 
   }
   
+  public void buscarr() throws Exception 
+  {
+       
+    UsuarioDao dao;
+    Usuario temp;
+        
+    try {
+      dao = new UsuarioDao();
+      temp = dao.leerParaModificar(usuario);
 
-  public void modificar(Usuario mar) throws Exception 
+      if (usuario != null) {
+        this. usuario= temp;
+      }
+
+    } catch (Exception e) {
+      throw e;
+      
+    }
+  }
+
+  public void modificar() throws Exception 
   {
     UsuarioDao dao;
 
     try {
       dao = new UsuarioDao();
-      dao.modificar(mar);
+      dao.modificar(usuario);
 
     } catch (Exception e) {
       throw e;
