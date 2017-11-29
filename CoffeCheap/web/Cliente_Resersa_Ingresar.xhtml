@@ -4,14 +4,16 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
   <h:head>
     <title>Facelet Title</title>
   </h:head>
   <h:body>
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-          
+          <f:event type="preRenderView" listener="#{clienteBean.listar()}"/>
+          <f:event type="preRenderView" listener="#{reservaBean.listarMesa()}"/>
      <p:growl id="mess"/>
      
      <h:form id="forma">
@@ -23,19 +25,17 @@
                 <p:panelGrid id="desplegar1" columns="2">
                   
                 <p:outputLabel value="Nit"/>
-                <p:inputText  value="#{reservaBean.cliente.nit_cliente}"/>
+                <p:inputText  id="nit" value="#{reservaBean.cliente.nit_cliente}"/>
 
                 <p:outputLabel value="Nombre"/>
-                <p:inputText  value="#{reservaBean.cliente.nombre}"/>
+                <p:inputText id="nom" value="#{reservaBean.cliente.nombre}"/>
 
                 <p:outputLabel value="Direccion"/>
-                <p:inputText  value="#{reservaBean.cliente.direccion}"/>
+                <p:inputText id="dire" value="#{reservaBean.cliente.direccion}"/>
 
-                <p:outputLabel value="Buscar"/>
-                <p:commandButton value="Buscar" actionListener="#{reservaBean.registrarCyR()}" update="mess, forma"/>
-                <p:outputLabel value="id Reserva"/>
-                <p:inputText  value="#{reservaBean.reserva.id_reserva}"/>
-
+                <p:outputLabel value="#{reservaBean.nombreBoton}"/>
+                <p:commandButton value="#{reservaBean.nombreBoton}" actionListener="#{reservaBean.registrarCyR()}" update="mess, forma"/>
+            
                 <p:outputLabel value="Fecha"/>
                 <p:calendar id="Orden" value="#{reservaBean.reserva.fecha}" pattern="yyyy-MM-dd" locale="es"/> 
 
@@ -48,11 +48,17 @@
                 <p:outputLabel value="cantidad de personas "/>
                 <p:inputText  value="#{reservaBean.reserva.cantidad_personas}"/>
 
-                <p:outputLabel value="id cliente  "/>
-                <p:inputText  value="#{reservaBean.reserva.cliente.id_cliente}"/>
+                <p:outputLabel value="Cliente  "/>
+                 <p:selectOneMenu  value="#{clienteBean.cliente.id_cliente}">
+            <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+            <f:selectItems value="#{clienteBean.lstCliente}" var="cliente" itemLabel="#{cliente.nombre}" itemValue="#{cliente.id_cliente}" />
+           </p:selectOneMenu>
 
-                <p:outputLabel value="id mesa" />
-                <p:autoComplete id="cliente" value="#{reservaBean.reserva.mesa.id_mesa}"/>
+                <p:outputLabel value="mesa" />
+                <p:selectOneMenu  value="#{reservaBean.reserva.mesa.id_mesa}">
+            <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+            <f:selectItems value="#{reservaBean.lstMesa}" var="mesa" itemLabel="#{mesa.id_mesa}" itemValue="#{mesa.id_mesa}" />
+           </p:selectOneMenu>
 
                 <p:commandButton value="Guardar" actionListener="#{reservaBean.registrarCyR()}"/>
 

@@ -1,6 +1,8 @@
 package com.coffecheap.bean;
 
+import com.coffecheap.dao.ClienteDao;
 import com.coffecheap.dao.ReservaDao;
+import com.coffecheap.modelo.Mesa;
 import com.coffecheap.modelo.Reserva;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;;
@@ -25,7 +27,27 @@ public class ReservaBean extends ClienteBean
     FacesContext.getCurrentInstance().addMessage(null, message);
   }
     List<Reserva> lstReserva = new ArrayList();
+    List<Mesa> lstMesa = new ArrayList();
     Reserva reserva = new Reserva();
+    
+    String nombreBoton= "Buscar";
+
+    public List<Mesa> getLstMesa() {
+        return lstMesa;
+    }
+
+    public void setLstMesa(List<Mesa> lstMesa) {
+        this.lstMesa = lstMesa;
+    }
+
+    
+    public String getNombreBoton() {
+        return nombreBoton;
+    }
+
+    public void setNombreBoton(String nombreBoton) {
+        this.nombreBoton = nombreBoton;
+    }
   
     public List<Reserva> getLstReserva() {
         return lstReserva;
@@ -44,22 +66,87 @@ public class ReservaBean extends ClienteBean
     }
 
     
+//    public void estadoDelBoton() throws Exception
+//    {
+//        ReservaDao dao = new ReservaDao();
+//        boolean serONoSer;
+//        //serONoSer=this.registrarCyR();
+//        
+//     if(serONoSer==false)
+//     {
+//         this.nombreBoton="Buscar";
+//     }
+//     else
+//     {
+//         ClienteDao daoC = new ClienteDao();
+//         this.nombreBoton="Guardar";
+//         daoC.registrarN(cliente);
+//     }
+//            
+//    }
          public void registrarCyR() throws Exception {
        
-        ReservaDao dao ;
+      ReservaDao dao ;
       String nit= cliente.getNit_cliente();
+       boolean serONoSer;
+        serONoSer=false;
+      boolean estado=false;
         try {             
-            System.out.println("el nit es:  "+nit);
+            
 //             String formateador = new SimpleDateFormat("yyyy-MM-dd").format(reserva.getFecha());
 //                        reserva.setFechaSus(formateador);
                        dao = new ReservaDao(); 
-                       dao.registrarclienteYReserva(nit);
+                       estado=dao.registrarclienteYReserva(nit);
+        
+     if(estado==false)
+     {
+         this.nombreBoton="Buscar";
+     }
+     else
+     {
+         this.nombreBoton="Guardar";
+         if(!cliente.getNombre().equals("")){
+             if(!cliente.getDireccion().equals("")){
+         try{
+         ClienteDao daoC = new ClienteDao();
+         
+         daoC.registrarN(cliente);
+         }catch(Exception e)
+         {
+             System.out.println(e);
+         }
+             }
+         }
+     }
                        
         } catch (Exception e) {
             throw e;
         }
+        
     }
-    
+     public void listar() throws Exception {
+    ClienteDao dao;
+        System.out.println("esta corriendo"+cliente.getId_cliente());
+        System.out.println("El id del cliente "+cliente.getId_cliente());
+    try {
+      dao = new ClienteDao();
+      lstCliente = dao.listarNombre();
+    } catch (Exception e) {
+      throw e;
+    }
+  }
+     
+       public void listarMesa() throws Exception {
+    ReservaDao dao;
+        System.out.println("esta corriendo"+cliente.getId_cliente());
+        System.out.println("El id del cliente "+cliente.getId_cliente());
+    try {
+      dao = new ReservaDao();
+      lstMesa = dao.listarMesa();
+    } catch (Exception e) {
+      throw e;
+    }
+  }
     
      public void registrar() throws Exception {
        
