@@ -80,11 +80,48 @@ public class UsuarioDao extends Dao {
 
   }
   
+   public List<Usuario> listarPorParametro(Usuario usuarioS) throws Exception 
+  {
+    List<Usuario> lista;
+    ResultSet rs;
+
+    try {
+      this.Conectar();
+      PreparedStatement st = this.getCon().prepareCall("select iduser, user, pass, tipouser, nombre, apellido, codigo, idturno, telefono, direccion, dpi, nit, correo from usuario where iduser=?");
+      st.setInt(1, usuarioS.getId());
+      rs = st.executeQuery();
+      lista = new ArrayList();
+      while (rs.next()) {
+        Usuario usuario = new Usuario();
+        usuario.setId(rs.getInt(1));
+        usuario.setUsuario(rs.getString(2));
+        usuario.setPass(rs.getString(3));
+        usuario.getTipo().setId(rs.getInt(4));
+        usuario.setNombre(rs.getString(5));
+        usuario.setApellido(rs.getString(6));
+        usuario.setCodigo(rs.getInt(7));
+        usuario.getTurno().setId_turno(rs.getInt(8));   
+        usuario.setTelefono(rs.getInt(9));
+        usuario.setDireccion(rs.getString(10));
+        usuario.setDpi(rs.getInt(11));
+        usuario.setNit(rs.getString(12));
+        usuario.setCorreo(rs.getString(13));
+        lista.add(usuario);
+      }
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+    }
+
+    return lista;
+
+  }
   
 
   public void modificar(Usuario Tt) throws Exception 
   {
-    System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("UPDATE usuario SET iduser=?, user=?, pass=?, tipouser=?, nombre=?, apellido=?, codigo=?, idturno=?, telefono=?, direccion=?, dpi=?, nit=?, correo=? WHERE iduser=?;");

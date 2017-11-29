@@ -48,6 +48,18 @@ public class UsuarioBean {
 
   }
 
+         public void mostarPorParametro() throws Exception 
+  {
+    UsuarioDao dao;
+
+    try {
+      dao = new UsuarioDao();
+      lstUsuario = dao.listarPorParametro(usuario);
+    } catch (Exception e) {
+      throw e;
+    }
+
+  }
   public void listar() throws Exception 
   {
     UsuarioDao dao;
