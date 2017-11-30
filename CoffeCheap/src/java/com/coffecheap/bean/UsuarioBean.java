@@ -4,7 +4,6 @@ package com.coffecheap.bean;
  *
  * @marhor acier
  */
-
 import com.coffecheap.modelo.Usuario;
 import com.coffecheap.dao.UsuarioDao;
 import com.coffecheap.modelo.Tipo;
@@ -19,10 +18,10 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class UsuarioBean {
 
-  private Usuario usuario = new Usuario();
-  private List<Usuario> lstUsuario= new ArrayList();
-   private List<Tipo> lstTipo= new ArrayList();
-     private List<Turno> lstTurno= new ArrayList();
+    private Usuario usuario = new Usuario();
+    private List<Usuario> lstUsuario = new ArrayList();
+    private List<Tipo> lstTipo = new ArrayList();
+    private List<Turno> lstTurno = new ArrayList();
 
     public List<Tipo> getLstTipo() {
         return lstTipo;
@@ -40,8 +39,6 @@ public class UsuarioBean {
         this.lstTurno = lstTurno;
     }
 
-     
-     
     public Usuario getUsuario() {
         return usuario;
     }
@@ -57,117 +54,110 @@ public class UsuarioBean {
     public void setLstUsuario(List<Usuario> lstUsuario) {
         this.lstUsuario = lstUsuario;
     }
- 
-  public void registrar() 
-  {
-    UsuarioDao dao;
 
-    try {
-      dao = new UsuarioDao();
-      dao.registrar(usuario);
-    } catch (Exception e) {
-      System.out.println(e);
+    public void registrar() {
+        UsuarioDao dao;
+
+        try {
+            dao = new UsuarioDao();
+            dao.registrar(usuario);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
-  }
+    public void mostarPorParametro() throws Exception {
+        UsuarioDao dao;
 
-         public void mostarPorParametro() throws Exception 
-  {
-    UsuarioDao dao;
+        try {
+            dao = new UsuarioDao();
+            lstUsuario = dao.listarPorParametro(usuario);
+        } catch (Exception e) {
+            throw e;
+        }
 
-    try {
-      dao = new UsuarioDao();
-      lstUsuario = dao.listarPorParametro(usuario);
-    } catch (Exception e) {
-      throw e;
     }
 
-  }
-  public void listar() throws Exception 
-  {
-    UsuarioDao dao;
+    public void listar() throws Exception {
+        UsuarioDao dao;
 
-    try {
-      dao = new UsuarioDao();
-      lstUsuario = dao.listar();
-    } catch (Exception e) {
-      throw e;
+        try {
+            dao = new UsuarioDao();
+            lstUsuario = dao.listar();
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
-  }
-  
-    public void listarTipo() throws Exception 
-  {
-    UsuarioDao dao;
+    public void listarTipo() throws Exception {
+        UsuarioDao dao;
 
-    try {
-      dao = new UsuarioDao();
-      lstTipo = dao.listarTipo();
-    } catch (Exception e) {
-      throw e;
+        try {
+            dao = new UsuarioDao();
+            lstTipo = dao.listarTipo();
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
-  }
-    
-      public void listarTurno() throws Exception 
-  {
-    UsuarioDao dao;
+    public void listarTurno() throws Exception {
+        UsuarioDao dao;
 
-    try {
-      dao = new UsuarioDao();
-      lstTurno = dao.listarTurno();
-    } catch (Exception e) {
-      throw e;
+        try {
+            dao = new UsuarioDao();
+            lstTurno = dao.listarTurno();
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
-  }
-  
-  public void buscarr() throws Exception 
-  {
-       
-    UsuarioDao dao;
-    Usuario temp;
-        
-    try {
-      dao = new UsuarioDao();
-      temp = dao.leerParaModificar(usuario);
+    public void buscarr() throws Exception {
 
-      if (usuario != null) {
-        this. usuario= temp;
-      }
+        UsuarioDao dao;
+        Usuario temp;
 
-    } catch (Exception e) {
-      throw e;
-      
-    }
-  }
+        try {
+            dao = new UsuarioDao();
+            temp = dao.leerParaModificar(usuario);
 
-  public void modificar() throws Exception 
-  {
-    UsuarioDao dao;
+            if (usuario != null) {
+                this.usuario = temp;
+            }
 
-    try {
-      dao = new UsuarioDao();
-      dao.modificar(usuario);
+        } catch (Exception e) {
+            throw e;
 
-    } catch (Exception e) {
-      throw e;
+        }
     }
 
-  }
+    public void modificar() throws Exception {
+        UsuarioDao dao;
 
-  public void eliminar() throws Exception 
-  {
-    UsuarioDao dao;
+        try {
+            dao = new UsuarioDao();
+            dao.modificar(usuario);
 
-    try {
-      dao = new UsuarioDao();
-      dao.eliminar(usuario);
+        } catch (Exception e) {
+            throw e;
+        }
 
-    } catch (Exception e) {
-      throw e;
     }
 
-  }
+    public void eliminar() throws Exception {
+        UsuarioDao dao;
+
+        try {
+            dao = new UsuarioDao();
+            dao.eliminar(usuario);
+
+        } catch (Exception e) {
+            throw e;
+        }
+
+    }
 
 }

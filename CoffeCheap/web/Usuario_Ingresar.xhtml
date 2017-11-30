@@ -18,26 +18,26 @@
                 <p:inputText  value="#{usuarioBean.usuario.usuario}"/>
                 <p:outputLabel value="contraseña  "/>
                 <p:inputText  value="#{usuarioBean.usuario.pass}"/>
-                
+
                 <p:outputLabel value="tipo de usuario  "/>
                 <p:selectOneMenu  value="#{usuarioBean.usuario.tipo.id}">
                                 <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                                <f:selectItems value="#{usuarioBean.lstUsuario}" var="lista" itemLabel="#{lista.tipo.nombre}" itemValue="#{lista.tipo.id}" />
-                            </p:selectOneMenu>
-                
+                                <f:selectItems value="#{usuarioBean.lstTipo}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id}" />
+                </p:selectOneMenu>
+
                 <p:outputLabel value="nombre  "/>
                 <p:inputText  value="#{usuarioBean.usuario.nombre}"/>
                 <p:outputLabel value="apellido "/>
                 <p:inputText  value="#{usuarioBean.usuario.apellido}"/>
                 <p:outputLabel value="codigo "/>
                 <p:inputText  value="#{usuarioBean.usuario.codigo}"/>
-                
+
                 <p:outputLabel value="turnot  "/>
                 <p:selectOneMenu  value="#{usuarioBean.usuario.turno.id_turno}">
                                 <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                                <f:selectItems value="#{usuarioBean.lstUsuario}" var="list" itemLabel="#{list.turno.horario_turno}" itemValue="#{list.turno.id_turno}" />
-                            </p:selectOneMenu>
-                
+                                <f:selectItems value="#{usuarioBean.lstTurno}" var="list" itemLabel="#{list.horario_turno}" itemValue="#{list.id_turno}" />
+                </p:selectOneMenu>
+
                 <p:outputLabel value="telefono "/>
                 <p:inputText  value="#{usuarioBean.usuario.telefono}"/>
                 <p:outputLabel value="direccion "/>

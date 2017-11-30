@@ -23,7 +23,6 @@
                             <f:selectItem itemLabel="Orden..."/>
                             <f:selectItems value="#{orden_comprasBean.lstOrden_compras}" var="lista" itemLabel="#{lista.id_orden_compras}" itemValue="#{lista.id_orden_compras}"/>
                         </p:selectOneMenu>
-
                         <p:outputLabel for="Producto" value="Producto"/>
                         <p:selectOneMenu id="Producto" value="#{compraBean.compra.producto.id_producto}">
                             <f:selectItem itemLabel="Producto..."/>
