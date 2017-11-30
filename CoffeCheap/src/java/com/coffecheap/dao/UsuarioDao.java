@@ -89,8 +89,8 @@ public class UsuarioDao extends Dao {
             lista = new ArrayList();
             while (rs.next()) {
                 Turno turno = new Turno();
-                turno.setId_turno(rs.getInt("idturno"));
-                turno.setHorario_turno(rs.getString("horario_turno"));
+                turno.setId_turno(rs.getInt(1));
+                turno.setHorario_turno(rs.getString(2));
                 lista.add(turno);
             }
 

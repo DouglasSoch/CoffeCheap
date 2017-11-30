@@ -98,10 +98,7 @@ public class ReservaDao extends Dao {
         return lista;
     }
       
-      
-      
-      
-            public List<Mesa> listarMesa() throws Exception{
+     public List<Mesa> listarMesa() throws Exception{
         List<Mesa> lista;
         ResultSet rs;
         try{
