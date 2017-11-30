@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+                <h:form id="form1">
+                    <p:growl id="growl" showDetail="true" sticky="true" /> 
+                    <f:event type="preRenderView" listener="#{tipoUsuarioBean.Crud()}"/>
+                    <f:event type="preRenderView" listener="#{tipoUsuarioBean.Nombre()}"/>                    
+                    <h:panelGrid columns="4" id="panel" width="800PX">
+                        <c:if test="#{tipoUsuarioBean.Ocultar() == 0}">
+                            <p:outputLabel for="txtNombre">Nombre Tipo <br/> de Usuario</p:outputLabel>
+                            <p:inputText id="txtNombre" value="#{tipoUsuarioBean.tipo.nombretipo}"/>
+                            <p:outputLabel for="txtDescricpion" value="Descripcion"/>
+                            <p:inputText id="txtDescricpion" value="#{tipoUsuarioBean.tipo.descripcion}"/>
+                            <p:outputLabel for="Html">Nombre de<br/> las Paginas</p:outputLabel>
+                        </c:if>
+                        <p:selectOneMenu id="Html" value="#{tipoUsuarioBean.tipo.id_html}" style="width: 200px">
+                            <f:selectItem itemLabel="Paginas HTML" itemValue="0"/>
+                            <f:selectItems value="#{tipoUsuarioBean.listanombre}" var="listahtml" itemLabel="#{listahtml.nombrepagina}" itemValue="#{listahtml.id_html}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="Crud" value="Permisos"/>
+                        <p:selectOneMenu id="Crud" value="#{tipoUsuarioBean.tipo.id_crud}" style="width: 210px">
+                            <f:selectItem itemLabel="CRUD" itemValue="0"/>
+                            <f:selectItems value="#{tipoUsuarioBean.listacrud}" var="listacrud" itemLabel="#{listacrud.nombrecrud}" itemValue="#{listacrud.id_crud}"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                    <br/>
+                    <p:commandButton value="Intermediario" actionListener="#{tipoUsuarioBean.Intermedio()}" update="TablaCheckBox: tblNombre: form1"/>
+                    <br/><br/>
+                    <p:dataTable style="width: 700px" id="tblNombre" value="#{tipoUsuarioBean.listadescripcion}" var="descripcion">
+                        <p:column headerText="Nombre del Tipo">
+                            <p:outputLabel value="#{descripcion.nombretipo}"/>
+                        </p:column>
+                        <p:column headerText="Descripcion">
+                            <p:outputLabel value="#{descripcion.descripcion}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <br/>
+                    <p:dataTable id="TablaCheckBox" value="#{tipoUsuarioBean.intermedio}" var="tipointer" selection="#{tipoUsuarioBean.intermedio}" rowKey="#{tipointer.identificacion}" style="margin-bottom:0">
+                        <f:facet name="header">
+                            Selección de Permisos
+                        </f:facet>
+                        <p:column selectionMode="multiple" style="width:40px;text-align:center"/>
+                        <p:column headerText="HTML">
+                            <h:outputText value="#{tipointer.id_html}" />
+                        </p:column>
+                        <p:column headerText="CRUD">
+                            <h:outputText value="#{tipointer.id_crud}" />
+                        </p:column>
+                    </p:dataTable><br/><br/>
+                    <p:commandButton value="Guardar" actionListener="#{tipoUsuarioBean.Ingresar()}" update="TablaCheckBox: form1: growl"/>
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
