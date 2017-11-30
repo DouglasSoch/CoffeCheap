@@ -20,6 +20,7 @@ public class TipoUsuarioBean {
     ArrayList<TipoUsuario> intermedio = new ArrayList<TipoUsuario>();
     ArrayList<TipoUsuario> listadescripcion = new ArrayList<TipoUsuario>();
     int i;
+    int acum;
 
     private String message;
 
@@ -75,34 +76,20 @@ public class TipoUsuarioBean {
 
         TipoUsuarioDao dao;
         try {
-            
-            /*dao = new TipoUsuarioDao();
+
+            dao = new TipoUsuarioDao();
             dao.Ingresar(listadescripcion.get(0).getNombretipo(), listadescripcion.get(0).getDescripcion());
-            int numero = dao.Buscar(listadescripcion.get(0).getNombretipo());*/
-            
+            int numero = dao.Buscar(listadescripcion.get(0).getNombretipo());
+
             for (int j = 0; j < intermedio.size(); j++) {
-                
-                for (int k = 0; k < intermedio.size(); k++) {
-                    
-                    System.out.println("viendo ciclo 1: " + intermedio.get(j).getId_crud());
-                    System.out.println("viendo ciclo 2: " + intermedio.get(k).getId_crud());
-                    if (intermedio.get(j).getId_crud() == intermedio.get(k).getId_crud() && intermedio.get(j).getId_html() == intermedio.get(k).getId_html()) {
-                        System.out.println("1");
-                    }
-                    
-                    
-                }
-                
-                //dao.Permiso(numero, intermedio.get(j).getId_html(), intermedio.get(j).getId_crud());
+                dao.Permiso(numero, intermedio.get(j).getId_html(), intermedio.get(j).getId_crud());
             }
-            
-            /*FacesContext context = FacesContext.getCurrentInstance();
+            FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Mensaje:", "Guardado Correctamente"));
             intermedio.clear();
             listadescripcion.clear();
             tipo.setId_crud(0);
-            tipo.setId_html(0);*/
-
+            tipo.setId_html(0);
         } catch (Exception e) {
             throw e;
         }
@@ -137,21 +124,71 @@ public class TipoUsuarioBean {
             dao = new TipoUsuarioDao();
 
             String nombre = dao.Comparar(tipo.getNombretipo());
-
-            if (nombre == null) {
-                i = i + 1;
-                intermedio.add(new TipoUsuario(i, tipo.getId_crud(), tipo.getId_html()));
-
-                if (listadescripcion.size() == 0) {
-                    listadescripcion.add(new TipoUsuario(1, tipo.getNombretipo(), tipo.getDescripcion()));
-                    tipo.setNombretipo(null);
-                    tipo.setDescripcion(null);
-                }
-                tipo.setId_crud(0);
-                tipo.setId_html(0);
-            } else {
+            if (tipo.getId_crud() == 0) {
                 FacesContext context = FacesContext.getCurrentInstance();
-                context.addMessage(null, new FacesMessage("Error:", "Este Usuario Ya Existente"));
+                context.addMessage(null, new FacesMessage("Error:", "Ingrese una de las Opciones Permiso"));
+            } else {
+                if (tipo.getId_html() == 0) {
+                    FacesContext context = FacesContext.getCurrentInstance();
+                    context.addMessage(null, new FacesMessage("Error:", "Ingrese su HTML"));
+                } else {
+
+                    if (tipo.getNombretipo().equals("")) {
+                        FacesContext context = FacesContext.getCurrentInstance();
+                        context.addMessage(null, new FacesMessage("Error:", "Ingrese el Nombre"));
+                    } else {
+                        if (tipo.getDescripcion().equals("")) {
+                            FacesContext context = FacesContext.getCurrentInstance();
+                            context.addMessage(null, new FacesMessage("Error:", "Ingrese su Descripcion"));
+                        } else {
+                            if (nombre == null) {
+
+                                if (intermedio.size() > 0) {
+
+                                    for (int j = 0; j < intermedio.size(); j++) {
+                                        if (intermedio.get(j).getId_html() == tipo.getId_html() && intermedio.get(j).getId_crud() == tipo.getId_crud()) {
+                                            acum = acum + 1;
+                                        }
+                                    }
+                                    if (acum > 0) {
+                                        FacesContext context = FacesContext.getCurrentInstance();
+                                        context.addMessage(null, new FacesMessage("Error:", "Este Dato Se Repite"));
+                                        acum = 0;
+                                    } else {
+                                        i = i + 1;
+                                        intermedio.add(new TipoUsuario(i, tipo.getId_crud(), tipo.getId_html()));
+
+                                        if (listadescripcion.size() == 0) {
+                                            listadescripcion.add(new TipoUsuario(1, tipo.getNombretipo(), tipo.getDescripcion()));
+                                            tipo.setNombretipo(null);
+                                            tipo.setDescripcion(null);
+                                        }
+                                        tipo.setId_crud(0);
+                                        tipo.setId_html(0);
+                                    }
+
+                                } else {
+
+                                    i = i + 1;
+                                    intermedio.add(new TipoUsuario(i, tipo.getId_crud(), tipo.getId_html()));
+
+                                    if (listadescripcion.size() == 0) {
+                                        listadescripcion.add(new TipoUsuario(1, tipo.getNombretipo(), tipo.getDescripcion()));
+                                        tipo.setNombretipo(null);
+                                        tipo.setDescripcion(null);
+                                    }
+                                    tipo.setId_crud(0);
+                                    tipo.setId_html(0);
+                                }
+                            } else {
+                                FacesContext context = FacesContext.getCurrentInstance();
+                                context.addMessage(null, new FacesMessage("Error:", "Este Usuario Ya Existente"));
+                            }
+
+                        }
+                    }
+
+                }
             }
 
         } catch (Exception e) {

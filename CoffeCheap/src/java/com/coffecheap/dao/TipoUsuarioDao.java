@@ -100,7 +100,10 @@ public class TipoUsuarioDao extends Dao {
             lista = new ArrayList();
             while (rs.next()) {
                 TipoUsuario usuario = new TipoUsuario();
-
+                usuario.setId_tipo(rs.getInt("idtipo"));
+                usuario.setId_html(rs.getInt("idpagina"));
+                usuario.setId_crud(rs.getInt("idcrud"));
+                lista.add(usuario);
             }
         } catch (Exception e) {
             throw e;
