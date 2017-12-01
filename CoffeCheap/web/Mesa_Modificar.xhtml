@@ -40,7 +40,10 @@
               <p:column>
                 <f:facet name="header">id estado</f:facet>
                 <h:inputText value="#{tabla.estMesa.id_estado}" style="color: black; width : 160px" />
-              </p:column>                                        
+              </p:column> 
+              <p:column>
+                <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{mesaBean.modificar(tabla)}"/>                    
+              </p:column>   
 
             </p:dataList>
           </p:panelGrid>        

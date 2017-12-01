@@ -22,7 +22,7 @@
           <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
           <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
           <f:event type="preRenderView" listener="#{orden_comprasBean.Mostrar_Prov_Produ()}"/>
-          <p:outputLabel style="color: #ffffff;" value="Lista para escoger orden de transaccion a Modificar" />          
+          <p:outputLabel style="color: #000000;" value="Lista para escoger orden de transaccion a Modificar" />          
 
         </h:form>
         <h:form id="otro">
@@ -32,23 +32,23 @@
 
               <p:column>
                 <f:facet name="header">id_orden compras</f:facet>
-                <h:inputText value="#{tabla.id_orden_compras}" style="color: #ffffff; width : 50px" />
+                <h:inputText value="#{tabla.id_orden_compras}" style="color: #000000; width : 50px" />
               </p:column>
               <p:column>
                 <f:facet name="header">Fecha Orden</f:facet>
-                <h:inputText value="#{tabla.fecha_orden}" style="color: #ffffff; width : 120px" />
+                <h:inputText value="#{tabla.fecha_orden}" style="color: #000000; width : 120px" />
               </p:column>
               <p:column>
                 <f:facet name="header">Fecha Entrega</f:facet>
-                <h:inputText value="#{tabla.fecha_entrega}" style="color: #ffffff; width : 80px" />
+                <h:inputText value="#{tabla.fecha_entrega}" style="color: #000000; width : 80px" />
               </p:column>
               <p:column>
                 <f:facet name="header">Cantidad Orden</f:facet>
-                <h:inputText value="#{tabla.cantidad}" style="color: #ffffff; width : 80px" />
+                <h:inputText value="#{tabla.cantidad}" style="color: #000000; width : 80px" />
               </p:column>
               <p:column id="columna_proveedor">
                 <f:facet name="header">Id Proveedor</f:facet>              
-                <p:selectOneMenu id="lis2" style="width:125px; background-color: #ffffff" value="#{orden_comprasBean.orden_compras.pproductos.proveedor.id_proveedor}" >   
+                <p:selectOneMenu id="lis2" style="width:125px;"  value="#{orden_comprasBean.orden_compras.pproductos.proveedor.id_proveedor}" >   
                   <f:selectItem itemLabel="Proveedor" itemValue=""/>
                   <f:selectItems value="#{proveedorBean.listar}" var="lista1" itemLabel="#{lista1.nombre}" itemValue="#{lista1.id_proveedor}"/>      
                   <f:ajax execute="lis2" render="lis1"/>
@@ -57,19 +57,19 @@
               <p:column id="columna_producto">
 
                 <f:facet name="header">Id Producto</f:facet>
-                <p:selectOneMenu id="lis1" style="width:125px; background-color: #ffffff" value="#{orden_comprasBean.orden_compras.pproductos.producto.id_producto}" > 
-                  <f:selectItem itemLabel="Producto" itemValue=""/>
+                <p:selectOneMenu id="lis1" style="width:125px;"  value="#{orden_comprasBean.orden_compras.pproductos.producto.id_producto}" > 
+                  <f:selectItem itemLabel="Producto"/>
                   <f:selectItems value="#{orden_comprasBean.lstProveedor_productos}" var="listapro" itemLabel="#{listapro.producto.nombre}" itemValue="#{listapro.producto.id_producto}"/>      
                 </p:selectOneMenu> 
 
               </p:column>
               <p:column>
                 <f:facet name="header">precio</f:facet>
-                <h:inputText value="#{tabla.precio}" style="color: #ffffff; width : 80px" />
+                <h:inputText value="#{tabla.precio}" style="color: #000000; width : 80px" />
               </p:column>             
 
               <p:column>
-                <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{orden_comprasBean.modificar(tabla)}"/>                    
+                <h:commandLink value="Modificar" style="color: #000000" actionListener="#{orden_comprasBean.modificar(tabla)}"/>                    
               </p:column>                              
 
             </p:dataTable>>

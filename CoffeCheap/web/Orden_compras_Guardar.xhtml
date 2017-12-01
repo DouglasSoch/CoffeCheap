@@ -18,7 +18,7 @@
         <f:event type="preRenderView" listener="#{orden_comprasBean.Mostrar_Prov_Produ()}"/>
         <h:form class="flip">
 
-          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+          <p:panelGrid id="desplegar1" columns="2">
 
             <p:outputLabel value="id orden de compras" />
             <p:autoComplete id="Codig" value="#{orden_comprasBean.orden_compras.id_orden_compras}"/>                         
@@ -46,7 +46,7 @@
               <f:selectItems value="#{orden_comprasBean.lstProveedor_productos}" var="listapro" itemLabel="#{listapro.producto.nombre}" itemValue="#{listapro.producto.id_producto}"/>      
             </p:selectOneMenu> 
 
-          </h:panelGrid>
+          </p:panelGrid>
 
 
           <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{orden_comprasBean.registrar()}"/>

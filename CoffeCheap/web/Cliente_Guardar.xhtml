@@ -12,8 +12,8 @@
       <p:outputLabel value="Guardar Nuevo Cliente "/>
       <ui:define name="content">
         <h2>Ingresar nuevo Cliente</h2>
-        <h:form style="color: white">
-          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+        <h:form style="color: white;" >
+          <p:panelGrid id="desplegar1" columns="2" style="border: 2px;">
             <p:outputLabel value="ingrese id  "/>
             <p:inputText  value="#{clienteBean.cliente.id_cliente}"/>
             <p:outputLabel value="ingrese nombre "/>
@@ -22,7 +22,7 @@
             <p:inputText  value="#{clienteBean.cliente.direccion}"/>
             <p:outputLabel value="ingrese nit  "/>
             <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
-          </h:panelGrid>
+          </p:panelGrid>
           <p:commandButton value="Guardar" actionListener="#{clienteBean.registrar()}"/>
         </h:form>
       </ui:define>

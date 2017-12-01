@@ -14,11 +14,12 @@
             <ui:define name="content">
                 <f:event type="preRenderView" listener="#{compraBean.Mostrar()}"/>
                 <h:form id="form1">
-                    <h:panelGrid id="panel1" columns="2" cellpadding="5" style="color: #ffffff">
-                    <p:outputLabel for="Codigo" value="Codigo"/>
+                    <h:panelGrid id="panel1" columns="3" cellpadding="5" style="color: #000000">
+                    <p:outputLabel for="Codigo" value="Insertar El Codigo Para Eliminar &nbsp;&nbsp;"/>
                     <p:inputText id="Codigo" value="#{compraBean.compra.id_compras}"/>
-                    </h:panelGrid><br/>
                     <p:commandButton value="Eliminar" action="#{compraBean.Eliminar()}" update="form1"/>
+                    </h:panelGrid><br/>
+                    
                     
                     <b:dataTable value="#{compraBean.lista}" var="compra" col-md="12">
                         <b:dataTableColumn value="#{compra.id_compras}" label="Codigo de Compra" />

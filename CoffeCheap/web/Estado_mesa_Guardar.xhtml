@@ -15,15 +15,16 @@
       <ui:define name="content">
 
         <h:form class="flip">
-
-          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+           
+           <p:panelGrid id="display1" columns="2">
+             
             <p:outputLabel value="id_estado" />
             <p:autoComplete id="id" value="#{estado_mesaBean.estado_mesa.id_estado}"/>                         
 
             <p:outputLabel  value="nombre" />
             <p:autoComplete id="Nombre" value="#{estado_mesaBean.estado_mesa.nombre}" maxlength="7"/>
 
-          </h:panelGrid>
+          </p:panelGrid>
 
 
           <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{estado_mesaBean.registrar()}"/>

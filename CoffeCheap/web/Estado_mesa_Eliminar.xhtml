@@ -16,7 +16,7 @@
         <f:event type="preRenderView" listener="#{estado_mesaBean.listar()}"/>
         <h:form class="flip">
           
-            <p:outputLabel style="color: #ffffff;" value="Lista para escoger Estado de mesa a eliminar" />          
+            <p:outputLabel style="color: #000000;" value="Lista para escoger Estado de mesa a eliminar" />          
          
         </h:form>
         <h:form id="otro">
@@ -28,11 +28,11 @@
 
               <p:column>
                 <f:facet name="header">Codigo de la trasaccion</f:facet>
-                <h:inputText value="#{tabla.id_estado}" style="color: #ffffff; width : 30px" />
+                <h:inputText value="#{tabla.id_estado}" style="color: #000000; width : 30px" />
               </p:column>
               <p:column>
                 <f:facet name="header">Nombre de la trasaccion</f:facet>
-                <h:inputText value="#{tabla.nombre}" style="color: #ffffff; width : 160px" />
+                <h:inputText value="#{tabla.nombre}" style="color: #000000; width : 160px" />
               </p:column>
 
               <p:column>
