@@ -168,10 +168,9 @@ public class TipoUsuarioBean {
                                     }
 
                                 } else {
-
                                     i = i + 1;
                                     intermedio.add(new TipoUsuario(i, tipo.getId_crud(), tipo.getId_html()));
-
+                                    
                                     if (listadescripcion.size() == 0) {
                                         listadescripcion.add(new TipoUsuario(1, tipo.getNombretipo(), tipo.getDescripcion()));
                                         tipo.setNombretipo(null);

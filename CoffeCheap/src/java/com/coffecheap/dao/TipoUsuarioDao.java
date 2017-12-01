@@ -88,31 +88,6 @@ public class TipoUsuarioDao extends Dao {
         return respuesta;
     }
 
-    public List<TipoUsuario> Mostrar() throws Exception {
-
-        List<TipoUsuario> lista;
-        ResultSet rs;
-
-        try {
-            this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("");
-            rs = st.executeQuery();
-            lista = new ArrayList();
-            while (rs.next()) {
-                TipoUsuario usuario = new TipoUsuario();
-                usuario.setId_tipo(rs.getInt("idtipo"));
-                usuario.setId_html(rs.getInt("idpagina"));
-                usuario.setId_crud(rs.getInt("idcrud"));
-                lista.add(usuario);
-            }
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            this.Desconecar();
-        }
-        return lista;
-    }
-
     public List<TipoUsuario> Tipo() throws Exception {
 
         List<TipoUsuario> lista;
