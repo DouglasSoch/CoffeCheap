@@ -1,5 +1,6 @@
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.UsuarioBean;
 import com.coffecheap.modelo.Tipo;
 import com.coffecheap.modelo.Turno;
 import com.coffecheap.modelo.Usuario;
@@ -197,18 +198,23 @@ public class UsuarioDao extends Dao {
 
     }
 
-    public Usuario leerParaModificar(Usuario usuarioS) throws Exception {
-
+   
+    public Usuario leerParaModificar(Usuario usuarioS) throws Exception 
+    {
         Usuario usuario = null;
         ResultSet rs;
-
+        boolean ver;
         try {
             this.Conectar();
             PreparedStatement st = getCon().prepareCall("select iduser, user, pass, tipouser, nombre, apellido, codigo, idturno, telefono, direccion, dpi, nit, correo from usuario where iduser=?");
             st.setInt(1, usuarioS.getId());
             rs = st.executeQuery();
-
-            while (rs.next()) {
+            
+             ver=rs.next();
+            
+            System.out.println(ver);
+            
+           if(ver==true){
                 usuario = new Usuario();
                 usuario.setId(rs.getInt(1));
                 usuario.setUsuario(rs.getString(2));
@@ -223,7 +229,15 @@ public class UsuarioDao extends Dao {
                 usuario.setDpi(rs.getInt(11));
                 usuario.setNit(rs.getString(12));
                 usuario.setCorreo(rs.getString(13));
+                rs.close();
             }
+          else
+           {
+            UsuarioBean.addMessage("no existe");
+            rs.close();
+           }  
+           
+            
         } catch (Exception e) {
             throw e;
         } finally {

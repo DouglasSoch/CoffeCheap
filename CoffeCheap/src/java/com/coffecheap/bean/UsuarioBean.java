@@ -1,9 +1,5 @@
 package com.coffecheap.bean;
 
-/**
- *
- * @marhor acier
- */
 import com.coffecheap.modelo.Usuario;
 import com.coffecheap.dao.UsuarioDao;
 import com.coffecheap.modelo.Tipo;
@@ -11,12 +7,19 @@ import com.coffecheap.modelo.Turno;
 import java.util.ArrayList;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
-public class UsuarioBean {
+public class UsuarioBean 
+{
+      static public void addMessage(String summary) {
+    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+    FacesContext.getCurrentInstance().addMessage(null, message);
+  }
 
     private Usuario usuario = new Usuario();
     private List<Usuario> lstUsuario = new ArrayList();
@@ -120,11 +123,19 @@ public class UsuarioBean {
         UsuarioDao dao;
         Usuario temp;
 
-        try {
+        try 
+        {
             dao = new UsuarioDao();
             temp = dao.leerParaModificar(usuario);
 
-            if (usuario != null) {
+            if (usuario != null)
+            {
+                this.usuario = temp;
+            }
+            
+            else
+                
+            {
                 this.usuario = temp;
             }
 
@@ -136,8 +147,9 @@ public class UsuarioBean {
 
     public void modificar() throws Exception {
         UsuarioDao dao;
-
+        
         try {
+            
             dao = new UsuarioDao();
             dao.modificar(usuario);
 

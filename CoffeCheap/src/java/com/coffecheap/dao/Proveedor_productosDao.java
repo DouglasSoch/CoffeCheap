@@ -5,6 +5,9 @@
  */
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.Proveedor_productosBean;
+import com.coffecheap.modelo.Producto;
+import com.coffecheap.modelo.Proveedor;
 import com.coffecheap.modelo.Proveedor_productos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,17 +20,28 @@ import java.util.List;
  */
 public class Proveedor_productosDao extends Dao {
 
-    public void registrar(Proveedor_productos Tt) throws Exception {
-
+    public void registrar(Proveedor_productos Tt) throws Exception 
+    {
+       ResultSet rs;
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("insert into proveedor_productos values(?,?);");
-
+            PreparedStatement ps = getCon().prepareStatement("select *from proveedor_productos where id_proveedor=? and id_producto=?");
+            ps.setInt(1, Tt.getProveedor().getId_proveedor());
+            ps.setInt(2, Tt.getProducto().getId_producto());
+            rs= ps.executeQuery();
+            
+            if(rs.next())
+            {
+                Proveedor_productosBean.addMessage("ya existe un registro con estos datos");
+            }else
+            {
+            PreparedStatement st = this.getCon().prepareStatement("insert into proveedor_productos (id_proveedor, id_producto, precio_insumo) values(?,?,?)");
             st.setInt(1, Tt.getProveedor().getId_proveedor());
             st.setInt(2, Tt.getProducto().getId_producto());
             st.setInt(3, Tt.getPrecio());
-
             st.executeUpdate();
+            Proveedor_productosBean.addMessage("Se ingreso correctamente");
+            }
 
         } catch (Exception ex) {
             throw ex;
@@ -44,10 +58,11 @@ public class Proveedor_productosDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareCall("SELECT *FROM proveedor_productos");
+            PreparedStatement st = this.getCon().prepareCall("select id_proveedor, id_producto, precio_insumo from proveedor_productos");
             rs = st.executeQuery();
             lista = new ArrayList();
-            while (rs.next()) {
+            while (rs.next()) 
+            {
                 Proveedor_productos tt = new Proveedor_productos();
 
                 tt.getProveedor().setId_proveedor(rs.getInt(1));
@@ -67,11 +82,63 @@ public class Proveedor_productosDao extends Dao {
 
     }
 
-    public void modificar(Proveedor_productos Tt) throws Exception {
-        System.out.println("*******************************************************modificar dao");
+     public List<Proveedor> listarProveedor() throws Exception {
+        List<Proveedor> lista;
+        ResultSet rs;
+
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("UPDATE  proveedor_productos SET id_producto=?, precio_insumo=? WHERE id_proveedor=?;");
+            PreparedStatement st = this.getCon().prepareCall("select id_proveedor, nombre_proveedor from proveedor");
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Proveedor proveedor = new Proveedor();
+                proveedor.setId_proveedor(rs.getInt(1));
+                proveedor.setNombre(rs.getString(2));
+                lista.add(proveedor);
+            }
+
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            this.Desconecar();
+        }
+
+        return lista;
+
+    }
+     
+     public List<Producto> listarProducto() throws Exception {
+        List<Producto> lista;
+        ResultSet rs;
+
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareCall("select id_producto, nombre_producto from producto");
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Producto producto = new Producto();
+                producto.setId_producto(rs.getInt(1));
+                producto.setNombre(rs.getString(2));
+                lista.add(producto);
+            }
+
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            this.Desconecar();
+        }
+
+        return lista;
+
+    }
+    
+    public void modificar(Proveedor_productos Tt) throws Exception 
+    {
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("UPDATE  proveedor_productos SET id_producto=?, precio_insumo=? WHERE id_proveedor=?");
             st.setInt(1, Tt.getProducto().getId_producto());
             st.setInt(2, Tt.getPrecio());
             st.setInt(3, Tt.getProveedor().getId_proveedor());
@@ -85,6 +152,53 @@ public class Proveedor_productosDao extends Dao {
         }
 
     }
+    
+//     public Proveedor_productos leerParaModificar(Proveedor_productos proveedorP) throws Exception 
+//    {
+//        Usuario usuario = null;
+//        ResultSet rs;
+//        boolean ver;
+//        try {
+//            this.Conectar();
+//            PreparedStatement st = getCon().prepareCall("select iduser, user, pass, tipouser, nombre, apellido, codigo, idturno, telefono, direccion, dpi, nit, correo from usuario where iduser=?");
+//            st.setInt(1, proveedorP.g());
+//            rs = st.executeQuery();
+//            
+//             ver=rs.next();
+//            
+//            System.out.println(ver);
+//            
+//           if(ver==true){
+//                usuario = new Usuario();
+//                usuario.setId(rs.getInt(1));
+//                usuario.setUsuario(rs.getString(2));
+//                usuario.setPass(rs.getString(3));
+//                usuario.getTipo().setId(rs.getInt(4));
+//                usuario.setNombre(rs.getString(5));
+//                usuario.setApellido(rs.getString(6));
+//                usuario.setCodigo(rs.getInt(7));
+//                usuario.getTurno().setId_turno(rs.getInt(8));
+//                usuario.setTelefono(rs.getInt(9));
+//                usuario.setDireccion(rs.getString(10));
+//                usuario.setDpi(rs.getInt(11));
+//                usuario.setNit(rs.getString(12));
+//                usuario.setCorreo(rs.getString(13));
+//                rs.close();
+//            }
+//          else
+//           {
+//            UsuarioBean.addMessage("no existe");
+//            rs.close();
+//           }  
+//           
+//            
+//        } catch (Exception e) {
+//            throw e;
+//        } finally {
+//            this.Desconecar();
+//        }
+//        return usuario;
+//    }
 
     public void eliminar(Proveedor_productos pac) throws Exception {
         System.out.println("*******************************************************eliminar dao");

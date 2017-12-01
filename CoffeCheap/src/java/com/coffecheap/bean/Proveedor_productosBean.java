@@ -7,19 +7,49 @@ package com.coffecheap.bean;
 
 import com.coffecheap.modelo.Proveedor_productos;
 import com.coffecheap.dao.Proveedor_productosDao;
+import com.coffecheap.modelo.Producto;
+import com.coffecheap.modelo.Proveedor;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
-public class Proveedor_productosBean {
+public class Proveedor_productosBean 
+{
 
+     static public void addMessage(String summary) {
+    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+    FacesContext.getCurrentInstance().addMessage(null, message);
+  }
+     
   private Proveedor_productos proveedor_productos = new Proveedor_productos();
   private List<Proveedor_productos> lstProveedor_productos;
+  private List<Producto> lstProducto;
+  private List<Proveedor> lstProveedor;
 
+    public List<Producto> getLstProducto() {
+        return lstProducto;
+    }
+
+    public void setLstProducto(List<Producto> lstProducto) {
+        this.lstProducto = lstProducto;
+    }
+
+    public List<Proveedor> getLstProveedor() {
+        return lstProveedor;
+    }
+
+    public void setLstProveedor(List<Proveedor> lstProveedor) {
+        this.lstProveedor = lstProveedor;
+    }
+
+  
+  
   public Proveedor_productos getProveedor_productos() {
     return proveedor_productos;
   }
@@ -36,13 +66,11 @@ public class Proveedor_productosBean {
     this.lstProveedor_productos = lstProveedor_productos;
   }
 
-  public void registrar() {
-
-    System.out.println("*******************************************************registrar");
-
+  public void registrar() 
+  {
     Proveedor_productosDao dao;
-
-    try {
+    try 
+    {
       dao = new Proveedor_productosDao();
       dao.registrar(proveedor_productos);
     } catch (Exception e) {
@@ -63,6 +91,31 @@ public class Proveedor_productosBean {
 
   }
 
+  public void listarProducto() throws Exception {
+    Proveedor_productosDao dao;
+
+    try {
+      dao = new Proveedor_productosDao();
+      lstProducto = dao.listarProducto();
+    } catch (Exception e) {
+      throw e;
+    }
+
+  }
+  
+  
+  public void listarProveedor() throws Exception {
+    Proveedor_productosDao dao;
+
+    try {
+      dao = new Proveedor_productosDao();
+      lstProveedor = dao.listarProveedor();
+    } catch (Exception e) {
+      throw e;
+    }
+
+  }
+  
   public void modificar(Proveedor_productos mar) throws Exception {
     System.out.println("*******************************************************Modificar");
     Proveedor_productosDao dao;
