@@ -55,18 +55,16 @@ public class Proveedor_productosDao extends Dao {
     public List<Proveedor_productos> listar() throws Exception {
         List<Proveedor_productos> lista;
         ResultSet rs;
-
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareCall("select id_proveedor, id_producto, precio_insumo from proveedor_productos");
+            PreparedStatement st = this.getCon().prepareCall("select proveedor.nombre_proveedor , producto.nombre_producto,  proveedor_productos.precio_insumo from proveedor inner join proveedor_productos on (proveedor.id_proveedor = proveedor_productos.id_proveedor) inner join producto on (proveedor_productos.id_producto = producto.id_producto)");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) 
             {
                 Proveedor_productos tt = new Proveedor_productos();
-
-                tt.getProveedor().setId_proveedor(rs.getInt(1));
-                tt.getProducto().setId_producto(rs.getInt(2));
+                tt.getProveedor().setNombre(rs.getString(1));
+                tt.getProducto().setNombre(rs.getString(2));
                 tt.setPrecio(rs.getInt(3));
 
                 lista.add(tt);
@@ -74,12 +72,11 @@ public class Proveedor_productosDao extends Dao {
 
         } catch (Exception ex) {
             throw ex;
-        } finally {
+        } finally 
+        {
             this.Desconecar();
         }
-
         return lista;
-
     }
 
      public List<Proveedor> listarProveedor() throws Exception {
