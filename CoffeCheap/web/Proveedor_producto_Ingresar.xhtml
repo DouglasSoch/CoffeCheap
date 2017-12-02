@@ -9,9 +9,8 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        
- 
-          
+         <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
         <f:event type="preRenderView" listener="#{proveedor_productosBean.listarProducto()}"/>
         <f:event type="preRenderView" listener="#{proveedor_productosBean.listarProveedor()}"/>
         
@@ -30,9 +29,10 @@
                 <p:outputLabel value="Precio"/>
                 <p:inputText  value="#{proveedor_productosBean.proveedor_productos.precio}"/>
                 </h:panelGrid>
-            <p:commandButton value="Guardar" actionListener="#{usuarioBean.registrar()}" update="mess"/>
+            <p:commandButton value="Guardar" actionListener="#{proveedor_productosBean.registrar()}" update="mess"/>
         </h:form>
-         
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 
