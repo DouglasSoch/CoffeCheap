@@ -1,12 +1,23 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Tipo Plato Mostrar</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <f:event type="preRenderView" listener="#{tipo_platoBean.listar()}"/>
+        <h:form>
+            <p:dataTable var="proPr" value="#{tipo_platoBean.lstTipo_plato}" rows="10" id="tabla1" paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="Platos" filterBy="#{proPr.nombre}" filterMatchMode="contains">
+                    <p:outputLabel value="#{proPr.nombre}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
     </h:body>
 </html>
 

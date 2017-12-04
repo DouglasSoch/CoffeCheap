@@ -11,22 +11,19 @@
         <f:event type="preRenderView" listener="#{proveedor_productosBean.listar()}"/>
         <h:form>
             <p:dataTable var="proPr" value="#{proveedor_productosBean.lstProveedor_productos}" rows="10" id="tabla1"
-                             paginator="true"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rowsPerPageTemplate="5,10,15">
-
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
                 <p:column headerText="Proveedor" filterBy="#{proPr.proveedor.nombre}" filterMatchMode="contains">
-                        <p:outputLabel value="#{proPr.proveedor.nombre}"/>
-                 </p:column>
-
-                <p:column headerText="Producto" filterBy="#{proPr.producto.nombre}" filterMatchMode="contains" >
-                        <p:outputLabel value="#{proPr.producto.nombre}"/>
+                    <p:outputLabel value="#{proPr.proveedor.nombre}"/>
                 </p:column>
-
-                    <p:column headerText="Precio">
-                        <p:outputLabel value="#{proPr.precio}"/>
-                    </p:column>
-                </p:dataTable>
+                <p:column headerText="Producto" filterBy="#{proPr.producto.nombre}" filterMatchMode="contains" >
+                    <p:outputLabel value="#{proPr.producto.nombre}"/>
+                </p:column>
+                <p:column headerText="Precio">
+                    <p:outputLabel value="#{proPr.precio}"/>
+                </p:column>
+            </p:dataTable>
         </h:form>
     </h:body>
 </html>

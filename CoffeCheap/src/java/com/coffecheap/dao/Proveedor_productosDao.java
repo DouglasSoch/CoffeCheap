@@ -44,9 +44,7 @@ public class Proveedor_productosDao extends Dao {
             throw ex;
         } finally {
             this.Desconecar();
-
         }
-
     }
 
     public List<Proveedor_productos> listar() throws Exception {
