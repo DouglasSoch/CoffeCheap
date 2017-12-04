@@ -18,48 +18,10 @@
         <f:event type="preRenderView" listener="#{compraBean.Mostrar()}"/>
         <h:form class="flip">
 
-          <p:outputLabel style="color: #000000;" value="Tabla Producto" />          
+          <p:outputLabel style="color: #000000;" value="Tabla Compras" />          
 
         </h:form>
-        <h:form id="otro">
-
-          <!-- Modal -->
-
-                 
-            <p:dataTable value="#{productoBean.lstProducto}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" >
-              
-              
-
-              <p:column width="90">
-                <f:facet name="header">Codigo de Producto</f:facet>
-                <p:outputLabel value="#{tabla.id_producto}"  />
-              </p:column>
-              <p:column width="200">
-                <f:facet name="header">Nombre</f:facet>
-                <p:outputLabel value="#{tabla.nombre}"  />
-              </p:column>
-              <p:column width="90">
-                <f:facet name="header">Cantidad</f:facet>
-                <p:outputLabel value="#{tabla.existencia}"  />
-              </p:column>
-              <p:column width="90">
-                <f:facet name="header">Codigo de Unidad de Medida</f:facet>
-                <p:outputLabel value="#{tabla.umedida.id_unidad}"  />
-              </p:column>    
-              <p:column width="90">
-                <f:facet name="header">Codigo de tipo de producto</f:facet>
-                <p:outputLabel value="#{tabla.tproducto.id_tipo}" style=" width : 60px" />
-              </p:column> 
-
-
-
-            </p:dataTable>
-
-
-
-                  
-
-        </h:form> 
+        
 
         <h:form id="form2">
           <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:5px 0">
@@ -98,6 +60,6 @@
 
       </ui:define>
     </ui:composition>
-  </h:body>
+    </h:body>
 </html>
 
