@@ -5,98 +5,107 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <ui:composition template="./WEB-INF/template/Template.xhtml">
+  <h:head>
+    <title>Facelet Title</title>
+  </h:head>
+  <h:body>
+    <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-          
-          <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
-          <f:event type="preRenderView" listener="#{orden_comprasBean.Mostrar()}"/>
-          <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
-          <f:event type="preRenderView" listener="#{compraBean.Mostrar()}"/>
+
+        <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{orden_comprasBean.Mostrar()}"/>
+        <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
+        <f:event type="preRenderView" listener="#{compraBean.Mostrar()}"/>
         <h:form class="flip">
-          
-            <p:outputLabel style="color: #000000;" value="Tabla Producto" />          
-         
+
+          <p:outputLabel style="color: #000000;" value="Tabla Producto" />          
+
         </h:form>
         <h:form id="otro">
 
           <!-- Modal -->
 
-          <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:5px 0">          
-              <p:dataTable value="#{productoBean.lstProducto}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" >
+                 
+            <p:dataTable value="#{productoBean.lstProducto}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" >
               
+              <p:dataTable var="tabla" value="#{productoBean.lstProducto}" widgetVar="carsTable"
+                           emptyMessage="No cars found with given criteria" filteredValue="#{productoBean.listar()}">
+ 
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('carsTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet>
 
-                <p:column width="90">
+              <p:column width="90">
                 <f:facet name="header">Codigo de Producto</f:facet>
                 <p:outputLabel value="#{tabla.id_producto}" style=" width : 60px" />
-                </p:column>
-                <p:column width="200">
+              </p:column>
+              <p:column width="200">
                 <f:facet name="header">Nombre</f:facet>
                 <p:outputLabel value="#{tabla.nombre}" style=" width : 100px" />
-                </p:column>
-                <p:column width="90">
+              </p:column>
+              <p:column width="90">
                 <f:facet name="header">Cantidad</f:facet>
                 <p:outputLabel value="#{tabla.existencia}" style=" width : 60px" />
-                </p:column>
-                <p:column width="90">
+              </p:column>
+              <p:column width="90">
                 <f:facet name="header">Codigo de Unidad de Medida</f:facet>
                 <p:outputLabel value="#{tabla.umedida.id_unidad}" style=" width : 60px" />
-                </p:column>    
-                <p:column width="90">
+              </p:column>    
+              <p:column width="90">
                 <f:facet name="header">Codigo de tipo de producto</f:facet>
                 <p:outputLabel value="#{tabla.tproducto.id_tipo}" style=" width : 60px" />
-                </p:column> 
+              </p:column> 
 
-                 
-            
-           </p:dataTable>
-        
-          
-             
-          </p:panelGrid>        
+
+
+            </p:dataTable>
+
+
+
+                  
 
         </h:form> 
-          
-          <h:form id="form2">
-              <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:5px 0">
-                        <p:dataTable id="data" value="#{compraBean.lista}" var="compra"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true">
-                            <p:column headerText="Codigo:">
-                                <p:outputLabel value="#{compra.id_compras}" style="color: black"/>
-                            </p:column>
-                            <p:column headerText="Orden Compra:">
-                                <p:outputLabel value="#{compra.ocompras.id_orden_compras}" style="color: black"/>
-                            </p:column> 
-                            <p:column headerText="Proveedor:">
-                                <p:outputLabel value="#{compra.ocompras.pproductos.proveedor.nombre}" style="color: black"/>
-                            </p:column> 
-                            <p:column headerText="Producto:">
-                                <p:outputLabel value="#{compra.ocompras.pproductos.producto.nombre}" style="color: black"/>
-                            </p:column> 
-                            <p:column headerText="Cantidad:">
-                                <p:outputLabel value="#{compra.cantidad}" style="color: black"/>
-                            </p:column> 
-                            <p:column headerText="Costo:">
-                                <p:outputLabel value="#{compra.costo}" style="color: black"/>
-                            </p:column> 
-                            <p:column headerText="No. de Factura">
-                                <p:outputLabel value="#{compra.no_fac}" style="color: black"/>
-                            </p:column>
-                            <p:column headerText="Serie">
-                                <p:outputLabel value="#{compra.serie}" style="color: black"/>
-                            </p:column>
-                            <p:column headerText="Fecha">
-                                <p:outputLabel value="#{compra.fechaEntrega}" style="color: black"/>
-                            </p:column>
-                        </p:dataTable>
-                  
-                  </p:panelGrid>   
-                </h:form>
+
+        <h:form id="form2">
+          <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:5px 0">
+            <p:dataTable id="data" value="#{compraBean.lista}" var="compra"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true">
+              <p:column headerText="Codigo:">
+                <p:outputLabel value="#{compra.id_compras}" style="color: black"/>
+              </p:column>
+              <p:column headerText="Orden Compra:">
+                <p:outputLabel value="#{compra.ocompras.id_orden_compras}" style="color: black"/>
+              </p:column> 
+              <p:column headerText="Proveedor:">
+                <p:outputLabel value="#{compra.ocompras.pproductos.proveedor.nombre}" style="color: black"/>
+              </p:column> 
+              <p:column headerText="Producto:">
+                <p:outputLabel value="#{compra.ocompras.pproductos.producto.nombre}" style="color: black"/>
+              </p:column> 
+              <p:column headerText="Cantidad:">
+                <p:outputLabel value="#{compra.cantidad}" style="color: black"/>
+              </p:column> 
+              <p:column headerText="Costo:">
+                <p:outputLabel value="#{compra.costo}" style="color: black"/>
+              </p:column> 
+              <p:column headerText="No. de Factura">
+                <p:outputLabel value="#{compra.no_fac}" style="color: black"/>
+              </p:column>
+              <p:column headerText="Serie">
+                <p:outputLabel value="#{compra.serie}" style="color: black"/>
+              </p:column>
+              <p:column headerText="Fecha">
+                <p:outputLabel value="#{compra.fechaEntrega}" style="color: black"/>
+              </p:column>
+            </p:dataTable>
+
+          </p:panelGrid>   
+        </h:form>
 
       </ui:define>
     </ui:composition>
-    </h:body>
+  </h:body>
 </html>
 

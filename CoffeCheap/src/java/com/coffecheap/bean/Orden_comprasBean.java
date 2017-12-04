@@ -53,7 +53,7 @@ public class Orden_comprasBean {
         
         Orden_comprasDao dao;
         
-        try {
+        try {          
             
             String formateador = new SimpleDateFormat("yyyy-MM-dd").format(orden_compras.getFecha_entrega());
             String formateador2 = new SimpleDateFormat("yyyy-MM-dd").format(orden_compras.getFecha_orden());
@@ -63,6 +63,7 @@ public class Orden_comprasBean {
             
             dao = new Orden_comprasDao();
             dao.registrar(orden_compras);
+
             
         } catch (Exception e) {
             System.out.println(e);

@@ -45,7 +45,7 @@ public class PedidoDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM pedido");
+      PreparedStatement st = this.getCon().prepareCall("SELECT id_pedido, id_mesa, hora, id_personal FROM pedido");
       rs = st.executeQuery();
       lista = new ArrayList();
       while (rs.next()) {

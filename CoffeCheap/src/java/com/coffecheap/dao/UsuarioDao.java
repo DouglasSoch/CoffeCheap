@@ -262,4 +262,73 @@ public class UsuarioDao extends Dao {
 
     }
 
+    public List<Usuario> listarMe() throws Exception {
+    List<Usuario> lista;
+    ResultSet rs;
+
+    try {
+      this.Conectar();
+      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM usuario WHERE tipouser=3");
+      rs = st.executeQuery();
+      lista = new ArrayList();
+      while (rs.next()) {
+        Usuario tt = new Usuario();
+
+        tt.setId(rs.getInt(1));
+        tt.setNit(rs.getString(2));
+        tt.setPass(rs.getString(3));
+        tt.getTipo().setId(rs.getInt(4));
+        tt.setNombre(rs.getString(5));
+        tt.setApellido(rs.getString(6));
+        tt.setCodigo(rs.getInt(7));
+        tt.getTurno().setId_turno(rs.getInt(8));   
+
+        lista.add(tt);
+      }
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+    }
+
+    return lista;
+
+  }
+  
+  public List<Usuario> listarChef() throws Exception {
+    List<Usuario> lista;
+    ResultSet rs;
+
+    try {
+      this.Conectar();
+      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM usuario WHERE tipouser=4");
+      rs = st.executeQuery();
+      lista = new ArrayList();
+      while (rs.next()) {
+        Usuario tt = new Usuario();
+
+        tt.setId(rs.getInt(1));
+        tt.setNit(rs.getString(2));
+        tt.setPass(rs.getString(3));
+        tt.getTipo().setId(rs.getInt(4));
+        tt.setNombre(rs.getString(5));
+        tt.setApellido(rs.getString(6));
+        tt.setCodigo(rs.getInt(7));
+        tt.getTurno().setId_turno(rs.getInt(8));   
+
+        lista.add(tt);
+      }
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+    }
+
+    return lista;
+
+  }
+  
+
 }

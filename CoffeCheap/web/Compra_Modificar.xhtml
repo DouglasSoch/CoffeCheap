@@ -8,7 +8,7 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body>
+    <h:body class="ui-g">
         <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
         <ui:composition template="./WEB-INF/template/Template.xhtml">
             <ui:define name="content">
@@ -17,7 +17,7 @@
                 <f:event type="preRenderView" listener="#{compraBean.Mostrar()}"/>
                 <h:form id="form1">
                     <br/>
-                    <h:panelGrid id="panel1" columns="6" cellpadding="3" style="color: #ffffff" width="890PX">
+                    <h:panelGrid id="panel1" columns="6" cellpadding="3" style="color: #oooooo" width="890PX">
                         <p:outputLabel for="Codigo" value="Codigo de Compra"/>
                         <p:inputText id="Codigo" value="#{compraBean.compra.id_compras}" style="width: 150px"/>
                         <p:outputLabel for="Orden" value="No. de Orden"/>

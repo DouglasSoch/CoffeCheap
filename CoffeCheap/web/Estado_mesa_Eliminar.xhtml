@@ -9,19 +9,19 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-  <h:body>
+  <h:body class="ui-g">
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
 
         <f:event type="preRenderView" listener="#{estado_mesaBean.listar()}"/>
         <h:form class="flip">
-          
-            <p:outputLabel style="color: #000000;" value="Lista para escoger Estado de mesa a eliminar" />          
-         
+
+          <p:outputLabel style="color: #000000;" value="Lista para escoger Estado de mesa a eliminar" />          
+
         </h:form>
         <h:form id="otro">
 
-       
+
 
           <p:panelGrid id="display1" columns="4" columnClasses="label,value">          
             <p:dataList value="#{estado_mesaBean.lstEstado_mesa}" var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">

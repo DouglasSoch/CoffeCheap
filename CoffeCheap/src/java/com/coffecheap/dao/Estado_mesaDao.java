@@ -21,10 +21,8 @@ public class Estado_mesaDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into estado_mesa values(?,?);");
-
-      st.setInt(1, Tt.getId_estado());
-      st.setString(2, Tt.getNombre());
+      PreparedStatement st = this.getCon().prepareStatement("INSERT INTO `coffechip`.`estado_mesa` (`nombre`) VALUES (?);");      
+      st.setString(1, Tt.getNombre());
 
       st.executeUpdate();
 
@@ -69,7 +67,7 @@ public class Estado_mesaDao extends Dao {
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  estado_mesa SET id_estado_mesa=?, nombre=? WHERE id_estado=?;");
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE  estado_mesa SET id_estado=?, nombre=? WHERE id_estado=?;");
 
       st.setInt(1, tt.getId_estado());
       st.setString(2, tt.getNombre());

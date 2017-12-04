@@ -10,7 +10,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 
-  <h:body>
+  <h:body class="ui-g">
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
 
@@ -19,7 +19,7 @@
         <f:event type="preRenderView" listener="#{usuarioBean.listarMe()}"/>
         <h:form class="flip">
 
-          <p:outputLabel style="color: #ffffff;" value="Lista para escoger el pedido a eliminar" />          
+          <p:outputLabel style="color: #oooooo;" value="Lista para escoger el pedido a eliminar" />          
 
         </h:form>
         <h:form id="otro">
@@ -29,26 +29,29 @@
           <p:panelGrid id="display1" columns="4" columnClasses="label,value">          
             <p:dataList value="#{pedidoBean.lstPedido}" var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
 
-              <p:column>
-                <f:facet name="header">Id Pedido</f:facet>
-                <h:inputText value="#{tabla.id_pedido}" style="color: #ffffff; width : 30px" />
+              <p:column>               
+                <p:outputLabel  value="Id Pedido:" style="color: #oooooo" />
+                <h:inputText value="#{tabla.id_pedido}" style="color: #oooooo; width : 30px" />
               </p:column>
 
-              <p:column>               
-                <p:outputLabel for="lisx" value="mesa:" style="color: #ffffff" />
+              <p:column>
+                
+                <p:outputLabel  value="mesa:" style="color: #oooooo" />
                 <p:selectOneMenu id="lisx" style="width:200px" value="#{tabla.mesa.id_mesa}"> 
                   <f:selectItems value="#{mesaBean.lstMesa}" var="tip" itemLabel="#{tip.ubicacion}" itemValue="#{tip.id_mesa}"/>                        
                 </p:selectOneMenu>
               </p:column>
 
               <p:column>
+                 <p:outputLabel for="lisx" value="Hora:" style="color: #oooooo" />
                 <f:facet name="header">hora</f:facet>
-                <h:inputText value="#{tabla.hora}" style="color: #ffffff; width : 160px" />
+                 <p:outputLabel value="hora" style="color: #oooooo" />
+                <h:inputText value="#{tabla.hora}" style="color: #oooooo; width : 160px" />
               </p:column>
 
               <p:column>               
 
-                <p:outputLabel for="lis" value="personal:" style="color: #ffffff"/>
+                <p:outputLabel for="lis" value="personal:" style="color: #oooooo"/>
                 <p:selectOneMenu id="lis" style="width:200px" value="#{tabla.usuario.id}"> 
                   <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
                   <p:ajax event="change" update="@this" />      
@@ -57,7 +60,7 @@
               </p:column>              
 
               <p:column>
-                <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{pedidoBean.eliminar(tabla)}"/>                    
+                <h:commandLink value="Eliminar" style="color: #oooooo" actionListener="#{pedidoBean.eliminar(tabla)}"/>                    
               </p:column>                              
 
             </p:dataList>

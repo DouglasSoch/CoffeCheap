@@ -18,21 +18,13 @@
           <f:event type="preRenderView"  listener="#{estado_mesaBean.listar()}"/>
 
           <p:panelGrid id="desplegar1" columns="2">
-
-            <p:outputLabel value="id_mesa" />
-            <p:autoComplete id="Codig" value="#{mesaBean.mesa.id_mesa}" style="color: black;"/>                         
-
+                                 
             <p:outputLabel  value="Cantidad de comensales" />
             <p:autoComplete id="Nombre" value="#{mesaBean.mesa.cantidad_comensales}" style="color: black;"/>
 
             <p:outputLabel  value="Ubicacion" />
             <p:autoComplete id="Ubicacion" value="#{mesaBean.mesa.ubicacion}" style="color: black;"/>
-
-            <p:outputLabel  value="id_estado" />            
-            <p:selectOneMenu id="lis1" style="width:125px; background-color: black" value="#{mesaBean.mesa.estMesa.id_estado}" > 
-              <f:selectItems value="#{estado_mesaBean.lstEstado_mesa}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_estado}"/>                      
-            </p:selectOneMenu> 
-                                               
+                                                          
           </p:panelGrid>
 
 
@@ -41,18 +33,14 @@
 
           <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
             <p:panelGrid id="display" columns="2" columnClasses="label,value">
-
-              <h:outputText value="Codigo Mesa" />
-              <h:outputText id="CodigV" value="#{mesaBean.mesa.id_mesa}" />                         
-
-              <h:outputText value="Cantidad Comensales" />
+                                    
+              <h:outputText value="Cantidad Comensales" style="color: #000000"/>
               <h:outputText id="CantidadV" value="#{mesaBean.mesa.cantidad_comensales}" />
               
-              <h:outputText value="Ubicacion" />
+              <h:outputText value="Ubicacion" style="color: #000000"/>
               <h:outputText id="UbicacionV" value="#{mesaBean.mesa.ubicacion}" />
               
-              <h:outputText value="Estado" />
-              <h:outputText id="EstadoV" value="#{mesaBean.mesa.estMesa.id_estado}" />
+              
                            
               
             </p:panelGrid>

@@ -25,6 +25,51 @@ public class UsuarioBean
     private List<Usuario> lstUsuario = new ArrayList();
     private List<Tipo> lstTipo = new ArrayList();
     private List<Turno> lstTurno = new ArrayList();
+    private List<Usuario> lstUsuarioMe;
+  private List<Usuario> lstUsuarioChef;
+
+  public List<Usuario> getLstUsuarioChef() {
+    return lstUsuarioChef;
+  }
+
+  public void setLstUsuarioChef(List<Usuario> lstUsuarioChef) {
+    this.lstUsuarioChef = lstUsuarioChef;
+  }
+  
+  
+
+  public List<Usuario> getLstUsuarioMe() {
+    return lstUsuarioMe;
+  }
+
+  public void setLstUsuarioMe(List<Usuario> lstUsuarioMe) {
+    this.lstUsuarioMe = lstUsuarioMe;
+  }
+
+  public void listarMe() throws Exception {
+    UsuarioDao dao;
+
+    try {
+      dao = new UsuarioDao();
+      lstUsuarioMe = dao.listarMe();
+    } catch (Exception e) {
+      throw e;
+    }
+
+  }
+  
+    public void listarChef() throws Exception {
+    UsuarioDao dao;
+
+    try {
+      dao = new UsuarioDao();
+      lstUsuarioChef = dao.listarChef();
+    } catch (Exception e) {
+      throw e;
+    }
+
+  }
+
 
     public List<Tipo> getLstTipo() {
         return lstTipo;
@@ -171,5 +216,7 @@ public class UsuarioBean
         }
 
     }
+    
+    
 
 }

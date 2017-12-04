@@ -21,7 +21,7 @@ public class PlatoDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into plato values(?,?,?,?,?);");
+      PreparedStatement st = this.getCon().prepareStatement("INSERT INTO `coffechip`.`plato` (`id_plato`, `nombre_platillo`, `precio_plato`, `porciones`, `descripcion_plato`) VALUES (?,?,?,?,?);");
       st.setInt(1, plat.getId_plato());
       st.setString(2, plat.getNombre());
       st.setDouble(3, plat.getPrecio());

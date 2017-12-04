@@ -8,14 +8,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
    
-    <h:body>
+    <h:body class="ui-g">
         <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
 
           <f:event type="preRenderView" listener="#{platoBean.listar()}"/>
         <h:form class="flip">
           
-            <p:outputLabel style="color: #ffffff;" value="Lista para escoger tipo de trasaccion a eliminar" />          
+            <p:outputLabel style="color: #oooooo;" value="Lista para escoger tipo de trasaccion a eliminar" />          
          
         </h:form>
         <h:form id="otro">
@@ -26,29 +26,29 @@
               <p:dataTable value="#{platoBean.lstPlato}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true">
               
 
-                <p:column width="50">
+                <p:column >
                 <f:facet name="header">Codigo del platillo</f:facet>
-                <h:inputText value="#{tabla.id_plato}" style="color: #ffffff; width : 30px" />
+                <h:inputText value="#{tabla.id_plato}" style="color: #oooooo; " />
                 </p:column>
-                <p:column width="200">
+                <p:column >
                 <f:facet name="header">Nombre del platillo</f:facet>
-                <h:inputText value="#{tabla.nombre}" style="color: #ffffff; width : 200px" />
+                <h:inputText value="#{tabla.nombre}" style="color: #oooooo;  " />
                 </p:column>
-                <p:column width="60">
+                <p:column >
                 <f:facet name="header">Precio del platillo</f:facet>
-                <h:inputText value="#{tabla.precio}" style="color: #ffffff; width : 60px" />
+                <h:inputText value="#{tabla.precio}" style="color: #oooooo; " />
                 </p:column>
-              <p:column width="60">
+              <p:column >
                 <f:facet name="header">Porciones</f:facet>
-                <h:inputText value="#{tabla.porciones}" style="color: #ffffff; width : 60px" />
+                <h:inputText value="#{tabla.porciones}" style="color: #oooooo; " />
               </p:column>    
-              <p:column width="400">
+              <p:column >
                 <f:facet name="header">Descripcion del platillo</f:facet>
-                <h:inputText value="#{tabla.descripcion}" style="color: #ffffff; width : 400px" />
+                <h:inputText value="#{tabla.descripcion}" style="color: #oooooo;  " />
               </p:column>    
 
-                  <p:column width="100">
-                      <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{platoBean.eliminar(tabla)}"/>                    
+                  <p:column >
+                      <h:commandLink value="Eliminar" style="color: #oooooo" actionListener="#{platoBean.eliminar(tabla)}"/>                    
               </p:column>                              
 
             

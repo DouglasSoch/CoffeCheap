@@ -162,29 +162,18 @@ public class Venta_facturaDao extends Dao {
       s4.setInt(1, mesa);
       ResultSet n4 = s4.executeQuery();
 
-      if (n4.next()) {
+      if (n4.next()) {                 
 
-        if (n4.getInt(1) == 2) {
-
-          PreparedStatement s2 = this.getCon().prepareStatement("select id_pedido from control where id_mesa=?;");
-          s2.setInt(1, mesa);
-          ResultSet n = s2.executeQuery();
-
-          if (n.next()) {
-            idPedido = n.getInt(1);
-          }
+         idPedido = n4.getInt(1);
+          
 
           PreparedStatement s3 = this.getCon().prepareStatement("select *from venta_factura where id_pedido=?;");
           s3.setInt(1, idPedido);
           ResultSet n2 = s3.executeQuery();
 
-          if (n2.next()) {
-            estado = true;
-          } else {
-            estado = false;
-          }
+          estado = n2.next();
 
-        }
+        
       }
 
     } catch (Exception ex) {

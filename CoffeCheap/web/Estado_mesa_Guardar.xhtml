@@ -10,19 +10,16 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 
-  <h:body>
+  <h:body class="ui-g">
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
 
         <h:form class="flip">
            
-           <p:panelGrid id="display1" columns="2">
-             
-            <p:outputLabel value="id_estado" />
-            <p:autoComplete id="id" value="#{estado_mesaBean.estado_mesa.id_estado}"/>                         
-
+           <p:panelGrid id="display1" columns="2">            
+                                
             <p:outputLabel  value="nombre" />
-            <p:autoComplete id="Nombre" value="#{estado_mesaBean.estado_mesa.nombre}" maxlength="7"/>
+            <p:autoComplete id="Nombre" value="#{estado_mesaBean.estado_mesa.nombre}" maxlength="12"/>
 
           </p:panelGrid>
 
@@ -31,10 +28,7 @@
 
 
           <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
-            <p:panelGrid id="display" columns="2" columnClasses="label,value">
-
-              <h:outputText value="Id_estado" />
-              <h:outputText id="estadoV" value="#{estado_mesaBean.estado_mesa.id_estado}" />                         
+            <p:panelGrid id="display" columns="2" columnClasses="label,value">                                    
 
               <h:outputText value="Nombre Trasaccion" />
               <h:outputText id="NombreV" value="#{estado_mesaBean.estado_mesa.nombre}" />

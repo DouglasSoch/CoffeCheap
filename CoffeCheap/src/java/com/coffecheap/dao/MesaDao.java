@@ -21,12 +21,12 @@ public class MesaDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into mesa values(?,?,?,?);");
+      PreparedStatement st = this.getCon().prepareStatement("INSERT INTO mesa (cantidad_comensales, ubicacion, id_estado) VALUES (?, ?, ?);");
 
-      st.setInt(1, Tt.getId_mesa());
-      st.setInt(2, Tt.getCantidad_comensales());
-      st.setString(3, Tt.getUbicacion());
-      st.setInt(4, Tt.getEstMesa().getId_estado()); 
+     
+      st.setInt(1, Tt.getCantidad_comensales());
+      st.setString(2, Tt.getUbicacion());
+      st.setInt(3, 1); 
       st.executeUpdate();
       
       PreparedStatement st2 = this.getCon().prepareStatement("INSERT INTO pedido "
@@ -38,8 +38,12 @@ public class MesaDao extends Dao {
           java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);      
           System.out.println("sql.Time: " + sqlTime);    
 
+          PreparedStatement stt = this.getCon().prepareCall("SELECT MAX(id_mesa) AS id_mesa FROM mesa;");
+          ResultSet rs = stt.executeQuery();
           
-          st2.setInt(1, Tt.getId_mesa());
+          
+          rs.next();          
+          st2.setInt(1, rs.getInt(1));
           st2.setTime(2, sqlTime);
           st2.setInt(3, 3);
           st2.setInt(4, 0);
@@ -88,15 +92,12 @@ public class MesaDao extends Dao {
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  mesa SET id_mesa=?, cantidad_comensales=?, ubicacion=?, id_estado=?, id_cliente=? WHERE id_mesa=?;");
-
-      st.setInt(1, tt.getId_mesa());
-      st.setInt(2, tt.getCantidad_comensales());
-      st.setString(3, tt.getUbicacion());
-      st.setInt(4, tt.getEstMesa().getId_estado());
-          
-      st.setInt(5, tt.getId_mesa());
-
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE mesa SET cantidad_comensales=?, ubicacion=?, id_estado=? WHERE id_mesa=?;");
+     
+      st.setInt(1, tt.getCantidad_comensales());
+      st.setString(2, tt.getUbicacion());
+      st.setInt(3, tt.getEstMesa().getId_estado());          
+      st.setInt(4, tt.getId_mesa());
       st.executeUpdate();
 
     } catch (Exception ex) {

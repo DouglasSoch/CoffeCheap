@@ -190,14 +190,20 @@ public class Control_mesaDao extends Dao {
 
       if (n_est.next()) {
 
-        if (n_est.getInt(1) > 1) {
+         idPedido = n_est.getInt(1);
+        PreparedStatement s3 = this.getCon().prepareStatement("select *from venta_factura where id_pedido=?;");
+        s3.setInt(1, idPedido);
+        ResultSet n2 = s3.executeQuery();
+        
+
+        if (idPedido > 1 && n2.next()) {
           PreparedStatement st = this.getCon().prepareStatement("UPDATE pedido SET cancelado=1 WHERE id_pedido =?;");
           st.setInt(1, idPedido);
           st.executeUpdate();
           Control_mesaBean.addMessage("Pago Realizado");
 
         } else {
-          Control_mesaBean.addMessage("Pago No Realizado");
+          Control_mesaBean.addMessage("Pago No Realizado \n (Factura No Generada)");
         }
       }
 
@@ -291,13 +297,15 @@ public class Control_mesaDao extends Dao {
       ResultSet n = s2.executeQuery();
 
       int pago = 0;
+      int estado=0;
+      
       if (n.next()) {
         pago = n.getInt(1);
       }
 
       if (n_est.next()) {
-
-        if (n_est.getInt(1) > 1 & pago == 1) {
+        estado=n_est.getInt(1);
+        if ((estado > 1 & pago == 1) | estado == 4) {
           PreparedStatement st = this.getCon().prepareStatement("UPDATE  mesa SET id_estado=? WHERE id_mesa=?;");
           st.setInt(1, 1);
           st.setInt(2, mesa);
@@ -328,6 +336,7 @@ public class Control_mesaDao extends Dao {
         }
 
       }
+     
 
     } catch (Exception ex) {
       throw ex;
