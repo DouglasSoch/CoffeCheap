@@ -9,7 +9,7 @@
         <title>Proveedor Producto Eliminar</title>
     </h:head>
     <h:body>
-         <ui:composition template="./WEB-INF/template/Template.xhtml">
+               <ui:composition template="./WEB-INF/template/Template.xhtml">
             <ui:define name="content">
         <f:event type="preRenderView" listener="#{proveedor_productosBean.listar()}"/>
         <f:event type="preRenderView" listener="#{proveedor_productosBean.listarProducto()}"/>
@@ -26,38 +26,18 @@
                 </p:column>
 
                 <p:column headerText="Producto" filterBy="#{proPr.producto.nombre}" filterMatchMode="contains" >
-                    <h:inputText value="#{proPr.producto.nombre}" />
+                    <h:outputLabel value="#{proPr.producto.nombre}" />
                 </p:column>
 
                 <p:column headerText="Precio">
-                    <h:inputText value="#{proPr.precio}" />
+                    <h:outputLabel value="#{proPr.precio}" />
 
                 </p:column>
                 <p:column headerText="Modificar">
-                    <p:commandButton value="Eliminar" actionListener="#{proveedor_productosBean.fila(proPr)}" oncomplete="PF('diag').show();" update=":dlgDatos" />
+                    <p:commandButton value="Eliminar" actionListener="#{proveedor_productosBean.eliminar(proPr)}" update="tabla1" />
                 </p:column>
             </p:dataTable>
         </h:form>
-
-
-        <p:dialog header="Datos" widgetVar="diag" id="dlgDatos">
-            <h:form>
-                <h:panelGrid id="desplegar1" columns="2" cellpadding="3" border="1">
-                    <p:outputLabel value="Proveedor"/>
-                    <p:selectOneMenu  value="#{proveedor_productosBean.proveedor_productos.proveedor.id_proveedor}">
-                                    <f:selectItems value="#{proveedor_productosBean.lstProveedor}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_proveedor}" />
-                    </p:selectOneMenu>
-                    <p:outputLabel value="Producto"/>
-                    <p:selectOneMenu  value="#{proveedor_productosBean.proveedor_productos.producto.id_producto}">
-                                    <f:selectItems value="#{proveedor_productosBean.lstProducto}" var="listaP" itemLabel="#{listaP.nombre}" itemValue="#{listaP.id_producto}" />
-                    </p:selectOneMenu>
-                    <p:outputLabel value="Precio"/>
-                    <p:inputText  value="#{proveedor_productosBean.proveedor_productos.precio}"/>
-                </h:panelGrid>
-                <p:commandButton value="Eliminar" actionListener="#{proveedor_productosBean.eliminar()}" update=":tabla:tabla1" oncomplete="PF('diag').hide();" />
-            </h:form>
-        </p:dialog>
-        
          </ui:define>
         </ui:composition>
     </h:body>

@@ -158,13 +158,13 @@ public class Proveedor_productosBean
     }
   }
 
-  public void eliminar() throws Exception 
+  public void eliminar(Proveedor_productos pro) throws Exception 
   {
     Proveedor_productosDao dao;
 
     try {
       dao = new Proveedor_productosDao();
-      dao.eliminar(proveedor_productos);
+      dao.eliminar(pro);
 
     } catch (Exception e) {
       throw e;
