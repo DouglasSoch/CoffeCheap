@@ -9,6 +9,8 @@ import com.coffecheap.modelo.Proveedor_productos;
 import com.coffecheap.dao.Proveedor_productosDao;
 import com.coffecheap.modelo.Producto;
 import com.coffecheap.modelo.Proveedor;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -28,9 +30,9 @@ public class Proveedor_productosBean
   }
      
   private Proveedor_productos proveedor_productos = new Proveedor_productos();
-  private List<Proveedor_productos> lstProveedor_productos;
-  private List<Producto> lstProducto;
-  private List<Proveedor> lstProveedor;
+  private List<Proveedor_productos> lstProveedor_productos = new ArrayList();
+  private List<Producto> lstProducto = new ArrayList();
+  private List<Proveedor> lstProveedor= new ArrayList();
 
     public List<Producto> getLstProducto() {
         return lstProducto;
@@ -78,6 +80,31 @@ public class Proveedor_productosBean
     }
 
   }
+  
+   public void fila(Proveedor_productos prod) 
+  {
+    Proveedor_productosDao dao;
+    Proveedor_productos temp;
+    System.out.println("el id del proveedor "+prod.getProveedor().getId_proveedor());
+      System.out.println("el proveedor "+prod.getProveedor().getNombre());
+      System.out.println("el id del producto "+prod.getProducto().getId_producto());
+      System.out.println("el producto "+prod.getProducto().getNombre());
+      System.out.println("el precio "+prod.getPrecio());
+      
+    try 
+    {
+      dao = new Proveedor_productosDao();
+      temp = dao.leerFila(prod);
+      if(temp !=null)
+      {
+          this.proveedor_productos= temp;
+      }
+      
+    } catch (Exception e) 
+    {
+      System.out.println(e);
+    }
+  }
 
   public void listar() throws Exception {
     Proveedor_productosDao dao;
@@ -116,18 +143,19 @@ public class Proveedor_productosBean
 
   }
   
-  public void modificar(Proveedor_productos mar) throws Exception {
-    System.out.println("*******************************************************Modificar");
+ 
+  
+  public void modificar() throws Exception 
+  {
     Proveedor_productosDao dao;
-
-    try {
+    try 
+    {
       dao = new Proveedor_productosDao();
-      dao.modificar(mar);
-
-    } catch (Exception e) {
+      dao.modificar(proveedor_productos);
+    } catch (Exception e) 
+    {
       throw e;
     }
-
   }
 
   public void eliminar(Proveedor_productos mar) throws Exception {

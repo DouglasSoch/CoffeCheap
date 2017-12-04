@@ -57,15 +57,17 @@ public class Proveedor_productosDao extends Dao {
         ResultSet rs;
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareCall("select proveedor.nombre_proveedor , producto.nombre_producto,  proveedor_productos.precio_insumo from proveedor inner join proveedor_productos on (proveedor.id_proveedor = proveedor_productos.id_proveedor) inner join producto on (proveedor_productos.id_producto = producto.id_producto)");
+            PreparedStatement st = this.getCon().prepareCall("select proveedor.id_proveedor, proveedor.nombre_proveedor ,producto.id_producto,  producto.nombre_producto,  proveedor_productos.precio_insumo from proveedor inner join proveedor_productos on (proveedor.id_proveedor = proveedor_productos.id_proveedor) inner join producto on (proveedor_productos.id_producto = producto.id_producto)");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) 
             {
                 Proveedor_productos tt = new Proveedor_productos();
-                tt.getProveedor().setNombre(rs.getString(1));
-                tt.getProducto().setNombre(rs.getString(2));
-                tt.setPrecio(rs.getInt(3));
+                 tt.getProveedor().setId_proveedor(rs.getInt(1));
+              tt.getProveedor().setNombre(rs.getString(2));
+              tt.getProducto().setId_producto(rs.getInt(3));
+              tt.getProducto().setNombre(rs.getString(4));
+              tt.setPrecio(rs.getInt(5));
 
                 lista.add(tt);
             }
@@ -133,22 +135,58 @@ public class Proveedor_productosDao extends Dao {
     
     public void modificar(Proveedor_productos Tt) throws Exception 
     {
-        try {
+        try 
+        {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("UPDATE  proveedor_productos SET id_producto=?, precio_insumo=? WHERE id_proveedor=?");
+            PreparedStatement st = this.getCon().prepareStatement("UPDATE proveedor_productos SET id_producto=?, precio_insumo=? WHERE id_proveedor=? and id_producto=?");
             st.setInt(1, Tt.getProducto().getId_producto());
             st.setInt(2, Tt.getPrecio());
             st.setInt(3, Tt.getProveedor().getId_proveedor());
+            st.setInt(4, Tt.getProducto().getId_producto());
             st.executeUpdate();
 
-        } catch (Exception ex) {
+        } 
+        catch (Exception ex) 
+        {
             throw ex;
-        } finally {
-            this.Desconecar();
-
         }
-
+        finally 
+        {
+        this.Desconecar();
+        }
     }
+    
+     public Proveedor_productos leerFila (Proveedor_productos prov) throws Exception
+  {
+      Proveedor_productos  provP = null;
+      ResultSet rs;
+      
+      try
+      {
+          this.Conectar();
+          PreparedStatement ps =  getCon().prepareStatement("select proveedor.id_proveedor, proveedor.nombre_proveedor , producto.id_producto, producto.nombre_producto,  proveedor_productos.precio_insumo from proveedor inner join proveedor_productos on (proveedor.id_proveedor = proveedor_productos.id_proveedor) inner join producto on (proveedor_productos.id_producto = producto.id_producto)WHERE proveedor.id_proveedor=? and producto.id_producto=?");
+          ps.setInt(1, prov.getProveedor().getId_proveedor());
+          ps.setInt(2, prov.getProducto().getId_producto());
+          rs=ps.executeQuery();
+          
+          while(rs.next())
+          {
+              provP = new Proveedor_productos();
+              provP.getProveedor().setId_proveedor(rs.getInt(1));
+              provP.getProveedor().setNombre(rs.getString(2));
+              provP.getProducto().setId_producto(rs.getInt(3));
+              provP.getProducto().setNombre(rs.getString(4));
+              provP.setPrecio(rs.getInt(5));
+          }
+      }catch(Exception e)
+      {
+          System.out.println(e);
+      }finally
+      {
+          this.Desconecar();
+      }
+      return provP;
+  }
     
 //     public Proveedor_productos leerParaModificar(Proveedor_productos proveedorP) throws Exception 
 //    {
