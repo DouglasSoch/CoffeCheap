@@ -13,14 +13,9 @@ public class Tipo_platoDao extends Dao
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into receta values(?,?,?,?);");
-      st.setInt(1, receta.getPlato().getId_plato());
-      st.setInt(2, receta.getProducto().getId_producto());
-      st.setInt(3, receta.getCantidad());
-      st.setInt(4, receta.getUmedida().getId_unidad());    
-      
-        
-
+      PreparedStatement st = this.getCon().prepareStatement("insert into tipo_plato (id_tipo_plato, nombre) values(?,?)");
+      st.setInt(1, tipoPlato.getId());
+      st.setString(2, tipoPlato.getNombre());
       st.executeUpdate();
 
     } catch (Exception ex) {
