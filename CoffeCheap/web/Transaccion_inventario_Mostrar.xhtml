@@ -9,34 +9,52 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-         <ui:composition template="./WEB-INF/template/Template.xhtml">
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
             <ui:define name="content">
-        <f:event type="preRenderView" listener="#{transaccion_inventarioBean.mostar()}"/>
-        <h:form>
-            <p:dataTable var="tra" value="#{transaccion_inventarioBean.lsttraInv}" rows="10" id="tabla1" paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
-                <p:column headerText="Id" filterBy="#{tra.id_transaccion}" filterMatchMode="exact">
-                    <p:outputLabel value="#{tra.id_transaccion}"/>
-                </p:column>
-                <p:column headerText="Fecha" filterBy="#{tra.fecha}" filterMatchMode="contains">
-                    <p:outputLabel value="#{tra.fecha}"/>
-                </p:column> 
-                <p:column headerText="Producto" filterBy="#{tra.producto.nombre}" filterMatchMode="contains">
-                    <p:outputLabel value="#{tra.producto.nombre}"/>
-                </p:column>
-                <p:column headerText="Tipo Transacción" filterBy="#{tra.ttransaccion.nombre}" filterMatchMode="contains">
-                    <p:outputLabel value="#{tra.ttransaccion.nombre}"/>
-                </p:column>
-                <p:column headerText="Cantidad" >
-                    <p:outputLabel value="#{tra.cantidad}"/>
-                </p:column>
-                <p:column headerText="Detalle" >
-                    <p:outputLabel value="#{tra.detalle}"/>
-                </p:column>
-            </p:dataTable>
-        </h:form>
-           </ui:define>
+                <f:event type="preRenderView" listener="#{transaccion_inventarioBean.mostar()}"/>
+                <h:form>
+                    <p:dataTable var="tra" value="#{transaccion_inventarioBean.lsttraInv}" rows="15" id="tabla1" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20">
+                        <p:column headerText="Id" filterBy="#{tra.id_transaccion}" filterMatchMode="exact">
+                            <p:outputLabel value="#{tra.id_transaccion}"/>
+                        </p:column>
+                        <p:column headerText="Fecha" filterBy="#{tra.fecha}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.fecha}"/>
+                        </p:column> 
+                        <p:column headerText="Producto" filterBy="#{tra.producto.nombre}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.producto.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Tipo Transacción" filterBy="#{tra.ttransaccion.nombre}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.ttransaccion.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Cantidad" >
+                            <p:outputLabel value="#{tra.cantidad}"/>
+                        </p:column>
+                        <p:column headerText="Detalle" >
+                            <p:outputLabel value="#{tra.detalle}"/>
+                        </p:column>
+                        <p:column headerText="serie" >
+                            <p:outputLabel value="#{tra.compra.serie}"/>
+                        </p:column>
+                        <p:column headerText="No. Factura" >
+                            <p:outputLabel value="#{tra.compra.no_fac}"/>
+                        </p:column>
+                        <p:column headerText="costo" >
+                            <p:outputLabel value="#{tra.compra.costo}"/>
+                        </p:column>
+                        <p:column headerText="fecha de entra(Compra)" >
+                            <p:outputLabel value="#{tra.compra.fechaEntrega}"/>
+                        </p:column>
+                        <p:column headerText="Fecha orden" >
+                            <p:outputLabel value="#{tra.compra.ocompras.temp_fecha_orden}"/>
+                        </p:column>
+                        <p:column headerText="fecha entrega" >
+                            <p:outputLabel value="#{tra.compra.ocompras.temp_fecha_entrega}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
         </ui:composition>
     </h:body>
 </html>

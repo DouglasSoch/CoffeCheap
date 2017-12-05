@@ -1,6 +1,7 @@
 package com.coffecheap.dao;
 
 import com.coffecheap.bean.Transaccion_inventarioBean;
+import com.coffecheap.modelo.Compra;
 import com.coffecheap.modelo.Transaccion_inventario;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -29,13 +30,13 @@ public class Transaccion_InventarioDAO extends Dao
         
             this.Conectar();
                 
-            PreparedStatement st = this.getCon().prepareStatement("insert into transaccion_inventario (id_transaccion, fecha, id_producto, id_tipo_transaccion, cantidad, detalle) values(?,?,?,?,?,?)");
-            st.setInt(1, traInv.getId_transaccion());
-            st.setString(2, formateador.format(traInv.getFecha()));
-            st.setInt(3, traInv.getProducto().getId_producto());
-            st.setInt(4, traInv.getTtransaccion().getId_tipo_transacciones());
-            st.setInt(5, traInv.getCantidad());
+            PreparedStatement st = this.getCon().prepareStatement("insert into transaccion_inventario (fecha,id_producto,id_tipo_transaccion,cantidad,detalle,id_compra)values(?,?,?,?,?,?)");
+            st.setString(1, formateador.format(traInv.getFecha()));
+            st.setInt(2, traInv.getProducto().getId_producto());
+            st.setInt(3, traInv.getTtransaccion().getId_tipo_transacciones());
+            st.setInt(4, traInv.getCantidad());
             st.setString(6, traInv.getDetalle());
+            st.setInt(7, traInv.getCompra().getId_compras());
             st.executeUpdate();   
             Transaccion_inventarioBean .addMessage("Registro Guardado");
         }catch(Exception e)
@@ -53,7 +54,7 @@ public class Transaccion_InventarioDAO extends Dao
         try
         {
             this.Conectar();
-            PreparedStatement st = getCon().prepareCall("select traInv.id_transaccion, traInv.fecha, pro.id_producto, pro.nombre_producto, tipTran.id_tipo_transacciones,tipTran.nombre_trasaccion, traInv.cantidad, traInv.detalle from transaccion_inventario as traInv inner join producto as pro on(traInv.id_producto = pro.id_producto) inner join tipo_transacciones as tipTran on(traInv.id_tipo_transaccion = tipTran.id_tipo_transacciones)");
+            PreparedStatement st = getCon().prepareCall("select transaccion_inventario.id_transaccion, transaccion_inventario.fecha, producto.id_producto, producto.nombre_producto, tipo_transacciones.id_tipo_transacciones,tipo_transacciones.nombre_trasaccion, transaccion_inventario.cantidad, transaccion_inventario.detalle, compra.id_compra, compra.serie,compra.no_factura, compra.costo, compra.fecha_entregacompra, orden_compras.fecha_orden, orden_compras.fecha_entrega from transaccion_inventario  inner join producto on(transaccion_inventario.id_producto = producto.id_producto) inner join tipo_transacciones on(transaccion_inventario.id_tipo_transaccion = tipo_transacciones.id_tipo_transacciones) inner join  compra on(transaccion_inventario.id_compra = compra.id_compra) inner join orden_compras on(compra.id_orden = orden_compras.id_orden_compras)");
             rs=st.executeQuery();
             lista = new ArrayList();
             
@@ -67,7 +68,14 @@ public class Transaccion_InventarioDAO extends Dao
                 tra.getTtransaccion().setId_tipo_transacciones(rs.getInt(5));
                 tra.getTtransaccion().setNombre(rs.getString(6));
                 tra.setCantidad(rs.getInt(7));
-                tra.getDetalle().getCompra().s(rs.getString(8));
+                tra.setDetalle(rs.getString(8));
+                tra.getCompra().setId_compras(rs.getInt(9));
+                tra.getCompra().setSerie(rs.getString(10));
+                tra.getCompra().setNo_fac(rs.getInt(11));
+                tra.getCompra().setCosto(rs.getInt(12));
+                tra.getCompra().setFechaEntrega(rs.getString(13));
+                tra.getCompra().getOcompras().setTemp_fecha_orden(rs.getString(14));
+                tra.getCompra().getOcompras().setTemp_fecha_entrega(rs.getString(15));
                 lista.add(tra);
             }
         }catch(Exception e)
@@ -79,6 +87,35 @@ public class Transaccion_InventarioDAO extends Dao
         }
         return lista;
     }   
+      
+      public List<Compra> listarCompra() throws Exception
+    {
+        List<Compra> lista;
+        ResultSet rs;
+        try
+        {
+            this.Conectar();
+            PreparedStatement st = getCon().prepareCall("select id_compra, serie from compra");
+            rs=st.executeQuery();
+            lista = new ArrayList();
+            
+            while(rs.next())
+            {
+                Compra compra = new Compra();
+                compra.setId_compras(rs.getInt(1));
+                compra.setSerie(rs.getString(2));
+                lista.add(compra);
+            }
+        }catch(Exception e)
+        {
+            throw e;
+        }finally
+        {
+            this.Desconecar();
+        }
+        return lista;
+    }   
+
       public List<Transaccion_inventario> mostrarPorPrarametro(Transaccion_inventario  traInv) throws Exception
     {
         List<Transaccion_inventario> lista;
