@@ -104,41 +104,7 @@ public class Transaccion_inventarioBean {
         }
     }
 
-    public void mostarPorParametro() throws Exception {
-        Transaccion_InventarioDAO dao;
-
-        try {
-            dao = new Transaccion_InventarioDAO();
-            lsttraInv = dao.mostrarPorPrarametro(traInv);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
-    public void mostarPorParametroEspecial() throws Exception {
-        Transaccion_InventarioDAO dao;
-
-        try {
-
-            dao = new Transaccion_InventarioDAO();
-            lsttraInv = dao.mostrarPorPrarametroEspecial(traInv);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
-    public void mostarPorRangoEspecial() throws Exception {
-        Transaccion_InventarioDAO dao;
-
-        try {
-
-            dao = new Transaccion_InventarioDAO();
-            lsttraInv = dao.mostrarPorRangoEspecial(traInv);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
+   
     public void leerParaModificarProducto() throws Exception {
         Transaccion_InventarioDAO dao;
 

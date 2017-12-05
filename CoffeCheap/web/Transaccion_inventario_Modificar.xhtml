@@ -8,37 +8,6 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <f:event type="preRenderView" listener="#{transaccion_inventarioBean.leerParaProducto()}"/>
-        <f:event type="preRenderView" listener="#{transaccion_inventarioBean.leerParaTipoTransacciones()}"/>
-        <h:form id="datos">
-            
-         <br/>
-                    <p:outputLabel value="ingrese id " />
-                    <p:inputText   id="id" value="#{transaccion_inventarioBean.traInv.id_transaccion}"/>
-                    <br/>
-                    <p:outputLabel value="fecha"/>
-                    <p:inputText  id="fecha" value="#{transaccion_inventarioBean.traInv.fecha}"/>
-                    <br/>
-                    <p:outputLabel value="Seleccione producto"/>
-                    <p:selectOneMenu value="#{transaccion_inventarioBean.traInv.producto.id_producto}">
-                        <f:selectItem itemLabel="producto" itemValue=""/>
-                        <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv2}"  var="listaa" itemLabel="#{listaa.producto.nombre}" itemValue="#{listaa.producto.id_producto}" />
-                    </p:selectOneMenu>
-                    <br/>
-                    <p:outputLabel value="Seleccione Tipo de transaccion"/>
-                    <p:selectOneMenu   value="#{transaccion_inventarioBean.traInv.ttransaccion.id_tipo_transacciones}">
-                        <f:selectItem itemLabel="Tipo de transaccion" itemValue=""/>
-                        <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv}"  var="lista" itemLabel="#{lista.ttransaccion.nombre}" itemValue="#{lista.ttransaccion.id_tipo_transacciones}" />
-                   
-                    
-                    </p:selectOneMenu>
-                    <p:commandButton  value="Buscar" actionListener="#{transaccion_inventarioBean.buscar()}"  update="datos"/>
-                    <p:commandButton  value="Modificar" actionListener="#{transaccion_inventarioBean.buscar()}"  />
-                    <br/>
-              
-                    
-            
-        </h:form>
     </h:body>
 </html>
 
