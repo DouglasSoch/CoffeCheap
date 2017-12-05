@@ -5,12 +5,14 @@ import java.util.Objects;
 
 public class Transaccion_inventario 
 {
-    int id_transaccion = 0;
+    int id_transaccion=0;
     Date fecha = null;
     Producto producto = new Producto();
     Tipo_transacciones Ttransaccion = new Tipo_transacciones();
-    String fechaUno =null;
+    String fechaUno = null;
     String fechaDos = null;
+    int cantidad=0;
+    String detalle = null;
 
     public Transaccion_inventario() {
     }
@@ -31,17 +33,15 @@ public class Transaccion_inventario
         this.Ttransaccion = Ttransaccion;
     }
 
-    public Transaccion_inventario(String fechaUno) {
-        this.fechaUno = fechaUno;
-    }
-
-    public Transaccion_inventario(int id_transaccion, Date fecha, Producto producto, Tipo_transacciones Ttransaccion, String fechaUno, String fechaDos) {
+    public Transaccion_inventario(int id_transaccion, Date fecha, Producto producto, Tipo_transacciones Ttransaccion, String fechaUno, String fechaDos, int cantidad, String detalle) {
         this.id_transaccion = id_transaccion;
         this.fecha = fecha;
         this.producto = producto;
         this.Ttransaccion = Ttransaccion;
         this.fechaUno = fechaUno;
         this.fechaDos = fechaDos;
+        this.cantidad = cantidad;
+        this.detalle = detalle;
     }
 
     public int getId_transaccion() {
@@ -92,15 +92,33 @@ public class Transaccion_inventario
         this.fechaDos = fechaDos;
     }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + this.id_transaccion;
-        hash = 59 * hash + Objects.hashCode(this.fecha);
-        hash = 59 * hash + Objects.hashCode(this.producto);
-        hash = 59 * hash + Objects.hashCode(this.Ttransaccion);
-        hash = 59 * hash + Objects.hashCode(this.fechaUno);
-        hash = 59 * hash + Objects.hashCode(this.fechaDos);
+        hash = 47 * hash + this.id_transaccion;
+        hash = 47 * hash + Objects.hashCode(this.fecha);
+        hash = 47 * hash + Objects.hashCode(this.producto);
+        hash = 47 * hash + Objects.hashCode(this.Ttransaccion);
+        hash = 47 * hash + Objects.hashCode(this.fechaUno);
+        hash = 47 * hash + Objects.hashCode(this.fechaDos);
+        hash = 47 * hash + this.cantidad;
+        hash = 47 * hash + Objects.hashCode(this.detalle);
         return hash;
     }
 
@@ -119,10 +137,16 @@ public class Transaccion_inventario
         if (this.id_transaccion != other.id_transaccion) {
             return false;
         }
+        if (this.cantidad != other.cantidad) {
+            return false;
+        }
         if (!Objects.equals(this.fechaUno, other.fechaUno)) {
             return false;
         }
         if (!Objects.equals(this.fechaDos, other.fechaDos)) {
+            return false;
+        }
+        if (!Objects.equals(this.detalle, other.detalle)) {
             return false;
         }
         if (!Objects.equals(this.fecha, other.fecha)) {
@@ -136,6 +160,9 @@ public class Transaccion_inventario
 
     @Override
     public String toString() {
-        return "Transaccion_inventario{" + "id_transaccion=" + id_transaccion + ", fecha=" + fecha + ", producto=" + producto + ", Ttransaccion=" + Ttransaccion + ", fechaUno=" + fechaUno + ", fechaDos=" + fechaDos + '}';
+        return "Transaccion_inventario{" + "id_transaccion=" + id_transaccion + ", fecha=" + fecha + ", producto=" + producto + ", Ttransaccion=" + Ttransaccion + ", fechaUno=" + fechaUno + ", fechaDos=" + fechaDos + ", cantidad=" + cantidad + ", detalle=" + detalle + '}';
     }
+    
+    
+    
 }

@@ -1,5 +1,6 @@
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.Transaccion_inventarioBean;
 import com.coffecheap.modelo.Transaccion_inventario;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -7,6 +8,7 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import static org.primefaces.component.datatable.DataTable.PropertyKeys.summary;
 
 
 public class Transaccion_InventarioDAO extends Dao
@@ -15,16 +17,20 @@ public class Transaccion_InventarioDAO extends Dao
     {
         try
         {   
+            
         SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
         
             this.Conectar();
                 
-            PreparedStatement st = this.getCon().prepareStatement("insert into transaccion_inventario values(?,?,?,?)");
+            PreparedStatement st = this.getCon().prepareStatement("insert into transaccion_inventario (id_transaccion,fecha,id_producto,id_tipo_transaccion,cantidad,detalle)values(?,?,?,?,?,?)");
             st.setInt(1, traInv.getId_transaccion());
             st.setString(2, formateador.format(traInv.getFecha()));
             st.setInt(3, traInv.getProducto().getId_producto());
             st.setInt(4, traInv.getTtransaccion().getId_tipo_transacciones());
+            st.setInt(5, traInv.getCantidad());
+            st.setString(6, traInv.getDetalle());
             st.executeUpdate();   
+            Transaccion_inventarioBean .addMessage("Registro Guardado");
         }catch(Exception e)
         {
             throw e;

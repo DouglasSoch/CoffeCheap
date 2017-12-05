@@ -6,39 +6,30 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Transaccion Inventario</title>
+        <title>Transaccion Inventario Ingresar</title>
     </h:head>
-    <h:body>
-      <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content">
-      <f:event type="preRenderView" listener="#{transaccion_inventarioBean.leerParaModificarProducto()}"/>
+<h:body>
+ <ui:composition template="./WEB-INF/template/Template.xhtml">
+  <ui:define name="content">
+        <f:event type="preRenderView" listener="#{transaccion_inventarioBean.leerParaModificarProducto()}"/>
         <f:event type="preRenderView" listener="#{transaccion_inventarioBean.leerParaModificarTipoTransacciones()}"/>
-            
-        <h:form>
-        
-         <br/>
-                    <p:outputLabel value="ingrese id  "/>
-                    <p:inputText  value="#{transaccion_inventarioBean.traInv.id_transaccion}"/>
-                    <br/>
-                    <p:outputLabel value="Fecha de transaccion"/>  
-                    <p:outputLabel   id="hola" value="#{transaccion_inventarioBean.fechaSus}" />
-                    <br/>
-                    
-                    <p:outputLabel value="ingrese producto"/>
-                    <p:selectOneMenu value="#{transaccion_inventarioBean.traInv.producto.id_producto}">
-                        <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv2}"  var="listaa" itemLabel="#{listaa.producto.nombre}"  itemValue="#{listaa.producto.id_producto}" />
-                    </p:selectOneMenu>
-                    
-                    <br/>
-                     <p:outputLabel value="Seleccione Tipo de transaccion"/>
-                     <p:selectOneMenu   value="#{transaccion_inventarioBean.traInv.ttransaccion.id_tipo_transacciones}">
-                        <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv}"  var="lista" itemLabel="#{lista.ttransaccion.nombre}" itemValue="#{lista.ttransaccion.id_tipo_transacciones}" />
-                    </p:selectOneMenu>
-                     <br/>
-                     <p:commandButton value="Guardar" update="hola" actionListener="#{transaccion_inventarioBean.registrar()}"/>
-                    </h:form>
-        </ui:define>
-    </ui:composition>
-    </h:body>
+     <h:form>
+        <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+               <p:outputLabel value="Fecha de transaccion"/>  
+               <p:outputLabel   id="hola" value="#{transaccion_inventarioBean.fechaSus}" />
+               <p:outputLabel value="ingrese producto"/>
+            <p:selectOneMenu value="#{transaccion_inventarioBean.traInv.producto.id_producto}">
+               <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv2}"  var="listaa" itemLabel="#{listaa.producto.nombre}"  itemValue="#{listaa.producto.id_producto}" />
+            </p:selectOneMenu>
+              <p:outputLabel value="Seleccione Tipo de transaccion"/>
+           <p:selectOneMenu   value="#{transaccion_inventarioBean.traInv.ttransaccion.id_tipo_transacciones}">
+              <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv}"  var="lista" itemLabel="#{lista.ttransaccion.nombre}" itemValue="#{lista.ttransaccion.id_tipo_transacciones}" />
+           </p:selectOneMenu>
+        </h:panelGrid>
+      <p:commandButton value="Guardar" update="hola" actionListener="#{transaccion_inventarioBean.registrar()}"/>
+     </h:form>
+   </ui:define>
+  </ui:composition>
+ </h:body>
 </html>
 
