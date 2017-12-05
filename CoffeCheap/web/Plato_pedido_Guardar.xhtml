@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -10,53 +10,66 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 
-  <h:body class="ui-g">
-    <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content">
+    <h:body class="ui-g">
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
 
+                <f:event type="preRenderView" listener="#{plato_pedidoBean.listar()}"/>
         <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{usuarioBean.listarChef()}"/>
+        <f:event type="preRenderView" listener="#{pedidoBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{platoBean.listar()}"/>        
+        <f:event type="preRenderView" listener="#{usuarioBean.listarMe()}"/>
 
-        <h:form class="flip">
+                <h:form class="flip">
 
-          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+                    <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
 
-            <p:outputLabel value="id_pedido" />
-            <p:autoComplete id="Codig" value="#{pedidoBean.pedido.id_pedido}"/>                         
+                            <p:outputLabel value="id__Plato_pedido" />                            
+                            <h:inputText value="#{plato_pedidoBean.plapedido.id_plato_pedido}" style="color: #oooooo;" />
+                       
+                            <p:outputLabel value="Plato" />                                        
+                            <p:selectOneMenu id="lisx" value="#{plato_pedidoBean.plapedido.plato.id_plato}"  > 
+                                <f:selectItems value="#{platoBean.lstPlato}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_plato}"/>                        
+                            </p:selectOneMenu>
+                       
 
-            <p:outputLabel for="lisz" value="id_mesa:" />
-            <p:selectOneMenu id="lisz" style="width:200px" value="#{pedidoBean.pedido.mesa.id_mesa}"> 
-              <f:selectItems value="#{mesaBean.lstMesa}" var="tip" itemLabel="#{tip.ubicacion}" itemValue="#{tip.id_mesa}"/>      
-              <p:ajax event="change" update="@this" />      
-            </p:selectOneMenu>
+                            <p:outputLabel value="Cantidad" />                             
+                            <h:inputText value="#{plato_pedidoBean.plapedido.cantidad}" style="color: #oooooo;  " />
+                        
+                            <p:outputLabel value="Personal" />                          
+                            <p:selectOneMenu id="lis1" value="#{plato_pedidoBean.plapedido.usuario.id}"  > 
+                                <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
+                                <p:ajax event="change" update="@this" />      
+                            </p:selectOneMenu>  
+                                               
+                            <p:outputLabel value="ID Pedido" />                          
+                            <p:selectOneMenu id="lis2" value="#{plato_pedidoBean.plapedido.pedido.id_pedido}"> 
+                                <f:selectItems value="#{pedidoBean.lstPedido}" var="tip" itemLabel="#{tip.id_pedido}" itemValue="#{tip.id_pedido}"/>      
+                                <p:ajax event="change" update="@this" />      
+                            </p:selectOneMenu>  
+                       
+                            <p:outputLabel value="Precio" />         
+                            <h:inputText value="#{plato_pedidoBean.plapedido.precio}" style="color: #oooooo;  " />
+                       
 
-            <p:outputLabel value="hora" />
-            <p:inputMask id="hora" value="#{pedidoBean.pedido.hora}" mask="99:99:99"/>
+                    </h:panelGrid>
+                    <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{plato_pedidoBean.registrar()}"/>
 
+                    <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
+                        <p:panelGrid id="display" columns="2" columnClasses="label,value">
 
-            <p:outputLabel for="lis" value="id_personal:" />
-            <p:selectOneMenu id="lis" style="width:200px" value="#{pedidoBean.pedido.usuario.id}"> 
-              <f:selectItems value="#{usuarioBean.lstUsuarioChef}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
-              <p:ajax event="change" update="@this" />      
-            </p:selectOneMenu>          
-          </h:panelGrid>
-          <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{pedidoBean.registrar()}"/>
-
-          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
-            <p:panelGrid id="display" columns="2" columnClasses="label,value">
-
-              <h:outputText value="Codigo Trasaccion" />
-              <h:outputText id="CodigV" value="#{pedidoBean.pedido.id_pedido}" />                         
-
-
-            </p:panelGrid>
-          </p:dialog>
-
-        </h:form>
+                            <h:outputText value="Codigo Trasaccion" />
+                            <h:outputText id="CodigV" value="#{plato_pedidoBean.plapedido.pedido.id_pedido}" />                         
 
 
-      </ui:define>
-    </ui:composition>
-  </h:body>
+                        </p:panelGrid>
+                    </p:dialog>
+
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
 

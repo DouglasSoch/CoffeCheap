@@ -13,7 +13,7 @@
           <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
         <h:form class="flip">
           
-            <p:outputLabel style="color: #ffffff;" value="Lista para elegir el plato a modificar" />          
+            <p:outputLabel style="color: #oooooo;" value="Lista para elegir el plato a modificar" />          
          
         </h:form>
         <h:form id="otro">
@@ -26,27 +26,27 @@
 
                 <p:column width="90">
                 <f:facet name="header">Codigo de Producto</f:facet>
-                <h:inputText value="#{tabla.id_producto}" style="color: #ffffff; width : 60px" />
+                <h:inputText value="#{tabla.id_producto}" style="color: #oooooo; width : 60px" />
                 </p:column>
                 <p:column width="200">
                 <f:facet name="header">Nombre</f:facet>
-                <h:inputText value="#{tabla.nombre}" style="color: #ffffff; width : 200px" />
+                <h:inputText value="#{tabla.nombre}" style="color: #oooooo; width : 200px" />
                 </p:column>
                 <p:column width="90">
                 <f:facet name="header">Cantidad</f:facet>
-                <h:inputText value="#{tabla.existencia}" style="color: #ffffff; width : 60px" />
+                <h:inputText value="#{tabla.existencia}" style="color: #oooooo; width : 60px" />
                 </p:column>
                 <p:column width="90">
                 <f:facet name="header">Codigo de Unidad de Medida</f:facet>
-                <h:inputText value="#{tabla.umedida.id_unidad}" style="color: #ffffff; width : 60px" />
+                <h:inputText value="#{tabla.umedida.id_unidad}" style="color: #oooooo; width : 60px" />
                 </p:column>    
                 <p:column width="90">
                 <f:facet name="header">Codigo de tipo de producto</f:facet>
-                <h:inputText value="#{tabla.tproducto.id_tipo}" style="color: #ffffff; width : 60px" />
+                <h:inputText value="#{tabla.tproducto.id_tipo}" style="color: #oooooo; width : 60px" />
                 </p:column> 
 
                   <p:column width="100">
-                      <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{productoBean.eliminar(tabla)}"/>                    
+                      <h:commandLink value="Eliminar" style="color: #oooooo" actionListener="#{productoBean.eliminar(tabla)}"/>                    
               </p:column>                              
 
             

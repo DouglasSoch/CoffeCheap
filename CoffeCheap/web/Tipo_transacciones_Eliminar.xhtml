@@ -17,7 +17,7 @@
         <f:event type="preRenderView" listener="#{tipo_transaccionesBean.listar()}"/>
         <h:form class="flip">
           
-            <p:outputLabel style="color: #ffffff;" value="Lista para escoger tipo de trasaccion a eliminar" />          
+            <p:outputLabel style="color: #oooooo;" value="Lista para escoger tipo de trasaccion a eliminar" />          
          
         </h:form>
         <h:form id="otro">
@@ -29,15 +29,15 @@
 
               <p:column>
                 <f:facet name="header">Codigo de la trasaccion</f:facet>
-                <h:inputText value="#{tabla.id_tipo_transacciones}" style="color: #ffffff; width : 30px" />
+                <h:inputText value="#{tabla.id_tipo_transacciones}" style="color: #oooooo; width : 30px" />
               </p:column>
               <p:column>
                 <f:facet name="header">Nombre de la trasaccion</f:facet>
-                <h:inputText value="#{tabla.nombre}" style="color: #ffffff; width : 160px" />
+                <h:inputText value="#{tabla.nombre}" style="color: #oooooo; width : 160px" />
               </p:column>
 
               <p:column>
-                <h:commandLink value="Eliminar" style="color: #ffffff" actionListener="#{tipo_transaccionesBean.eliminar(tabla)}"/>                    
+                <h:commandLink value="Eliminar" style="color: #oooooo" actionListener="#{tipo_transaccionesBean.eliminar(tabla)}"/>                    
               </p:column>                              
 
             </p:dataTable>>

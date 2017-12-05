@@ -2,7 +2,7 @@ package com.coffecheap.bean;
 
 /**
  *
- * @marhor acier
+ * @Pedhor acier
  */
 
 import com.coffecheap.modelo.Pedido;
@@ -63,13 +63,13 @@ public class PedidoBean {
 
   }
 
-  public void modificar(Pedido mar) throws Exception {
+  public void modificar(Pedido Ped) throws Exception {
     System.out.println("*******************************************************Modificar");
     PedidoDao dao;
 
     try {
       dao = new PedidoDao();
-      dao.modificar(mar);
+      dao.modificar(Ped);
 
     } catch (Exception e) {
       throw e;
@@ -77,13 +77,13 @@ public class PedidoBean {
 
   }
 
-  public void eliminar(Pedido mar) throws Exception {
+  public void eliminar(Pedido Ped) throws Exception {
     System.out.println("*******************************************************eliminar");
     PedidoDao dao;
 
     try {
       dao = new PedidoDao();
-      dao.eliminar(mar);
+      dao.eliminar(Ped);
 
     } catch (Exception e) {
       throw e;

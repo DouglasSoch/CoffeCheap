@@ -15,12 +15,10 @@
           <f:event type="preRenderView" listener="#{tipo_productoBean.listar()}"/>
         <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
         <f:event type="preRenderView" listener="#{unidad_medidaBean.listar()}"/>
-        <h:panelGrid id="general" columns="3" cellpadding="5">
+        <p:panelGrid id="general" columns="3" >
           <h:form id="form1">
-            <h:panelGrid id="panel1" columns="2" cellpadding="5" border="1" style="color: #ffffff">
-              
-              
-
+            <p:panelGrid id="panel1" columns="2"  style="color: #oooooo">
+                            
               <p:outputLabel for="id_producto" value="Codigo de Producto"/>
               <p:inputText id="id_producto" value="#{productoBean.producto.id_producto}" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
               
@@ -42,7 +40,7 @@
                 <f:selectItems value="#{tipo_productoBean.lstTipo_producto}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_tipo}"/>
               </p:selectOneMenu>
 
-            </h:panelGrid><br/>
+            </p:panelGrid><br/>
             
             <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{productoBean.registrar()}"/>
 
@@ -64,14 +62,12 @@
             
                 <h:outputText value="Tipo" />
                 <h:outputText id="tipoV" value="#{productoBean.producto.tproducto.id_tipo}"/>
-            
-
-                
+                           
 
             </p:panelGrid>
           </p:dialog>
           </h:form>
-        </h:panelGrid>
+        </p:panelGrid>
       </ui:define>
 
     </ui:composition>
