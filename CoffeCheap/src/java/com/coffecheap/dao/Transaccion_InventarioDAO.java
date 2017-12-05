@@ -67,7 +67,7 @@ public class Transaccion_InventarioDAO extends Dao
                 tra.getTtransaccion().setId_tipo_transacciones(rs.getInt(5));
                 tra.getTtransaccion().setNombre(rs.getString(6));
                 tra.setCantidad(rs.getInt(7));
-                tra.setDetalle(rs.getString(8));
+                tra.getDetalle().getCompra().s(rs.getString(8));
                 lista.add(tra);
             }
         }catch(Exception e)
