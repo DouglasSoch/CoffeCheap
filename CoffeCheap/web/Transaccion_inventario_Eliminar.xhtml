@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Transaccion Inventario Eliminar</title>
+    </h:head>
+    <h:body>
+              <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+              
+               
+                <f:event type="preRenderView" listener="#{transaccion_inventarioBean.mostar()}"/>
+        <h:form id="tabla">
+                    <p:dataTable var="tra" value="#{transaccion_inventarioBean.lsttraInv}" rows="15" id="tabla1" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20">
+                        <p:column headerText="Id" filterBy="#{tra.id_transaccion}" filterMatchMode="exact">
+                            <p:outputLabel value="#{tra.id_transaccion}"/>
+                        </p:column>
+                        <p:column headerText="Fecha" filterBy="#{tra.fecha}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.fecha}"/>
+                        </p:column> 
+                        <p:column headerText="Producto" filterBy="#{tra.producto.nombre}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.producto.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Tipo Transacción" filterBy="#{tra.ttransaccion.nombre}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.ttransaccion.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Cantidad" >
+                            <p:outputLabel value="#{tra.cantidad}"/>
+                        </p:column>
+                        <p:column headerText="Detalle" >
+                            <p:outputLabel value="#{tra.detalle}"/>
+                        </p:column>
+                        <p:column headerText="serie" >
+                            <p:outputLabel value="#{tra.compra.serie}"/>
+                        </p:column>
+                        <p:column headerText="No. Factura" >
+                            <p:outputLabel value="#{tra.compra.no_fac}"/>
+                        </p:column>
+                        <p:column headerText="costo" >
+                            <p:outputLabel value="#{tra.compra.costo}"/>
+                        </p:column>
+                        <p:column headerText="fecha de entra(Compra)" >
+                            <p:outputLabel value="#{tra.compra.fechaEntrega}"/>
+                        </p:column>
+                        <p:column headerText="Fecha orden" >
+                            <p:outputLabel value="#{tra.compra.ocompras.temp_fecha_orden}"/>
+                        </p:column>
+                        <p:column headerText="fecha entrega" >
+                            <p:outputLabel value="#{tra.compra.ocompras.temp_fecha_entrega}"/>
+                        </p:column>
+                        <p:column headerText="Eliminar">
+                            <p:commandButton value="Elimnar" actionListener="#{transaccion_inventarioBean.eliminar(tra)}"  update="tabla1" />
+                        </p:column>
+                    </p:dataTable>                    
+                </h:form>
+                   </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -181,24 +181,24 @@ public class Transaccion_InventarioDAO extends Dao {
         return traInvAden;
     }
 
-    /*  
-         public void eliminar(orden_compras orco) throws Exception
+    
+         public void eliminar(Transaccion_inventario orco) throws Exception
     {
         try
         {
-         this.conectar();
-            PreparedStatement st = this.getCn().prepareStatement("delete from orden_compras where id_orden_compras=?");
-            st.setInt(1, orco.getId_orden_compras());
+         this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("delete from transaccion_inventario where id_transaccion=?");
+            st.setInt(1, orco.getId_transaccion());
             st.executeUpdate();
         }catch(Exception e)
         {
             throw e;
         }finally
         {
-            this.cerrar();
+            this.Desconecar();
         }
     }
-     */
+     
     public void modificar(Transaccion_inventario orco) throws Exception {
         try {
             this.Conectar();

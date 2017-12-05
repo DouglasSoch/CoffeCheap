@@ -183,33 +183,21 @@ public class Transaccion_inventarioBean {
         }
     }
     
-    /*         
-                 public void eliminar() throws Exception
+     public void eliminar(Transaccion_inventario tra) throws Exception
     {
         
-        Transaccion_InventarioDAO dao = new Transaccion_InventarioDAO();
+        Transaccion_InventarioDAO dao ;
         
         try
         {
-            dao.eliminar(oc);
+            dao= new Transaccion_InventarioDAO();
+            dao.eliminar(tra);
             
         }catch(Exception e)
         {
             throw e;
         }
     }
-                 public void listaParaModificar() throws Exception
-    {
-        Transaccion_InventarioDAO dao = new Transaccion_InventarioDAO();
-        
-        try
-        {
-            lstoc =dao.listarParaModificar();
-        }catch(Exception e)
-        {
-            throw e;
-        }
-    }
-
-     */
+                     
+    
 }
