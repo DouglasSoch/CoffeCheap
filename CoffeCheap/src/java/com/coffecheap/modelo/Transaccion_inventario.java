@@ -5,19 +5,20 @@ import java.util.Objects;
 
 public class Transaccion_inventario {
 
-    int id_transaccion = 0;
+    int id_transaccion =0;
     Date fecha = null;
     Producto producto = new Producto();
     Tipo_transacciones Ttransaccion = new Tipo_transacciones();
     String fechaUno = null;
     String fechaDos = null;
     int cantidad = 0;
-    Detalle_devolucion detalle = new Detalle_devolucion();
+    String detalle = null;
+    Compra compra = new Compra();
 
     public Transaccion_inventario() {
     }
 
-    public Transaccion_inventario(int id_transaccion, Date fecha, Producto producto, Tipo_transacciones Ttransaccion, String fechaUno, String fechaDos, int cantidad, Detalle_devolucion detalle) {
+    public Transaccion_inventario(int id_transaccion, Date fecha, Producto producto, Tipo_transacciones Ttransaccion, String fechaUno, String fechaDos, int cantidad, String detalle, Compra compra) {
         this.id_transaccion = id_transaccion;
         this.fecha = fecha;
         this.producto = producto;
@@ -26,10 +27,11 @@ public class Transaccion_inventario {
         this.fechaDos = fechaDos;
         this.cantidad = cantidad;
         this.detalle = detalle;
+        this.compra = compra;
     }
 
-    public Transaccion_inventario(Detalle_devolucion detalle) {
-        this.detalle = detalle;
+    public Transaccion_inventario(Compra compra) {
+        this.compra = compra;
     }
 
     public Transaccion_inventario(String fechaUno) {
@@ -44,14 +46,15 @@ public class Transaccion_inventario {
         this.producto = producto;
     }
 
-    public Transaccion_inventario(Date fecha) {
-        this.fecha = fecha;
-    }
-
     public Transaccion_inventario(int id_transaccion) {
         this.id_transaccion = id_transaccion;
     }
 
+    public Transaccion_inventario(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    
     public int getId_transaccion() {
         return id_transaccion;
     }
@@ -108,25 +111,34 @@ public class Transaccion_inventario {
         this.cantidad = cantidad;
     }
 
-    public Detalle_devolucion getDetalle() {
+    public String getDetalle() {
         return detalle;
     }
 
-    public void setDetalle(Detalle_devolucion detalle) {
+    public void setDetalle(String detalle) {
         this.detalle = detalle;
+    }
+
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + this.id_transaccion;
-        hash = 83 * hash + Objects.hashCode(this.fecha);
-        hash = 83 * hash + Objects.hashCode(this.producto);
-        hash = 83 * hash + Objects.hashCode(this.Ttransaccion);
-        hash = 83 * hash + Objects.hashCode(this.fechaUno);
-        hash = 83 * hash + Objects.hashCode(this.fechaDos);
-        hash = 83 * hash + this.cantidad;
-        hash = 83 * hash + Objects.hashCode(this.detalle);
+        int hash = 5;
+        hash = 37 * hash + this.id_transaccion;
+        hash = 37 * hash + Objects.hashCode(this.fecha);
+        hash = 37 * hash + Objects.hashCode(this.producto);
+        hash = 37 * hash + Objects.hashCode(this.Ttransaccion);
+        hash = 37 * hash + Objects.hashCode(this.fechaUno);
+        hash = 37 * hash + Objects.hashCode(this.fechaDos);
+        hash = 37 * hash + this.cantidad;
+        hash = 37 * hash + Objects.hashCode(this.detalle);
+        hash = 37 * hash + Objects.hashCode(this.compra);
         return hash;
     }
 
@@ -154,6 +166,9 @@ public class Transaccion_inventario {
         if (!Objects.equals(this.fechaDos, other.fechaDos)) {
             return false;
         }
+        if (!Objects.equals(this.detalle, other.detalle)) {
+            return false;
+        }
         if (!Objects.equals(this.fecha, other.fecha)) {
             return false;
         }
@@ -163,12 +178,11 @@ public class Transaccion_inventario {
         if (!Objects.equals(this.Ttransaccion, other.Ttransaccion)) {
             return false;
         }
-        return Objects.equals(this.detalle, other.detalle);
+        return Objects.equals(this.compra, other.compra);
     }
 
     @Override
     public String toString() {
-        return "Transaccion_inventario{" + "id_transaccion=" + id_transaccion + ", fecha=" + fecha + ", producto=" + producto + ", Ttransaccion=" + Ttransaccion + ", fechaUno=" + fechaUno + ", fechaDos=" + fechaDos + ", cantidad=" + cantidad + ", detalle=" + detalle + '}';
+        return "Transaccion_inventario{" + "id_transaccion=" + id_transaccion + ", fecha=" + fecha + ", producto=" + producto + ", Ttransaccion=" + Ttransaccion + ", fechaUno=" + fechaUno + ", fechaDos=" + fechaDos + ", cantidad=" + cantidad + ", detalle=" + detalle + ", compra=" + compra + '}';
     }
-
 }
