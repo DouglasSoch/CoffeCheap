@@ -10,56 +10,68 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 
-  <h:body>
+  <h:body class="ui-g">
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
 
-        <f:event type="preRenderView" listener="#{pedidoBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{plato_pedidoBean.listar()}"/>
         <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{usuarioBean.listarChef()}"/>
+        <f:event type="preRenderView" listener="#{pedidoBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{platoBean.listar()}"/>        
+        <f:event type="preRenderView" listener="#{usuarioBean.listarMe()}"/>
         <h:form class="flip">
 
-          <p:outputLabel style="color: #ffffff;" value="Lista para escoger Pedido a Modificar" />          
+          <p:outputLabel style="color: #oooooo;" value="Lista para escoger Pedido a Modificar" />          
 
         </h:form>
         <h:form id="otro">
 
 
-          <p:panelGrid id="display1" columns="4" columnClasses="label,value">          
-            <p:dataList value="#{pedidoBean.lstPedido}" var="tabla" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+          <p:panelGrid id="display1" columns="4" columnClasses="label,value" style="margin:10px 0">          
+            <p:dataTable value="#{plato_pedidoBean.lstPlapedido}" var="tabla" paginator="true" rows="10" styleClass="paginated" resizableColumns="true">
 
-              <p:column>
-                <f:facet name="header">Id Pedido</f:facet>
-                <h:inputText value="#{tabla.id_pedido}" style="color: #ffffff; width : 30px" />
+              <p:column style="width: 90px">
+                <f:facet name="header">Id Plato Pedido</f:facet>
+                <h:inputText value="#{tabla.id_plato_pedido}" style="color: #oooooo; width: 70px;" />
               </p:column>
 
-              <p:column>               
-                <p:outputLabel for="lisx" value="mesa:" style="color: #ffffff" />
-                <p:selectOneMenu id="lisx" style="width:200px" value="#{tabla.mesa.id_mesa}"> 
-                  <f:selectItems value="#{mesaBean.lstMesa}" var="tip" itemLabel="#{tip.ubicacion}" itemValue="#{tip.id_mesa}"/>                        
+              <p:column style="width: 160px"> 
+                <f:facet name="header">Plato</f:facet>               
+                <p:selectOneMenu id="lisx" value="#{tabla.plato.id_plato}" style="width: 140px"> 
+                  <f:selectItems value="#{platoBean.lstPlato}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_plato}"/>                        
                 </p:selectOneMenu>
               </p:column>
 
-              <p:column>
-                <f:facet name="header">hora</f:facet>
-                <h:inputText value="#{tabla.hora}" style="color: #ffffff; width : 160px" />
+              <p:column style="width: 120px">                
+                <f:facet name="header">Cantidad</f:facet>
+                <h:inputText value="#{tabla.cantidad}" style="color: #oooooo; width: 100px" />
               </p:column>
 
-              <p:column>               
-
-                <p:outputLabel for="lis" value="personal:" style="color: #ffffff"/>
-                <p:selectOneMenu id="lis" style="width:200px" value="#{tabla.usuario.id}"> 
-                  <f:selectItems value="#{usuarioBean.lstUsuarioChef}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
+              <p:column style="width: 120px">               
+                <f:facet name="header">Personal</f:facet>               
+                <p:selectOneMenu id="lis1" value="#{tabla.usuario.id}" style="width: 100px"> 
+                  <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
                   <p:ajax event="change" update="@this" />      
                 </p:selectOneMenu>  
+              </p:column> 
+              <p:column style="width: 120px">               
+                <f:facet name="header">Id Pedido</f:facet>               
+                <p:selectOneMenu id="lis2" value="#{tabla.pedido.id_pedido}" style="width: 100px"> 
+                  <f:selectItems value="#{pedidoBean.lstPedido}" var="tip" itemLabel="#{tip.id_pedido}" itemValue="#{tip.id_pedido}"/>      
+                  <p:ajax event="change" update="@this" />      
+                </p:selectOneMenu>  
+              </p:column>
 
-              </p:column>                      
+              <p:column style="width: 120px">                
+                <f:facet name="header">Precio</f:facet>
+                <h:inputText value="#{tabla.precio}" style="color: #oooooo; width: 100px" />
+              </p:column>
 
-              <p:column>
-                <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{pedidoBean.modificar(tabla)}"/>                    
+              <p:column style="width: 100px">
+                <h:commandLink value="Modificar" style="color: #oooooo" actionListener="#{pedidoBean.modificar(tabla)}"/>                    
               </p:column>                               
 
-            </p:dataList>
+            </p:dataTable>
           </p:panelGrid>        
 
         </h:form> 
