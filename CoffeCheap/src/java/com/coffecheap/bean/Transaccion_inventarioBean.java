@@ -1,6 +1,5 @@
 package com.coffecheap.bean;
 
-
 import com.coffecheap.dao.Transaccion_InventarioDAO;
 import com.coffecheap.modelo.Transaccion_inventario;
 import java.text.SimpleDateFormat;
@@ -12,19 +11,27 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 @ManagedBean
 @ViewScoped
-public class Transaccion_inventarioBean 
-{
-    
-     static public void addMessage(String summary) 
-      {
-    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-    FacesContext.getCurrentInstance().addMessage(null, message);
-  }
+public class Transaccion_inventarioBean {
 
+    static public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    public void validate(FacesContext arg0, UIComponent arg1, Object arg2)
+         throws ValidatorException {
+      if (((String)arg2).length()<5) {
+         throw new ValidatorException(new FacesMessage("No se permite campos en blanco"));
+      }
+   }
+
+    
     Transaccion_inventario traInv = new Transaccion_inventario();
     List<Transaccion_inventario> lsttraInv2 = new ArrayList();
     List<Transaccion_inventario> lsttraInv = new ArrayList();
@@ -37,9 +44,7 @@ public class Transaccion_inventarioBean
     public void setLsttraInv2(List<Transaccion_inventario> lsttraInv2) {
         this.lsttraInv2 = lsttraInv2;
     }
- 
-    
-    
+
     public String getFechaSus() {
         return fechaSus;
     }
@@ -69,135 +74,101 @@ public class Transaccion_inventarioBean
         Transaccion_InventarioDAO dao = new Transaccion_InventarioDAO();
 
         try {
-            
-            if (traInv.getTtransaccion().getId_tipo_transacciones() != 0) {
-                if (traInv.getProducto().getId_producto() != 0) {
-                    if (traInv.getId_transaccion() != 0) {
-                        
-                        SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-                        Date fecha = new Date();
-                        String fechaString = formateador.format(fecha);
-                        Date tranformada = formateador.parse(fechaString);
-
-                        fechaSus = fechaString;
-                        traInv.setFecha(tranformada);
-                        
-                        dao.registrar(traInv);
-                    }
-
-                }
-            }
-
+            SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = new Date();
+            String fechaString = formateador.format(fecha);
+            Date tranformada = formateador.parse(fechaString);
+            fechaSus = fechaString;
+            traInv.setFecha(tranformada);
+            dao.registrar(traInv);
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-    
-             public void mostar() throws Exception
-    {
+
+    public void mostar() throws Exception {
         Transaccion_InventarioDAO dao;
-        
-        try
-        {
+
+        try {
             dao = new Transaccion_InventarioDAO();
-            lsttraInv =dao.mostrar();
-        }catch(Exception e)
-        {
+            lsttraInv = dao.mostrar();
+        } catch (Exception e) {
             throw e;
         }
     }
-       
-            public void mostarPorParametro() throws Exception
-    {
+
+    public void mostarPorParametro() throws Exception {
         Transaccion_InventarioDAO dao;
-        
-        try
-        {
+
+        try {
             dao = new Transaccion_InventarioDAO();
-            lsttraInv =dao.mostrarPorPrarametro(traInv);
-        }catch(Exception e)
-        {
+            lsttraInv = dao.mostrarPorPrarametro(traInv);
+        } catch (Exception e) {
             throw e;
         }
     }
-                     public void mostarPorParametroEspecial() throws Exception
-    {
+
+    public void mostarPorParametroEspecial() throws Exception {
         Transaccion_InventarioDAO dao;
-        
-        try
-        {
-            
-              
+
+        try {
+
             dao = new Transaccion_InventarioDAO();
-            lsttraInv =dao.mostrarPorPrarametroEspecial(traInv);
-        }catch(Exception e)
-        {
+            lsttraInv = dao.mostrarPorPrarametroEspecial(traInv);
+        } catch (Exception e) {
             throw e;
         }
     }
-                     
-         public void mostarPorRangoEspecial() throws Exception
-    {
+
+    public void mostarPorRangoEspecial() throws Exception {
         Transaccion_InventarioDAO dao;
-        
-        try
-        {
-            
-              
+
+        try {
+
             dao = new Transaccion_InventarioDAO();
-            lsttraInv =dao.mostrarPorRangoEspecial(traInv);
-        }catch(Exception e)
-        {
+            lsttraInv = dao.mostrarPorRangoEspecial(traInv);
+        } catch (Exception e) {
             throw e;
         }
     }
-         
-          public void leerParaModificarProducto() throws Exception
-    {
+
+    public void leerParaModificarProducto() throws Exception {
         Transaccion_InventarioDAO dao;
-        
-        try
-        {
+
+        try {
             dao = new Transaccion_InventarioDAO();
-            lsttraInv2 =dao.listarParaModificarProducto();
-        }catch(Exception e)
-        {
+            lsttraInv2 = dao.listarParaModificarProducto();
+        } catch (Exception e) {
             throw e;
         }
     }
-               public void leerParaModificarTipoTransacciones() throws Exception
-    {
+
+    public void leerParaModificarTipoTransacciones() throws Exception {
         Transaccion_InventarioDAO dao;
-        
-        try
-        {
+
+        try {
             dao = new Transaccion_InventarioDAO();
-            lsttraInv =dao.listarParaModificarTtransaccion();
-        }catch(Exception e)
-        {
+            lsttraInv = dao.listarParaModificarTtransaccion();
+        } catch (Exception e) {
             throw e;
         }
     }
-               public void buscar()throws Exception
-               {
-                   Transaccion_InventarioDAO dao;
-                   Transaccion_inventario temp;
-                   
-                   try
-                   {
-                       dao = new Transaccion_InventarioDAO();
-                       temp = dao.leerParaModificar(traInv);
-                       if(traInv!=null)
-                       {
-                           this.traInv= temp;
-                       }
-                       
-                      
-                   }catch(Exception e)
-                   {
-                       throw e;
-                   }
-               }
+
+    public void buscar() throws Exception {
+        Transaccion_InventarioDAO dao;
+        Transaccion_inventario temp;
+
+        try {
+            dao = new Transaccion_InventarioDAO();
+            temp = dao.leerParaModificar(traInv);
+            if (traInv != null) {
+                this.traInv = temp;
+            }
+
+        } catch (Exception e) {
+            throw e;
+        }
+    }
     /*         
                  public void eliminar() throws Exception
     {

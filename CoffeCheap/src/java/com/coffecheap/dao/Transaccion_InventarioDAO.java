@@ -15,6 +15,13 @@ public class Transaccion_InventarioDAO extends Dao
 {
     public void registrar(Transaccion_inventario traInv) throws Exception
     {
+        
+        System.out.println("el id es:"+traInv.getId_transaccion());
+        System.out.println("la fecha es:"+traInv.getFecha());
+        System.out.println("el id producto  es:"+traInv.getProducto().getId_producto());
+        System.out.println("el id tipo es:"+traInv.getTtransaccion().getId_tipo_transacciones());
+        System.out.println("la cantidad es:"+traInv.getCantidad());
+        System.out.println("el detalle es:"+traInv.getDetalle());
         try
         {   
             
@@ -22,7 +29,7 @@ public class Transaccion_InventarioDAO extends Dao
         
             this.Conectar();
                 
-            PreparedStatement st = this.getCon().prepareStatement("insert into transaccion_inventario (id_transaccion,fecha,id_producto,id_tipo_transaccion,cantidad,detalle)values(?,?,?,?,?,?)");
+            PreparedStatement st = this.getCon().prepareStatement("insert into transaccion_inventario (id_transaccion, fecha, id_producto, id_tipo_transaccion, cantidad, detalle) values(?,?,?,?,?,?)");
             st.setInt(1, traInv.getId_transaccion());
             st.setString(2, formateador.format(traInv.getFecha()));
             st.setInt(3, traInv.getProducto().getId_producto());
