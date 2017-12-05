@@ -25,8 +25,15 @@ public class Transaccion_inventarioBean {
     }
 
     public void validate(FacesContext arg0, UIComponent arg1, Object arg2)
-         throws ValidatorException {
-      if (((String)arg2).length()<5) {
+         throws ValidatorException 
+    {
+//        int valor = (Integer) arg2;
+//        if (valor!=0 && valor>0)
+//        {
+//            throw new ValidatorException(new FacesMessage("No se permite campos en blanco numero"));
+//        }
+      if (((String)arg2).length()<5) 
+      {
          throw new ValidatorException(new FacesMessage("No se permite campos en blanco"));
       }
    }

@@ -28,13 +28,14 @@
            </p:selectOneMenu>
               
                  <p:outputLabel value="Cantidad"/>  
-                 <p:inputText  value="#{transaccion_inventarioBean.traInv.cantidad}" required="true">
+                 <p:inputText   value="#{transaccion_inventarioBean.traInv.cantidad}" required="true">
                  </p:inputText>
                   <p:outputLabel value="Detalle"/>  
-                  <p:inputText id="detalle" value="#{transaccion_inventarioBean.traInv.detalle}" validator="#{transaccion_inventarioBean.validate}"/>
+                  <p:inputText id="detalle" validator="#{transaccion_inventarioBean.validate}"  value="#{transaccion_inventarioBean.traInv.detalle}"/>
         </h:panelGrid>  
       <p:commandButton value="Guardar" actionListener="#{transaccion_inventarioBean.registrar()}" update="fecha, mess"/>
      <h:message for="detalle" ></h:message>
+     
      </h:form>
    </ui:define>
   </ui:composition>
