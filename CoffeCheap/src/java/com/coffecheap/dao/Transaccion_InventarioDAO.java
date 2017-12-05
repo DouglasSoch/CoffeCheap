@@ -53,11 +53,7 @@ public class Transaccion_InventarioDAO extends Dao
         try
         {
             this.Conectar();
-            PreparedStatement st = getCon().prepareCall("select traInv.id_transaccion, traInv.fecha, "
-                    + "pro.nombre_producto, tipTran.nombre_trasaccion from transaccion_inventario as "
-                    + "traInv inner join producto as pro on(traInv.id_producto = pro.id_producto) "
-                    + "inner join tipo_transacciones as tipTran on(traInv.id_tipo_transaccion = "
-                    + "tipTran.id_tipo_transacciones)");
+            PreparedStatement st = getCon().prepareCall("select traInv.id_transaccion, traInv.fecha, pro.id_producto, pro.nombre_producto, tipTran.id_tipo_transacciones,tipTran.nombre_trasaccion, traInv.cantidad, traInv.detalle from transaccion_inventario as traInv inner join producto as pro on(traInv.id_producto = pro.id_producto) inner join tipo_transacciones as tipTran on(traInv.id_tipo_transaccion = tipTran.id_tipo_transacciones)");
             rs=st.executeQuery();
             lista = new ArrayList();
             
@@ -66,8 +62,12 @@ public class Transaccion_InventarioDAO extends Dao
                 Transaccion_inventario tra = new Transaccion_inventario();
                 tra.setId_transaccion(rs.getInt(1));
                 tra.setFecha((rs.getDate(2)));
-                tra.getProducto().setNombre(rs.getString(3));
-                tra.getTtransaccion().setNombre(rs.getString(4));
+                tra.getProducto().setId_producto(rs.getInt(3));
+                tra.getProducto().setNombre(rs.getString(4));
+                tra.getTtransaccion().setId_tipo_transacciones(rs.getInt(5));
+                tra.getTtransaccion().setNombre(rs.getString(6));
+                tra.setCantidad(rs.getInt(7));
+                tra.setDetalle(rs.getString(8));
                 lista.add(tra);
             }
         }catch(Exception e)
@@ -79,8 +79,6 @@ public class Transaccion_InventarioDAO extends Dao
         }
         return lista;
     }   
-    
-    
       public List<Transaccion_inventario> mostrarPorPrarametro(Transaccion_inventario  traInv) throws Exception
     {
         List<Transaccion_inventario> lista;
