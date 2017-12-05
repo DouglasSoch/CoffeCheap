@@ -11,34 +11,84 @@
     <h:body>
         <ui:composition template="./WEB-INF/template/Template.xhtml">
             <ui:define name="content">
-                <f:event type="preRenderView" listener="#{tipo_platoBean.listar()}"/>
-
+               <p:growl id="mess"/>
+                <f:event type="preRenderView" listener="#{transaccion_inventarioBean.leerParaModificarProducto()}"/>
+                <f:event type="preRenderView" listener="#{transaccion_inventarioBean.leerParaModificarTipoTransacciones()}"/>
+                <f:event type="preRenderView" listener="#{transaccion_inventarioBean.numeroFac()}"/>
+                <f:event type="preRenderView" listener="#{transaccion_inventarioBean.mostar()}"/>
 
                 <h:form id="tabla">
-                    <p:dataTable var="tipo" value="#{tipo_platoBean.lstTipo_plato}" rows="10" id="tabla1"
-                                 paginator="true"
+                    <p:dataTable var="tra" value="#{transaccion_inventarioBean.lsttraInv}" rows="15" id="tabla1" paginator="true"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                 rowsPerPageTemplate="5,10,15">
-
-                        <p:column headerText="Proveedor" filterBy="#{tipo.nombre}" filterMatchMode="contains">
-                            <p:outputLabel value="#{tipo.nombre}"/>
+                                 rowsPerPageTemplate="5,10,15,20">
+                        <p:column headerText="Id" filterBy="#{tra.id_transaccion}" filterMatchMode="exact">
+                            <p:outputLabel value="#{tra.id_transaccion}"/>
                         </p:column>
-
-
+                        <p:column headerText="Fecha" filterBy="#{tra.fecha}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.fecha}"/>
+                        </p:column> 
+                        <p:column headerText="Producto" filterBy="#{tra.producto.nombre}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.producto.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Tipo Transacción" filterBy="#{tra.ttransaccion.nombre}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.ttransaccion.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Cantidad" >
+                            <p:outputLabel value="#{tra.cantidad}"/>
+                        </p:column>
+                        <p:column headerText="Detalle" >
+                            <p:outputLabel value="#{tra.detalle}"/>
+                        </p:column>
+                        <p:column headerText="serie" >
+                            <p:outputLabel value="#{tra.compra.serie}"/>
+                        </p:column>
+                        <p:column headerText="No. Factura" >
+                            <p:outputLabel value="#{tra.compra.no_fac}"/>
+                        </p:column>
+                        <p:column headerText="costo" >
+                            <p:outputLabel value="#{tra.compra.costo}"/>
+                        </p:column>
+                        <p:column headerText="fecha de entra(Compra)" >
+                            <p:outputLabel value="#{tra.compra.fechaEntrega}"/>
+                        </p:column>
+                        <p:column headerText="Fecha orden" >
+                            <p:outputLabel value="#{tra.compra.ocompras.temp_fecha_orden}"/>
+                        </p:column>
+                        <p:column headerText="fecha entrega" >
+                            <p:outputLabel value="#{tra.compra.ocompras.temp_fecha_entrega}"/>
+                        </p:column>
                         <p:column headerText="Modificar">
-                            <p:commandButton value="Modificar" actionListener="#{tipo_platoBean.fila(tipo)}" oncomplete="PF('diag').show();" update=":dlgDatos" />
+                            <p:commandButton value="Modificar" actionListener="#{transaccion_inventarioBean.buscar(tra)}" oncomplete="PF('diag').show();" update=":dlgDatos" />
                         </p:column>
-                    </p:dataTable>
+                    </p:dataTable>                    
                 </h:form>
 
 
                 <p:dialog header="Datos" widgetVar="diag" id="dlgDatos">
                     <h:form>
-                        <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
-                            <p:outputLabel value="Nombre"/>
-                            <p:inputText  value="#{tipo_platoBean.tipo_plato.nombre}"/>
-                        </h:panelGrid>
-                        <p:commandButton value="Modificar" actionListener="#{tipo_platoBean.modificar()}" update=":tabla:tabla1"/>
+                        <h:panelGrid columns="2" cellpadding="5" border="1">
+                            <p:outputLabel value="Fecha de transaccion"/>  
+                            <p:outputLabel   id="fecha" value="#{transaccion_inventarioBean.fechaSus}" />
+                            <p:outputLabel value="ingrese producto"/>
+                            <p:selectOneMenu value="#{transaccion_inventarioBean.traInv.producto.id_producto}">
+                                <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv2}"  var="listaa" itemLabel="#{listaa.producto.nombre}"  itemValue="#{listaa.producto.id_producto}" />
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Seleccione Tipo de transaccion"/>
+                            <p:selectOneMenu   value="#{transaccion_inventarioBean.traInv.ttransaccion.id_tipo_transacciones}">
+                                <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv}"  var="lista" itemLabel="#{lista.ttransaccion.nombre}" itemValue="#{lista.ttransaccion.id_tipo_transacciones}" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="Cantidad"/>  
+                            <p:inputText   value="#{transaccion_inventarioBean.traInv.cantidad}" required="true">
+                            </p:inputText>
+                            <p:outputLabel value="Detalle"/>  
+                            <p:inputText id="detalle" validator="#{transaccion_inventarioBean.validate}"  value="#{transaccion_inventarioBean.traInv.detalle}"/>
+                            <p:outputLabel value="factura"/>
+                            <p:selectOneMenu   value="#{transaccion_inventarioBean.traInv.compra.id_compras}">
+                                <f:selectItems  value="#{transaccion_inventarioBean.lsttraFac}"  var="listaf" itemLabel="#{listaf.no_fac}" itemValue="#{listaf.id_compras}" />
+                            </p:selectOneMenu> 
+                        </h:panelGrid>  
+                        <p:commandButton value="Modificar" actionListener="#{transaccion_inventarioBean.modificar()}" update="fecha, mess, tabla:tabla1" oncomplete="PF('diag').hide();" />
                     </h:form>
                 </p:dialog>
 

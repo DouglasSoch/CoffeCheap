@@ -1,6 +1,7 @@
 package com.coffecheap.bean;
 
 import com.coffecheap.dao.Transaccion_InventarioDAO;
+import com.coffecheap.modelo.Compra;
 import com.coffecheap.modelo.Transaccion_inventario;
 import java.text.SimpleDateFormat;
 
@@ -42,8 +43,20 @@ public class Transaccion_inventarioBean {
     Transaccion_inventario traInv = new Transaccion_inventario();
     List<Transaccion_inventario> lsttraInv2 = new ArrayList();
     List<Transaccion_inventario> lsttraInv = new ArrayList();
+    List<Compra> lsttraFac = new ArrayList();
     String fechaSus = null;
 
+    public List<Compra> getLsttraFac() {
+        return lsttraFac;
+    }
+
+    public void setLsttraFac(List<Compra> lsttraFac) {
+        this.lsttraFac = lsttraFac;
+    }
+
+   
+
+    
     public List<Transaccion_inventario> getLsttraInv2() {
         return lsttraInv2;
     }
@@ -115,6 +128,17 @@ public class Transaccion_inventarioBean {
             throw e;
         }
     }
+    
+        public void numeroFac() throws Exception {
+        Transaccion_InventarioDAO dao;
+
+        try {
+            dao = new Transaccion_InventarioDAO();
+            lsttraFac = dao.listarCompraFactura();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 
     public void leerParaModificarTipoTransacciones() throws Exception {
         Transaccion_InventarioDAO dao;
@@ -127,13 +151,13 @@ public class Transaccion_inventarioBean {
         }
     }
 
-    public void buscar() throws Exception {
+    public void buscar(Transaccion_inventario tra) throws Exception {
         Transaccion_InventarioDAO dao;
         Transaccion_inventario temp;
 
         try {
             dao = new Transaccion_InventarioDAO();
-            temp = dao.leerParaModificar(traInv);
+            temp = dao.leerParaModificar(tra);
             if (traInv != null) {
                 this.traInv = temp;
             }
@@ -142,6 +166,23 @@ public class Transaccion_inventarioBean {
             throw e;
         }
     }
+   
+                     public void modificar() throws Exception
+    {
+        
+        Transaccion_InventarioDAO dao ;
+        
+        try
+        {
+            dao= new Transaccion_InventarioDAO();
+            dao.modificar(traInv);
+            
+        }catch(Exception e)
+        {
+            throw e;
+        }
+    }
+    
     /*         
                  public void eliminar() throws Exception
     {
@@ -169,19 +210,6 @@ public class Transaccion_inventarioBean {
             throw e;
         }
     }
-                 public void modificar() throws Exception
-    {
-        
-        Transaccion_InventarioDAO dao = new Transaccion_InventarioDAO();
-        
-        try
-        {
-            dao.modificar(oc);
-            
-        }catch(Exception e)
-        {
-            throw e;
-        }
-    }
+
      */
 }
