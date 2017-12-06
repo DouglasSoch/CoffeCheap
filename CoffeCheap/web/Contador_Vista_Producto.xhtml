@@ -13,8 +13,9 @@
       <ui:define name="content">
 
         <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{orden_comprasBean.Mostrar()}"/>
-        <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
+        <f:event type="preRenderView" listener="#{contador_Vista_Producto_Bean.Mostrar()}"/>
+        <f:event type="preRenderView" listener="#{orden_comprasBean.Mostrar}"/>
+        <f:event type="preRenderView" listener="#{productoBean.Mostrar}"/>
         <f:event type="preRenderView" listener="#{compraBean.Mostrar()}"/>
         <h:form class="flip">
 
@@ -26,7 +27,7 @@
           <!-- Modal -->
 
                  
-            <p:dataTable value="#{productoBean.lstProducto}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" >
+          <p:dataTable value="#{contador_Vista_Producto_Bean.lista}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" >
               
               
 
@@ -43,12 +44,12 @@
                 <p:outputLabel value="#{tabla.existencia}"  />
               </p:column>
               <p:column width="90">
-                <f:facet name="header">Codigo de Unidad de Medida</f:facet>
-                <p:outputLabel value="#{tabla.umedida.id_unidad}"  />
+                <f:facet name="header">Unidad de Medida</f:facet>
+                <p:outputLabel value="#{tabla.umedida.nombre}"  />
               </p:column>    
               <p:column width="90">
-                <f:facet name="header">Codigo de tipo de producto</f:facet>
-                <p:outputLabel value="#{tabla.tproducto.id_tipo}" style=" width : 60px" />
+                <f:facet name="header">Tipo de producto</f:facet>
+                <p:outputLabel value="#{tabla.tproducto.nombre}" style=" width : 60px" />
               </p:column> 
 
 
