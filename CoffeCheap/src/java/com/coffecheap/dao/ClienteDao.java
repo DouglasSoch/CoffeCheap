@@ -198,9 +198,10 @@ public class ClienteDao extends Dao {
         try
         {
          this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("delete from cliente where nit_cliente= ?");
-            st.setString(1, cliente.getNit_cliente());
+            PreparedStatement st = this.getCon().prepareStatement("delete from cliente where id_cliente=?");
+            st.setInt(1, cliente.getId_cliente());
             st.executeUpdate();
+            ClienteBean.addMessage("Accion completada");    
         }catch(Exception e)
         {
             throw e;

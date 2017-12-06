@@ -160,12 +160,12 @@ public class ClienteBean
     }
   }
 
-  public void eliminar() throws Exception {
+  public void eliminar(Cliente cli) throws Exception {
     ClienteDao dao;
 
     try {
       dao = new ClienteDao();
-      dao.eliminar(cliente);
+      dao.eliminar(cli);
     } catch (Exception e) {
       throw e;
     }
