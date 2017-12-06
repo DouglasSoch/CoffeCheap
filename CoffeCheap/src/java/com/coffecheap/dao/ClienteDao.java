@@ -1,5 +1,6 @@
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.ClienteBean;
 import com.coffecheap.modelo.Cliente;
 import com.coffecheap.modelo.Transaccion_inventario;
 import java.sql.PreparedStatement;
@@ -10,15 +11,26 @@ import java.util.List;
 
 public class ClienteDao extends Dao {
 
-    public void registrar(Cliente cli) throws Exception {
+    public void registrar(Cliente cli) throws Exception 
+    {
+        ResultSet rs;
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("insert into cliente values (?,?,?,?)");
-            st.setInt(1, cli.getId_cliente());
-            st.setString(2, cli.getNit_cliente());
-            st.setString(3, cli.getNombre());
-            st.setString(4, cli.getDireccion());            
+            PreparedStatement ps = getCon().prepareStatement("select *from cliente where nit_cliente=?");
+            ps.setString(1, cli.getNit_cliente());
+            rs=ps.executeQuery();
+            
+            if(rs.next())
+            {
+             ClienteBean.addMessage("El cleinte ya exixte");
+            }else{
+            PreparedStatement st = this.getCon().prepareStatement("INSERT INTO cliente (`nit_cliente`, `nombre_cliente`, `direccion`) VALUES (?, ?, ?)");
+            st.setString(1, cli.getNit_cliente());
+            st.setString(2, cli.getNombre());
+            st.setString(3, cli.getDireccion());            
             st.executeUpdate();
+            ClienteBean.addMessage("Accion completada");
+            }
         } catch (Exception e) {
             throw e;
         } finally {

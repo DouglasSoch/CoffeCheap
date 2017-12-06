@@ -11,11 +11,10 @@
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <p:outputLabel value="Guardar Nuevo Cliente "/>
       <ui:define name="content">
+          <p:growl id="mess"/>
         <h2>Ingresar nuevo Cliente</h2>
-        <h:form style="color: white;" >
-          <p:panelGrid id="desplegar1" columns="2" style="border: 2px;">
-            <p:outputLabel value="ingrese id  "/>
-            <p:inputText  value="#{clienteBean.cliente.id_cliente}"/>
+        <h:form>
+          <p:panelGrid id="desplegar1" columns="2">
             <p:outputLabel value="ingrese nombre "/>
             <p:inputText  value="#{clienteBean.cliente.nombre}"/>
             <p:outputLabel value="ingrese Direccion  "/>
@@ -23,7 +22,7 @@
             <p:outputLabel value="ingrese nit  "/>
             <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
           </p:panelGrid>
-          <p:commandButton value="Guardar" actionListener="#{clienteBean.registrar()}"/>
+            <p:commandButton value="Guardar" actionListener="#{clienteBean.registrar()}" update="mess"/>
         </h:form>
       </ui:define>
     </ui:composition>

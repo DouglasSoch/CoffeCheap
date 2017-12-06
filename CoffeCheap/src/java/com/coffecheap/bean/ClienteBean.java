@@ -4,13 +4,20 @@ import com.coffecheap.dao.ClienteDao;
 import com.coffecheap.modelo.Cliente;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
-public class ClienteBean {
+public class ClienteBean 
+{
 
+    static public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
   Cliente cliente = new Cliente();
   List<Cliente> lstCliente = new ArrayList();
 
