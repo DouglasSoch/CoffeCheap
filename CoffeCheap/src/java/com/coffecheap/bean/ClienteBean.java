@@ -128,7 +128,11 @@ public class ClienteBean
       
     }
   }
-  
+
+   
+
+    
+    
    public void buscarr() throws Exception 
   {
         System.out.println("EL id es "+cliente.getId_cliente());

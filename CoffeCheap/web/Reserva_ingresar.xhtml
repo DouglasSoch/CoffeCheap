@@ -2,39 +2,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
-     
- 
     </h:head>
-    
     <h:body>
+           <ui:composition template="./WEB-INF/template/Template.xhtml">
+      <ui:define name="content">
+          <p:growl id="mess"/>
         <h:form>
+            <p:panelGrid id="desplegar1" columns="2">
              <p:outputLabel value="id" />
             <p:autoComplete id="Codig" value="#{reservaBean.reserva.id_reserva}"/>              
-            <br/>
+            
             <p:outputLabel  value="Fecha" />
             <p:calendar id="Orden" value="#{reservaBean.reserva.fecha}" pattern="yyyy-MM-dd" locale="es"/> 
-           <br/>
+           
             <h:outputLabel value="Hora inicio" />
             <h:inputText class="timepicker" value="#{reservaBean.reserva.hora_entrada}"/>
-            <br/> 
+            
             <h:outputLabel value="Hora final" />
             <h:inputText class="timepicker" value="#{reservaBean.reserva.hora_salida}"/>
-            <br/>
+            
             <p:outputLabel value="cantidad" />
             <p:autoComplete id="cantidad" value="#{reservaBean.reserva.cantidad_personas}"/>        
-            <br/>
+            
              <p:outputLabel value="id cliente" />
+              <p:selectOneMenu  value="#{proveedor_productosBean.proveedor_productos.producto.id_producto}">
+                                <f:selectItems value="#{proveedor_productosBean.lstProducto}" var="listaP" itemLabel="#{listaP.nombre}" itemValue="#{listaP.id_producto}" />
+                </p:selectOneMenu>
+             
              <p:autoComplete id="cliente" value="#{reservaBean.reserva.cliente.id_cliente}"/> 
-               <br/>
+               
              <p:outputLabel value="id mesa" />
              <p:autoComplete  value="#{reservaBean.reserva.mesa.id_mesa}"/>
-             <br/>
+             
+             </p:panelGrid>
             <p:commandButton value="Guardar" actionListener="#{reservaBean.registrar()}"/>
         </h:form>
-   
+     </ui:define>
+    </ui:composition>
     </h:body>
 </html>
 

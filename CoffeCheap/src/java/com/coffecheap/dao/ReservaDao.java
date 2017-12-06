@@ -10,8 +10,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservaDao extends Dao {
+public class ReservaDao extends Dao 
+{
 
+//    Cliente cliEs = new Cliente();
+//
+//    public Cliente getCliEs() {
+//        return cliEs;
+//    }
+//
+//    public void setCliEs(Cliente cliEs) {
+//        this.cliEs = cliEs;
+//    }
+    
+    
     public List<Reserva> consultaDeDispo(Reserva reserva) throws Exception {
         List<Reserva> lstReserva = null;
         try {
@@ -51,7 +63,7 @@ public class ReservaDao extends Dao {
             ps.setString(1, nit);
             ResultSet rs =ps.executeQuery();
             
-            if(rs!=null && rs.next())
+            if(rs.next())
             { 
                 if (rs.getString(1).equals(nit)) 
                 {
@@ -139,6 +151,7 @@ public class ReservaDao extends Dao {
             psir.setInt(5, reserva.getMesa().getId_mesa());
             psir.setInt(6, reserva.getCliente().getId_cliente());
             psir.executeUpdate();
+            ReservaBean.addMessage("Reserva guardada");
         } catch (Exception e) {
             throw e;
         } finally {
@@ -292,4 +305,47 @@ public class ReservaDao extends Dao {
         }
         return lstReserva;
     }
+    
+     public Cliente leerFilaR(Cliente cliente) throws Exception {
+        
+        
+        Cliente cli= null;
+        ResultSet rs;
+
+        try {
+            this.Conectar();
+            PreparedStatement st = getCon().prepareCall("select id_cliente, nit_cliente, nombre_cliente, direccion from cliente where nit_cliente=?");
+            st.setString(1, cliente.getNit_cliente());
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                cli = new Cliente();
+                cli.setId_cliente(rs.getInt(1));
+                cli.setNit_cliente(rs.getString(2));
+                cli.setNombre(rs.getString(3));
+                cli.setDireccion(rs.getString(4));
+            }
+            //this.getCliEs().setNit_cliente(cli.getNit_cliente());
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Desconecar();
+        }
+        return cli;
+    }
+     
+//         public Cliente nit(Cliente cliente) throws Exception {
+//        Cliente cli= null;
+//        try {
+//            this.Conectar();
+//        
+//                cli.setNit_cliente(rs.getString(2));
+//              
+//        } catch (Exception e) {
+//            throw e;
+//        } finally {
+//            this.Desconecar();
+//        }
+//        return cli;
+//    }
 }
