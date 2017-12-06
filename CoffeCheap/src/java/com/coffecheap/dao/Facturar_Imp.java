@@ -44,8 +44,7 @@ public class Facturar_Imp extends Dao{
                  factu.setNombre(rs.getString("nombre"));
                 lista.add(factu);
             }
-            System.out.println("AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
-            System.out.println(lista.get(0).getFecha_emision());
+         
         } catch (Exception ex) {
             throw ex;
         } finally {

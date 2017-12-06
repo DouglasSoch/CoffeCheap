@@ -5,16 +5,36 @@ package com.coffecheap.bean;
  * @marhor acier
  */
 import com.coffecheap.dao.Control_mesaDao;
+import com.coffecheap.dao.Facturar_Imp;
 import com.coffecheap.modelo.Venta_factura;
 import com.coffecheap.dao.Venta_facturaDao;
 import com.coffecheap.modelo.Control_mesa;
 import com.coffecheap.modelo.Proveedor_productos;
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperRunManager;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRPptxExporter;
 
 @ManagedBean
 @ViewScoped
@@ -144,5 +164,29 @@ public class Venta_facturaBean {
     }
     return estado;
   }
+    
+    
+    public void verPDF(ActionEvent actionEvent) throws Exception{
+        Facturar_Imp dao=new Facturar_Imp();
+        
+		File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/report1.jasper"));		
+		
+		byte[] bytes = JasperRunManager.runReportToPdf(jasper.getPath(), null, new JRBeanCollectionDataSource(dao.listar()));
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+		response.setContentType("application/pdf");
+		response.setContentLength(bytes.length);
+		ServletOutputStream outStream = response.getOutputStream();
+		outStream.write(bytes, 0 , bytes.length);
+		outStream.flush();
+		outStream.close();
+			
+		FacesContext.getCurrentInstance().responseComplete();
+	}
+    
 
+  
+
+  
+  
+  
 }

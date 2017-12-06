@@ -77,10 +77,11 @@
                 <f:actionListener   binding="#{clienteBean.cliente.setDireccion(null)}"/>  
                 <f:actionListener   binding="#{clienteBean.cliente.setId_cliente(0)}"/>
                 <f:actionListener   binding="#{clienteBean.cliente.setNit_cliente(null)}"/>
-                <f:actionListener   binding="#{clienteBean.cliente.setNombre(null)}"/>
-
+                <f:actionListener   binding="#{clienteBean.cliente.setNombre(null)}"/>              
+              
               </p:commandButton>                   
 
+              <h:commandButton value="Imprimir Factura" actionListener="#{venta_facturaBean.verPDF}" />
 
 
             </p:panelGrid>
