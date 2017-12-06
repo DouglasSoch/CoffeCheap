@@ -110,6 +110,25 @@ public class ClienteBean
     }
   }
   
+  
+    public void fila(Cliente clie) throws Exception 
+  {
+    ClienteDao dao;
+    Cliente temp;
+    try {
+      dao = new ClienteDao();
+      temp = dao.leerFila(clie);
+
+      if (cliente != null) {
+        this.cliente = temp;
+      }
+
+    } catch (Exception e) {
+      throw e;
+      
+    }
+  }
+  
    public void buscarr() throws Exception 
   {
         System.out.println("EL id es "+cliente.getId_cliente());

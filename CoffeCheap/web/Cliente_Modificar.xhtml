@@ -5,37 +5,53 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-  <h:head>
-    <title>Cliente Mostrar</title>
-  </h:head>
-  <h:body>
-    <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content">  
-      <f:event type="preRenderView" listener="#{clienteBean.listar()}"/>
-        <h:form id="datos" style="color: white">
-          <h2>Modificar Cliente</h2>
+    <h:head>
+        <title>Cliente Mostrar</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+                <p:growl id="mess"/>
+                <f:event type="preRenderView" listener="#{clienteBean.mostar()}"/>
+                <h:form id="tabla">
+                    <p:dataTable var="cliente" value="#{clienteBean.lstCliente}" rows="10" id="tabla1"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
 
-          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1" >
-            <p:outputLabel value="Nombre Cliente  "/>
-            
-            <p:selectOneMenu  value="#{clienteBean.cliente.id_cliente}">
-            <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-            <f:selectItems value="#{clienteBean.lstCliente}" var="cliente" itemLabel="#{cliente.nombre}" itemValue="#{cliente.id_cliente}" />
-           </p:selectOneMenu>
-            
+                        <p:column headerText="Nit" filterBy="#{cliente.nit_cliente}" filterMatchMode="exact">
+                            <p:outputLabel value="#{cliente.nit_cliente}"/>
+                        </p:column>
 
-            <p:outputLabel value="ingrese Direccion  "/>
-            <p:inputText  id="dire" value="#{clienteBean.cliente.direccion}"/>
-          </h:panelGrid>
-          <br/>
-          <p:commandButton value="Buscar" actionListener="#{clienteBean.buscarr()}" update="dire" />
-          
-          <p:commandButton value="modificar" actionListener="#{clienteBean.modificar()}" />         
-        </h:form>
+                        <p:column headerText="Nombre" filterBy="#{cliente.nombre}" filterMatchMode="contains">
+                            <p:outputLabel value="#{cliente.nombre}"/>
+                        </p:column>
 
-      </ui:define>
+                        <p:column headerText="Direccion" filterBy="#{cliente.direccion}" filterMatchMode="contains">
+                            <p:outputLabel value="#{cliente.direccion}"/>
+                        </p:column>
+                        <p:column headerText="Modificar">
+                            <p:commandButton value="Modificar" actionListener="#{clienteBean.fila(cliente)}" oncomplete="PF('diag').show();" update=":dlgDatos" />
+                        </p:column>
+                    </p:dataTable>
 
-    </ui:composition>
-  </h:body>
+                </h:form>
+
+                <p:dialog header="Datos" widgetVar="diag" id="dlgDatos">
+                    <h:form>
+                        <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+                            <p:outputLabel value="Nombre"/>
+                            <p:inputText  value="#{clienteBean.cliente.nombre}"/>
+                            <p:outputLabel value="Direccion"/>
+                            <p:inputText  value="#{clienteBean.cliente.direccion}"/>
+                        </h:panelGrid>
+                        <p:commandButton value="Modificar" actionListener="#{clienteBean.modificar()}" update=":tabla:tabla1 ,mess" oncomplete="PF('diag').hide();"/>
+                    </h:form>
+                </p:dialog>
+
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
 </html>
 

@@ -58,7 +58,7 @@ public class ClienteDao extends Dao {
         ResultSet rs;
         try {
             this.Conectar();
-            PreparedStatement st = getCon().prepareCall(" select *from cliente");
+            PreparedStatement st = getCon().prepareCall(" select id_cliente, nit_cliente, nombre_cliente, direccion from cliente");
             rs = st.executeQuery();
             lista = new ArrayList();
 
@@ -210,13 +210,20 @@ public class ClienteDao extends Dao {
         }
     }
      
-    public void modificar(Cliente cliente) throws Exception {
+    public void modificar(Cliente cliente) throws Exception 
+    {
+        System.out.println("El nombre es "+cliente.getNombre());
+        System.out.println("la direccion es "+cliente.getDireccion());
+        System.out.println("El id es"+ cliente.getId_cliente());
+        System.out.println("el nit es "+cliente.getNit_cliente());
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("update cliente set direccion=? where id_cliente=?");
-            st.setString(1, cliente.getDireccion());
-            st.setInt(2, cliente.getId_cliente());
+            PreparedStatement st = this.getCon().prepareStatement("update cliente set nombre_cliente=?, direccion=? where id_cliente=?");
+            st.setString(1, cliente.getNombre());
+            st.setString(2, cliente.getDireccion());
+            st.setInt(3, cliente.getId_cliente());
             st.executeUpdate();
+            ClienteBean.addMessage("Accion completada");
         } catch (Exception e) {
             throw e;
         } finally {
@@ -224,4 +231,31 @@ public class ClienteDao extends Dao {
         }
     }
 
+    public Cliente leerFila(Cliente cliente) throws Exception {
+        
+        
+        Cliente cli= null;
+        ResultSet rs;
+
+        try {
+            this.Conectar();
+            PreparedStatement st = getCon().prepareCall("select id_cliente, nit_cliente, nombre_cliente, direccion from cliente where id_cliente=?");
+            st.setInt(1, cliente.getId_cliente());
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                cli = new Cliente();
+                cli.setId_cliente(rs.getInt(1));
+                cli.setNit_cliente(rs.getString(2));
+                cli.setNombre(rs.getString(3));
+                cli.setDireccion(rs.getString(4));
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Desconecar();
+        }
+        return cli;
+    }
+    
 }
