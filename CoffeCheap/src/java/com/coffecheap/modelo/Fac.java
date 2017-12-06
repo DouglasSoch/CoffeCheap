@@ -1,6 +1,6 @@
 package com.coffecheap.modelo;
 
-import java.util.Objects;
+
 
 /**
  *
@@ -8,136 +8,141 @@ import java.util.Objects;
  */
 public class Fac 
 {
-    Venta_factura ventaFac= new Venta_factura();
-    Cliente cliente= new Cliente();
-    Pedido pedido= new Pedido();
-    Mesa mesa = new Mesa();
-    Usuario usuario = new Usuario();
-    Plato_pedido platoPedido = new Plato_pedido();
+  String fecha_emision;
+  String nombre_cliente;
+  int nit_cliente;
+  String direccion;
+  String nombre_platillo;
+  int cantidad;
+  int precio;
+  int tot;
+  int subtotal;
+  int iva;
+  int propina;
+  int total;
+  int id_mesa;
+  int cantidad_comensales;
+  String nombre;
 
-    public Fac() {
+    public String getFecha_emision() {
+        return fecha_emision;
     }
 
-    public Fac(Venta_factura ventaFac) {
-        this.ventaFac = ventaFac;
+    public void setFecha_emision(String fecha_emision) {
+        this.fecha_emision = fecha_emision;
     }
 
-    public Fac(Cliente cliente) {
-        this.cliente = cliente;
+    public String getNombre_cliente() {
+        return nombre_cliente;
     }
 
-    public Fac(Pedido pedido) {
-        this.pedido = pedido;
+    public void setNombre_cliente(String nombre_cliente) {
+        this.nombre_cliente = nombre_cliente;
     }
 
-    public Fac(Mesa mesa) {
-        this.mesa = mesa;
+    public int getNit_cliente() {
+        return nit_cliente;
     }
 
-    public Fac(Usuario usuario) {
-        this.usuario = usuario;
+    public void setNit_cliente(int nit_cliente) {
+        this.nit_cliente = nit_cliente;
     }
 
-    public Fac(Plato_pedido platoPedido) {
-        this.platoPedido = platoPedido;
+    public String getDireccion() {
+        return direccion;
     }
 
-    
-    public Venta_factura getVentaFac() {
-        return ventaFac;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public void setVentaFac(Venta_factura ventaFac) {
-        this.ventaFac = ventaFac;
+    public String getNombre_platillo() {
+        return nombre_platillo;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public void setNombre_platillo(String nombre_platillo) {
+        this.nombre_platillo = nombre_platillo;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public int getPrecio() {
+        return precio;
     }
 
-    public Mesa getMesa() {
-        return mesa;
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 
-    public void setMesa(Mesa mesa) {
-        this.mesa = mesa;
+    public int getTot() {
+        return tot;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public void setTot(int tot) {
+        this.tot = tot;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public int getSubtotal() {
+        return subtotal;
     }
 
-    public Plato_pedido getPlatoPedido() {
-        return platoPedido;
+    public void setSubtotal(int subtotal) {
+        this.subtotal = subtotal;
     }
 
-    public void setPlatoPedido(Plato_pedido platoPedido) {
-        this.platoPedido = platoPedido;
+    public int getIva() {
+        return iva;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.ventaFac);
-        hash = 67 * hash + Objects.hashCode(this.cliente);
-        hash = 67 * hash + Objects.hashCode(this.pedido);
-        hash = 67 * hash + Objects.hashCode(this.mesa);
-        hash = 67 * hash + Objects.hashCode(this.usuario);
-        hash = 67 * hash + Objects.hashCode(this.platoPedido);
-        return hash;
+    public void setIva(int iva) {
+        this.iva = iva;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Fac other = (Fac) obj;
-        if (!Objects.equals(this.ventaFac, other.ventaFac)) {
-            return false;
-        }
-        if (!Objects.equals(this.cliente, other.cliente)) {
-            return false;
-        }
-        if (!Objects.equals(this.pedido, other.pedido)) {
-            return false;
-        }
-        if (!Objects.equals(this.mesa, other.mesa)) {
-            return false;
-        }
-        if (!Objects.equals(this.usuario, other.usuario)) {
-            return false;
-        }
-        return Objects.equals(this.platoPedido, other.platoPedido);
+    public int getPropina() {
+        return propina;
     }
 
-    @Override
-    public String toString() {
-        return "Fac{" + "ventaFac=" + ventaFac + ", cliente=" + cliente + ", pedido=" + pedido + ", mesa=" + mesa + ", usuario=" + usuario + ", platoPedido=" + platoPedido + '}';
+    public void setPropina(int propina) {
+        this.propina = propina;
     }
-    
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getId_mesa() {
+        return id_mesa;
+    }
+
+    public void setId_mesa(int id_mesa) {
+        this.id_mesa = id_mesa;
+    }
+
+    public int getCantidad_comensales() {
+        return cantidad_comensales;
+    }
+
+    public void setCantidad_comensales(int cantidad_comensales) {
+        this.cantidad_comensales = cantidad_comensales;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     
     
 }
