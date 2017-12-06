@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class Chef_temporal_Dao extends Dao {
 
-    public ArrayList<Tem_chef> listar() throws Exception {
+    public ArrayList<Tem_chef   > listar() throws Exception {
         ArrayList<Tem_chef> lista;
         ResultSet rs;
 

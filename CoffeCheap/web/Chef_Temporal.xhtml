@@ -27,7 +27,10 @@
                 <b:dataTableColumn value="#{lst.descripcion}" label="Descripcion" style="color: #{chef_temporal_bean.ControlColor(lst.id_chef)}"/>
                 <b:dataTableColumn value="#{lst.estadoPlato.id}" label="Descripcion" style="color: #{chef_temporal_bean.ControlColor(lst.id_chef)}"/>
                 <b:dataTableColumn id="Estado" label="Estado" style="color: #{chef_temporal_bean.ControlColor(lst.id_chef)}">
-                    <p:commandButton value="#{chef_temporal_bean.Boton(lst.estadoPlato.id)}" actionListener="#{chef_temporal_bean.estado(lst.id_chef)}" update="form1"/>
+                    <p:commandButton value="#{chef_temporal_bean.Boton(lst.estadoPlato.id)}" actionListener="#{chef_temporal_bean.estado(lst.id_chef)}" update="form1" style="color: #{chef_temporal_bean.ControlColor(lst.id_chef)}"/>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
                     <p:commandButton value="Eliminar" actionListener="#{chef_temporal_bean.Eliminar(lst.id_chef, lst.estadoPlato.id)}" update="form1"/>                    
                 </b:dataTableColumn>
 
