@@ -21,7 +21,7 @@ public class Unidad_medidaDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into unidad_medida values(?,?);");
+      PreparedStatement st = this.getCon().prepareStatement("INSERT INTO coffechip.unidad_medida (id_unidad, nombre) VALUES (?, ?);");
 
       st.setInt(1, Tt.getId_unidad());
       st.setString(2, Tt.getNombre());
@@ -69,7 +69,7 @@ public class Unidad_medidaDao extends Dao {
     System.out.println("*******************************************************modificar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  unidad_medida SET id_unidad_medida=?, nombre_trasaccion=? WHERE id_unidad_medida=?;");
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE unidad_medida SET id_unidad=?, nombre=? WHERE id_unidad=?;");
 
       st.setInt(1, tt.getId_unidad());
       st.setString(2, tt.getNombre());
@@ -90,7 +90,7 @@ public class Unidad_medidaDao extends Dao {
     System.out.println("*******************************************************eliminar dao");
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("DELETE FROM unidad_medida WHERE id_unidad_medida=?;");
+      PreparedStatement st = this.getCon().prepareStatement("DELETE FROM unidad_medida WHERE id_unidad=?;");
       st.setInt(1, pac.getId_unidad());
       st.executeUpdate();
 
