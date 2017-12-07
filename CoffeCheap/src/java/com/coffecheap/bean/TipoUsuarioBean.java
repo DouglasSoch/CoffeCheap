@@ -124,53 +124,62 @@ public class TipoUsuarioBean {
             dao = new TipoUsuarioDao();
 
             String nombre = dao.Comparar(tipo.getNombretipo());
-            if (tipo.getId_crud() == 0) {
-                FacesContext context = FacesContext.getCurrentInstance();
-                context.addMessage(null, new FacesMessage("Error:", "Ingrese una de las Opciones Permiso"));
-            } else {
-                if (tipo.getId_html() == 0) {
-                    FacesContext context = FacesContext.getCurrentInstance();
-                    context.addMessage(null, new FacesMessage("Error:", "Ingrese su HTML"));
-                } else {
+           
 
-                    if (tipo.getNombretipo().equals("")) {
+            if (nombre == null) {
+
+                if (intermedio.size() > 0) {
+
+                    if (tipo.getId_crud() == 0) {
                         FacesContext context = FacesContext.getCurrentInstance();
-                        context.addMessage(null, new FacesMessage("Error:", "Ingrese el Nombre"));
+                        context.addMessage(null, new FacesMessage("Error:", "Ingrese una de las Opciones Permiso"));
+                    } else if (tipo.getId_html() == 0) {
+                        FacesContext context = FacesContext.getCurrentInstance();
+                        context.addMessage(null, new FacesMessage("Error:", "Ingrese su HTML"));
                     } else {
-                        if (tipo.getDescripcion().equals("")) {
+                        for (int j = 0; j < intermedio.size(); j++) {
+                            if (intermedio.get(j).getId_html() == tipo.getId_html() && intermedio.get(j).getId_crud() == tipo.getId_crud()) {
+                                acum = acum + 1;
+                            }
+                        }
+                        if (acum > 0) {
                             FacesContext context = FacesContext.getCurrentInstance();
-                            context.addMessage(null, new FacesMessage("Error:", "Ingrese su Descripcion"));
+                            context.addMessage(null, new FacesMessage("Error:", "Este Dato Se Repite"));
+                            acum = 0;
                         } else {
-                            if (nombre == null) {
+                            i = i + 1;
+                            intermedio.add(new TipoUsuario(i, tipo.getId_crud(), tipo.getId_html()));
 
-                                if (intermedio.size() > 0) {
+                            if (listadescripcion.size() == 0) {
+                                listadescripcion.add(new TipoUsuario(1, tipo.getNombretipo(), tipo.getDescripcion()));
+                                tipo.setNombretipo(null);
+                                tipo.setDescripcion(null);
+                            }
+                            tipo.setId_crud(0);
+                            tipo.setId_html(0);
+                        }
+                    }
+                } else {
+                    if (tipo.getId_crud() == 0) {
+                        FacesContext context = FacesContext.getCurrentInstance();
+                        context.addMessage(null, new FacesMessage("Error:", "Ingrese una de las Opciones Permiso"));
+                    } else {
+                        if (tipo.getId_html() == 0) {
+                            FacesContext context = FacesContext.getCurrentInstance();
+                            context.addMessage(null, new FacesMessage("Error:", "Ingrese su HTML"));
+                        } else {
 
-                                    for (int j = 0; j < intermedio.size(); j++) {
-                                        if (intermedio.get(j).getId_html() == tipo.getId_html() && intermedio.get(j).getId_crud() == tipo.getId_crud()) {
-                                            acum = acum + 1;
-                                        }
-                                    }
-                                    if (acum > 0) {
-                                        FacesContext context = FacesContext.getCurrentInstance();
-                                        context.addMessage(null, new FacesMessage("Error:", "Este Dato Se Repite"));
-                                        acum = 0;
-                                    } else {
-                                        i = i + 1;
-                                        intermedio.add(new TipoUsuario(i, tipo.getId_crud(), tipo.getId_html()));
-
-                                        if (listadescripcion.size() == 0) {
-                                            listadescripcion.add(new TipoUsuario(1, tipo.getNombretipo(), tipo.getDescripcion()));
-                                            tipo.setNombretipo(null);
-                                            tipo.setDescripcion(null);
-                                        }
-                                        tipo.setId_crud(0);
-                                        tipo.setId_html(0);
-                                    }
-
+                            if (tipo.getNombretipo().equals("")) {
+                                FacesContext context = FacesContext.getCurrentInstance();
+                                context.addMessage(null, new FacesMessage("Error:", "Ingrese el Nombre"));
+                            } else {
+                                if (tipo.getDescripcion().equals("")) {
+                                    FacesContext context = FacesContext.getCurrentInstance();
+                                    context.addMessage(null, new FacesMessage("Error:", "Ingrese su Descripcion"));
                                 } else {
                                     i = i + 1;
                                     intermedio.add(new TipoUsuario(i, tipo.getId_crud(), tipo.getId_html()));
-                                    
+
                                     if (listadescripcion.size() == 0) {
                                         listadescripcion.add(new TipoUsuario(1, tipo.getNombretipo(), tipo.getDescripcion()));
                                         tipo.setNombretipo(null);
@@ -179,15 +188,15 @@ public class TipoUsuarioBean {
                                     tipo.setId_crud(0);
                                     tipo.setId_html(0);
                                 }
-                            } else {
-                                FacesContext context = FacesContext.getCurrentInstance();
-                                context.addMessage(null, new FacesMessage("Error:", "Este Usuario Ya Existente"));
                             }
-
                         }
-                    }
 
+                    }
                 }
+
+            } else {
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage(null, new FacesMessage("Error:", "Este Usuario Ya Existente"));
             }
 
         } catch (Exception e) {
