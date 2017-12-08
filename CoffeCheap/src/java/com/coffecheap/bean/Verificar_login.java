@@ -38,7 +38,7 @@ public class Verificar_login implements Serializable {
         try {
             
             Usuario usuario=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("nomb");
-      
+          
             if (usuario==null) {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml"); 
             }else{

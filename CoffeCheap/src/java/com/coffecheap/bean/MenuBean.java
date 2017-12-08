@@ -65,9 +65,10 @@ public class MenuBean implements Serializable {
         Usuario usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("nomb");
         try {
             dao = new MenuDao();
-            //respuesta = dao.CantidadFor1(usuario.getTipo().getId());
+            respuesta = dao.CantidadFor1(usuario.getTipo().getId());
         } catch (Exception e) {
-            throw e;
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+
         }
         return respuesta;
     }
@@ -76,7 +77,7 @@ public class MenuBean implements Serializable {
 
         int respuesta = 0;
         MenuDao dao;
-        
+
         try {
             dao = new MenuDao();
             int cantidadget = cantidadciclo - 1;
@@ -121,6 +122,7 @@ public class MenuBean implements Serializable {
         try {
             dao = new MenuDao();
             respuesta = dao.NombresCrud(usu.getTipo().getId(), pagina, num);
+            System.out.println("respuesta = "+ respuesta);
         } catch (Exception e) {
             throw e;
         }

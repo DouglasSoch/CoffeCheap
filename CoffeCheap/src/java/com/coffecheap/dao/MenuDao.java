@@ -18,7 +18,7 @@ public class MenuDao extends Dao {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("select html.idhtml as codigo, html.nombrepagina as paginaprincipales\n"
                     + "from permiso\n"
-                    + "inner join html on(html.idhtml = permiso.idpagina_html)\n"
+                    + "inner join html on(html.idhtml = permiso.idpagina)\n"
                     + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo=" + tipo + " group by html.idhtml asc;");
             rs = st.executeQuery();
             lista = new ArrayList();
@@ -43,8 +43,8 @@ public class MenuDao extends Dao {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("select permiso.idcrud as codigo\n"
                     + "from permiso\n"
-                    + "inner join html on(html.idhtml = permiso.idpagina_html)\n"
-                    + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo=" + tipo + " and permiso.idpagina_html=" + pagina + ";");
+                    + "inner join html on(html.idhtml = permiso.idpagina)\n"
+                    + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo=" + tipo + " and permiso.idpagina=" + pagina + ";");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -68,7 +68,7 @@ public class MenuDao extends Dao {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("select html.idhtml as codigo, html.nombrepagina as paginaprincipales\n"
                     + "from permiso \n"
-                    + "inner join html on(html.idhtml = permiso.idpagina_html)\n"
+                    + "inner join html on(html.idhtml = permiso.idpagina)\n"
                     + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo=" + tipo + " and html.idhtml=" + cantidad + "\n"
                     + "group by html.idhtml asc;");
             rs = st.executeQuery();
@@ -95,7 +95,7 @@ public class MenuDao extends Dao {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("select count(distinct (html.idhtml)) as cantidad\n"
                     + "from permiso\n"
-                    + "inner join html on(html.idhtml = permiso.idpagina_html)\n"
+                    + "inner join html on(html.idhtml = permiso.idpagina)\n"
                     + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo=" + tipo + ";");
             rs = st.executeQuery();
             while (rs.next()) {
@@ -122,8 +122,8 @@ public class MenuDao extends Dao {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("select count(html.idhtml) as cantidad\n"
                     + "from permiso\n"
-                    + "inner join html on(html.idhtml = permiso.idpagina_html)\n"
-                    + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo=" + tipo + " and permiso.idpagina_html=" + idpagina + ";");
+                    + "inner join html on(html.idhtml = permiso.idpagina)\n"
+                    + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo=" + tipo + " and permiso.idpagina=" + idpagina + ";");
             rs = st.executeQuery();
             while (rs.next()) {
                 Menu menu = new Menu();
@@ -147,8 +147,8 @@ public class MenuDao extends Dao {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("select permiso.idcrud as codigo, crud.nombrecrud as nombrest\n"
                     + "from permiso\n"
-                    + "inner join html on(html.idhtml = permiso.idpagina_html)\n"
-                    + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo=" + tipo + " and permiso.idpagina_html=" + pagina + " and permiso.idcrud=" + codigo + ";");
+                    + "inner join html on(html.idhtml = permiso.idpagina)\n"
+                    + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo=" + tipo + " and permiso.idpagina=" + pagina + " and permiso.idcrud=" + codigo + ";");
             rs = st.executeQuery();
             while (rs.next()) {
                 Menu menu = new Menu();
@@ -171,8 +171,8 @@ public class MenuDao extends Dao {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("select permiso.idcrud as codigo, concat(html.nombrepagina,'_',crud.nombrecrud,'.xhtml') as nombrest\n"
                     + "from permiso\n"
-                    + "inner join html on(html.idhtml = permiso.idpagina_html)\n"
-                    + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo="+tipo+" and permiso.idpagina_html="+pagina+" and permiso.idcrud="+codigo+";");
+                    + "inner join html on(html.idhtml = permiso.idpagina)\n"
+                    + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo="+tipo+" and permiso.idpagina="+pagina+" and permiso.idcrud="+codigo+";");
             rs = st.executeQuery();
             while (rs.next()) {
                 Menu menu = new Menu();
