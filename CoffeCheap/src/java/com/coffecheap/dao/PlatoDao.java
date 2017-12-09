@@ -6,7 +6,9 @@
 package com.coffecheap.dao;
 
 
+import com.coffecheap.bean.PlatoBean;
 import com.coffecheap.modelo.Plato;
+import com.coffecheap.modelo.Tipo_plato;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -21,16 +23,14 @@ public class PlatoDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("INSERT INTO `coffechip`.`plato` (`id_plato`, `nombre_platillo`, `precio_plato`, `porciones`, `descripcion_plato`) VALUES (?,?,?,?,?);");
-      st.setInt(1, plat.getId_plato());
-      st.setString(2, plat.getNombre());
-      st.setDouble(3, plat.getPrecio());
-      st.setInt(4, plat.getPorciones());    
-      st.setString(5, plat.getDescripcion());
-        
-
+      PreparedStatement st = this.getCon().prepareStatement("insert into plato(nombre_platillo,precio_plato,porciones,descripcion_plato,id_tipo) values(?,?,?,?,?)");
+      st.setString(1, plat.getNombre());
+      st.setDouble(2, plat.getPrecio());
+      st.setInt(3, plat.getPorciones());    
+      st.setString(4, plat.getDescripcion());
+      st.setInt(5, plat.getTipoPlato().getId());  
       st.executeUpdate();
-
+      PlatoBean.addMessage("Accion Completada");
     } catch (Exception ex) {
       throw ex;
     } finally {
@@ -40,6 +40,30 @@ public class PlatoDao extends Dao {
 
   }
 
+      public List<Tipo_plato> listarTipoPlato() throws Exception {
+    List<Tipo_plato> lista;
+    ResultSet rs;
+
+    try {
+      this.Conectar();
+      PreparedStatement st = this.getCon().prepareCall("select id_tipo_plato, nombre from tipo_plato");
+      rs = st.executeQuery();
+      lista = new ArrayList();
+      while (rs.next()) {
+        Tipo_plato tPlato = new Tipo_plato();
+        tPlato.setId(rs.getInt(1));
+        tPlato.setNombre(rs.getString(2));
+        lista.add(tPlato);
+      }
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+    }
+    return lista;
+  }
+    
   public List<Plato> listar() throws Exception {
     List<Plato> lista;
     ResultSet rs;
