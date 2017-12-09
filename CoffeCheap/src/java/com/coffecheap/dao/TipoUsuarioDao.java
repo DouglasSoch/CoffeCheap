@@ -206,5 +206,29 @@ public class TipoUsuarioDao extends Dao {
         }
         return lista;
     }
+    
+    public Tipo leerParaModificar(Tipo tipo) throws Exception {
+        Tipo tip = null;
+        ResultSet rs;
+
+        try {
+            this.Conectar();
+            PreparedStatement st = getCon().prepareCall("select idtipo, nombretipo, descripcion from tipo where idtipo=?");
+            st.setInt(1, tipo.getId());
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                tip = new Tipo();
+                tip.setId(rs.getInt(1));
+                tip.setNombre(rs.getString(2));
+                tip.setDesc(rs.getString(3));
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Desconecar();
+        }
+        return tip;
+    }
 
 }

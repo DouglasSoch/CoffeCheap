@@ -82,7 +82,7 @@
                             <p:inputText   value="#{transaccion_inventarioBean.traInv.cantidad}" required="true">
                             </p:inputText>
                             <p:outputLabel value="Detalle"/>  
-                            <p:inputText id="detalle" validator="#{transaccion_inventarioBean.validate}"  value="#{transaccion_inventarioBean.traInv.detalle}"/>
+                            <p:inputText id="detalle"  value="#{transaccion_inventarioBean.traInv.detalle}"/>
                             <p:outputLabel value="factura"/>
                             <p:selectOneMenu   value="#{transaccion_inventarioBean.traInv.compra.id_compras}">
                                 <f:selectItems  value="#{transaccion_inventarioBean.lsttraFac}"  var="listaf" itemLabel="#{listaf.no_fac}" itemValue="#{listaf.id_compras}" />

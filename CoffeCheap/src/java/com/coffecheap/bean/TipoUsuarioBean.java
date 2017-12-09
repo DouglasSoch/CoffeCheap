@@ -274,4 +274,19 @@ public class TipoUsuarioBean {
             throw e;
         }
     }
+          public void buscar(Tipo tipo) throws Exception {
+        TipoUsuarioDao dao;
+        Tipo temp;
+
+        try {
+            dao = new TipoUsuarioDao();
+            temp = dao.leerParaModificar(tipo);
+            if (tip != null) {
+                this.tip = temp;
+            }
+
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }
