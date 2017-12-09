@@ -1,6 +1,7 @@
 package com.coffecheap.bean;
 
 import com.coffecheap.dao.TipoUsuarioDao;
+import com.coffecheap.modelo.Tipo;
 import com.coffecheap.modelo.TipoUsuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +20,31 @@ public class TipoUsuarioBean {
     ArrayList<TipoUsuario> datosbase = new ArrayList<TipoUsuario>();
     ArrayList<TipoUsuario> intermedio = new ArrayList<TipoUsuario>();
     ArrayList<TipoUsuario> listadescripcion = new ArrayList<TipoUsuario>();
+    List<Tipo> lstUsu = new ArrayList();
+    Tipo tip = new Tipo();
     int i;
     int acum;
 
     private String message;
 
+    public List<Tipo> getLstUsu() {
+        return lstUsu;
+    }
+
+    public void setLstUsu(List<Tipo> lstUsu) {
+        this.lstUsu = lstUsu;
+    }
+
+    public Tipo getTip() {
+        return tip;
+    }
+
+    public void setTip(Tipo tip) {
+        this.tip = tip;
+    }
+
+    
+    
     public String getMessage() {
         return message;
     }
@@ -210,4 +231,47 @@ public class TipoUsuarioBean {
         return respuesta;
     }
 
+    
+     public void modificar() throws Exception
+    {
+        
+        TipoUsuarioDao dao ;
+        
+        try
+        {
+            dao= new TipoUsuarioDao();
+            dao.modificar(tip);
+            
+        }catch(Exception e)
+        {
+            throw e;
+        }
+    }
+    
+     public void eliminar(Tipo tipo) throws Exception
+    {
+        
+        TipoUsuarioDao dao ;
+        
+        try
+        {
+            dao= new TipoUsuarioDao();
+            dao.eliminar(tipo);
+            
+        }catch(Exception e)
+        {
+            throw e;
+        }
+    }
+     
+      public void mostar() throws Exception {
+        TipoUsuarioDao dao;
+
+        try {
+            dao = new TipoUsuarioDao();
+            lstUsu = dao.mostrar();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }

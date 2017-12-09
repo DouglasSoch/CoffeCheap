@@ -1,5 +1,6 @@
 package com.coffecheap.dao;
 
+import com.coffecheap.modelo.Tipo;
 import com.coffecheap.modelo.TipoUsuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,12 +41,36 @@ public class TipoUsuarioDao extends Dao {
 
     }
 
-    public void Eliminar() {
-
+ public void eliminar(Tipo tipo) throws Exception
+    {
+        try
+        {
+         this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("delete from tipo where idtipo=?");
+            st.setInt(1, tipo.getId());
+            st.executeUpdate();
+        }catch(Exception e)
+        {
+            throw e;
+        }finally
+        {
+            this.Desconecar();
+        }
     }
-
-    public void Modificar() {
-
+     
+    public void modificar(Tipo tipo) throws Exception {
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("update tipo set  nombretipo=?, descripcion=? where idtipo=?");
+            st.setString(1, tipo.getNombre());
+            st.setString(2, tipo.getDesc());
+            st.setInt(3, tipo.getId()); 
+           st.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Desconecar();
+        }
     }
 
     public int Buscar(String nombre) throws Exception {
@@ -156,4 +181,30 @@ public class TipoUsuarioDao extends Dao {
         }
         return lista;
     }
+    
+    
+    public List<Tipo> mostrar() throws Exception {
+        List<Tipo> lista;
+        ResultSet rs;
+        try {
+            this.Conectar();
+            PreparedStatement st = getCon().prepareCall("select idtipo, nombretipo, descripcion from tipo");
+            rs = st.executeQuery();
+            lista = new ArrayList();
+
+            while (rs.next()) {
+                Tipo tipo = new Tipo();
+                tipo.setId(rs.getInt(1));
+                tipo.setNombre(rs.getString(2));
+                tipo.setDesc(rs.getString(3));
+                lista.add(tipo);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Desconecar();
+        }
+        return lista;
+    }
+
 }

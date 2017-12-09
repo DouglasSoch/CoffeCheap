@@ -57,7 +57,7 @@
                                                 <f:selectItems value="#{reservaBean.lstMesa}" var="mesa" itemLabel="#{mesa.id_mesa}" itemValue="#{mesa.id_mesa}" />
                                             </p:selectOneMenu>
 
-                                <p:commandButton value="Guardar" actionListener="#{reservaBean.registrar()}" update="mess"/>
+                                <p:commandButton value="Guardar" actionListener="#{reservaBean.registrar()}" update="mess :forma"/>
 
                                 <p:commandButton value="verificar Disponibilidad" actionListener="#{reservaBean.mostrar()}" update="tabla1" />
                             </p:panelGrid>

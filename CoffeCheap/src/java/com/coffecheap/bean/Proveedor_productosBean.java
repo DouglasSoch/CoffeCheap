@@ -73,8 +73,13 @@ public class Proveedor_productosBean
     Proveedor_productosDao dao;
     try 
     {
+        if(proveedor_productos.getPrecio()==0)
+        {
+            addMessage("Ingrese el precio");
+        }else{
       dao = new Proveedor_productosDao();
       dao.registrar(proveedor_productos);
+        }
     } catch (Exception e) {
       System.out.println(e);
     }

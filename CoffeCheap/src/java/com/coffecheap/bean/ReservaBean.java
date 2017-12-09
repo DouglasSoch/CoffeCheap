@@ -22,8 +22,7 @@ import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
-public class ReservaBean 
-{
+public class ReservaBean {
 
     static public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
@@ -43,8 +42,6 @@ public class ReservaBean
     public void setCli(Cliente cli) {
         this.cli = cli;
     }
-    
-    
 
     public Cliente getCliente() {
         return cliente;
@@ -128,12 +125,11 @@ public class ReservaBean
             dao = new ReservaDao();
             estado = dao.registrarclienteYReserva(nit);
 
-            if (estado == false) 
-            {
+            if (estado == false) {
                 ClienteBean clB = new ClienteBean();
                 this.nombreBoton = "Buscar";
                 this.cliRe(cliente);
-                
+
             } else {
                 this.nombreBoton = "Guardar";
                 if (!cliente.getNombre().equals("")) {
@@ -154,28 +150,25 @@ public class ReservaBean
         }
 
     }
-    
-     public void cliRe(Cliente clie) throws Exception 
-  {
-     ReservaDao dao;
-    Cliente temp;
-    try {
-      dao = new ReservaDao();
-      temp = dao.leerFilaR(clie);
 
-      if (cliente != null) 
-      {
-          this.cli.setId_cliente(temp.getId_cliente());
-          this.cli.setNit_cliente(temp.getNit_cliente());
-          
-        this.cliente = temp;
-      }
+    public void cliRe(Cliente clie) throws Exception {
+        ReservaDao dao;
+        Cliente temp;
+        try {
+            dao = new ReservaDao();
+            temp = dao.leerFilaR(clie);
 
-    } catch (Exception e) {
-      throw e;
-      
+            if (cliente != null) {
+                this.cli.setId_cliente(temp.getId_cliente());
+                this.cli.setNit_cliente(temp.getNit_cliente());
+                this.cliente = temp;
+            }
+
+        } catch (Exception e) {
+            throw e;
+
+        }
     }
-  }
 
     public void listar() throws Exception {
         ReservaDao dao;
@@ -200,18 +193,49 @@ public class ReservaBean
     }
 
     public void registrar() throws Exception {
-
         ReservaDao dao;
-
         try {
 
-            String formateador = new SimpleDateFormat("yyyy-MM-dd").format(reserva.getFecha());
-            reserva.setFechaSus(formateador);
-            this.reserva.getCliente().setId_cliente(cli.getId_cliente());
-            //this.cliente.setId_cliente(cli.getId_cliente());
-
-            dao = new ReservaDao();
-            dao.registrar(reserva);
+            if (reserva.getFecha() == null) {
+                addMessage("Ingrese fecha");
+            } 
+            else 
+            {
+                if(reserva.getHora_entrada().equals(""))
+                {
+                    addMessage("Ingrese Hora de entrada");
+                }
+                else
+                 {
+                     if(reserva.getHora_salida().equals(""))
+                     {
+                     addMessage("Ingrese Hora de salida");
+                     }
+                     else
+                     {
+                         if(reserva.getCantidad_personas()==0)
+                         {
+                             addMessage("Ingrese cantidad de personas");
+                         }
+                         else
+                         {
+                             if(reserva.getMesa().getId_mesa()==0)
+                             {
+                                 addMessage("Eliga una mesa");
+                             }
+                             else
+                             {
+                                 
+                                      String formateador = new SimpleDateFormat("yyyy-MM-dd").format(reserva.getFecha());
+                                      reserva.setFechaSus(formateador);
+                                      this.reserva.getCliente().setId_cliente(cli.getId_cliente());
+                                      dao = new ReservaDao();
+                                      dao.registrar(reserva);
+                             }
+                         }
+                     }
+                 }
+            }
 
         } catch (Exception e) {
             System.out.println(e);

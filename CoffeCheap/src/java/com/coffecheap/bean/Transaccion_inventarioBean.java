@@ -25,19 +25,7 @@ public class Transaccion_inventarioBean {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
-    public void validate(FacesContext arg0, UIComponent arg1, Object arg2)
-         throws ValidatorException 
-    {
-//        int valor = (Integer) arg2;
-//        if (valor!=0 && valor>0)
-//        {
-//            throw new ValidatorException(new FacesMessage("No se permite campos en blanco numero"));
-//        }
-      if (((String)arg2).length()<5) 
-      {
-         throw new ValidatorException(new FacesMessage("No se permite campos en blanco"));
-      }
-   }
+
 
     
     Transaccion_inventario traInv = new Transaccion_inventario();
@@ -45,6 +33,9 @@ public class Transaccion_inventarioBean {
     List<Transaccion_inventario> lsttraInv = new ArrayList();
     List<Compra> lsttraFac = new ArrayList();
     String fechaSus = null;
+    
+    
+    
 
     public List<Compra> getLsttraFac() {
         return lsttraFac;
@@ -94,13 +85,57 @@ public class Transaccion_inventarioBean {
         Transaccion_InventarioDAO dao = new Transaccion_InventarioDAO();
 
         try {
-            SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecha = new Date();
-            String fechaString = formateador.format(fecha);
-            Date tranformada = formateador.parse(fechaString);
-            fechaSus = fechaString;
-            traInv.setFecha(tranformada);
-            dao.registrar(traInv);
+            
+             if (traInv.getProducto().getId_producto() == 0) {
+                addMessage("Eliga Producto ");
+            } 
+            else 
+            {
+                if(traInv.getTtransaccion().getId_tipo_transacciones()==0)
+                {
+                    addMessage("Eliga tipo de transaccion");
+                }
+                else
+                 {
+                     if(traInv.getTtransaccion().getId_tipo_transacciones()==1)
+                     {
+                       addMessage("Solo se pueden hacer salidas");
+                     }
+                     else
+                     {
+                         if(traInv.getCantidad()==0)
+                         {
+                             addMessage("Ingrese Cantidad");
+                         }
+                         else
+                         {
+                             if(traInv.getDetalle().equals(""))
+                             {
+                                 addMessage("Ingrese Detalle");
+                             }
+                             else
+                             {
+                                 if(traInv.getCompra().getId_compras()==0)
+                                 {
+                                     addMessage("Eliga una factua");
+                                 }
+                                 else
+                                 {
+                                 SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                                 Date fecha = new Date();
+                                 String fechaString = formateador.format(fecha);
+                                 Date tranformada = formateador.parse(fechaString);
+                                 fechaSus = fechaString;
+                                 traInv.setFecha(tranformada);
+                                 dao.registrar(traInv);
+                                 resta();
+                                 }
+                             }
+                         }
+                     }
+                 }
+            }
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -192,6 +227,21 @@ public class Transaccion_inventarioBean {
         {
             dao= new Transaccion_InventarioDAO();
             dao.eliminar(tra);
+            
+        }catch(Exception e)
+        {
+            throw e;
+        }
+    }
+     public void resta() throws Exception
+    {
+        
+        Transaccion_InventarioDAO dao ;
+        
+        try
+        {
+            dao= new Transaccion_InventarioDAO();
+            dao.resta(traInv);
             
         }catch(Exception e)
         {

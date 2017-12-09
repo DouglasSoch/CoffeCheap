@@ -21,25 +21,28 @@
                         <p:outputLabel   id="fecha" value="#{transaccion_inventarioBean.fechaSus}" />
                         <p:outputLabel value="ingrese producto"/>
                         <p:selectOneMenu value="#{transaccion_inventarioBean.traInv.producto.id_producto}">
+                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                             <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv2}"  var="listaa" itemLabel="#{listaa.producto.nombre}"  itemValue="#{listaa.producto.id_producto}" />
                         </p:selectOneMenu>
                         <p:outputLabel value="Seleccione Tipo de transaccion"/>
                         <p:selectOneMenu   value="#{transaccion_inventarioBean.traInv.ttransaccion.id_tipo_transacciones}">
+                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                             <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv}"  var="lista" itemLabel="#{lista.ttransaccion.nombre}" itemValue="#{lista.ttransaccion.id_tipo_transacciones}" />
                         </p:selectOneMenu>
 
                         <p:outputLabel value="Cantidad"/>  
-                        <p:inputText   value="#{transaccion_inventarioBean.traInv.cantidad}" required="true">
+                        <p:inputText   value="#{transaccion_inventarioBean.traInv.cantidad}" >
                         </p:inputText>
                         <p:outputLabel value="Detalle"/>  
-                        <p:inputText id="detalle" validator="#{transaccion_inventarioBean.validate}"  value="#{transaccion_inventarioBean.traInv.detalle}"/>
+                        <p:inputText id="detalle" value="#{transaccion_inventarioBean.traInv.detalle}"/>
                         <p:outputLabel value="factura"/>
                         <p:selectOneMenu   value="#{transaccion_inventarioBean.traInv.compra.id_compras}">
-                            <f:selectItems  value="#{transaccion_inventarioBean.lsttraFac}"  var="listaf" itemLabel="#{listaf.no_fac}" itemValue="#{listaf.id_compras}" />
+                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                            <f:selectItems  value="#{transaccion_inventarioBean.lsttraFac}"  var="listaf" itemLabel="#{listaf.no_fac}" itemValue="#{listaf.id_compras}"  noSelectionValue="#{listaf.no_fac=='Ingresos'}"/>
                         </p:selectOneMenu> 
                     </h:panelGrid>  
                     <p:commandButton value="Guardar" actionListener="#{transaccion_inventarioBean.registrar()}" update="fecha, mess"/>
-                    <h:message for="detalle" ></h:message>
+                   
 
                 </h:form>
             </ui:define>

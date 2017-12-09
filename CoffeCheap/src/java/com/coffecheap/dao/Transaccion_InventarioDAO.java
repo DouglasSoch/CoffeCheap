@@ -11,16 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.primefaces.component.datatable.DataTable.PropertyKeys.summary;
 
-public class Transaccion_InventarioDAO extends Dao {
+public class Transaccion_InventarioDAO extends Dao 
+{
+    
+  
 
-    public void registrar(Transaccion_inventario traInv) throws Exception {
-
-        System.out.println("el id es:" + traInv.getId_transaccion());
-        System.out.println("la fecha es:" + traInv.getFecha());
-        System.out.println("el id producto  es:" + traInv.getProducto().getId_producto());
-        System.out.println("el id tipo es:" + traInv.getTtransaccion().getId_tipo_transacciones());
-        System.out.println("la cantidad es:" + traInv.getCantidad());
-        System.out.println("el detalle es:" + traInv.getDetalle());
+    public void registrar(Transaccion_inventario traInv) throws Exception 
+    {
         try {
 
             SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
@@ -43,6 +40,24 @@ public class Transaccion_InventarioDAO extends Dao {
         }
     }
 
+    public void resta(Transaccion_inventario tra) throws Exception
+    {
+        try
+        {
+            this.Conectar();
+            PreparedStatement ps = getCon().prepareStatement("update producto set  existencia=existencia-? where id_producto=?");
+            ps.setInt(1, tra.getCantidad());
+            ps.setInt(2, tra.getProducto().getId_producto());
+            ps.executeUpdate();
+        }catch(Exception e)
+        {
+            System.out.println(e);
+        }finally
+        {
+            this.Desconecar();
+        }
+    }
+    
     public List<Transaccion_inventario> mostrar() throws Exception {
         List<Transaccion_inventario> lista;
         ResultSet rs;
@@ -135,6 +150,7 @@ public class Transaccion_InventarioDAO extends Dao {
             lista = new ArrayList();
 
             while (rs.next()) {
+                
                 Transaccion_inventario traInv = new Transaccion_inventario();
                 traInv.getTtransaccion().setId_tipo_transacciones(rs.getInt(1));
                 traInv.getTtransaccion().setNombre(rs.getString(2));
