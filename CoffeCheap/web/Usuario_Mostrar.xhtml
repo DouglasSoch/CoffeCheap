@@ -2,27 +2,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form>
-            <label>Mostraar</label>
-            <p:commandButton value="mosrar"  icon="ui-icon-check" actionListener="#{usuarioBean.listar()}" update=":frm2:tabla1" oncomplete="PF('dlg').show()"/>
-            <br/>
-            <br/>
-
-            <label>mosrar con parametro</label>
-            <br/>
-            <p:outputLabel value="ingrese el id"/>
-            <p:inputText  value="#{usuarioBean.usuario.id}"/>
-            <p:commandButton value="mosra por paramero"  icon="ui-icon-check" actionListener="#{usuarioBean.mostarPorParametro()}" update=":frm2:tabla1" oncomplete="PF('dlg').show()" />
-
-        </h:form>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+        <f:event type="preRenderView" listener="#{usuarioBean.listar()}"/>
 
         <h:form id="frm2">
-            <p:dialog header="Selected Values" modal="true" showEffect="fade" widgetVar="dlg" resizable="false">
+            
                 <p:dataTable var="usuario" value="#{usuarioBean.lstUsuario}" rows="10" id="tabla1"
                              paginator="true"
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -32,8 +24,8 @@
                         <p:outputLabel value="#{usuario.id}"/>
                     </p:column>
 
-                    <p:column headerText="user">
-                        <p:outputLabel value="#{usuario.usuario}"/>
+                    <p:column headerText="user" filterBy="#{usuario.usuario}" filterMatchMode="contains" >
+                        <p:outputLabel value="#{usuario.usuario}" />
                     </p:column>
 
                     <p:column headerText="contraseña">
@@ -49,7 +41,7 @@
                     <p:column headerText="Apellido">
                         <p:outputLabel value="#{usuario.apellido}"/>
                     </p:column>
-                    <p:column headerText="Codigo">
+                    <p:column headerText="Codigo" filterBy="#{usuario.codigo}" filterMatchMode="exact">
                         <p:outputLabel value="#{usuario.codigo}"/>
                     </p:column>
                     <p:column headerText="Turno">
@@ -61,10 +53,10 @@
                     <p:column headerText="direccion">
                         <p:outputLabel value="#{usuario.direccion}"/>
                     </p:column>
-                    <p:column headerText="DPI">
+                    <p:column headerText="DPI"  filterBy="#{usuario.dpi}" filterMatchMode="exact">
                         <p:outputLabel value="#{usuario.dpi}"/>
                     </p:column>
-                    <p:column headerText="Nit">
+                    <p:column headerText="Nit" filterBy="#{usuario.nit}" filterMatchMode="exact">
                         <p:outputLabel value="#{usuario.nit}"/>
                     </p:column>
                     <p:column headerText="Correo">
@@ -72,8 +64,10 @@
                     </p:column>
 
                 </p:dataTable>
-            </p:dialog>
+            
         </h:form>
+        </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 
