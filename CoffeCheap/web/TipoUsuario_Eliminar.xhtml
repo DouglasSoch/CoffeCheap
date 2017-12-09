@@ -1,12 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>tipo usuario Eliminar</title>
     </h:head>
     <h:body>
-        
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+               <p:growl id="mess"/>
+                <f:event type="preRenderView" listener="#{tipoUsuarioBean.mostar()}"/>
+
+                <h:form id="tabla">
+                  <p:dataTable var="tipo" value="#{tipoUsuarioBean.lstUsu}" rows="15" id="tabla1" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20">
+                        <p:column headerText="Tipo" filterBy="#{tipo.nombre}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tipo.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Descripcion" filterBy="#{tipo.desc}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tipo.desc}"/>
+                        </p:column> 
+                      <p:column headerText="Eliminar">
+                          <p:commandButton value="Eliminar" actionListener="#{tipoUsuarioBean.eliminar(tipo)}"  update="tabla1" />
+                        </p:column>
+                    </p:dataTable>                   
+                </h:form>
+                            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 
