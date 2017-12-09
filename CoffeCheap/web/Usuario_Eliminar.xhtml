@@ -3,33 +3,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form>
-            <b:row>
-                <b:column span="4">
-                    <p:outputLabel value="ingrese el id"/>
-                    <p:inputText  value="#{usuarioBean.usuario.id}"/>
-                    <p:commandButton value="Eliminar"  icon="ui-icon-check" actionListener="#{usuarioBean.eliminar()}" />
-                    <p:commandButton value="Ver Registros"  icon="ui-icon-check" actionListener="#{usuarioBean.listar()}" update="tabla1"/>
+      
+          <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+                <p:growl id="mess"/>
 
-                </b:column>
-                <b:column span="8">
+                <f:event type="preRenderView" listener="#{usuarioBean.listarTipo()}"/>
+                <f:event type="preRenderView" listener="#{usuarioBean.listarTurno()}"/>
+                <f:event type="preRenderView" listener="#{usuarioBean.listar()}"/>
+
+                <h:form id="tabla">
                     <p:dataTable var="usuario" value="#{usuarioBean.lstUsuario}" rows="10" id="tabla1"
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
 
-
-                        <p:column headerText="id" filterBy="#{usuario.id}" filterMatchMode="exact">
+                        <p:column headerText="id">
                             <p:outputLabel value="#{usuario.id}"/>
                         </p:column>
 
-                        <p:column headerText="user">
-                            <p:outputLabel value="#{usuario.usuario}"/>
+                        <p:column headerText="user" filterBy="#{usuario.usuario}" filterMatchMode="contains" >
+                            <p:outputLabel value="#{usuario.usuario}" />
                         </p:column>
 
                         <p:column headerText="contraseña">
@@ -45,7 +46,7 @@
                         <p:column headerText="Apellido">
                             <p:outputLabel value="#{usuario.apellido}"/>
                         </p:column>
-                        <p:column headerText="Codigo">
+                        <p:column headerText="Codigo" filterBy="#{usuario.codigo}" filterMatchMode="exact">
                             <p:outputLabel value="#{usuario.codigo}"/>
                         </p:column>
                         <p:column headerText="Turno">
@@ -57,20 +58,22 @@
                         <p:column headerText="direccion">
                             <p:outputLabel value="#{usuario.direccion}"/>
                         </p:column>
-                        <p:column headerText="DPI">
+                        <p:column headerText="DPI"  filterBy="#{usuario.dpi}" filterMatchMode="exact">
                             <p:outputLabel value="#{usuario.dpi}"/>
                         </p:column>
-                        <p:column headerText="Nit">
+                        <p:column headerText="Nit" filterBy="#{usuario.nit}" filterMatchMode="exact">
                             <p:outputLabel value="#{usuario.nit}"/>
                         </p:column>
                         <p:column headerText="Correo">
                             <p:outputLabel value="#{usuario.correo}"/>
                         </p:column>
-
-                    </p:dataTable>
-                </b:column>
-            </b:row>
-        </h:form>
+                        <p:column headerText="Eliminar">
+                            <p:commandButton value="Eliminar" actionListener="#{usuarioBean.eliminar(usuario)}" oncomplete="PF('diag').show();" update="tabla1 ,mess" />
+                        </p:column>
+                    </p:dataTable>                    
+                </h:form>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

@@ -204,12 +204,12 @@ public class UsuarioBean
 
     }
 
-    public void eliminar() throws Exception {
+    public void eliminar(Usuario usu) throws Exception {
         UsuarioDao dao;
 
         try {
             dao = new UsuarioDao();
-            dao.eliminar(usuario);
+            dao.eliminar(usu);
 
         } catch (Exception e) {
             throw e;
