@@ -15,22 +15,21 @@ public class UsuarioDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("insert into usuario values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            st.setInt(1, Tt.getId());
-            st.setString(2, Tt.getUsuario());
-            st.setString(3, Tt.getPass());
-            st.setInt(4, Tt.getTipo().getId());
-            st.setString(5, Tt.getNombre());
-            st.setString(6, Tt.getApellido());
-            st.setInt(7, Tt.getCodigo());
-            st.setInt(8, Tt.getTurno().getId_turno());
-            st.setInt(9, Tt.getTelefono());
-            st.setString(10, Tt.getDireccion());
-            st.setInt(11, Tt.getDpi());
-            st.setString(12, Tt.getNit());
-            st.setString(13, Tt.getCorreo());
-
+            PreparedStatement st = this.getCon().prepareStatement("insert into usuario(user,pass,tipouser,nombre,apellido,codigo,idturno,telefono,direccion,dpi,nit,correo) values(?,?,?,?,?,?,?,?,?,?,?,?)");
+            st.setString(1, Tt.getUsuario());
+            st.setString(2, Tt.getPass());
+            st.setInt(3, Tt.getTipo().getId());
+            st.setString(4, Tt.getNombre());
+            st.setString(5, Tt.getApellido());
+            st.setInt(6, Tt.getCodigo());
+            st.setInt(7, Tt.getTurno().getId_turno());
+            st.setInt(8, Tt.getTelefono());
+            st.setString(9, Tt.getDireccion());
+            st.setInt(10, Tt.getDpi());
+            st.setString(11, Tt.getNit());
+            st.setString(12, Tt.getCorreo());
             st.executeUpdate();
+            UsuarioBean.addMessage("Accion compleata");
 
         } catch (Exception ex) {
             throw ex;
