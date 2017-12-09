@@ -3,109 +3,119 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <f:event type="preRenderView" listener="#{usuarioBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{usuarioBean.listarTurno()}"/>
-        <p:growl id="mess" >
-      
-        </p:growl>
-        
-        <h:form>
-           <p:outputLabel value="ingrese el id"/>
-                    <p:inputText  value="#{usuarioBean.usuario.id}"/>
-                    <p:commandButton value="Buscar"  icon="ui-icon-check" actionListener="#{usuarioBean.buscarr()}" update=":frm2, mess" oncomplete="PF('dlg').show()"/>
-        </h:form>
-        <h:form id="frm2">
-            <p:dialog header="Selected Values" modal="true" showEffect="fade" widgetVar="dlg" resizable="false">
-                <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
-          
-            <p:outputLabel value="Usuario "/>
-            <p:inputText  value="#{usuarioBean.usuario.usuario}"/>
-            <p:outputLabel value="contraseña  "/>
-            <p:inputText  value="#{usuarioBean.usuario.pass}"/>
-              <p:outputLabel value="tipo de usuario  "/>
-                <p:selectOneMenu  value="#{usuarioBean.usuario.tipo.id}">
-                                <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                                <f:selectItems value="#{usuarioBean.lstTipo}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id}" />
-                </p:selectOneMenu>
-             <p:outputLabel value="nombre  "/>
-             <p:inputText  value="#{usuarioBean.usuario.nombre}"/>
-            <p:outputLabel value="apellido "/>
-            <p:inputText  value="#{usuarioBean.usuario.apellido}"/>
-            <p:outputLabel value="codigo "/>
-            <p:inputText  value="#{usuarioBean.usuario.codigo}"/>
-                           <p:outputLabel value="turno  "/>
-                <p:selectOneMenu  value="#{usuarioBean.usuario.turno.id_turno}">
-                                <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                                <f:selectItems value="#{usuarioBean.lstTurno}" var="list" itemLabel="#{list.horario_turno}" itemValue="#{list.id_turno}" />
-                </p:selectOneMenu>
-           <p:outputLabel value="telefono "/>
-           <p:inputText  value="#{usuarioBean.usuario.telefono}"/>
-            <p:outputLabel value="direccion "/>
-            <p:inputText  value="#{usuarioBean.usuario.direccion}"/>
-            <p:outputLabel value="dpi "/>
-            <p:inputText  value="#{usuarioBean.usuario.dpi}"/>
-            <p:outputLabel value="nit  "/>
-            <p:inputText  value="#{usuarioBean.usuario.nit}"/>
-             <p:outputLabel value="Correo "/>
-             <p:inputText  value="#{usuarioBean.usuario.correo}"/>
-          </h:panelGrid>
-                <p:commandButton value="Modificar"  icon="ui-icon-check" actionListener="#{usuarioBean.modificar()}" update="tabla1" />
-            </p:dialog>
-            <p:dataTable var="usuario" value="#{usuarioBean.lstUsuario}" rows="10" id="tabla1"
-                             paginator="true"
-                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                             rowsPerPageTemplate="5,10,15">
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+                <p:growl id="mess"/>
 
-                    <p:column headerText="id" filterBy="#{usuario.id}" filterMatchMode="exact">
-                        <p:outputLabel value="#{usuario.id}"/>
-                    </p:column>
+                <f:event type="preRenderView" listener="#{usuarioBean.listarTipo()}"/>
+                <f:event type="preRenderView" listener="#{usuarioBean.listarTurno()}"/>
+                <f:event type="preRenderView" listener="#{usuarioBean.listar()}"/>
 
-                    <p:column headerText="user">
-                        <p:outputLabel value="#{usuario.usuario}"/>
-                    </p:column>
+                <h:form id="tabla">
+                    <p:dataTable var="usuario" value="#{usuarioBean.lstUsuario}" rows="10" id="tabla1"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
 
-                    <p:column headerText="contraseña">
-                        <p:outputLabel value="#{usuario.pass}"/>
-                    </p:column>
+                        <p:column headerText="id">
+                            <p:outputLabel value="#{usuario.id}"/>
+                        </p:column>
 
-                    <p:column headerText="Tipo de usuario">
-                        <p:outputLabel value="#{usuario.tipo.id}"/>
-                    </p:column>
-                    <p:column headerText="Nombre">
-                        <p:outputLabel value="#{usuario.nombre}"/>
-                    </p:column>
-                    <p:column headerText="Apellido">
-                        <p:outputLabel value="#{usuario.apellido}"/>
-                    </p:column>
-                    <p:column headerText="Codigo">
-                        <p:outputLabel value="#{usuario.codigo}"/>
-                    </p:column>
-                    <p:column headerText="Turno">
-                        <p:outputLabel value="#{usuario.turno.id_turno}"/>
-                    </p:column>
-                    <p:column headerText="Telefono">
-                        <p:outputLabel value="#{usuario.telefono}"/>
-                    </p:column>
-                    <p:column headerText="direccion">
-                        <p:outputLabel value="#{usuario.direccion}"/>
-                    </p:column>
-                    <p:column headerText="DPI">
-                        <p:outputLabel value="#{usuario.dpi}"/>
-                    </p:column>
-                    <p:column headerText="Nit">
-                        <p:outputLabel value="#{usuario.nit}"/>
-                    </p:column>
-                    <p:column headerText="Correo">
-                        <p:outputLabel value="#{usuario.correo}"/>
-                    </p:column>
+                        <p:column headerText="user" filterBy="#{usuario.usuario}" filterMatchMode="contains" >
+                            <p:outputLabel value="#{usuario.usuario}" />
+                        </p:column>
 
-                </p:dataTable>
-        </h:form>
+                        <p:column headerText="contraseña">
+                            <p:outputLabel value="#{usuario.pass}"/>
+                        </p:column>
+
+                        <p:column headerText="Tipo de usuario">
+                            <p:outputLabel value="#{usuario.tipo.id}"/>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <p:outputLabel value="#{usuario.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Apellido">
+                            <p:outputLabel value="#{usuario.apellido}"/>
+                        </p:column>
+                        <p:column headerText="Codigo" filterBy="#{usuario.codigo}" filterMatchMode="exact">
+                            <p:outputLabel value="#{usuario.codigo}"/>
+                        </p:column>
+                        <p:column headerText="Turno">
+                            <p:outputLabel value="#{usuario.turno.id_turno}"/>
+                        </p:column>
+                        <p:column headerText="Telefono">
+                            <p:outputLabel value="#{usuario.telefono}"/>
+                        </p:column>
+                        <p:column headerText="direccion">
+                            <p:outputLabel value="#{usuario.direccion}"/>
+                        </p:column>
+                        <p:column headerText="DPI"  filterBy="#{usuario.dpi}" filterMatchMode="exact">
+                            <p:outputLabel value="#{usuario.dpi}"/>
+                        </p:column>
+                        <p:column headerText="Nit" filterBy="#{usuario.nit}" filterMatchMode="exact">
+                            <p:outputLabel value="#{usuario.nit}"/>
+                        </p:column>
+                        <p:column headerText="Correo">
+                            <p:outputLabel value="#{usuario.correo}"/>
+                        </p:column>
+                        <p:column headerText="Modificar">
+                            <p:commandButton value="Modificar" actionListener="#{usuarioBean.buscarr(usuario)}" oncomplete="PF('diag').show();" update=":dlgDatos" />
+                        </p:column>
+                    </p:dataTable>                    
+                </h:form>
+
+
+                <p:dialog header="Datos" widgetVar="diag" id="dlgDatos">
+                    <h:form>
+                        <h:panelGrid columns="2" cellpadding="5" border="1">
+                            <p:outputLabel value="Usuario "/>
+                            <p:inputText  value="#{usuarioBean.usuario.usuario}"/>
+                            <p:outputLabel value="contraseña  "/>
+                            <p:inputText  value="#{usuarioBean.usuario.pass}"/>
+
+                            <p:outputLabel value="tipo de usuario  "/>
+                            <p:selectOneMenu  value="#{usuarioBean.usuario.tipo.id}">
+                                            <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                            <f:selectItems value="#{usuarioBean.lstTipo}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id}" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="nombre  "/>
+                            <p:inputText  value="#{usuarioBean.usuario.nombre}"/>
+                            <p:outputLabel value="apellido "/>
+                            <p:inputText  value="#{usuarioBean.usuario.apellido}"/>
+                            <p:outputLabel value="codigo "/>
+                            <p:inputText  value="#{usuarioBean.usuario.codigo}"/>
+
+                            <p:outputLabel value="turnot  "/>
+                            <p:selectOneMenu  value="#{usuarioBean.usuario.turno.id_turno}">
+                                            <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                            <f:selectItems value="#{usuarioBean.lstTurno}" var="list" itemLabel="#{list.horario_turno}" itemValue="#{list.id_turno}" />
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="telefono "/>
+                            <p:inputText  value="#{usuarioBean.usuario.telefono}"/>
+                            <p:outputLabel value="direccion "/>
+                            <p:inputText  value="#{usuarioBean.usuario.direccion}"/>
+                            <p:outputLabel value="dpi "/>
+                            <p:inputText  value="#{usuarioBean.usuario.dpi}"/>
+                            <p:outputLabel value="nit  "/>
+                            <p:inputText  value="#{usuarioBean.usuario.nit}"/>
+                            <p:outputLabel value="Correo "/>
+                            <p:inputText  value="#{usuarioBean.usuario.correo}"/>
+                        </h:panelGrid>  
+                        <p:commandButton value="Modificar" actionListener="#{usuarioBean.modificar()}" update=" mess, tabla:tabla1" oncomplete="PF('diag').hide();" />
+                    </h:form>
+                </p:dialog>
+
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

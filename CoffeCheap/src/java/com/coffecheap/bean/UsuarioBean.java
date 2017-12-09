@@ -163,7 +163,7 @@ public class UsuarioBean
 
     }
 
-    public void buscarr() throws Exception {
+    public void buscarr(Usuario usu) throws Exception {
 
         UsuarioDao dao;
         Usuario temp;
@@ -171,7 +171,7 @@ public class UsuarioBean
         try 
         {
             dao = new UsuarioDao();
-            temp = dao.leerParaModificar(usuario);
+            temp = dao.leerParaModificar(usu);
 
             if (usuario != null)
             {

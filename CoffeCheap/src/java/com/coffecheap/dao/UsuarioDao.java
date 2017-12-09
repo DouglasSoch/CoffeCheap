@@ -187,7 +187,7 @@ public class UsuarioDao extends Dao {
             st.setString(12, Tt.getCorreo());
             st.setInt(13, Tt.getId());
             st.executeUpdate();
-
+            UsuarioBean.addMessage("Accion compleata");
         } catch (Exception ex) {
             throw ex;
         } finally {
@@ -251,7 +251,7 @@ public class UsuarioDao extends Dao {
             PreparedStatement st = this.getCon().prepareStatement("DELETE FROM usuario WHERE iduser=?");
             st.setInt(1, pac.getId());
             st.executeUpdate();
-
+            UsuarioBean.addMessage("Accion compleata");
         } catch (Exception ex) {
             throw ex;
         } finally {
