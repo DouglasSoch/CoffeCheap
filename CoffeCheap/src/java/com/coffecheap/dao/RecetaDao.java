@@ -5,6 +5,7 @@
  */
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.RecetaBean;
 import com.coffecheap.modelo.Receta;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,27 +17,38 @@ import java.util.List;
  * @author medev
  */
 public class RecetaDao extends Dao{
-    public void registrar(Receta receta) throws Exception {
-
-    try {
+    public void registrar(Receta receta) throws Exception 
+    {
+        ResultSet rs;
+    try 
+    {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into receta values(?,?,?,?);");
+      PreparedStatement ps = getCon().prepareStatement("select *from receta where id_plato=? and id_producto=? and id_unidad=?");
+      ps.setInt(1, receta.getPlato().getId_plato());
+      ps.setInt(2, receta.getProducto().getId_producto());
+      ps.setInt(3, receta.getUmedida().getId_unidad());
+      rs=ps.executeQuery();
+      
+      if(rs.next())
+      {
+          RecetaBean.addMessage("Ya existe un registro con estos datos");
+      }
+       else
+      {
+      PreparedStatement st = getCon().prepareStatement("insert into receta values(?,?,?,?)");
       st.setInt(1, receta.getPlato().getId_plato());
       st.setInt(2, receta.getProducto().getId_producto());
       st.setInt(3, receta.getCantidad());
       st.setInt(4, receta.getUmedida().getId_unidad());    
-      
-        
-
       st.executeUpdate();
-
+      RecetaBean.addMessage("Accion Completada");
+      }
     } catch (Exception ex) {
       throw ex;
     } finally {
       this.Desconecar();
 
     }
-
   }
 
   public List<Receta> listar() throws Exception {

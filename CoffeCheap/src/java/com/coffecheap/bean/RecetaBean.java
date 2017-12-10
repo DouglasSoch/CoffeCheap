@@ -8,8 +8,10 @@ package com.coffecheap.bean;
 import com.coffecheap.dao.RecetaDao;
 import com.coffecheap.modelo.Receta;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 
 /**
@@ -18,7 +20,13 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class RecetaBean {
+public class RecetaBean 
+{
+     static public void addMessage(String summary) {
+    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+    FacesContext.getCurrentInstance().addMessage(null, message);
+  }
+    
 private Receta receta = new Receta();
 private List<Receta>lstReceta;
 
