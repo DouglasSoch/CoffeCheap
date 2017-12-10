@@ -73,8 +73,8 @@ private List<Receta>lstReceta;
 
   }
 
-  public void modificar(Receta receta) throws Exception {
-    System.out.println("*******************************************************Modificar");
+  public void modificar() throws Exception 
+  {
     RecetaDao dao;
 
     try {
@@ -100,5 +100,24 @@ private List<Receta>lstReceta;
       throw e;
     }
 
+  }
+  
+  
+    public void fila(Receta recet) 
+  {
+    RecetaDao dao;
+    Receta temp;
+    try 
+    {
+      dao = new RecetaDao();
+      temp = dao.leerFila(recet);
+      if(temp !=null)
+      {
+          this.receta= temp;
+      }
+    } catch (Exception e) 
+    {
+      System.out.println(e);
+    }
   }
 }

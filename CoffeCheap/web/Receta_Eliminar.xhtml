@@ -8,52 +8,33 @@
     
     <h:body>
         <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content">
-          
-          <f:event type="preRenderView" listener="#{recetaBean.listar()}"/>
-        <h:form class="flip">
-          
-            <p:outputLabel style="color: #oooooo;" value="Lista para elegir el plato a modificar" />          
-         
-        </h:form>
-        <h:form id="otro">
-
-          <!-- Modal -->
-
-          <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:10px 0">          
-              <p:dataTable value="#{recetaBean.lstReceta}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" >
-              
-
-                <p:column width="90">
-                <f:facet name="header">Codigo de Plato</f:facet>
-                <h:inputText value="#{tabla.plato.id_plato}" style="color: #oooooo; width : 60px" />
-                </p:column>
-                <p:column width="90">
-                <f:facet name="header">Codigo de Producto</f:facet>
-                <h:inputText value="#{tabla.producto.id_producto}" style="color: #oooooo; width : 60px" />
-                </p:column>
-                <p:column width="90">
-                <f:facet name="header">Cantidad</f:facet>
-                <h:inputText value="#{tabla.cantidad}" style="color: #oooooo; width : 60px" />
-                </p:column>
-              <p:column width="90">
-                <f:facet name="header">Codigo de Unidad de Medida</f:facet>
-                <h:inputText value="#{tabla.umedida.id_unidad}" style="color: #oooooo; width : 60px" />
-              </p:column>    
-              
-
-                  <p:column width="100">
-                      <h:commandLink value="Eliminar" style="color: #oooooo" actionListener="#{recetaBean.eliminar(tabla)}"/>                    
-              </p:column>                              
-
-            
-           </p:dataTable>
-          </p:panelGrid>        
-
-        </h:form> 
-
-      </ui:define>
-    </ui:composition>
+            <ui:define name="content">
+                <p:growl id="mess"/>
+                <f:event type="preRenderView" listener="#{recetaBean.listar()}"/>
+                <h:form id="tabla">
+                    <p:dataTable var="tabla" value="#{recetaBean.lstReceta}" rows="10" id="tabla1"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <p:column headerText="Codigo de Plato">
+                            <p:outputLabel value="#{tabla.plato.id_plato}" />
+                        </p:column>
+                        <p:column headerText="Codigo de Producto">
+                            <p:outputLabel value="#{tabla.producto.id_producto}"  />
+                        </p:column>
+                        <p:column headerText="Cantidad">
+                            <p:outputLabel value="#{tabla.cantidad}"  />
+                        </p:column>
+                        <p:column headerText="Codigo de Unidad de Medida">
+                            <p:outputLabel value="#{tabla.umedida.id_unidad}" />
+                        </p:column> 
+                        <p:column headerText="Eliminar">
+                            <p:commandButton value="Eliminar" actionListener="#{recetaBean.eliminar(tabla)}"  update="tabla1, mess" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 
