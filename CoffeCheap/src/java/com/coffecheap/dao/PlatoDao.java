@@ -70,18 +70,18 @@ public class PlatoDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM plato;");
+      PreparedStatement st = this.getCon().prepareCall("select id_plato, nombre_platillo,precio_plato,porciones,descripcion_plato,id_tipo from plato");
       rs = st.executeQuery();
       lista = new ArrayList();
       while (rs.next()) {
         Plato plat = new Plato();
 
-        plat.setId_plato(rs.getInt("id_plato"));
-        plat.setNombre(rs.getString("nombre_platillo"));
-        plat.setPrecio(rs.getDouble("precio_plato"));
-        plat.setPorciones(rs.getInt("porciones"));
-        plat.setDescripcion(rs.getString("descripcion_plato"));
-        
+        plat.setId_plato(rs.getInt(1));
+        plat.setNombre(rs.getString(2));
+        plat.setPrecio(rs.getDouble(3));
+        plat.setPorciones(rs.getInt(4));
+        plat.setDescripcion(rs.getString(5));
+        plat.getTipoPlato().setId(rs.getInt(6));
         
         
         lista.add(plat);
@@ -121,20 +121,47 @@ public class PlatoDao extends Dao {
 
   }
 
-  public void eliminar(Plato plat) throws Exception {
-    System.out.println("*******************************************************eliminar dao");
+  public void eliminar(Plato plat) throws Exception 
+  {
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("DELETE FROM plato WHERE id_plato=?;");
       st.setInt(1, plat.getId_plato());
       st.executeUpdate();
 
-    } catch (Exception ex) {
+    } catch (Exception ex) 
+    {
       throw ex;
-    } finally {
+    } finally 
+    {
       this.Desconecar();
-
     }
-
   }
+  
+   public Plato leerFila(Plato plat) throws Exception {
+         Plato plato = null;
+        ResultSet rs;
+
+        try {
+            this.Conectar();
+            PreparedStatement ps = getCon().prepareStatement("select id_plato, nombre_platillo,precio_plato,porciones,descripcion_plato,id_tipo from plato where id_plato=?");
+            ps.setInt(1, plat.getId_plato());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                plato = new Plato();
+                plato.setId_plato(rs.getInt(1));
+                plato.setNombre(rs.getString(2));
+                plato.setPrecio(rs.getDouble(3));
+                plato.setPorciones(rs.getInt(4));
+                plato.setDescripcion(rs.getString(5));
+                plato.getTipoPlato().setId(rs.getInt(6));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            this.Desconecar();
+        }
+        return plato;
+    }
 }

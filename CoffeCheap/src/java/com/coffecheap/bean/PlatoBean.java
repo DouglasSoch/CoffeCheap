@@ -59,77 +59,83 @@ List<Tipo_plato> lstTPlato = new ArrayList();
     public void setLstPlato(List<Plato> lstPlato) {
         this.lstPlato = lstPlato;
     }
-
-
-
-
-    public void registrar() {
-
-    System.out.println("*******************************************************registrar");
-
+    public void registrar() 
+    {
     PlatoDao dao;
-
-    try {
+    try 
+    {
       dao = new PlatoDao();
       dao.registrar(plato);
-    } catch (Exception e) {
+    } catch (Exception e) 
+    {
       System.out.println(e);
     }
-
   }
-
+       public void fila(Plato plato) 
+  {
+    PlatoDao dao;
+    Plato temp;
+    try 
+    {
+      dao = new PlatoDao();
+      temp = dao.leerFila(plato);
+      if(temp !=null)
+      {
+          this.plato= temp;
+      }
+    } catch (Exception e) 
+    {
+      System.out.println(e);
+    }
+  }
   public void listar() throws Exception {
     PlatoDao dao;
-
-    try {
+    try 
+    {
       dao = new PlatoDao();
       lstPlato = dao.listar();
-    } catch (Exception e) {
+    } catch (Exception e) 
+    {
       throw e;
     }
-
   }
-
     public void listarTPlatp() throws Exception {
     PlatoDao dao;
-
-    try {
+    try 
+    {
       dao = new PlatoDao();
       lstTPlato = dao.listarTipoPlato();
-    } catch (Exception e) {
+    } catch (Exception e) 
+    {
       throw e;
     }
 
   }
-  
-  public void modificar(Plato plat) throws Exception {
-    System.out.println("*******************************************************Modificar");
+  public void modificar() throws Exception 
+  {
     PlatoDao dao;
-
-    try {
+    try 
+    {
       dao = new PlatoDao();
-      dao.modificar(plat);
+      dao.modificar(plato);
 
-    } catch (Exception e) {
+    } catch (Exception e) 
+    {
       throw e;
     }
 
   }
-
-
-  public void eliminar(Plato plat) throws Exception {
-    System.out.println("*******************************************************eliminar");
+  public void eliminar(Plato plat) throws Exception 
+  {
     PlatoDao dao;
-
-    try {
+    try 
+    {
       dao = new PlatoDao();
       dao.eliminar(plat);
 
-    } catch (Exception e) {
+    } catch (Exception e) 
+    {
       throw e;
     }
-
   }
-    
-    
 }

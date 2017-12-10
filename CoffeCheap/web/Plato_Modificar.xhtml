@@ -6,58 +6,64 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
     <h:body class="ui-g">
         <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content">
-          
-          <f:event type="preRenderView" listener="#{platoBean.listar()}"/>
-        <h:form class="flip">
-          
-            <p:outputLabel value="Lista para elegir el plato a modificar" />          
-         
-        </h:form>
-        <h:form id="otro">
+            <ui:define name="content">
+                <p:growl id="mess"/>
+                <f:event type="preRenderView" listener="#{platoBean.listar()}"/>
+                <f:event type="preRenderView" listener="#{platoBean.listarTPlatp()}"/>
+                
+                <h:form id="tabla">
+                    <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:10px 0">          
+                        <p:dataTable value="#{platoBean.lstPlato}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true"  id="tabla1">
+                            <p:column headerText="Nombre">
+                                <p:outputLabel value="#{tabla.nombre}"  />
+                            </p:column>
+                            <p:column headerText="Precio">
+                                <p:outputLabel value="#{tabla.precio}"  />
+                            </p:column>
+                            <p:column headerText="Porciones">
+                                <p:outputLabel value="#{tabla.porciones}"  />
+                            </p:column>    
+                            <p:column headerText="Descripcion">
+                                <p:outputLabel value="#{tabla.descripcion}" />
+                            </p:column>   
+                            <p:column headerText="Tipo de Plato">
+                                <p:outputLabel value="#{tabla.tipoPlato.id}" />
+                            </p:column> 
+                            <p:column width="100">
+                                <p:commandButton value="Modificar"  actionListener="#{platoBean.fila(tabla)}" oncomplete="PF('diag').show();" update=":dlgDatos" />                    
+                            </p:column>                              
+                        </p:dataTable>
+                    </p:panelGrid>        
+                </h:form> 
 
-          <!-- Modal -->
+                <p:dialog header="Datos" widgetVar="diag" id="dlgDatos">
+                    <h:form>
+                        <h:panelGrid columns="2" cellpadding="5" border="1">
 
-          <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:10px 0">          
-              <p:dataTable value="#{platoBean.lstPlato}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" >
-              
+                            <p:outputLabel value="Nombre del platillo" />
+                            <p:autoComplete id="nombre" value="#{platoBean.plato.nombre}"/>
 
-                <p:column width="90">
-                <f:facet name="header">Codigo del platillo</f:facet>
-                <h:inputText value="#{tabla.id_plato}" style=" width : 30px" />
-                </p:column>
-                <p:column width="200">
-                <f:facet name="header">Nombre del platillo</f:facet>
-                <h:inputText value="#{tabla.nombre}" style=" width : 200px" />
-                </p:column>
-                <p:column width="90">
-                <f:facet name="header">Precio del platillo</f:facet>
-                <h:inputText value="#{tabla.precio}" style=" width : 60px" />
-                </p:column>
-              <p:column width="90">
-                <f:facet name="header">Porciones</f:facet>
-                <h:inputText value="#{tabla.porciones}" style=" width : 60px" />
-              </p:column>    
-              <p:column width="400">
-                <f:facet name="header">Descripcion del platillo</f:facet>
-                <h:inputText value="#{tabla.descripcion}" style=" width : 400px" />
-              </p:column>    
+                            <p:outputLabel value="Precio del platillo" />
+                            <p:autoComplete id="precio" value="#{platoBean.plato.precio}"/>
 
-                  <p:column width="100">
-                  <h:commandLink value="Modificar"  actionListener="#{platoBean.modificar(tabla)}"/>                    
-              </p:column>                              
+                            <p:outputLabel value="Porciones" />
+                            <p:autoComplete id="porcion" value="#{platoBean.plato.porciones}"/>
 
-            
-           </p:dataTable>
-          </p:panelGrid>        
-
-        </h:form> 
-
-      </ui:define>
-    </ui:composition>
+                            <p:outputLabel  value="Descripcion del plato" />
+                            <p:autoComplete id="descripcion" value="#{platoBean.plato.descripcion}"/>
+                            <p:outputLabel value="tipo de plato  "/>
+                            <p:selectOneMenu  value="#{platoBean.plato.tipoPlato.id}">
+                                            <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                            <f:selectItems value="#{platoBean.lstTPlato}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id}" />
+                            </p:selectOneMenu>
+                        </h:panelGrid>  
+                        <p:commandButton value="Modificar" actionListener="#{platoBean.modificar()}" update="mess, tabla:tabla1" oncomplete="PF('diag').hide();" />
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

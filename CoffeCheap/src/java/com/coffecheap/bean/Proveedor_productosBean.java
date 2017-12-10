@@ -90,12 +90,6 @@ public class Proveedor_productosBean
   {
     Proveedor_productosDao dao;
     Proveedor_productos temp;
-    System.out.println("el id del proveedor "+prod.getProveedor().getId_proveedor());
-      System.out.println("el proveedor "+prod.getProveedor().getNombre());
-      System.out.println("el id del producto "+prod.getProducto().getId_producto());
-      System.out.println("el producto "+prod.getProducto().getNombre());
-      System.out.println("el precio "+prod.getPrecio());
-      
     try 
     {
       dao = new Proveedor_productosDao();
@@ -104,7 +98,6 @@ public class Proveedor_productosBean
       {
           this.proveedor_productos= temp;
       }
-      
     } catch (Exception e) 
     {
       System.out.println(e);
