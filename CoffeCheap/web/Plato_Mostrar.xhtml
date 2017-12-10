@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+                <p:growl id="mess"/>
+                <f:event type="preRenderView" listener="#{platoBean.listar()}"/>              
+                <h:form id="tabla">
+                    <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:10px 0">          
+                        <p:dataTable value="#{platoBean.lstPlato}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true"  id="tabla1">
+                            <p:column headerText="Nombre" filterBy="#{tabla.nombre}" filterMatchMode="contains">
+                                <p:outputLabel value="#{tabla.nombre}"  />
+                            </p:column>
+                            <p:column headerText="Precio">
+                                <p:outputLabel value="#{tabla.precio}"  />
+                            </p:column>
+                            <p:column headerText="Porciones">
+                                <p:outputLabel value="#{tabla.porciones}"  />
+                            </p:column>    
+                            <p:column headerText="Descripcion">
+                                <p:outputLabel value="#{tabla.descripcion}" />
+                            </p:column>   
+                            <p:column headerText="Tipo de Plato">
+                                <p:outputLabel value="#{tabla.tipoPlato.id}" />
+                            </p:column>                              
+                        </p:dataTable>
+                    </p:panelGrid>        
+                </h:form> 
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
