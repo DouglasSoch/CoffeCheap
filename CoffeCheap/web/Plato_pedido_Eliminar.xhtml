@@ -15,10 +15,7 @@
       <ui:define name="content">
 
         <f:event type="preRenderView" listener="#{plato_pedidoBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{pedidoBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{platoBean.listar()}"/>        
-        <f:event type="preRenderView" listener="#{usuarioBean.listarMe()}"/>
+     
         <h:form class="flip">
 
           <p:outputLabel style="color: #oooooo;" value="Lista para escoger el pedido a eliminar" />          
@@ -26,50 +23,45 @@
         </h:form>
         <h:form id="otro">
 
-          <!-- Modal -->
+          
 
           <p:panelGrid id="display1" columns="4" columnClasses="label,value" style="margin:10px 0">          
-            <p:dataTable value="#{plato_pedidoBean.lstPlapedido}" var="tabla" paginator="true" rows="10" styleClass="paginated" resizableColumns="true">
+              <p:dataTable value="#{plato_pedidoBean.lstPlapedido}" var="tabla" paginator="true" rows="10" styleClass="paginated" resizableColumns="true" id="tabla1">
 
-              <p:column style="width: 90px">
-                <f:facet name="header">Id Plato Pedido</f:facet>
-                <h:inputText value="#{tabla.id_plato_pedido}" style="color: #oooooo; width: 70px;" />
+                <p:column headerText="Id Plato Pedido">
+                
+                <p:outputLabel value="#{tabla.id_plato_pedido}" style="color: #oooooo; width: 70px;" />
               </p:column>
 
-              <p:column style="width: 160px"> 
-                <f:facet name="header">Plato</f:facet>               
-                <p:selectOneMenu id="lisx" value="#{tabla.plato.id_plato}" style="width: 140px"> 
-                  <f:selectItems value="#{platoBean.lstPlato}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_plato}"/>                        
-                </p:selectOneMenu>
+                <p:column headerText="Cantidad"> 
+                
+                    <p:outputLabel value="#{tabla.cantidad}"  />
               </p:column>
 
-              <p:column style="width: 120px">                
-                <f:facet name="header">Cantidad</f:facet>
-                <h:inputText value="#{tabla.cantidad}" style="color: #oooooo; width: 100px" />
+                <p:column headerText="Cantidad">                
+                
+                <p:outputLabel value="#{tabla.cantidad}"  />
               </p:column>
 
-              <p:column style="width: 120px">               
-                <f:facet name="header">Personal</f:facet>               
-                <p:selectOneMenu id="lis1" value="#{tabla.usuario.id}" style="width: 100px"> 
-                  <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
-                  <p:ajax event="change" update="@this" />      
-                </p:selectOneMenu>  
+                <p:column headerText="Personal">               
+                
+                
+                    <p:outputLabel value="#{tabla.usuario.id}" />      
+                  
               </p:column> 
-              <p:column style="width: 120px">               
-                <f:facet name="header">Id Pedido</f:facet>               
-                <p:selectOneMenu id="lis2" value="#{tabla.pedido.id_pedido}" style="width: 100px"> 
-                  <f:selectItems value="#{pedidoBean.lstPedido}" var="tip" itemLabel="#{tip.id_pedido}" itemValue="#{tip.id_pedido}"/>      
-                  <p:ajax event="change" update="@this" />      
-                </p:selectOneMenu>  
+                <p:column headerText="Id Pedido">               
+                
+                
+                    <p:outputLabel value="#{tabla.pedido.id_pedido}" />      
               </p:column>
 
-              <p:column style="width: 120px">                
-                <f:facet name="header">Precio</f:facet>
-                <h:inputText value="#{tabla.precio}" style="color: #oooooo; width: 100px" />
+                <p:column headerText="Precio">                
+                
+                <p:outputLabel value="#{tabla.precio}" style="color: #oooooo; width: 100px" />
               </p:column>
 
               <p:column style="width: 100px">
-                <h:commandLink value="Eliminar" style="color: #oooooo; width: 100px" actionListener="#{plato_pedidoBean.eliminar(tabla)}"/>                    
+                  <p:commandButton value="Eliminar" actionListener="#{plato_pedidoBean.eliminar(tabla)}" update="tabla1"/>                    
               </p:column>                              
 
             </p:dataTable>

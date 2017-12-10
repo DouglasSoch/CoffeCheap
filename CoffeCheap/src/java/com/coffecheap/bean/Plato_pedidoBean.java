@@ -100,17 +100,16 @@ public class Plato_pedidoBean
     }
 
   }
-
-
-  public void eliminar(Plato_pedido plapedido) throws Exception {
-    System.out.println("*******************************************************eliminar");
+  public void eliminar(Plato_pedido plapedido) throws Exception 
+  {
     Plato_pedidoDao dao;
-
-    try {
+    try 
+    {
       dao = new Plato_pedidoDao();
       dao.eliminar(plapedido);
-
-    } catch (Exception e) {
+    }
+    catch (Exception e) 
+    {
       throw e;
     }
 
