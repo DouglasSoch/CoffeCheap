@@ -23,35 +23,27 @@
           <!-- Modal -->
 
            <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:10px 0">          
-              <p:dataTable value="#{platoBean.lstPlato}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true">
+               <p:dataTable value="#{platoBean.lstPlato}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" id="tabla">
               
 
-                <p:column >
-                <f:facet name="header">Codigo del platillo</f:facet>
-                <h:inputText value="#{tabla.id_plato}" style="color: #oooooo; " />
+                  <p:column headerText="Nombre del platillo">
+                <p:outputLabel value="#{tabla.nombre}"  />
                 </p:column>
-                <p:column >
-                <f:facet name="header">Nombre del platillo</f:facet>
-                <h:inputText value="#{tabla.nombre}" style="color: #oooooo;  " />
+                  <p:column headerText="Precio del platillo">
+                <p:outputLabel value="#{tabla.precio}"  />
                 </p:column>
-                <p:column >
-                <f:facet name="header">Precio del platillo</f:facet>
-                <h:inputText value="#{tabla.precio}" style="color: #oooooo; " />
-                </p:column>
-              <p:column >
-                <f:facet name="header">Porciones</f:facet>
-                <h:inputText value="#{tabla.porciones}" style="color: #oooooo; " />
+                  <p:column headerText="Porciones">
+                <p:outputLabel value="#{tabla.porciones}"  />
               </p:column>    
-              <p:column >
-                <f:facet name="header">Descripcion del platillo</f:facet>
-                <h:inputText value="#{tabla.descripcion}" style="color: #oooooo;  " />
+                  <p:column headerText="Descripcion del platillo">
+                <p:outputLabel value="#{tabla.descripcion}"  />
               </p:column>    
-
+                  <p:column headerText="Tipo de plato">
+                      <p:outputLabel value="#{tabla.tipoPlato.id}"  />
+              </p:column>
                   <p:column >
-                      <h:commandLink value="Eliminar" style="color: #oooooo" actionListener="#{platoBean.eliminar(tabla)}"/>                    
+                      <p:commandButton value="Eliminar" update="tabla" actionListener="#{platoBean.eliminar(tabla)}"/>                    
               </p:column>                              
-
-            
            </p:dataTable>
           </p:panelGrid>        
 
