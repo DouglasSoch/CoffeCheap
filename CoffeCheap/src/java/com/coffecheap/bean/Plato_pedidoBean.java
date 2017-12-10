@@ -8,15 +8,22 @@ package com.coffecheap.bean;
 import com.coffecheap.dao.Plato_pedidoDao;
 import com.coffecheap.modelo.Plato_pedido;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 
 @Named(value = "plato_pedidoBean")
 @ManagedBean
 @ViewScoped
-public class Plato_pedidoBean {
+public class Plato_pedidoBean 
+{
+       static public void addMessage(String summary) {
+    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+    FacesContext.getCurrentInstance().addMessage(null, message);
+  }
     private Plato_pedido plapedido = new Plato_pedido();
     private List<Plato_pedido>lstPlapedido;
 
@@ -36,16 +43,15 @@ public class Plato_pedidoBean {
         this.lstPlapedido = lstPlapedido;
     }
     
-    public void registrar() {
-
-    System.out.println("*******************************************************registrar");
-
+    public void registrar() 
+    {
     Plato_pedidoDao dao;
-
-    try {
+    try 
+    {
       dao = new Plato_pedidoDao();
       dao.registrar(plapedido);
-    } catch (Exception e) {
+    } catch (Exception e) 
+    {
       System.out.println(e);
     }
 

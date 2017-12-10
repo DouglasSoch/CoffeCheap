@@ -13,7 +13,7 @@
     <h:body class="ui-g">
         <ui:composition template="./WEB-INF/template/Template.xhtml">
             <ui:define name="content">
-
+            <p:growl id="mess"/>
                 <f:event type="preRenderView" listener="#{plato_pedidoBean.listar()}"/>
         <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
         <f:event type="preRenderView" listener="#{pedidoBean.listar()}"/>
@@ -24,11 +24,11 @@
 
                     <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
 
-                            <p:outputLabel value="id__Plato_pedido" />                            
-                            <h:inputText value="#{plato_pedidoBean.plapedido.id_plato_pedido}" style="color: #oooooo;" />
+
                        
                             <p:outputLabel value="Plato" />                                        
                             <p:selectOneMenu id="lisx" value="#{plato_pedidoBean.plapedido.plato.id_plato}"  > 
+                                 <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                                 <f:selectItems value="#{platoBean.lstPlato}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_plato}"/>                        
                             </p:selectOneMenu>
                        
@@ -38,14 +38,14 @@
                         
                             <p:outputLabel value="Personal" />                          
                             <p:selectOneMenu id="lis1" value="#{plato_pedidoBean.plapedido.usuario.id}"  > 
-                                <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
-                                <p:ajax event="change" update="@this" />      
+                                 <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>         
                             </p:selectOneMenu>  
                                                
                             <p:outputLabel value="ID Pedido" />                          
                             <p:selectOneMenu id="lis2" value="#{plato_pedidoBean.plapedido.pedido.id_pedido}"> 
-                                <f:selectItems value="#{pedidoBean.lstPedido}" var="tip" itemLabel="#{tip.id_pedido}" itemValue="#{tip.id_pedido}"/>      
-                                <p:ajax event="change" update="@this" />      
+                                 <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                <f:selectItems value="#{pedidoBean.lstPedido}" var="tip" itemLabel="#{tip.id_pedido}" itemValue="#{tip.id_pedido}"/>         
                             </p:selectOneMenu>  
                        
                             <p:outputLabel value="Precio" />         
@@ -53,17 +53,8 @@
                        
 
                     </h:panelGrid>
-                    <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{plato_pedidoBean.registrar()}"/>
+                    <p:commandButton value="Guardar" update="mess" actionListener="#{plato_pedidoBean.registrar()}"/>
 
-                    <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
-                        <p:panelGrid id="display" columns="2" columnClasses="label,value">
-
-                            <h:outputText value="Codigo Trasaccion" />
-                            <h:outputText id="CodigV" value="#{plato_pedidoBean.plapedido.pedido.id_pedido}" />                         
-
-
-                        </p:panelGrid>
-                    </p:dialog>
 
                 </h:form>
 

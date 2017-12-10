@@ -24,6 +24,7 @@
                 </p:selectOneMenu>
                 <p:outputLabel value="Producto"/>
                 <p:selectOneMenu  value="#{proveedor_productosBean.proveedor_productos.producto.id_producto}">
+                     <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                                 <f:selectItems value="#{proveedor_productosBean.lstProducto}" var="listaP" itemLabel="#{listaP.nombre}" itemValue="#{listaP.id_producto}" />
                 </p:selectOneMenu>
                 <p:outputLabel value="Precio"/>

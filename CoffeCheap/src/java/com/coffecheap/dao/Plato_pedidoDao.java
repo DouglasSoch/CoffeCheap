@@ -6,6 +6,7 @@
 package com.coffecheap.dao;
 
 
+import com.coffecheap.bean.Plato_pedidoBean;
 import com.coffecheap.modelo.Plato_pedido;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,16 +22,14 @@ public class Plato_pedidoDao extends Dao{
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into plato_pedido values(?,?,?,?,?,?);");
-      st.setInt(1, ppedido.getId_plato_pedido());
-      st.setInt(2, ppedido.getPlato().getId_plato());
-      st.setInt(3, ppedido.getCantidad());
-      st.setInt(4, ppedido.getUsuario().getId());
-      st.setInt(5, ppedido.getPedido().getId_pedido());
-      st.setDouble(6, ppedido.getPrecio());
-      
+      PreparedStatement st = this.getCon().prepareStatement("insert into plato_pedido(id_plato,cantidad,id_personal,id_pedido,precio) values(?,?,?,?,?)");
+      st.setInt(1, ppedido.getPlato().getId_plato());
+      st.setInt(2, ppedido.getCantidad());
+      st.setInt(3, ppedido.getUsuario().getId());
+      st.setInt(4, ppedido.getPedido().getId_pedido());
+      st.setDouble(5, ppedido.getPrecio());
       st.executeUpdate();
-
+      Plato_pedidoBean.addMessage("Accion Completada");
     } catch (Exception ex) {
       throw ex;
     } finally {
