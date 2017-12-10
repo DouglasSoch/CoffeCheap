@@ -5,58 +5,62 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    
+
     <h:body>
-        <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content">
-          
-          <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
-        <h:form class="flip">
-          
-            <p:outputLabel style="color: #oooooo;" value="Lista para elegir el plato a modificar" />          
-         
+       <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+                <p:growl id="mess"/>
+         <f:event type="preRenderView" listener="#{tipo_productoBean.listar()}"/>
+                <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
+                <f:event type="preRenderView" listener="#{unidad_medidaBean.listar()}"/>
+        <h:form id="tabla">
+            <p:dataTable var="tabla" value="#{productoBean.lstProducto}" rows="10" id="tabla1"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+               <p:column headerText="Codigo de Producto">
+                            <p:outputLabel value="#{tabla.id_producto}"/>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <p:outputLabel value="#{tabla.nombre}"  />
+                        </p:column>
+                        <p:column headerText="Cantidad">
+                            <p:outputLabel value="#{tabla.cantidad}" />
+                        </p:column>
+                        <p:column headerText="Codigo de Unidad de Medida">
+                            <p:outputLabel value="#{tabla.umedida.id_unidad}" />
+                        </p:column>    
+                        <p:column headerText="Codigo de tipo de producto">
+                            <p:outputLabel value="#{tabla.tproducto.id_tipo}"  />
+                        </p:column>                      
+                <p:column headerText="Modificar">
+                    <p:commandButton value="Modificar" actionListener="#{productoBean.fila(tabla)}" oncomplete="PF('diag').show();" update=":dlgDatos" />
+                </p:column>
+            </p:dataTable>
         </h:form>
-        <h:form id="otro">
-
-          <!-- Modal -->
-
-          <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:10px 0">          
-              <p:dataTable value="#{productoBean.lstProducto}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" >
-              
-
-                <p:column width="90">
-                <f:facet name="header">Codigo de Producto</f:facet>
-                <h:inputText value="#{tabla.id_producto}" style="color: #oooooo; width : 60px" />
-                </p:column>
-                <p:column width="200">
-                <f:facet name="header">Nombre</f:facet>
-                <h:inputText value="#{tabla.nombre}" style="color: #oooooo; width : 200px" />
-                </p:column>
-                <p:column width="90">
-                <f:facet name="header">Cantidad</f:facet>
-                <h:inputText value="#{tabla.existencia}" style="color: #oooooo; width : 60px" />
-                </p:column>
-                <p:column width="90">
-                <f:facet name="header">Codigo de Unidad de Medida</f:facet>
-                <h:inputText value="#{tabla.umedida.id_unidad}" style="color: #oooooo; width : 60px" />
-                </p:column>    
-                <p:column width="90">
-                <f:facet name="header">Codigo de tipo de producto</f:facet>
-                <h:inputText value="#{tabla.tproducto.id_tipo}" style="color: #oooooo; width : 60px" />
-                </p:column> 
-
-                  <p:column width="100">
-                      <h:commandLink value="Modificar" style="color: #oooooo" actionListener="#{productoBean.modificar(tabla)}"/>                    
-              </p:column>                              
-
-            
-           </p:dataTable>
-          </p:panelGrid>        
-
-        </h:form> 
-
-      </ui:define>
-    </ui:composition>
+        <p:dialog header="Datos" widgetVar="diag" id="dlgDatos">
+            <h:form>
+                <h:panelGrid id="desplegar1" columns="2" cellpadding="3" border="1">
+                <p:outputLabel for="nombre" value="Nombre de producto"/>
+                            <p:inputText id="nombre" value="#{productoBean.producto.nombre}"/>
+                            <p:outputLabel for="existencia" value="Existencia"/>
+                            <p:inputText id="existencia" value="#{productoBean.producto.cantidad}" />
+                            <p:outputLabel for="unidadmedida" value="Unidad de Medida"/>
+                            <p:selectOneMenu id="unidadmedida" value="#{productoBean.producto.umedida.id_unidad}">
+                                <f:selectItem itemLabel="Unidad Medida"/>
+                                <f:selectItems value="#{unidad_medidaBean.lstUnidad_medida}" var="listaa" itemLabel="#{listaa.nombre}" itemValue="#{listaa.id_unidad}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel for="tipoproducto" value="Tipo de producto"/>
+                            <p:selectOneMenu id="tipoproducto" value="#{productoBean.producto.tproducto.id_tipo}">
+                                <f:selectItem itemLabel="Tipo de Producto"/>
+                                <f:selectItems value="#{tipo_productoBean.lstTipo_producto}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_tipo}"/>
+                            </p:selectOneMenu>    
+                </h:panelGrid>
+                <p:commandButton value="Modificar" actionListener="#{productoBean.modificar()}" update=":tabla:tabla1 , mess" oncomplete="PF('diag').hide();" />
+            </h:form>
+        </p:dialog>
+         </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

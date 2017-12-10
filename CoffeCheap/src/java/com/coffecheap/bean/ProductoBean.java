@@ -84,13 +84,13 @@ public class ProductoBean
     }
 
   }
-  public void modificar(Producto prod) throws Exception {
+  public void modificar() throws Exception {
     
     ProductoDao dao;
 
     try {
       dao = new ProductoDao();
-      dao.modificar(prod);
+      dao.modificar(producto);
 
     } catch (Exception e) {
       throw e;
@@ -112,4 +112,23 @@ public class ProductoBean
     }
 
   }
+  
+  public void fila(Producto pro) 
+  {
+    ProductoDao dao;
+    Producto temp;
+    try 
+    {
+      dao = new ProductoDao();
+      temp = dao.leerFila(pro);
+      if(temp !=null)
+      {
+          this.producto= temp;
+      }
+    } catch (Exception e) 
+    {
+      System.out.println(e);
+    }
+  }
+
 }

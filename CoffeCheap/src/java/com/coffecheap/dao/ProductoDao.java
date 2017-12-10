@@ -106,17 +106,17 @@ public class ProductoDao extends Dao
 
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareCall("SELECT *FROM producto");
+            PreparedStatement st = this.getCon().prepareCall("select id_producto,nombre_producto,existencia,id_unidad,id_tipos from producto");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 Producto prod = new Producto();
 
-                prod.setId_producto(rs.getInt("id_producto"));
-                prod.setNombre(rs.getString("nombre_producto"));
-                prod.setExistencia(rs.getInt("existencia"));
-                prod.getUmedida().setId_unidad(rs.getInt("id_unidad"));
-                prod.getTproducto().setId_tipo(rs.getInt("id_tipos"));
+                prod.setId_producto(rs.getInt(1));
+                prod.setNombre(rs.getString(2));
+                prod.setCantidad(rs.getInt(3));
+                prod.getUmedida().setId_unidad(rs.getInt(4));
+                prod.getTproducto().setId_tipo(rs.getInt(5));
 
                 lista.add(prod);
             }
@@ -131,21 +131,19 @@ public class ProductoDao extends Dao
 
     }
 
-    public void modificar(Producto prod
-    ) throws Exception {
-        System.out.println("*******************************************************modificar dao");
-        try {
+    public void modificar(Producto prod) throws Exception 
+    {
+        try 
+        {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("UPDATE  producto SET id_producto=?, nombre_producto=?, existencia=?, id_unidad=?, id_tipos=? WHERE id_producto=?;");
-
+            PreparedStatement st = this.getCon().prepareStatement("UPDATE  producto SET  nombre_producto=?, existencia=?, id_unidad=?, id_tipos=? WHERE id_producto=?");
             st.setInt(1, prod.getId_producto());
-            st.setString(2, prod.getNombre());
-            st.setInt(3, prod.getExistencia());
-            st.setInt(4, prod.getUmedida().getId_unidad());
-            st.setInt(5, prod.getTproducto().getId_tipo());
-            st.setInt(6, prod.getId_producto());
+            st.setInt(2, prod.getCantidad());
+            st.setInt(3, prod.getUmedida().getId_unidad());
+            st.setInt(4, prod.getTproducto().getId_tipo());
+            st.setInt(5, prod.getId_producto());
             st.executeUpdate();
-
+            ProductoBean.addMessage("Accion Completada");
         } catch (Exception ex) {
             throw ex;
         } finally {
@@ -155,14 +153,14 @@ public class ProductoDao extends Dao
 
     }
 
-    public void eliminar(Producto prod) throws Exception {
-        System.out.println("*******************************************************eliminar dao");
+    public void eliminar(Producto prod) throws Exception 
+    {
         try {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("DELETE FROM producto WHERE id_producto=?;");
             st.setInt(1, prod.getId_producto());
             st.executeUpdate();
-
+            ProductoBean.addMessage("Accion Completada");
         } catch (Exception ex) {
             throw ex;
         } finally {
@@ -170,5 +168,31 @@ public class ProductoDao extends Dao
 
         }
 
+    }
+    
+     public Producto leerFila(Producto pro) throws Exception {
+        Producto proo = null;
+        ResultSet rs;
+
+        try {
+            this.Conectar();
+            PreparedStatement ps = getCon().prepareStatement("select id_producto,nombre_producto,existencia,id_unidad,id_tipos from producto where id_producto=?");
+            ps.setInt(1, pro.getId_producto());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                proo = new Producto();
+                proo.setId_producto(rs.getInt(1));
+                proo.setNombre(rs.getString(2));
+                proo.setCantidad(rs.getInt(3));
+                proo.getUmedida().setId_unidad(rs.getInt(4));
+                proo.getTproducto().setId_tipo(rs.getInt(5));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            this.Desconecar();
+        }
+        return proo;
     }
 }

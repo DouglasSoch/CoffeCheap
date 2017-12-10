@@ -8,55 +8,38 @@
     
     <h:body>
         <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content">
-          
-          <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
-        <h:form class="flip">
-          
-            <p:outputLabel style="color: #oooooo;" value="Lista para elegir el plato a modificar" />          
-         
+            <ui:define name="content">
+                <p:growl id="mess"/>
+         <f:event type="preRenderView" listener="#{tipo_productoBean.listar()}"/>
+                <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
+                <f:event type="preRenderView" listener="#{unidad_medidaBean.listar()}"/>
+        <h:form id="tabla">
+            <p:dataTable var="tabla" value="#{productoBean.lstProducto}" rows="10" id="tabla1"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+               <p:column headerText="Codigo de Producto">
+                            <p:outputLabel value="#{tabla.id_producto}"/>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <p:outputLabel value="#{tabla.nombre}"  />
+                        </p:column>
+                        <p:column headerText="Cantidad">
+                            <p:outputLabel value="#{tabla.cantidad}" />
+                        </p:column>
+                        <p:column headerText="Codigo de Unidad de Medida">
+                            <p:outputLabel value="#{tabla.umedida.id_unidad}" />
+                        </p:column>    
+                        <p:column headerText="Codigo de tipo de producto">
+                            <p:outputLabel value="#{tabla.tproducto.id_tipo}"  />
+                        </p:column>                      
+                <p:column headerText="Eliminar">
+                    <p:commandButton value="Eliminar" actionListener="#{productoBean.eliminar(tabla)}"  update="tabla1, mess" />
+                </p:column>
+            </p:dataTable>
         </h:form>
-        <h:form id="otro">
-
-          <!-- Modal -->
-
-          <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:10px 0">          
-              <p:dataTable value="#{productoBean.lstProducto}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" >
-              
-
-                <p:column width="90">
-                <f:facet name="header">Codigo de Producto</f:facet>
-                <h:inputText value="#{tabla.id_producto}" style="color: #oooooo; width : 60px" />
-                </p:column>
-                <p:column width="200">
-                <f:facet name="header">Nombre</f:facet>
-                <h:inputText value="#{tabla.nombre}" style="color: #oooooo; width : 200px" />
-                </p:column>
-                <p:column width="90">
-                <f:facet name="header">Cantidad</f:facet>
-                <h:inputText value="#{tabla.existencia}" style="color: #oooooo; width : 60px" />
-                </p:column>
-                <p:column width="90">
-                <f:facet name="header">Codigo de Unidad de Medida</f:facet>
-                <h:inputText value="#{tabla.umedida.id_unidad}" style="color: #oooooo; width : 60px" />
-                </p:column>    
-                <p:column width="90">
-                <f:facet name="header">Codigo de tipo de producto</f:facet>
-                <h:inputText value="#{tabla.tproducto.id_tipo}" style="color: #oooooo; width : 60px" />
-                </p:column> 
-
-                  <p:column width="100">
-                      <h:commandLink value="Eliminar" style="color: #oooooo" actionListener="#{productoBean.eliminar(tabla)}"/>                    
-              </p:column>                              
-
-            
-           </p:dataTable>
-          </p:panelGrid>        
-
-        </h:form> 
-
-      </ui:define>
-    </ui:composition>
+         </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 
