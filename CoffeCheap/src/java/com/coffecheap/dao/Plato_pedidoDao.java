@@ -45,20 +45,18 @@ public class Plato_pedidoDao extends Dao{
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM plato_pedido;");
+      PreparedStatement st = this.getCon().prepareCall("select id_plato_pedido,id_plato,cantidad,id_personal,id_pedido,precio  from plato_pedido");
       rs = st.executeQuery();
       lista = new ArrayList();
       while (rs.next()) {
         Plato_pedido ppedido = new Plato_pedido();
 
-        ppedido.setId_plato_pedido(rs.getInt("id_plato_pedido"));
-        ppedido.getPlato().setId_plato(rs.getInt("id_plato"));
-        ppedido.setCantidad(rs.getInt("cantidad"));
-        ppedido.getUsuario().setId(rs.getInt("id_personal"));
-        ppedido.getPedido().setId_pedido(rs.getInt("id_pedido"));
-        ppedido.setPrecio(rs.getDouble("precio"));
-        
-        
+        ppedido.setId_plato_pedido(rs.getInt(1));
+        ppedido.getPlato().setId_plato(rs.getInt(2));
+        ppedido.setCantidad(rs.getInt(3));
+        ppedido.getUsuario().setId(rs.getInt(4));
+        ppedido.getPedido().setId_pedido(rs.getInt(5));
+        ppedido.setPrecio(rs.getDouble(6));  
         lista.add(ppedido);
       }
 
