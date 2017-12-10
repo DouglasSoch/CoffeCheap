@@ -1,41 +1,48 @@
 package com.coffecheap.modelo;
 
 import java.sql.Time;
+import java.util.Date;
 import java.util.Objects;
 
 public class Pedido 
 {
-    int id_pedido = 0;
+    int id_pedido=0;
     Mesa mesa = new Mesa(); 
     Time hora = null;
-    Usuario usuario= new Usuario();
+    Usuario usuario = new Usuario();
+    int cancelado=0;
+    Date fecha= null;
 
     public Pedido() {
     }
 
-    
-    
-    public Pedido(int id_pedido) {
+    public Pedido(int id_pedido, Mesa mesa, Time hora, Usuario usuario, int cancelado, Date fecha) {
         this.id_pedido = id_pedido;
-    }
-
-    public Pedido(Mesa mesa) {
         this.mesa = mesa;
+        this.hora = hora;
+        this.usuario = usuario;
+        this.cancelado = cancelado;
+        this.fecha = fecha;
     }
 
-    public Pedido(Time hora) {
-        this.hora = hora;
+    public Pedido(Date fecha) {
+        this.fecha = fecha;
     }
 
     public Pedido(Usuario usuario) {
         this.usuario = usuario;
     }
 
-    public Pedido(int id_pedido, Mesa mesa, Time hora, Usuario usuario) {
-        this.id_pedido = id_pedido;
-        this.mesa = mesa;
+    public Pedido(Time hora) {
         this.hora = hora;
-        this.usuario = usuario;
+    }
+
+    public Pedido(int id_pedido) {
+        this.id_pedido = id_pedido;
+    }
+
+    public Pedido(Mesa mesa) {
+        this.mesa = mesa;
     }
 
     
@@ -72,13 +79,31 @@ public class Pedido
         this.usuario = usuario;
     }
 
+    public int getCancelado() {
+        return cancelado;
+    }
+
+    public void setCancelado(int cancelado) {
+        this.cancelado = cancelado;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + this.id_pedido;
-        hash = 89 * hash + Objects.hashCode(this.mesa);
-        hash = 89 * hash + Objects.hashCode(this.hora);
-        hash = 89 * hash + Objects.hashCode(this.usuario);
+        int hash = 7;
+        hash = 47 * hash + this.id_pedido;
+        hash = 47 * hash + Objects.hashCode(this.mesa);
+        hash = 47 * hash + Objects.hashCode(this.hora);
+        hash = 47 * hash + Objects.hashCode(this.usuario);
+        hash = 47 * hash + this.cancelado;
+        hash = 47 * hash + Objects.hashCode(this.fecha);
         return hash;
     }
 
@@ -97,19 +122,25 @@ public class Pedido
         if (this.id_pedido != other.id_pedido) {
             return false;
         }
+        if (this.cancelado != other.cancelado) {
+            return false;
+        }
         if (!Objects.equals(this.mesa, other.mesa)) {
             return false;
         }
         if (!Objects.equals(this.hora, other.hora)) {
             return false;
         }
-        return Objects.equals(this.usuario, other.usuario);
+        if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
+        return Objects.equals(this.fecha, other.fecha);
     }
 
     @Override
     public String toString() {
-        return "Pedido{" + "id_pedido=" + id_pedido + ", mesa=" + mesa + ", hora=" + hora + ", usuario=" + usuario + '}';
+        return "Pedido{" + "id_pedido=" + id_pedido + ", mesa=" + mesa + ", hora=" + hora + ", usuario=" + usuario + ", cancelado=" + cancelado + ", fecha=" + fecha + '}';
     }
-
+    
     
 }

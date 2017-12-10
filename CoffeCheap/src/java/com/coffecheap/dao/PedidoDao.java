@@ -17,16 +17,17 @@ import java.util.List;
  */
 public class PedidoDao extends Dao {
 
-  public void registrar(Pedido Tt) throws Exception {
+  public void registrar(Pedido Tt) throws Exception 
+  {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into pedido values(?,?);");
-
+      PreparedStatement st = this.getCon().prepareStatement("insert into pedido(id_mesa,hora,id_personal,cancelado,fecha)values(?,?,?,?,?)");
       st.setInt(1, Tt.getId_pedido());
       st.setInt(2, Tt.getMesa().getId_mesa());
       st.setTime(3, Tt.getHora());
       st.setInt(4, Tt.getUsuario().getId());
+      
 
       st.executeUpdate();
 
