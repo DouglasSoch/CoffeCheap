@@ -69,8 +69,26 @@ public class Plato_pedidoBean
 
   }
 
-  public void modificar(Plato_pedido plapedido) throws Exception {
-    System.out.println("*******************************************************Modificar");
+  public void fila(Plato_pedido platoP) 
+  {
+    Plato_pedidoDao dao;
+    Plato_pedido temp;
+    try 
+    {
+      dao = new Plato_pedidoDao();
+      temp = dao.leerParaModificar(platoP);
+      if(temp !=null)
+      {
+          this.plapedido= temp;
+      }
+    } catch (Exception e) 
+    {
+      System.out.println(e);
+    }
+  }
+  
+  public void modificar() throws Exception 
+  {
     Plato_pedidoDao dao;
 
     try {

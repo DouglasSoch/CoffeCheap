@@ -13,17 +13,12 @@ import static org.primefaces.component.datatable.DataTable.PropertyKeys.summary;
 
 public class Transaccion_InventarioDAO extends Dao 
 {
-    
-  
-
     public void registrar(Transaccion_inventario traInv) throws Exception 
     {
-        try {
-
+        try 
+        {
             SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-
             this.Conectar();
-
             PreparedStatement st = this.getCon().prepareStatement("insert into transaccion_inventario (fecha,id_producto,id_tipo_transaccion,cantidad,detalle,id_compra)values(?,?,?,?,?,?)");
             st.setString(1, formateador.format(traInv.getFecha()));
             st.setInt(2, traInv.getProducto().getId_producto());
@@ -88,7 +83,9 @@ public class Transaccion_InventarioDAO extends Dao
             }
         } catch (Exception e) {
             throw e;
-        } finally {
+        }
+        finally 
+        {
             this.Desconecar();
         }
         return lista;

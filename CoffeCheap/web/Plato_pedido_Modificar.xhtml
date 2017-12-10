@@ -1,83 +1,75 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
-
-  <h:body class="ui-g">
-    <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content">
-
-        <f:event type="preRenderView" listener="#{plato_pedidoBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{pedidoBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{platoBean.listar()}"/>        
-        <f:event type="preRenderView" listener="#{usuarioBean.listarMe()}"/>
-        <h:form class="flip">
-
-          <p:outputLabel style="color: #oooooo;" value="Lista para escoger Pedido a Modificar" />          
-
-        </h:form>
-        <h:form id="otro">
-
-
-          <p:panelGrid id="display1" columns="4" columnClasses="label,value" style="margin:10px 0">          
-            <p:dataTable value="#{plato_pedidoBean.lstPlapedido}" var="tabla" paginator="true" rows="10" styleClass="paginated" resizableColumns="true">
-
-              <p:column style="width: 90px">
-                <f:facet name="header">Id Plato Pedido</f:facet>
-                <h:inputText value="#{tabla.id_plato_pedido}" style="color: #oooooo; width: 70px;" />
-              </p:column>
-
-              <p:column style="width: 160px"> 
-                <f:facet name="header">Plato</f:facet>               
-                <p:selectOneMenu id="lisx" value="#{tabla.plato.id_plato}" style="width: 140px"> 
-                  <f:selectItems value="#{platoBean.lstPlato}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_plato}"/>                        
-                </p:selectOneMenu>
-              </p:column>
-
-              <p:column style="width: 120px">                
-                <f:facet name="header">Cantidad</f:facet>
-                <h:inputText value="#{tabla.cantidad}" style="color: #oooooo; width: 100px" />
-              </p:column>
-
-              <p:column style="width: 120px">               
-                <f:facet name="header">Personal</f:facet>               
-                <p:selectOneMenu id="lis1" value="#{tabla.usuario.id}" style="width: 100px"> 
-                  <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
-                  <p:ajax event="change" update="@this" />      
-                </p:selectOneMenu>  
-              </p:column> 
-              <p:column style="width: 120px">               
-                <f:facet name="header">Id Pedido</f:facet>               
-                <p:selectOneMenu id="lis2" value="#{tabla.pedido.id_pedido}" style="width: 100px"> 
-                  <f:selectItems value="#{pedidoBean.lstPedido}" var="tip" itemLabel="#{tip.id_pedido}" itemValue="#{tip.id_pedido}"/>      
-                  <p:ajax event="change" update="@this" />      
-                </p:selectOneMenu>  
-              </p:column>
-
-              <p:column style="width: 120px">                
-                <f:facet name="header">Precio</f:facet>
-                <h:inputText value="#{tabla.precio}" style="color: #oooooo; width: 100px" />
-              </p:column>
-
-              <p:column style="width: 100px">
-                <h:commandLink value="Modificar" style="color: #oooooo" actionListener="#{plato_pedidoBean.modificar(tabla)}"/>                    
-              </p:column>                               
-
-            </p:dataTable>
-          </p:panelGrid>        
-
-        </h:form> 
-
-      </ui:define>
-    </ui:composition>
-  </h:body>
+    <h:body class="ui-g">
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+                <p:growl id="mess"/>
+                <f:event type="preRenderView" listener="#{plato_pedidoBean.listar()}"/>
+                <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
+                <f:event type="preRenderView" listener="#{pedidoBean.listar()}"/>
+                <f:event type="preRenderView" listener="#{platoBean.listar()}"/>        
+                <f:event type="preRenderView" listener="#{usuarioBean.listarMe()}"/>
+                <h:form class="flip">       
+                </h:form>
+                <h:form id="tabla">   
+                    <p:dataTable value="#{plato_pedidoBean.lstPlapedido}" var="tabla" paginator="true" rows="10" styleClass="paginated" resizableColumns="true" id="tabla1">
+                        <p:column headerText="Id Plato Pedido" filterBy="#{tabla.id_plato_pedido}" filterMatchMode="exact">                
+                            <p:outputLabel value="#{tabla.id_plato_pedido}"  />
+                        </p:column>
+                        <p:column headerText="id plato" filterBy="#{tabla.plato.id_plato}" filterMatchMode="contains"> 
+                            <p:outputLabel value="#{tabla.plato.id_plato}" /> 
+                        </p:column>
+                        <p:column headerText="Cantidad">                
+                            <p:outputLabel value="#{tabla.cantidad}" />
+                        </p:column>
+                        <p:column headerText="Personal" filterBy="#{tabla.usuario.id}" filterMatchMode="contains">               
+                            <p:outputLabel value="#{tabla.usuario.id}" />
+                        </p:column> 
+                        <p:column headerText="Id Pedido">                 
+                            <p:outputLabel value="#{tabla.pedido.id_pedido}"/> 
+                        </p:column>
+                        <p:column headerText="Precio">                
+                            <p:outputLabel value="#{tabla.precio}"  />
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Modificar" actionListener="#{plato_pedidoBean.fila(tabla)}" oncomplete="PF('diag').show();" update=":dlgDatos"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                <p:dialog header="Datos" widgetVar="diag" id="dlgDatos">
+                    <h:form>
+                        <h:panelGrid id="desplegar1" columns="2" cellpadding="3" border="1">
+                            <p:outputLabel value="Plato" />                                        
+                            <p:selectOneMenu id="lisx" value="#{plato_pedidoBean.plapedido.plato.id_plato}"  > 
+                                 <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                <f:selectItems value="#{platoBean.lstPlato}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id_plato}"/>                        
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Cantidad" />                             
+                            <h:inputText value="#{plato_pedidoBean.plapedido.cantidad}"  />
+                            <p:outputLabel value="Personal" />                          
+                            <p:selectOneMenu id="lis1" value="#{plato_pedidoBean.plapedido.usuario.id}"  > 
+                                 <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="ti" itemLabel="#{ti.nombre}" itemValue="#{ti.id}"/>         
+                            </p:selectOneMenu>  
+                            <p:outputLabel value="ID Pedido" />                          
+                            <p:selectOneMenu id="lis2" value="#{plato_pedidoBean.plapedido.pedido.id_pedido}"> 
+                                 <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                <f:selectItems value="#{pedidoBean.lstPedido}" var="tip" itemLabel="#{tip.id_pedido}" itemValue="#{tip.id_pedido}"/>         
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Precio" />         
+                            <h:inputText value="#{plato_pedidoBean.plapedido.precio}" />
+                        </h:panelGrid>
+                        <p:commandButton value="Modificar" actionListener="#{plato_pedidoBean.modificar()}" update=":tabla:tabla1, mess" oncomplete="PF('diag').hide();" />
+                    </h:form>
+                </p:dialog>
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
 
