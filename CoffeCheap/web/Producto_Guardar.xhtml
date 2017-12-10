@@ -5,72 +5,40 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-  <h:head>
-    <title>Facelet Title</title>
-  </h:head>
-  <h:body>
-    <ui:composition template="./WEB-INF/template/Template.xhtml">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+                <p:growl id="mess"/>
+                <f:event type="preRenderView" listener="#{tipo_productoBean.listar()}"/>
+                <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
+                <f:event type="preRenderView" listener="#{unidad_medidaBean.listar()}"/>
+                <p:panelGrid id="general" columns="3" >
+                    <h:form id="form1">
+                        <p:panelGrid id="panel1" columns="2"  style="color: #oooooo">
+                            <p:outputLabel for="nombre" value="Nombre de producto"/>
+                            <p:inputText id="nombre" value="#{productoBean.producto.nombre}"/>
+                            <p:outputLabel for="existencia" value="Existencia"/>
+                            <p:inputText id="existencia" value="#{productoBean.producto.cantidad}" />
+                            <p:outputLabel for="unidadmedida" value="Unidad de Medida"/>
+                            <p:selectOneMenu id="unidadmedida" value="#{productoBean.producto.umedida.id_unidad}">
+                                <f:selectItem itemLabel="Unidad Medida"/>
+                                <f:selectItems value="#{unidad_medidaBean.lstUnidad_medida}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_unidad}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel for="tipoproducto" value="Tipo de producto"/>
+                            <p:selectOneMenu id="tipoproducto" value="#{productoBean.producto.tproducto.id_tipo}">
+                                <f:selectItem itemLabel="Tipo de Producto"/>
+                                <f:selectItems value="#{tipo_productoBean.lstTipo_producto}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_tipo}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid><br/>
+                        <p:commandButton value="Guardar" update="mess"  actionListener="#{productoBean.registrar()}"/>
+                    </h:form>
+                </p:panelGrid>
+            </ui:define>
 
-      <ui:define name="content">
-          <f:event type="preRenderView" listener="#{tipo_productoBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{productoBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{unidad_medidaBean.listar()}"/>
-        <p:panelGrid id="general" columns="3" >
-          <h:form id="form1">
-            <p:panelGrid id="panel1" columns="2"  style="color: #oooooo">
-                            
-              <p:outputLabel for="id_producto" value="Codigo de Producto"/>
-              <p:inputText id="id_producto" value="#{productoBean.producto.id_producto}" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
-              
-              <p:outputLabel for="nombre" value="Nombre de producto"/>
-              <p:inputText id="nombre" value="#{productoBean.producto.nombre}"/>
-              
-              <p:outputLabel for="existencia" value="Existencia"/>
-              <p:inputText id="existencia" value="#{productoBean.producto.existencia}" onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;"/>
-              
-              <p:outputLabel for="unidadmedida" value="Unidad de Medida"/>
-              <p:selectOneMenu id="unidadmedida" value="#{productoBean.producto.umedida.id_unidad}">
-                <f:selectItem itemLabel="Unidad Medida"/>
-                <f:selectItems value="#{unidad_medidaBean.lstUnidad_medida}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_unidad}"/>
-              </p:selectOneMenu>
-              
-              <p:outputLabel for="tipoproducto" value="Tipo de producto"/>
-              <p:selectOneMenu id="tipoproducto" value="#{productoBean.producto.tproducto.id_tipo}">
-                <f:selectItem itemLabel="Tipo de Producto"/>
-                <f:selectItems value="#{tipo_productoBean.lstTipo_producto}" var="lista" itemLabel="#{lista.nombre}" itemValue="#{lista.id_tipo}"/>
-              </p:selectOneMenu>
-
-            </p:panelGrid><br/>
-            
-            <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{productoBean.registrar()}"/>
-
-
-          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
-            <p:panelGrid id="display" columns="2" columnClasses="label,value">
-                
-                <h:outputText value="Codigo" />
-                <h:outputText id="codigV" value="#{productoBean.producto.id_producto}"/>                         
-            
-                <h:outputText value="Nombre" />
-                <h:outputText id="nombreV" value="#{productoBean.producto.nombre}"/>
-            
-                <h:outputText value="Existencia" />
-                <h:outputText id="exisV" value="#{productoBean.producto.existencia}"/>
-            
-                <h:outputText value="Unidad" />
-                <h:outputText id="unidadV" value="#{productoBean.producto.umedida.id_unidad}"/>
-            
-                <h:outputText value="Tipo" />
-                <h:outputText id="tipoV" value="#{productoBean.producto.tproducto.id_tipo}"/>
-                           
-
-            </p:panelGrid>
-          </p:dialog>
-          </h:form>
-        </p:panelGrid>
-      </ui:define>
-
-    </ui:composition>
-  </h:body>
+        </ui:composition>
+    </h:body>
 </html>
 

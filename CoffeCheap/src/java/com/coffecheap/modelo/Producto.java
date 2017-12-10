@@ -1,5 +1,6 @@
 package com.coffecheap.modelo;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Producto 
@@ -12,6 +13,17 @@ public class Producto
     int existencia =0;
     Unidad_medida Umedida = new Unidad_medida();
     Tipo_producto Tproducto = new Tipo_producto();
+    //no tocar la variable Date es especial
+    Date fecha=null;
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+    
 
     public Producto() {
     }
