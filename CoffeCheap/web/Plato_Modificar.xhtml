@@ -29,7 +29,7 @@
                                 <p:outputLabel value="#{tabla.descripcion}" />
                             </p:column>   
                             <p:column headerText="Tipo de Plato">
-                                <p:outputLabel value="#{tabla.tipoPlato.id}" />
+                                <p:outputLabel value="#{tabla.tipoPlato.nombre}" />
                             </p:column> 
                             <p:column width="100">
                                 <p:commandButton value="Modificar"  actionListener="#{platoBean.fila(tabla)}" oncomplete="PF('diag').show();" update=":dlgDatos" />                    

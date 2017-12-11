@@ -70,7 +70,7 @@ public class PlatoDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("select id_plato, nombre_platillo,precio_plato,porciones,descripcion_plato,id_tipo from plato");
+      PreparedStatement st = this.getCon().prepareCall("select plato.id_plato, plato.nombre_platillo, plato.precio_plato, plato.porciones, plato.descripcion_plato, tipo_plato.id_tipo_plato, tipo_plato.nombre from plato inner join tipo_plato on (plato.id_tipo = tipo_plato.id_tipo_plato)");
       rs = st.executeQuery();
       lista = new ArrayList();
       while (rs.next()) {
@@ -82,7 +82,7 @@ public class PlatoDao extends Dao {
         plat.setPorciones(rs.getInt(4));
         plat.setDescripcion(rs.getString(5));
         plat.getTipoPlato().setId(rs.getInt(6));
-        
+        plat.getTipoPlato().setNombre(rs.getString(7));
         
         lista.add(plat);
       }
@@ -97,20 +97,20 @@ public class PlatoDao extends Dao {
 
   }
 
-  public void modificar(Plato plat) throws Exception {
-    System.out.println("*******************************************************modificar dao");
-    try {
+  public void modificar(Plato plat) throws Exception 
+  {
+    try 
+    {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  plato SET id_plato=?, nombre_platillo=?, precio_plato=?, porciones=?, descripcion_plato=? WHERE id_plato=?;");
-
-      st.setInt(1, plat.getId_plato());
-      st.setString(2, plat.getNombre());
-      st.setDouble(3, plat.getPrecio());
-      st.setInt(4, plat.getPorciones());    
-      st.setString(5, plat.getDescripcion());
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE  plato SET nombre_platillo=?, precio_plato=?, porciones=?, descripcion_plato=? , id_tipo=? WHERE id_plato=?");
+      st.setString(1, plat.getNombre());
+      st.setDouble(2, plat.getPrecio());
+      st.setInt(3, plat.getPorciones());    
+      st.setString(4, plat.getDescripcion());
+      st.setInt(5, plat.getTipoPlato().getId());
       st.setInt(6, plat.getId_plato());
       st.executeUpdate();
-
+      PlatoBean.addMessage("Accion Completada");
 
     } catch (Exception ex) {
       throw ex;
@@ -128,7 +128,7 @@ public class PlatoDao extends Dao {
       PreparedStatement st = this.getCon().prepareStatement("DELETE FROM plato WHERE id_plato=?;");
       st.setInt(1, plat.getId_plato());
       st.executeUpdate();
-
+            PlatoBean.addMessage("Accion Completada");
     } catch (Exception ex) 
     {
       throw ex;

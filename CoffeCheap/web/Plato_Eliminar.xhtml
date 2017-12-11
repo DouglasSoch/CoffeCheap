@@ -11,13 +11,9 @@
     <h:body class="ui-g">
         <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-
+<p:growl id="mess"/>
           <f:event type="preRenderView" listener="#{platoBean.listar()}"/>
-        <h:form class="flip">
-          
-            <p:outputLabel style="color: #oooooo;" value="Lista para escoger tipo de trasaccion a eliminar" />          
-         
-        </h:form>
+
         <h:form id="otro">
 
           <!-- Modal -->
@@ -39,10 +35,10 @@
                 <p:outputLabel value="#{tabla.descripcion}"  />
               </p:column>    
                   <p:column headerText="Tipo de plato">
-                      <p:outputLabel value="#{tabla.tipoPlato.id}"  />
+                      <p:outputLabel value="#{tabla.tipoPlato.nombre}"  />
               </p:column>
                   <p:column >
-                      <p:commandButton value="Eliminar" update="tabla" actionListener="#{platoBean.eliminar(tabla)}"/>                    
+                      <p:commandButton value="Eliminar" update="tabla, mess" actionListener="#{platoBean.eliminar(tabla)}"/>                    
               </p:column>                              
            </p:dataTable>
           </p:panelGrid>        
