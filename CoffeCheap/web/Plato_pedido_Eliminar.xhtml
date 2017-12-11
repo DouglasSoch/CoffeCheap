@@ -33,9 +33,9 @@
                 <p:outputLabel value="#{tabla.id_plato_pedido}" style="color: #oooooo; width: 70px;" />
               </p:column>
 
-                <p:column headerText="Cantidad"> 
+                <p:column headerText="Plato"> 
                 
-                    <p:outputLabel value="#{tabla.cantidad}"  />
+                    <p:outputLabel value="#{tabla.plato.nombre}"  />
               </p:column>
 
                 <p:column headerText="Cantidad">                
@@ -46,7 +46,7 @@
                 <p:column headerText="Personal">               
                 
                 
-                    <p:outputLabel value="#{tabla.usuario.id}" />      
+                    <p:outputLabel value="#{tabla.usuario.usuario}" />      
                   
               </p:column> 
                 <p:column headerText="Id Pedido">               

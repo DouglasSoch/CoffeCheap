@@ -22,14 +22,14 @@
                         <p:column headerText="Id Plato Pedido" filterBy="#{tabla.id_plato_pedido}" filterMatchMode="exact">                
                             <p:outputLabel value="#{tabla.id_plato_pedido}"  />
                         </p:column>
-                        <p:column headerText="id plato" filterBy="#{tabla.plato.id_plato}" filterMatchMode="contains"> 
-                            <p:outputLabel value="#{tabla.plato.id_plato}" /> 
+                        <p:column headerText="plato" filterBy="#{tabla.plato.nombre}" filterMatchMode="contains"> 
+                            <p:outputLabel value="#{tabla.plato.nombre}" /> 
                         </p:column>
                         <p:column headerText="Cantidad">                
                             <p:outputLabel value="#{tabla.cantidad}" />
                         </p:column>
-                        <p:column headerText="Personal" filterBy="#{tabla.usuario.id}" filterMatchMode="contains">               
-                            <p:outputLabel value="#{tabla.usuario.id}" />
+                        <p:column headerText="Personal" filterBy="#{tabla.usuario.usuario}" filterMatchMode="contains">               
+                            <p:outputLabel value="#{tabla.usuario.usuario}" />
                         </p:column> 
                         <p:column headerText="Id Pedido">                 
                             <p:outputLabel value="#{tabla.pedido.id_pedido}"/> 

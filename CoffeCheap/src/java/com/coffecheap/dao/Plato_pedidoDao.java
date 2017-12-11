@@ -44,17 +44,19 @@ public class Plato_pedidoDao extends Dao {
         ResultSet rs;
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareCall("select id_plato_pedido,id_plato,cantidad,id_personal,id_pedido,precio  from plato_pedido");
+            PreparedStatement st = this.getCon().prepareCall("select plato_pedido.id_plato_pedido, plato.id_plato, plato.nombre_platillo, plato_pedido.cantidad, usuario.iduser, usuario.user, pedido.id_pedido, plato_pedido.precio from plato_pedido inner join plato on(plato_pedido.id_plato = plato.id_plato) inner join usuario on (plato_pedido.id_personal = usuario.iduser) inner join pedido on (plato_pedido.id_pedido = pedido.id_pedido)");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 Plato_pedido ppedido = new Plato_pedido();
                 ppedido.setId_plato_pedido(rs.getInt(1));
                 ppedido.getPlato().setId_plato(rs.getInt(2));
-                ppedido.setCantidad(rs.getInt(3));
-                ppedido.getUsuario().setId(rs.getInt(4));
-                ppedido.getPedido().setId_pedido(rs.getInt(5));
-                ppedido.setPrecio(rs.getDouble(6));
+                ppedido.getPlato().setNombre(rs.getString(3));
+                ppedido.setCantidad(rs.getInt(4));
+                ppedido.getUsuario().setId(rs.getInt(5));
+                ppedido.getUsuario().setUsuario(rs.getString(6));
+                ppedido.getPedido().setId_pedido(rs.getInt(7));
+                ppedido.setPrecio(rs.getDouble(8));
                 lista.add(ppedido);
             }
         } catch (Exception ex) {

@@ -27,9 +27,9 @@
                 <p:outputLabel value="#{tabla.id_plato_pedido}"  />
               </p:column>
 
-                <p:column headerText="id plato" filterBy="#{tabla.plato.id_plato}" filterMatchMode="contains"> 
+                <p:column headerText="id plato" filterBy="#{tabla.plato.nombre}" filterMatchMode="contains"> 
                          
-                <p:outputLabel value="#{tabla.plato.id_plato}" /> 
+                    <p:outputLabel value="#{tabla.plato.nombre}" /> 
                 
               </p:column>
 
@@ -38,9 +38,9 @@
                 <p:outputLabel value="#{tabla.cantidad}" />
               </p:column>
 
-                <p:column headerText="Personal" filterBy="#{tabla.usuario.id}" filterMatchMode="contains">               
+                <p:column headerText="Personal" filterBy="#{tabla.usuario.usuario}" filterMatchMode="contains">               
                 
-                <p:outputLabel value="#{tabla.usuario.id}" />
+                <p:outputLabel value="#{tabla.usuario.usuario}" />
               </p:column> 
                 <p:column headerText="Id Pedido">               
                 
