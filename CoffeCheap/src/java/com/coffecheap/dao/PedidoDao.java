@@ -20,7 +20,8 @@ public class PedidoDao extends Dao {
   public void registrar(Pedido Tt) throws Exception 
   {
 
-    try {
+    try 
+    {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("insert into pedido(id_mesa,hora,id_personal,cancelado,fecha)values(?,?,?,?,?)");
       st.setInt(1, Tt.getId_pedido());

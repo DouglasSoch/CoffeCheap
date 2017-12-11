@@ -46,7 +46,7 @@ public class UsuarioDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareCall("select iduser, user, pass, tipouser, nombre, apellido, codigo, idturno, telefono, direccion, dpi, nit, correo from usuario");
+            PreparedStatement st = this.getCon().prepareCall("select usuario.iduser, usuario.user, usuario.pass, tipo.idtipo, tipo.nombretipo, usuario.nombre, usuario.apellido, usuario.codigo, turno.idturno, turno.horario_turno, usuario.telefono, usuario.direccion, usuario.dpi, usuario.nit, usuario.correo from usuario inner join tipo on(usuario.tipouser = tipo.idtipo) inner join turno on(usuario.idturno = turno.idturno)");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
@@ -55,15 +55,17 @@ public class UsuarioDao extends Dao {
                 usuario.setUsuario(rs.getString(2));
                 usuario.setPass(rs.getString(3));
                 usuario.getTipo().setId(rs.getInt(4));
-                usuario.setNombre(rs.getString(5));
-                usuario.setApellido(rs.getString(6));
-                usuario.setCodigo(rs.getInt(7));
-                usuario.getTurno().setId_turno(rs.getInt(8));
-                usuario.setTelefono(rs.getInt(9));
-                usuario.setDireccion(rs.getString(10));
-                usuario.setDpi(rs.getInt(11));
-                usuario.setNit(rs.getString(12));
-                usuario.setCorreo(rs.getString(13));
+                usuario.getTipo().setNombre(rs.getString(5));
+                usuario.setNombre(rs.getString(6));
+                usuario.setApellido(rs.getString(7));
+                usuario.setCodigo(rs.getInt(8));
+                usuario.getTurno().setId_turno(rs.getInt(9));
+                usuario.getTurno().setHorario_turno(rs.getString(10));
+                usuario.setTelefono(rs.getInt(11));
+                usuario.setDireccion(rs.getString(12));
+                usuario.setDpi(rs.getInt(13));
+                usuario.setNit(rs.getString(14));
+                usuario.setCorreo(rs.getString(15));
                 lista.add(usuario);
             }
 
@@ -245,7 +247,21 @@ public class UsuarioDao extends Dao {
         return usuario;
     }
 
-    public void eliminar(Usuario pac) throws Exception {
+    public void eliminar(Usuario pac) throws Exception 
+    {
+        System.out.println("el id de usuario es"+pac.getId());
+        System.out.println("el usuario es"+pac.getUsuario());
+        System.out.println("la contrasena es"+pac.getPass());
+        System.out.println("el tipo usu es"+pac.getTipo().getId());
+        System.out.println("el nombre del usuario es"+pac.getNombre());
+        System.out.println("el apellido del usuario es"+pac.getApellido());
+        System.out.println("el codigo del usuario es"+pac.getCodigo());
+        System.out.println("el id del turno es"+pac.getTurno().getId_turno());
+        System.out.println("el telefono es"+pac.getTelefono());
+        System.out.println("la direccion es"+pac.getDireccion());
+        System.out.println("el dpi es"+pac.getDpi());
+        System.out.println("el nit es"+pac.getNit());
+        System.out.println("el correo es"+pac.getCorreo());
         try {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("DELETE FROM usuario WHERE iduser=?");
