@@ -4,9 +4,9 @@ package com.coffecheap.bean;
  *
  * @Pedhor acier
  */
-
 import com.coffecheap.modelo.Pedido;
 import com.coffecheap.dao.PedidoDao;
+import java.text.SimpleDateFormat;
 
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -43,6 +43,10 @@ public class PedidoBean {
     PedidoDao dao;
 
     try {
+
+      String formateador = new SimpleDateFormat("yyyy-MM-dd").format(pedido.getFecha());
+      pedido.setTemp_fecha(formateador);
+      
       dao = new PedidoDao();
       dao.registrar(pedido);
     } catch (Exception e) {

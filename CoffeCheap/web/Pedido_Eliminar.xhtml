@@ -35,7 +35,7 @@
               </p:column>
 
               <p:column>
-                
+
                 <p:outputLabel  value="mesa:" style="color: #oooooo" />
                 <p:selectOneMenu id="lisx" style="width:200px" value="#{tabla.mesa.id_mesa}"> 
                   <f:selectItems value="#{mesaBean.lstMesa}" var="tip" itemLabel="#{tip.ubicacion}" itemValue="#{tip.id_mesa}"/>                        
@@ -43,9 +43,9 @@
               </p:column>
 
               <p:column>
-                 <p:outputLabel for="lisx" value="Hora:" style="color: #oooooo" />
+                <p:outputLabel for="lisx" value="Hora:" style="color: #oooooo" />
                 <f:facet name="header">hora</f:facet>
-                 <p:outputLabel value="hora" style="color: #oooooo" />
+                <p:outputLabel value="hora" style="color: #oooooo" />
                 <h:inputText value="#{tabla.hora}" style="color: #oooooo; width : 160px" />
               </p:column>
 
@@ -57,8 +57,13 @@
                   <p:ajax event="change" update="@this" />      
                 </p:selectOneMenu>  
 
-              </p:column>              
-
+              </p:column>
+              
+                <p:column>     
+              <p:outputLabel  value="Fecha" />
+              <h:inputText id="Fech" value="#{tabla.fecha}"/>              
+               </p:column>
+              
               <p:column>
                 <h:commandLink value="Eliminar" style="color: #oooooo" actionListener="#{pedidoBean.eliminar(tabla)}"/>                    
               </p:column>                              

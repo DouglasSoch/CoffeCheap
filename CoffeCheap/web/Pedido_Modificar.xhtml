@@ -55,7 +55,18 @@
                   <f:selectItems value="#{usuarioBean.lstUsuario}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>                         
                 </p:selectOneMenu>  
 
-              </p:column>              
+              </p:column>   
+              
+              <p:column>     
+              <p:outputLabel  value="Fecha" />
+              <h:inputText id="Fech" value="#{tabla.fecha}"/>              
+               </p:column>
+            
+             <p:column>     
+              <p:outputLabel  value="Cancelado" />
+              <h:inputText id="can" value="#{tabla.cancelado}"/>              
+               </p:column>
+
 
               <p:column>
                 <h:commandLink value="Modificar" style="color: #ffffff" actionListener="#{pedidoBean.modificar(tabla)}"/>                    

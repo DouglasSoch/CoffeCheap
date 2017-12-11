@@ -15,7 +15,7 @@
       <ui:define name="content">
 
         <f:event type="preRenderView" listener="#{mesaBean.listar()}"/>
-        <f:event type="preRenderView" listener="#{usuarioBean.listar()}"/>
+        <f:event type="preRenderView" listener="#{usuarioBean.listarMe()}"/>
 
         <h:form class="flip">
 
@@ -38,7 +38,14 @@
             <p:selectOneMenu id="lis" style="width:200px" value="#{pedidoBean.pedido.usuario.id}"> 
               <f:selectItems value="#{usuarioBean.lstUsuario}" var="tip" itemLabel="#{tip.nombre}" itemValue="#{tip.id}"/>      
               <p:ajax event="change" update="@this" />      
-            </p:selectOneMenu>          
+            </p:selectOneMenu>
+            
+                         
+             <p:outputLabel  value="Fecha" />
+             <p:calendar id="Entrega" value="#{pedidoBean.pedido.fecha}" pattern="yyyy-MM-dd" locale="es"/>
+             
+             
+            
           </h:panelGrid>
           <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{pedidoBean.registrar()}"/>
 

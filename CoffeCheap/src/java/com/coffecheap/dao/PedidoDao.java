@@ -23,13 +23,13 @@ public class PedidoDao extends Dao {
     try 
     {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into pedido(id_mesa,hora,id_personal,cancelado,fecha)values(?,?,?,?,?)");
+      PreparedStatement st = this.getCon().prepareStatement("INSERT INTO coffechip.pedido (id_pedido, id_mesa, hora, id_personal, cancelado, fecha) VALUES (?, ?, ?, ?, ?, ?);");
       st.setInt(1, Tt.getId_pedido());
       st.setInt(2, Tt.getMesa().getId_mesa());
       st.setTime(3, Tt.getHora());
       st.setInt(4, Tt.getUsuario().getId());
-      
-
+      st.setInt(5, 0);
+      st.setString(6, Tt.getTemp_fecha());
       st.executeUpdate();
 
     } catch (Exception ex) {
@@ -47,7 +47,7 @@ public class PedidoDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT id_pedido, id_mesa, hora, id_personal FROM pedido");
+      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM pedido");
       rs = st.executeQuery();
       lista = new ArrayList();
       while (rs.next()) {
@@ -57,6 +57,9 @@ public class PedidoDao extends Dao {
         tt.getMesa().setId_mesa(rs.getInt(2));
         tt.setHora(rs.getTime(3));
         tt.getUsuario().setId(rs.getInt(4));
+        //tt.getCancelado(rs.getInt(5));
+        //no puse el 5 por que es el que obtine pagado o no pagado
+       // tt.getFecha(rs.getDate(6));
 
         lista.add(tt);
       }
