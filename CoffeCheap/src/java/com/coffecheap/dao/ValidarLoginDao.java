@@ -58,4 +58,29 @@ public class ValidarLoginDao extends Dao{
         }
         return usuari;
     }
+    
+    public String hola(Usuario usu) throws Exception{
+        String hola=null; 
+        try{
+            this.Conectar();
+            System.out.println(usu.getUsuario());
+            PreparedStatement st=this.getCon().prepareStatement("select tipo.nombretipo from usuario inner join tipo on (tipo.idtipo = usuario.tipouser) where usuario.iduser="+usu.getId());
+            ResultSet rs=st.executeQuery();
+            rs.next();
+        
+        
+            
+            hola=rs.getString(1);
+           
+               
+        
+        }catch(Exception ex){
+          
+        }finally{
+            this.Desconecar();
+            
+        }
+        return hola;
+   
+    }
 }

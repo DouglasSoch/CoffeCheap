@@ -6,6 +6,7 @@
 package com.coffecheap.bean;
 
 
+import com.coffecheap.dao.ValidarLoginDao;
 import com.coffecheap.modelo.Usuario;
 import java.io.IOException;
 import java.io.Serializable;
@@ -23,6 +24,15 @@ import javax.faces.context.FacesContext;
 public class Verificar_login implements Serializable {
 
     Usuario usu=new Usuario();
+    String halo;
+
+    public String getHalo() {
+        return halo;
+    }
+
+    public void setHalo(String halo) {
+        this.halo = halo;
+    }
 
     public Usuario getUsu() {
         return usu;
@@ -49,5 +59,17 @@ public class Verificar_login implements Serializable {
 
         }
     }
+    
+    public void hola() throws Exception{
+        ValidarLoginDao dao=new ValidarLoginDao();
+        halo=dao.hola(usu);
+    }
+      
+    public void cerrar() throws Exception{
+         usu=new Usuario();
+      FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml"); 
+        
+    }
+           
 
 }

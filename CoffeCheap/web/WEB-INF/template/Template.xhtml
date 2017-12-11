@@ -19,7 +19,8 @@
         
        
 
-         f:event type="preRenderView" listener="{verificar_login.vrificarSession()}"/>
+        <f:event type="preRenderView" listener="#{verificar_login.vrificarSession()}"/>
+        <f:event type="preRenderView" listener="#{verificar_login.hola()}"/>
 
         
 
@@ -50,13 +51,13 @@
                         </b:navbarLinks>
                         <h:form styleClass="navbar-form navbar-right">
                             <div class="form-group">
-                                <b:inputText placeholder="Email" fieldSize="sm"/>
+                                <b:label value="#{verificar_login.halo}" />
                                 <!--input type="text" class="form-control" placeholder="Search"/-->
                             </div>
                             <div class="form-group">
-                                <b:inputText placeholder="Password" fieldSize="sm"/>
+                                <b:label value="#{verificar_login.usu.nombre}" />
                             </div> 
-                            <b:commandButton action="a" value="Sign in" look="success" icon="chevron-right" iconAlign="right"/>
+                            <b:commandButton action="#{verificar_login.cerrar()}" value="Log Out" look="success" icon="chevron-right" iconAlign="right"/>
                         </h:form>
                     </b:navBar>
 
