@@ -19,23 +19,22 @@
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
-                        <p:column headerText="Codigo de Plato">
-                            <p:outputLabel value="#{tabla.plato.id_plato}" />
+                        <p:column headerText="Plato">
+                            <p:outputLabel value="#{tabla.plato.nombre}" />
                         </p:column>
-                        <p:column headerText="Codigo de Producto">
-                            <p:outputLabel value="#{tabla.producto.id_producto}"  />
+                        <p:column headerText="Producto">
+                            <p:outputLabel value="#{tabla.producto.nombre}"  />
                         </p:column>
                         <p:column headerText="Cantidad">
                             <p:outputLabel value="#{tabla.cantidad}"  />
                         </p:column>
-                        <p:column headerText="Codigo de Unidad de Medida">
-                            <p:outputLabel value="#{tabla.umedida.id_unidad}" />
+                        <p:column headerText="Unidad de Medida">
+                            <p:outputLabel value="#{tabla.umedida.nombre}" />
                         </p:column> 
                         <p:column headerText="Modificar">
                             <p:commandButton value="Modificar" actionListener="#{recetaBean.fila(tabla)}" oncomplete="PF('diag').show();" update=":dlgDatos" />
                         </p:column>
                     </p:dataTable>
-
                 </h:form>
                 <p:dialog header="Datos" widgetVar="diag" id="dlgDatos">
                     <h:form>

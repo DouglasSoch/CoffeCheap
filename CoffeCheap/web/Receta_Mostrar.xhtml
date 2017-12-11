@@ -15,17 +15,17 @@
                 <h:form id="otro">
                     <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:10px 0">          
                         <p:dataTable value="#{recetaBean.lstReceta}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true" >
-                            <p:column headerText="Codigo de Plato">
-                                <p:outputLabel value="#{tabla.plato.id_plato}" />
+                            <p:column headerText="Plato">
+                                <p:outputLabel value="#{tabla.plato.nombre}" />
                             </p:column>
-                            <p:column headerText="Codigo de Producto">
-                                <p:outputLabel value="#{tabla.producto.id_producto}"  />
+                            <p:column headerText="Producto">
+                                <p:outputLabel value="#{tabla.producto.nombre}"  />
                             </p:column>
                             <p:column headerText="Cantidad">
                                 <p:outputLabel value="#{tabla.cantidad}"  />
                             </p:column>
-                            <p:column headerText="Codigo de Unidad de Medida">
-                                <p:outputLabel value="#{tabla.umedida.id_unidad}" />
+                            <p:column headerText="Unidad de Medida">
+                                <p:outputLabel value="#{tabla.umedida.nombre}" />
                             </p:column>                           
                         </p:dataTable>
                     </p:panelGrid>        

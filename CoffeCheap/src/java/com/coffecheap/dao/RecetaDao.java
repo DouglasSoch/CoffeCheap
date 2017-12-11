@@ -53,15 +53,18 @@ public class RecetaDao extends Dao {
 
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareCall("SELECT id_plato, id_producto, cantidad, id_unidad FROM receta");
+            PreparedStatement st = this.getCon().prepareCall("select  plato.id_plato, plato.nombre_platillo, producto.id_producto, producto.nombre_producto, receta.cantidad, unidad_medida.id_unidad, unidad_medida.nombre from receta inner join plato on (receta.id_plato = plato.id_plato) inner join producto on (receta.id_producto = producto.id_producto) inner join unidad_medida on (receta.id_unidad = unidad_medida.id_unidad)");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 Receta receta = new Receta();
                 receta.getPlato().setId_plato(rs.getInt(1));
-                receta.getProducto().setId_producto(rs.getInt(2));
-                receta.setCantidad(rs.getInt(3));
-                receta.getUmedida().setId_unidad(rs.getInt(4));
+                receta.getPlato().setNombre(rs.getString(2));
+                receta.getProducto().setId_producto(rs.getInt(3));
+                receta.getProducto().setNombre(rs.getString(4));
+                receta.setCantidad(rs.getInt(5));
+                receta.getUmedida().setId_unidad(rs.getInt(6));
+                receta.getUmedida().setNombre(rs.getString(7));
                 lista.add(receta);
             }
 
@@ -78,12 +81,12 @@ public class RecetaDao extends Dao {
     public void modificar(Receta receta) throws Exception {
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("update receta set id_producto=?, cantidad=?, id_unidad=? WHERE id_plato=? and id_producto=?");
+            PreparedStatement st = this.getCon().prepareStatement("update receta set id_producto=?, cantidad=?, id_unidad=? WHERE id_plato=? ");
             st.setInt(1, receta.getProducto().getId_producto());
             st.setInt(2, receta.getCantidad());
             st.setInt(3, receta.getUmedida().getId_unidad());
             st.setInt(4, receta.getPlato().getId_plato());
-            st.setInt(5, receta.getProducto().getId_producto());
+            //st.setInt(5, receta.getProducto().getId_producto());
             st.executeUpdate();
             RecetaBean.addMessage("Accion Completada");
 
