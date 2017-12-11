@@ -13,7 +13,16 @@ public class Pedido {
   int cancelado = 0;
   Date fecha = null;
   String temp_fecha = null;
+  String cancelar;
 
+    public String getCancelar() {
+        return cancelar;
+    }
+
+    public void setCancelar(String cancelar) {
+        this.cancelar = cancelar;
+    }
+  
   public String getTemp_fecha() {
     return temp_fecha;
   }
