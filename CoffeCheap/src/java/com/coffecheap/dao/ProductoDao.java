@@ -106,17 +106,18 @@ public class ProductoDao extends Dao
 
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareCall("select id_producto,nombre_producto,existencia,id_unidad,id_tipos from producto");
+            PreparedStatement st = this.getCon().prepareCall("select producto.id_producto, producto.nombre_producto, producto.existencia, unidad_medida.id_unidad, unidad_medida.nombre, tipo_producto.id_tipo, tipo_producto.nombre_tipo from producto inner join unidad_medida on (producto.id_unidad = unidad_medida.id_unidad) inner join tipo_producto on (producto.id_tipos = tipo_producto.id_tipo)");
             rs = st.executeQuery();
             lista = new ArrayList();
             while (rs.next()) {
                 Producto prod = new Producto();
-
                 prod.setId_producto(rs.getInt(1));
                 prod.setNombre(rs.getString(2));
                 prod.setCantidad(rs.getInt(3));
                 prod.getUmedida().setId_unidad(rs.getInt(4));
-                prod.getTproducto().setId_tipo(rs.getInt(5));
+                prod.getUmedida().setNombre(rs.getString(5));
+                prod.getTproducto().setId_tipo(rs.getInt(6));
+                prod.getTproducto().setNombre(rs.getString(7));
 
                 lista.add(prod);
             }

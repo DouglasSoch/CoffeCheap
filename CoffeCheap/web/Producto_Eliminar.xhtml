@@ -27,11 +27,11 @@
                         <p:column headerText="Cantidad">
                             <p:outputLabel value="#{tabla.cantidad}" />
                         </p:column>
-                        <p:column headerText="Codigo de Unidad de Medida">
-                            <p:outputLabel value="#{tabla.umedida.id_unidad}" />
+                        <p:column headerText="Unidad de Medida">
+                            <p:outputLabel value="#{tabla.umedida.nombre}" />
                         </p:column>    
-                        <p:column headerText="Codigo de tipo de producto">
-                            <p:outputLabel value="#{tabla.tproducto.id_tipo}"  />
+                        <p:column headerText="Tipo de producto">
+                            <p:outputLabel value="#{tabla.tproducto.nombre}"  />
                         </p:column>                      
                 <p:column headerText="Eliminar">
                     <p:commandButton value="Eliminar" actionListener="#{productoBean.eliminar(tabla)}"  update="tabla1, mess" />

@@ -21,13 +21,13 @@
                             <p:outputLabel value="#{tabla.nombre}"  />
                         </p:column>
                         <p:column headerText="Cantidad">
-                            <p:outputLabel value="#{tabla.existencia}" />
+                            <p:outputLabel value="#{tabla.cantidad}" />
                         </p:column>
-                        <p:column headerText="Codigo de Unidad de Medida">
-                            <p:outputLabel value="#{tabla.umedida.id_unidad}" />
+                        <p:column headerText="Unidad de Medida">
+                            <p:outputLabel value="#{tabla.umedida.nombre}" />
                         </p:column>    
-                        <p:column headerText="Codigo de tipo de producto">
-                            <p:outputLabel value="#{tabla.tproducto.id_tipo}"  />
+                        <p:column headerText="tipo producto">
+                            <p:outputLabel value="#{tabla.tproducto.nombre}"  />
                         </p:column>                              
                     </p:dataTable>
                 </h:form> 
