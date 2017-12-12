@@ -122,7 +122,7 @@ public class MenuBean implements Serializable {
         try {
             dao = new MenuDao();
             respuesta = dao.NombresCrud(usu.getTipo().getId(), pagina, num);
-            System.out.println("respuesta = "+ respuesta);
+            
         } catch (Exception e) {
             throw e;
         }

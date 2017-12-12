@@ -1,7 +1,8 @@
 package com.coffecheap.modelo;
 
-import java.sql.Time;
+
 import java.sql.Date;
+import java.sql.Time;
 import java.util.Objects;
 
 public class Pedido {
@@ -13,7 +14,18 @@ public class Pedido {
   int cancelado = 0;
   Date fecha = null;
   String temp_fecha = null;
-  String cancelar;
+  String cancelar=null;
+  String horaS = null;
+
+    public String getHoraS() {
+        return horaS;
+    }
+
+    public void setHoraS(String horaS) {
+        this.horaS = horaS;
+    }
+  
+  
 
     public String getCancelar() {
         return cancelar;

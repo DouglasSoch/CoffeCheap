@@ -1,15 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
-
     <h:body>
         <ui:composition template="./WEB-INF/template/Template.xhtml">
             <ui:define name="content">
@@ -18,28 +14,24 @@
                 <f:event type="preRenderView" listener="#{usuarioBean.listarMe()}"/>
                 <h:form class="flip">
                     <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
-                        <p:outputLabel for="lisz" value="Mesa:" />
-                        
+                        <p:outputLabel for="lisz" value="Mesa:" />                        
                         <p:selectOneMenu id="lisz" style="width:200px" value="#{pedidoBean.pedido.mesa.id_mesa}"> 
                             <f:selectItem itemLabel="Eliga uno"/>
                             <f:selectItems value="#{mesaBean.lstMesa}" var="tip" itemLabel="#{tip.id_mesa}" itemValue="#{tip.id_mesa}"/>      
                         </p:selectOneMenu>
                         <p:outputLabel value="hora" />
-                        <p:inputMask id="hora" value="#{pedidoBean.pedido.hora}" mask="99:99:99"/>
-                        
+                        <p:inputMask id="hora" value="#{pedidoBean.pedido.horaS}" mask="99:99:99"/>
+
                         <p:outputLabel for="lis" value="Personal:" />
                         <p:selectOneMenu id="lis"  value="#{pedidoBean.pedido.usuario.id}"> 
                             <f:selectItem itemLabel="Eliga uno"/>
-                            <f:selectItems value="#{usuarioBean.lstUsuario}" var="tipp" itemLabel="#{tipp.usuario}" itemValue="#{tipp.id}"/>      
+                            <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="tipp" itemLabel="#{tipp.usuario}" itemValue="#{tipp.id}"/>      
                         </p:selectOneMenu>
-                        
                         <p:outputLabel  value="Fecha" />
                         <p:calendar id="Entrega" value="#{pedidoBean.pedido.fecha}" pattern="yyyy-MM-dd" locale="es"/>
                     </h:panelGrid>
-                    <p:commandButton value="Guardar" update="mess"  actionListener="#{pedidoBean.registrar()}"/>
+                    <p:commandButton value="Guardar"  update="mess" actionListener="#{pedidoBean.registrar()}"/>
                 </h:form>
-
-
             </ui:define>
         </ui:composition>
     </h:body>

@@ -6,6 +6,7 @@ package com.coffecheap.bean;
  */
 import com.coffecheap.modelo.Pedido;
 import com.coffecheap.dao.PedidoDao;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 
 import java.util.List;
@@ -43,17 +44,17 @@ public class PedidoBean
     this.lstPedido = lstPedido;
   }
 
-  public void registrar() {
-
-    System.out.println("*******************************************************registrar");
-
+  public void registrar() 
+  {
+    
     PedidoDao dao;
-
-    try {
+    try 
+    {
 
       String formateador = new SimpleDateFormat("yyyy-MM-dd").format(pedido.getFecha());
+      String formaterHour = new SimpleDateFormat("HH:mm:ss").format(pedido.getHora());
       pedido.setTemp_fecha(formateador);
-      
+     pedido.setHoraS(formaterHour);
       dao = new PedidoDao();
       dao.registrar(pedido);
     } catch (Exception e) {

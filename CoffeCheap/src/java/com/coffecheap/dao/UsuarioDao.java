@@ -283,7 +283,7 @@ public class UsuarioDao extends Dao {
    int numero=3;
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("select iduser, user from usuario where tipouser=?");
+      PreparedStatement st = this.getCon().prepareStatement("select iduser, user from usuario where tipouser=?");
       st.setInt(1, numero);
       rs = st.executeQuery();
       lista = new ArrayList();

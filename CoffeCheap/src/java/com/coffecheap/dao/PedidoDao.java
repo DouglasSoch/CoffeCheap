@@ -15,13 +15,16 @@ public class PedidoDao extends Dao {
 
   public void registrar(Pedido Tt) throws Exception 
   {
-
+      System.out.println("la mesa es"+Tt.getMesa().getId_mesa());
+      System.out.println("la hora es "+Tt.getHoraS());
+      System.out.println("el usuario es"+Tt.getUsuario().getId());
+      System.out.println("la fecha es"+Tt.getTemp_fecha());
     try 
     {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("insert into pedido(id_mesa,hora,id_personal,cancelado,fecha)values(?,?,?,?,?)");
       st.setInt(1, Tt.getMesa().getId_mesa());
-      st.setTime(2, Tt.getHora());
+      st.setString(2, Tt.getHoraS());
       st.setInt(3, Tt.getUsuario().getId());
       st.setInt(4, 0);
       st.setString(5, Tt.getTemp_fecha());
