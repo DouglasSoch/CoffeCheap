@@ -9,14 +9,21 @@ import com.coffecheap.dao.PedidoDao;
 import java.text.SimpleDateFormat;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
-public class PedidoBean {
+public class PedidoBean 
+{
 
+      static public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
   private Pedido pedido = new Pedido();
   private List<Pedido> lstPedido;
 

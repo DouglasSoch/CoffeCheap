@@ -280,24 +280,17 @@ public class UsuarioDao extends Dao {
     public List<Usuario> listarMe() throws Exception {
     List<Usuario> lista;
     ResultSet rs;
-
+   int numero=3;
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM usuario WHERE tipouser=3");
+      PreparedStatement st = this.getCon().prepareCall("select iduser, user from usuario where tipouser=?");
+      st.setInt(1, numero);
       rs = st.executeQuery();
       lista = new ArrayList();
       while (rs.next()) {
         Usuario tt = new Usuario();
-
         tt.setId(rs.getInt(1));
-        tt.setNit(rs.getString(2));
-        tt.setPass(rs.getString(3));
-        tt.getTipo().setId(rs.getInt(4));
-        tt.setNombre(rs.getString(5));
-        tt.setApellido(rs.getString(6));
-        tt.setCodigo(rs.getInt(7));
-        tt.getTurno().setId_turno(rs.getInt(8));   
-
+        tt.setUsuario(rs.getString(2));
         lista.add(tt);
       }
 

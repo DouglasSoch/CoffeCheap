@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.PedidoBean;
 import com.coffecheap.modelo.Pedido;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,15 +19,14 @@ public class PedidoDao extends Dao {
     try 
     {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("INSERT INTO coffechip.pedido (id_pedido, id_mesa, hora, id_personal, cancelado, fecha) VALUES (?, ?, ?, ?, ?, ?);");
-      st.setInt(1, Tt.getId_pedido());
-      st.setInt(2, Tt.getMesa().getId_mesa());
-      st.setTime(3, Tt.getHora());
-      st.setInt(4, Tt.getUsuario().getId());
-      st.setInt(5, 0);
-      st.setString(6, Tt.getTemp_fecha());
+      PreparedStatement st = this.getCon().prepareStatement("insert into pedido(id_mesa,hora,id_personal,cancelado,fecha)values(?,?,?,?,?)");
+      st.setInt(1, Tt.getMesa().getId_mesa());
+      st.setTime(2, Tt.getHora());
+      st.setInt(3, Tt.getUsuario().getId());
+      st.setInt(4, 0);
+      st.setString(5, Tt.getTemp_fecha());
       st.executeUpdate();
-
+      PedidoBean.addMessage("Accion Completada");
     } catch (Exception ex) {
       throw ex;
     } finally {

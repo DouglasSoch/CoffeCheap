@@ -25,7 +25,7 @@ public class UsuarioBean
     private List<Usuario> lstUsuario = new ArrayList();
     private List<Tipo> lstTipo = new ArrayList();
     private List<Turno> lstTurno = new ArrayList();
-    private List<Usuario> lstUsuarioMe = new ArrayList();
+     List<Usuario> lstUsuarioMe = new ArrayList();
   private List<Usuario> lstUsuarioChef;
 
   public List<Usuario> getLstUsuarioChef() {
