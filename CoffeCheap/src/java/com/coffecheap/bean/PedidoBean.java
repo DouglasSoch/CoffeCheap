@@ -54,7 +54,7 @@ public class PedidoBean
       String formateador = new SimpleDateFormat("yyyy-MM-dd").format(pedido.getFecha());
       String formaterHour = new SimpleDateFormat("HH:mm:ss").format(pedido.getHora());
       pedido.setTemp_fecha(formateador);
-     pedido.setHoraS(formaterHour);
+      pedido.setHoraS(formaterHour);
       dao = new PedidoDao();
       dao.registrar(pedido);
     } catch (Exception e) {
