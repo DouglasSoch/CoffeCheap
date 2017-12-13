@@ -192,13 +192,14 @@ public class Venta_facturaBean
     }
   }
 
-  public void modificar(Venta_factura mar) throws Exception {
-    System.out.println("*******************************************************Modificar");
+  public void modificar() throws Exception 
+  {
+   
     Venta_facturaDao dao;
 
     try {
       dao = new Venta_facturaDao();
-      dao.modificar(mar);
+      dao.modificar(venta_factura);
 
     } catch (Exception e) {
       throw e;

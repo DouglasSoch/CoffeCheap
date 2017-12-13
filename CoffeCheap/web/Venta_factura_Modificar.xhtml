@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -10,8 +10,92 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 
-  <h:body>
-   
-  </h:body>
+    <h:body>
+         <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+                <p:growl id="mess"/>
+                <f:event type="preRenderView" listener="#{venta_facturaBean.listar()}"/>
+                <f:event type="preRenderView" listener="#{venta_facturaBean.listarCliente()}"/>
+                <f:event type="preRenderView" listener="#{venta_facturaBean.listarPedido()}"/>
+
+
+                <h:form id="tabla">
+                    <p:dataTable var="tra" value="#{venta_facturaBean.lstVenta_factura}" rows="15" id="tabla1" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20">
+                        <p:column headerText="Id venta factura" filterBy="#{tra.id_venta_factura}" filterMatchMode="exact">
+                            <p:outputLabel value="#{tra.id_venta_factura}"/>
+                        </p:column>
+                        <p:column headerText="nit Empresa" filterBy="#{tra.nit_empresa}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.nit_empresa}"/>
+                        </p:column> 
+                        <p:column headerText="sub Total" filterBy="#{tra.subtotal}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.subtotal}"/>
+                        </p:column>
+                        <p:column headerText="IVA" filterBy="#{tra.iva}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.iva}"/>
+                        </p:column>
+                        <p:column headerText="Propina" >
+                            <p:outputLabel value="#{tra.propina}"/>
+                        </p:column>
+                        <p:column headerText="Total" >
+                            <p:outputLabel value="#{tra.total}"/>
+                        </p:column>
+                        <p:column headerText="fecha Emision" >
+                            <p:outputLabel value="#{tra.fecha_emision}"/>
+                        </p:column>
+                        <p:column headerText="Pedido" >
+                            <p:outputLabel value="#{tra.pedido.id_pedido}"/>
+                        </p:column>
+                        <p:column headerText="Nit Cliente" >
+                            <p:outputLabel value="#{tra.cliente.nit_cliente}"/>
+                        </p:column>
+                        <p:column headerText="Modificar">
+                            <p:commandButton value="Modificar" actionListener="#{venta_facturaBean.buscar(tra)}" oncomplete="PF('diag').show();" update=":dlgDatos" />
+                        </p:column>
+                    </p:dataTable>                    
+                </h:form>
+                <p:dialog header="Datos" widgetVar="diag" id="dlgDatos">
+                    <h:form>
+                        <h:panelGrid columns="2" cellpadding="5" border="1">
+                          
+                            <p:outputLabel  value="nit empresa"/>
+                            <p:autoComplete id="nit_empresa" value="#{venta_facturaBean.venta_factura.nit_empresa}"/>
+
+                              <p:outputLabel value="Sub Total"/>  
+                              <p:inputText   id="subTotal" value="#{venta_facturaBean.venta_factura.subtotal}" />
+                            
+                                    <p:outputLabel value="IVA"/>  
+                                    <p:inputText   id="iva" value="#{venta_facturaBean.venta_factura.iva}" />
+                              
+                                  <p:outputLabel value="Propia"/>  
+                                  <p:inputText   id="propina" value="#{venta_facturaBean.venta_factura.propina}" />
+                              
+                            <p:outputLabel  value="Total" />
+                            <p:inputText id="total" value="#{venta_facturaBean.venta_factura.total}"/>
+
+                              
+                            <p:outputLabel  value="Fecha de Emision" />
+                            <p:calendar id="Entrega" value="#{venta_facturaBean.venta_factura.fecha_emision}" pattern="yyyy-MM-dd HH:mm:ss" locale="es"/>
+
+                            <p:outputLabel for="Producto_lista" value="Pedido:" />
+                            <p:selectOneMenu id="Producto_lista" value="#{venta_facturaBean.venta_factura.pedido.id_pedido}"> 
+                                <f:selectItem itemLabel="Pedido" itemValue=""/>
+                                <f:selectItems value="#{venta_facturaBean.lstPedido}" var="listape" itemLabel="#{listape.id_pedido}" itemValue="#{listape.id_pedido}"/>      
+                            </p:selectOneMenu> 
+
+                            <p:outputLabel for="Cliente_lista" value="Cliente:" />
+                            <p:selectOneMenu id="Cliente_lista"  value="#{venta_facturaBean.venta_factura.cliente.id_cliente}"> 
+                                <f:selectItem itemLabel="Cliente" itemValue=""/>
+                                <f:selectItems value="#{venta_facturaBean.lstCliente}" var="listapee" itemLabel="#{listapee.nit_cliente}" itemValue="#{listapee.id_cliente}"/>      
+                            </p:selectOneMenu> 
+                        </h:panelGrid>  
+                        <p:commandButton value="Modificar" actionListener="#{venta_facturaBean.modificar()}" update="mess, tabla:tabla1" oncomplete="PF('diag').hide();" />
+                    </h:form>
+                </p:dialog>
+
+             </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
 

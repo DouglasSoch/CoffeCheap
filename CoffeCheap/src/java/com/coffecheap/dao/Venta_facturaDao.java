@@ -178,7 +178,7 @@ public class Venta_facturaDao extends Dao {
         tt.setFecha_emision(rs.getTimestamp(7));
         tt.getPedido().setId_pedido(rs.getInt(8));
         tt.getCliente().setId_cliente(9);
-        tt.getCliente().setNombre(rs.getString(10));
+        tt.getCliente().setNit_cliente(rs.getString(10));
         lista.add(tt);
       }
 
@@ -194,21 +194,31 @@ public class Venta_facturaDao extends Dao {
 
   public void modificar(Venta_factura VF) throws Exception 
   { 
+      System.out.println("modificar");
+      System.out.println("ID" + VF.getId_venta_factura());
+      System.out.println("nit" + VF.getNit_empresa());
+      System.out.println("sub" + VF.getSubtotal());
+      System.out.println("iva" + VF.getIva());
+      System.out.println("pro" + VF.getPropina());
+      System.out.println("to" + VF.getTotal());
+      System.out.println("date" + VF.getFecha_emision());
+      System.out.println("id pe" + VF.getPedido().getId_pedido());
+      System.out.println("id cli" + VF.getCliente().getId_cliente());
     try 
     {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  venta_factura SET id_venta_factura=?, fecha_orden=?, fecha_entrega=?, cantidad_orden=?, id_producto=?, id_proveedor=?, precio=? WHERE id_venta_factura=?;");
-
-      st.setInt(1, VF.getId_venta_factura());
-      st.setString(2, VF.getNit_empresa());
-      st.setDouble(3, VF.getSubtotal());
-      st.setDouble(4, VF.getIva());
-      st.setDouble(5, VF.getPropina());
-      st.setDouble(6, VF.getTotal());
-      st.setTimestamp(7, VF.getFecha_emision());
-      st.setInt(8, VF.getPedido().getId_pedido());
+      PreparedStatement st = this.getCon().prepareStatement("UPDATE  venta_factura SET nit_empresa=?, subtotal=?, iva=?, propina=?, total=?, fecha_emision=?, id_pedido=?, id_cliente=? WHERE id_venta_factura=?");
+      st.setString(1, VF.getNit_empresa());
+      st.setDouble(2, VF.getSubtotal());
+      st.setDouble(3, VF.getIva());
+      st.setDouble(4, VF.getPropina());
+      st.setDouble(5, VF.getTotal());
+      st.setTimestamp(6, VF.getFecha_emision());
+      st.setInt(7, VF.getPedido().getId_pedido());
+      st.setInt(8, VF.getCliente().getId_cliente());
+      st.setInt(9, VF.getId_venta_factura());
       st.executeUpdate();
-
+      Venta_facturaBean.addMessage("Accion Completada");
     } catch (Exception ex) {
       throw ex;
     } finally {
