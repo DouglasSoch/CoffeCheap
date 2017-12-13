@@ -13,13 +13,13 @@
   <h:body>
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-        <f:event type="preRenderView" listener="#{pedidoBean.listar()}"/>
+          <p:growl id="mess"/>
+          <f:event type="preRenderView" listener="#{venta_facturaBean.listarCliente()}"/>
+          <f:event type="preRenderView" listener="#{venta_facturaBean.listarPedido()}"/>
         <h:form class="flip">
 
           <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
-
-            <p:outputLabel value="id venta_factura" />
-            <p:autoComplete id="Codig" value="#{venta_facturaBean.venta_factura.id_venta_factura}"/>                         
+                        
 
             <p:outputLabel  value="nit empresa"/>
             <p:autoComplete id="nit_empresa" value="#{venta_facturaBean.venta_factura.nit_empresa}"/>
@@ -33,46 +33,26 @@
             <p:outputLabel  value="Fecha de Emision" />
             <p:calendar id="Entrega" value="#{venta_facturaBean.venta_factura.fecha_emision}" pattern="yyyy-MM-dd HH:mm:ss" locale="es"/>
 
-            <p:outputLabel for="Producto_lista" value="Id_pedido:" />
-            <p:selectOneMenu id="Producto_lista" style="width:125px" value="#{venta_facturaBean.venta_factura.pedido.id_pedido}"> 
-              <f:selectItem itemLabel="id_pedido..." itemValue=""/>
-              <f:selectItems value="#{pedidoBean.lstPedido}" var="listape" itemLabel="#{listape.id_pedido}" itemValue="#{listape.id_pedido}"/>      
+            <p:outputLabel for="Producto_lista" value="Pedido:" />
+            <p:selectOneMenu id="Producto_lista" value="#{venta_facturaBean.venta_factura.pedido.id_pedido}"> 
+              <f:selectItem itemLabel="Pedido" itemValue=""/>
+              <f:selectItems value="#{venta_facturaBean.lstPedido}" var="listape" itemLabel="#{listape.id_pedido}" itemValue="#{listape.id_pedido}"/>      
+            </p:selectOneMenu> 
+            
+            <p:outputLabel for="Cliente_lista" value="Cliente:" />
+            <p:selectOneMenu id="Cliente_lista"  value="#{venta_facturaBean.venta_factura.cliente.id_cliente}"> 
+              <f:selectItem itemLabel="Cliente" itemValue=""/>
+              <f:selectItems value="#{venta_facturaBean.lstCliente}" var="listapee" itemLabel="#{listapee.nit_cliente}" itemValue="#{listapee.id_cliente}"/>      
             </p:selectOneMenu> 
           </h:panelGrid>
 
 
-          <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{venta_facturaBean.registrar()}"/>
+          <p:commandButton value="Guardar" update="mess" actionListener="#{venta_facturaBean.registrar()}"/>
 
 
-          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
-            <p:panelGrid id="display" columns="2" columnClasses="label,value" style="color: white">
-
-              <h:outputText value="id_venta_factura" />
-              <h:outputText id="id1" value="#{venta_facturaBean.venta_factura.id_venta_factura}" style="color: white" />
-
-              <h:outputText value="nit_empresa" />
-              <h:outputText id="nit1" value="#{venta_facturaBean.venta_factura.nit_empresa}" style="color: white"/>
-
-              <h:outputText value="Total" />
-              <h:outputText id="Total1" value="#{venta_facturaBean.venta_factura.total}" style="color: white" />
-
-              <h:outputText value="pripina" />
-              <h:outputText id="propina1" value="#{venta_facturaBean.venta_factura.opc_propina}" style="color: white"/>                         
-
-              <h:outputText value="Fecha" />
-              <h:outputText id="Fecha1" value="#{venta_facturaBean.venta_factura.fecha_emision}" style="color: white"/>                         
-
-              <h:outputText value="id pedido" />
-              <h:outputText id="idpro1" value="#{venta_facturaBean.venta_factura.pedido.id_pedido}" style="color: white"/>                         
-
-            </p:panelGrid>
-          </p:dialog>
 
         </h:form>
-        <h:form id="otro">       
-
-
-        </h:form> 
+      
 
       </ui:define>
     </ui:composition>

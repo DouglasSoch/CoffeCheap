@@ -13,70 +13,80 @@
   <h:body>
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-
-
-        <h:form class="flip">
-          <f:event type="preRenderView"  listener="#{venta_facturaBean.Mostrar}"/>
-
-
+          <f:event type="preRenderView"  listener="#{venta_facturaBean.listar()}"/>
           <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
           <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
-          <f:event type="preRenderView" listener="#{venta_facturaBean.Mostrar_Prov_Produ()}"/>
-          <p:outputLabel style="color: #oooooo;" value="Lista para escoger orden de transaccion a Modificar" />          
+        
+  
 
-        </h:form>
-        <h:form id="otro">
+          <h:form id="tabla">
+              <p:dataTable var="tra" value="#{venta_facturaBean.lstVenta_factura}" rows="15" id="tabla1" paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15,20">
+                  <p:column headerText="Id" filterBy="#{tra.id_venta_factura}" filterMatchMode="exact">
+                            <p:outputLabel value="#{tra.id_venta_factura}"/>
+                        </p:column>
+                  <p:column headerText="nit" filterBy="#{tra.nit_empresa}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.nit_empresa}"/>
+                        </p:column> 
+                  <p:column headerText="subTotal" filterBy="#{tra.subtotal}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.subtotal}"/>
+                        </p:column>
+                  <p:column headerText="IVA" filterBy="#{tra.iva}" filterMatchMode="contains">
+                            <p:outputLabel value="#{tra.iva}"/>
+                        </p:column>
+                        <p:column headerText="Propina" >
+                            <p:outputLabel value="#{tra.propina}"/>
+                        </p:column>
+                        <p:column headerText="Total" >
+                            <p:outputLabel value="#{tra.total}"/>
+                        </p:column>
+                        <p:column headerText="Fecha Emision" >
+                            <p:outputLabel value="#{tra.fecha_emision}"/>
+                        </p:column>
+                        <p:column headerText="Pedido" >
+                            <p:outputLabel value="#{tra.pedido.id_pedido}"/>
+                        </p:column>
+                        <p:column headerText="Cliente" >
+                            <p:outputLabel value="#{tra.cliente.id_cliente}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Modificar">
+                            <p:commandButton value="Modificar" actionListener="#{transaccion_inventarioBean.buscar(tra)}" oncomplete="PF('diag').show();" update=":dlgDatos" />
+                        </p:column>
+                    </p:dataTable>                    
+                </h:form>
 
-          <p:panelGrid id="display1" columns="4" columnClasses="label,value">          
-            <p:dataTable value="#{venta_facturaBean.lstVenta_factura}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true">
 
-              <p:column>
-                <f:facet name="header">id_orden compras</f:facet>
-                <h:inputText value="#{tabla.id_venta_factura}" style="color: #oooooo; width : 50px" />
-              </p:column>
-              <p:column>
-                <f:facet name="header">Fecha Orden</f:facet>
-                <h:inputText value="#{tabla.fecha_orden}" style="color: #oooooo; width : 120px" />
-              </p:column>
-              <p:column>
-                <f:facet name="header">Fecha Entrega</f:facet>
-                <h:inputText value="#{tabla.fecha_entrega}" style="color: #oooooo; width : 80px" />
-              </p:column>
-              <p:column>
-                <f:facet name="header">Cantidad Orden</f:facet>
-                <h:inputText value="#{tabla.cantidad}" style="color: #oooooo; width : 80px" />
-              </p:column>
-              <p:column id="columna_proveedor">
-                <f:facet name="header">Id Proveedor</f:facet>              
-                <p:selectOneMenu id="lis2" style="width:125px; background-color: #oooooo" value="#{venta_facturaBean.venta_factura.pproductos.proveedor.id_proveedor}" >   
-                  <f:selectItem itemLabel="Proveedor" itemValue=""/>
-                  <f:selectItems value="#{proveedorBean.listar}" var="lista1" itemLabel="#{lista1.nombre}" itemValue="#{lista1.id_proveedor}"/>      
-                  <f:ajax execute="lis2" render="lis1"/>
-                </p:selectOneMenu> 
-              </p:column>
-              <p:column id="columna_producto">
+                <p:dialog header="Datos" widgetVar="diag" id="dlgDatos">
+                    <h:form>
+                        <h:panelGrid columns="2" cellpadding="5" border="1">
+                            <p:outputLabel value="Fecha de transaccion"/>  
+                            <p:outputLabel   id="fecha" value="#{transaccion_inventarioBean.fechaSus}" />
+                            <p:outputLabel value="ingrese producto"/>
+                            <p:selectOneMenu value="#{transaccion_inventarioBean.traInv.producto.id_producto}">
+                                <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv2}"  var="listaa" itemLabel="#{listaa.producto.nombre}"  itemValue="#{listaa.producto.id_producto}" />
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Seleccione Tipo de transaccion"/>
+                            <p:selectOneMenu   value="#{transaccion_inventarioBean.traInv.ttransaccion.id_tipo_transacciones}">
+                                <f:selectItems  value="#{transaccion_inventarioBean.lsttraInv}"  var="lista" itemLabel="#{lista.ttransaccion.nombre}" itemValue="#{lista.ttransaccion.id_tipo_transacciones}" />
+                            </p:selectOneMenu>
 
-                <f:facet name="header">Id Producto</f:facet>
-                <p:selectOneMenu id="lis1" style="width:125px; background-color: #oooooo" value="#{venta_facturaBean.venta_factura.pproductos.producto.id_producto}" > 
-                  <f:selectItem itemLabel="Producto" itemValue=""/>
-                  <f:selectItems value="#{venta_facturaBean.lstProveedor_productos}" var="listapro" itemLabel="#{listapro.producto.nombre}" itemValue="#{listapro.producto.id_producto}"/>      
-                </p:selectOneMenu> 
+                            <p:outputLabel value="Cantidad"/>  
+                            <p:inputText   value="#{transaccion_inventarioBean.traInv.cantidad}" required="true">
+                            </p:inputText>
+                            <p:outputLabel value="Detalle"/>  
+                            <p:inputText id="detalle"  value="#{transaccion_inventarioBean.traInv.detalle}"/>
+                            <p:outputLabel value="factura"/>
+                            <p:selectOneMenu   value="#{transaccion_inventarioBean.traInv.compra.id_compras}">
+                                <f:selectItems  value="#{transaccion_inventarioBean.lsttraFac}"  var="listaf" itemLabel="#{listaf.no_fac}" itemValue="#{listaf.id_compras}" />
+                            </p:selectOneMenu> 
+                        </h:panelGrid>  
+                        <p:commandButton value="Modificar" actionListener="#{transaccion_inventarioBean.modificar()}" update="fecha, mess, tabla:tabla1" oncomplete="PF('diag').hide();" />
+                    </h:form>
+                </p:dialog>
 
-              </p:column>
-              <p:column>
-                <f:facet name="header">precio</f:facet>
-                <h:inputText value="#{tabla.precio}" style="color: #oooooo; width : 80px" />
-              </p:column>             
-
-              <p:column>
-                <h:commandLink value="Modificar" style="color: #oooooo" actionListener="#{venta_facturaBean.modificar(tabla)}"/>                    
-              </p:column>                              
-
-            </p:dataTable>>
-          </p:panelGrid>        
-
-        </h:form> 
-
+          
       </ui:define>
     </ui:composition>
   </h:body>

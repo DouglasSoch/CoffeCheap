@@ -8,7 +8,9 @@ import com.coffecheap.dao.Control_mesaDao;
 import com.coffecheap.dao.Facturar_Imp;
 import com.coffecheap.modelo.Venta_factura;
 import com.coffecheap.dao.Venta_facturaDao;
+import com.coffecheap.modelo.Cliente;
 import com.coffecheap.modelo.Control_mesa;
+import com.coffecheap.modelo.Pedido;
 import com.coffecheap.modelo.Proveedor_productos;
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -38,11 +41,39 @@ import net.sf.jasperreports.engine.export.ooxml.JRPptxExporter;
 
 @ManagedBean
 @ViewScoped
-public class Venta_facturaBean {
+public class Venta_facturaBean 
+
+{
+     static public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 
   private Venta_factura venta_factura = new Venta_factura();
   private List<Venta_factura> lstVenta_factura;
-  List<Proveedor_productos> lstProveedor_productos;
+  private List<Proveedor_productos> lstProveedor_productos;
+  private List<Cliente> lstCliente = new ArrayList(); 
+  private List<Pedido> lstPedido = new ArrayList();
+
+    public List<Cliente> getLstCliente() {
+        return lstCliente;
+    }
+
+    public void setLstCliente(List<Cliente> lstCliente) {
+        this.lstCliente = lstCliente;
+    }
+
+    public List<Pedido> getLstPedido() {
+        return lstPedido;
+    }
+
+    public void setLstPedido(List<Pedido> lstPedido) {
+        this.lstPedido = lstPedido;
+    }
+
+  
+  
+  
 
   public List<Proveedor_productos> getLstProveedor_productos() {
     return lstProveedor_productos;
@@ -89,6 +120,51 @@ public class Venta_facturaBean {
 
   }
 
+  public void listarCliente()
+  {
+        Venta_facturaDao dao;
+        try
+        {
+            dao = new Venta_facturaDao();
+            lstCliente=dao.listarCliente();
+        }
+            catch(Exception e)
+                    {
+                    System.out.println(e);
+                    }
+        
+  }
+  
+  public void listarPedido()
+  {
+        Venta_facturaDao dao;
+        try
+        {
+            dao = new Venta_facturaDao();
+            lstPedido=dao.listarPedido();
+        }
+            catch(Exception e)
+                    {
+                    System.out.println(e);
+                    }
+        
+  }
+  
+  public void listar()
+  {
+        Venta_facturaDao dao;
+        try
+        {
+            dao = new Venta_facturaDao();
+            lstVenta_factura=dao.listar();
+        }
+            catch(Exception e)
+                    {
+                    System.out.println(e);
+                    }
+        
+  }
+  
   public void Mostrar() throws Exception {
     Venta_facturaDao dao;
 

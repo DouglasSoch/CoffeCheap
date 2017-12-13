@@ -5,7 +5,9 @@
  */
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.Venta_facturaBean;
 import com.coffecheap.modelo.Cliente;
+import com.coffecheap.modelo.Pedido;
 import com.coffecheap.modelo.Venta_factura;
 import com.coffecheap.modelo.Proveedor_productos;
 
@@ -26,7 +28,7 @@ public class Venta_facturaDao extends Dao {
     try {
 
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into venta_factura values(?,?,?,?,?,?,?,?);");
+      PreparedStatement st = this.getCon().prepareStatement("insert into venta_factura (id_venta_factura, nit_empresa, subtotal, iva, propina, total, fecha_emision, id_pedido, id_cliente) values (?,?,?,?,?,?,?,?,?)");
       st.setInt(1, VF.getId_venta_factura());
       st.setString(2, VF.getNit_empresa());
       double tem1 = VF.getTem_total();
@@ -50,7 +52,7 @@ public class Venta_facturaDao extends Dao {
       st.setDouble(6, VF.getTotal());
       st.setString(7, VF.getTemp_fecha_emision());
       st.setInt(8, VF.getPedido().getId_pedido());
-
+      st.setInt(9, VF.getCliente().getId_cliente());
       System.out.println("DAO");
       System.out.println("ID" + VF.getId_venta_factura());
       System.out.println("nit" + VF.getNit_empresa());
@@ -60,15 +62,66 @@ public class Venta_facturaDao extends Dao {
       System.out.println("to" + VF.getTotal());
       System.out.println("date" + VF.getFecha_emision());
       System.out.println("id pe" + VF.getPedido().getId_pedido());
-
       st.executeUpdate();
-
+      Venta_facturaBean.addMessage("Accion completada");
     } catch (Exception ex) {
       throw ex;
     } finally {
       this.Desconecar();
 
     }
+
+  }
+  
+      public List<Pedido> listarPedido() throws Exception {
+    List<Pedido> lista;
+    ResultSet rs;
+
+    try {
+      this.Conectar();
+      PreparedStatement st = this.getCon().prepareCall("select id_pedido from pedido");
+      rs = st.executeQuery();
+      lista = new ArrayList();
+      while (rs.next()) {
+        Pedido pedido = new Pedido();
+        pedido.setId_pedido(rs.getInt(1));
+        lista.add(pedido);
+      }
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+    }
+
+    return lista;
+
+  }
+
+  
+    public List<Cliente> listarCliente() throws Exception {
+    List<Cliente> lista;
+    ResultSet rs;
+
+    try {
+      this.Conectar();
+      PreparedStatement st = this.getCon().prepareCall("select id_cliente, nit_cliente from cliente");
+      rs = st.executeQuery();
+      lista = new ArrayList();
+      while (rs.next()) {
+        Cliente cliente = new Cliente();
+        cliente.setId_cliente(rs.getInt(1));
+        cliente.setNit_cliente(rs.getString(2));
+        lista.add(cliente);
+      }
+
+    } catch (Exception ex) {
+      throw ex;
+    } finally {
+      this.Desconecar();
+    }
+
+    return lista;
 
   }
 
@@ -78,7 +131,7 @@ public class Venta_facturaDao extends Dao {
 
     try {
       this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM venta_factura");
+      PreparedStatement st = this.getCon().prepareCall("select venta_factura.id_venta_factura, venta_factura.nit_empresa, venta_factura.subtotal, venta_factura.iva, venta_factura.propina, venta_factura.total, venta_factura.fecha_emision, pedido.id_pedido, cliente.id_cliente, cliente.nit_cliente from venta_factura inner join cliente on(venta_factura.id_cliente = cliente.id_cliente ) inner join pedido on(venta_factura.id_pedido = pedido.id_pedido)");
       rs = st.executeQuery();
       lista = new ArrayList();
       while (rs.next()) {
@@ -92,6 +145,8 @@ public class Venta_facturaDao extends Dao {
         tt.setTotal(rs.getDouble(6));
         tt.setFecha_emision(rs.getTimestamp(7));
         tt.getPedido().setId_pedido(rs.getInt(8));
+        tt.getCliente().setId_cliente(9);
+        tt.getCliente().setNombre(rs.getString(10));
         lista.add(tt);
       }
 
