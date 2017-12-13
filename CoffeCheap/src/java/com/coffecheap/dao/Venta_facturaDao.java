@@ -228,12 +228,13 @@ public class Venta_facturaDao extends Dao {
 
   }
 
-  public void eliminar(Venta_factura pac) throws Exception {
-    System.out.println("*******************************************************eliminar dao");
+  public void eliminar(Venta_factura pac) throws Exception 
+  {
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("DELETE FROM venta_factura WHERE id_Venta_factura=?;");
       st.setInt(1, pac.getId_venta_factura());
+      Venta_facturaBean.addMessage("Accion Completada");
       st.executeUpdate();
 
     } catch (Exception ex) {

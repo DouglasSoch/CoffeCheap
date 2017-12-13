@@ -206,8 +206,9 @@ public class Venta_facturaBean
     }
   }
 
-  public void eliminar(Venta_factura mar) throws Exception {
-    System.out.println("*******************************************************eliminar");
+  public void eliminar(Venta_factura mar) throws Exception 
+  {
+    
     Venta_facturaDao dao;
 
     try {
