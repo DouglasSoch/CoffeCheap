@@ -29,15 +29,13 @@
 
     <h:body>
 
-        <div id="top" class="top" align="center"><B>
+        <div id="top" class="top" align="center" style="color: white"><B>
                 <f:event type="preRenderView" listener="#{menuBean.usu()}"/>
                 <ui:insert name="top">
-                    <b:navBar brand="Brand" brandHref="#" inverse="true" fixed="top">
-                        <b:navbarLinks>
-                            <b:navLink value="Link" href="#"></b:navLink>
-                            <b:navLink value="Link" href="#"></b:navLink>
-
-                            <b:dropMenu value="Permiso">
+                    <b:navBar inverse="true" fixed="top">
+                        <b:navbarLinks style="color: white">
+                            
+                            <b:dropMenu value="Permiso" style="font-size: 18px; color: White" >
                                 <c:forEach var = "i" begin = "1" end = "#{menuBean.Cantidad1()}" step="1">
                                     <b:dropMenu value="#{menuBean.Mostrar(menuBean.CodigoEnvio(i))}">
                                         <c:forEach var = "j" begin = "1" end = "#{menuBean.Cantidad2(menuBean.CodigoEnvio(i))}" step="1">
@@ -47,15 +45,19 @@
                                     </b:dropMenu>
                                 </c:forEach>
                             </b:dropMenu>
-
+                            
+                            <b:navLink style="font-size: 18px;" value="Pagina CoffeCrem" href="http://coffechip.j.sphere48.com/coffeCream/"></b:navLink>
+                                                        
                         </b:navbarLinks>
                         <h:form styleClass="navbar-form navbar-right">
                             <div class="form-group">
-                                <b:label value="#{verificar_login.halo}" />
+                                <b:label value="#{verificar_login.halo}" style="font-size: 18px; background-color:#222222 "/><!--saludo y comprobacion de permiso-->                                 
                                 <!--input type="text" class="form-control" placeholder="Search"/-->
                             </div>
                             <div class="form-group">
-                                <b:label value="#{verificar_login.usu.nombre}" />
+                                <b:label value="#{verificar_login.usu.nombre}" style="font-size: 18px; background-color:#222222"/>
+                                
+                                
                             </div> 
                             <b:commandButton action="#{verificar_login.cerrar()}" value="Log Out" look="success" icon="chevron-right" iconAlign="right"/>
                         </h:form>
