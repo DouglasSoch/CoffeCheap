@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
+/**
+ * 
+ * @author bryan
+ */
 @ManagedBean
 @ViewScoped
 public class ReservaUsuBean
@@ -21,7 +24,9 @@ public class ReservaUsuBean
         this.lstMesa = lstMesa;
     }
     
-    
+    /**
+     * Metodo para listar las mesas
+     */
     public void mesa()
     {
         
@@ -36,7 +41,12 @@ public class ReservaUsuBean
     }
     
     }
-    
+    /**
+     * Metodo para el control del estado de las mesas
+     * @param mesa
+     * @return retorna el estado de la mesa
+     * @throws Exception posible excepciones en el metodo
+     */
     public String ControlEstado(int mesa) throws Exception {
     ReservaUsuaDao dao;
     String estado = null;
@@ -50,7 +60,11 @@ public class ReservaUsuBean
     return estado;
   }
     
-    
+    /**
+     * Metodo
+     * @return
+     * @throws Exception 
+     */
     public int tamano() throws Exception {
     ReservaUsuaDao dao;
     int numero = 0;
@@ -63,7 +77,11 @@ public class ReservaUsuBean
     System.out.println("El numero de mesas es " + numero);
     return numero;
   }
-    
+    /**
+     * Metodo para verificar cambio de estados en la mesa
+     * @param MesaSelecionada
+     * @throws Exception 
+     */
       public void CambioEstado(int MesaSelecionada) throws Exception {
    
     ReservaUsuaDao dao;
@@ -75,6 +93,12 @@ public class ReservaUsuBean
       throw e;
     }
   }
+      /**
+       * Metodo para cantidad de personas por mesa
+       * @param MesaSelecionada
+       * @return
+       * @throws Exception 
+       */
          public int comensales(int MesaSelecionada) throws Exception {
    int numero=0;
     ReservaUsuaDao dao;

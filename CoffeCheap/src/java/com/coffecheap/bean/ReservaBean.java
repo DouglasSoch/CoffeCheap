@@ -24,6 +24,12 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class ReservaBean {
 
+    /**
+     * Metodo para mostrar mensajes emergentes desde una instancia creada de
+     * ReservaBean
+     *
+     * @param summary
+     */
     static public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -111,6 +117,11 @@ public class ReservaBean {
 //     }
 //            
 //    }
+    /**
+     * Metodo especial para registrar cliente si es necesario y reserva
+     *
+     * @throws Exception
+     */
     public void registrarCyR() throws Exception {
 
         ReservaDao dao;
@@ -150,6 +161,12 @@ public class ReservaBean {
         }
 
     }
+    
+    /**
+     * Metodo para mostrar el cliente si este existe
+     * @param clie
+     * @throws Exception 
+     */
 
     public void cliRe(Cliente clie) throws Exception {
         ReservaDao dao;
@@ -169,7 +186,10 @@ public class ReservaBean {
 
         }
     }
-
+/**
+ * Metodo para listar reservas
+ * @throws Exception 
+ */
     public void listar() throws Exception {
         ReservaDao dao;
 
@@ -180,7 +200,10 @@ public class ReservaBean {
             throw e;
         }
     }
-
+/**
+ * Metodo para listar mesa en lista desplegable
+ * @throws Exception 
+ */
     public void listarMesa() throws Exception {
         ReservaDao dao;
 
@@ -191,57 +214,49 @@ public class ReservaBean {
             throw e;
         }
     }
-
+/**
+ * Metodo para registrar una reserva
+ * @throws Exception 
+ */
     public void registrar() throws Exception {
         ReservaDao dao;
         try {
 
             if (reserva.getFecha() == null) {
                 addMessage("Ingrese fecha");
-            } 
-            else 
-            {
-                if(reserva.getHora_entrada().equals(""))
-                {
+            } else {
+                if (reserva.getHora_entrada().equals("")) {
                     addMessage("Ingrese Hora de entrada");
+                } else {
+                    if (reserva.getHora_salida().equals("")) {
+                        addMessage("Ingrese Hora de salida");
+                    } else {
+                        if (reserva.getCantidad_personas() == 0) {
+                            addMessage("Ingrese cantidad de personas");
+                        } else {
+                            if (reserva.getMesa().getId_mesa() == 0) {
+                                addMessage("Eliga una mesa");
+                            } else {
+
+                                String formateador = new SimpleDateFormat("yyyy-MM-dd").format(reserva.getFecha());
+                                reserva.setFechaSus(formateador);
+                                this.reserva.getCliente().setId_cliente(cli.getId_cliente());
+                                dao = new ReservaDao();
+                                dao.registrar(reserva);
+                            }
+                        }
+                    }
                 }
-                else
-                 {
-                     if(reserva.getHora_salida().equals(""))
-                     {
-                     addMessage("Ingrese Hora de salida");
-                     }
-                     else
-                     {
-                         if(reserva.getCantidad_personas()==0)
-                         {
-                             addMessage("Ingrese cantidad de personas");
-                         }
-                         else
-                         {
-                             if(reserva.getMesa().getId_mesa()==0)
-                             {
-                                 addMessage("Eliga una mesa");
-                             }
-                             else
-                             {
-                                 
-                                      String formateador = new SimpleDateFormat("yyyy-MM-dd").format(reserva.getFecha());
-                                      reserva.setFechaSus(formateador);
-                                      this.reserva.getCliente().setId_cliente(cli.getId_cliente());
-                                      dao = new ReservaDao();
-                                      dao.registrar(reserva);
-                             }
-                         }
-                     }
-                 }
             }
 
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-
+/**
+ * Metodo para verificar si hay disponiblidad
+ * @throws Exception 
+ */
     public void Dispo() throws Exception {
         ReservaDao dao;
 
@@ -252,7 +267,9 @@ public class ReservaBean {
             throw e;
         }
     }
-
+/**
+ * Metodo para listar reserva
+ */
     public void mostrar() {
         ReservaDao dao;
 
@@ -263,7 +280,10 @@ public class ReservaBean {
             System.out.println(e);
         }
     }
-
+/**
+ * Metodo para listar reserva
+ * @throws Exception 
+ */
     public void mostar() throws Exception {
         ReservaDao dao;
 
@@ -274,7 +294,10 @@ public class ReservaBean {
             throw e;
         }
     }
-
+/**
+ * Metodo para listar reserva por parametro
+ * @throws Exception 
+ */
     public void mostarPorParametro() throws Exception {
         ReservaDao dao;
 
@@ -285,7 +308,10 @@ public class ReservaBean {
             throw e;
         }
     }
-
+/**
+ * Metodo para obtner una fila en un objeto Reserva
+ * @throws Exception 
+ */
     public void buscar() throws Exception {
         ReservaDao dao;
         Reserva temp;
@@ -303,7 +329,10 @@ public class ReservaBean {
             throw e;
         }
     }
-
+/**
+ * Metodo para modificar un registro de Reserva
+ * @throws Exception 
+ */
     public void modificar() throws Exception {
         ReservaDao dao;
 
@@ -314,7 +343,10 @@ public class ReservaBean {
             throw e;
         }
     }
-
+/**
+ * Metodo para eliminar una Reserva
+ * @throws Exception 
+ */
     public void eliminar() throws Exception {
         ReservaDao dao;
 

@@ -1,9 +1,4 @@
 package com.coffecheap.bean;
-
-/**
- *
- * @marhor acier
- */
 import com.coffecheap.modelo.Orden_compras;
 import com.coffecheap.dao.Orden_comprasDao;
 import com.coffecheap.modelo.Proveedor_productos;
@@ -14,7 +9,10 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
-
+/**
+ * 
+ * @author bryan
+ */
 @ManagedBean
 @ViewScoped
 public class Orden_comprasBean {
@@ -46,15 +44,14 @@ public class Orden_comprasBean {
     public void setLstOrden_compras(List<Orden_compras> lstOrden_compras) {
         this.lstOrden_compras = lstOrden_compras;
     }
-    
-    public void registrar() {
-        
-        System.out.println("*******************************************************registrar");
-        
-        Orden_comprasDao dao;
-        
-        try {          
-            
+    /**
+     * Metodo para registrar una orden de compras
+     */
+    public void registrar() 
+    {
+        Orden_comprasDao dao;    
+        try 
+        {              
             String formateador = new SimpleDateFormat("yyyy-MM-dd").format(orden_compras.getFecha_entrega());
             String formateador2 = new SimpleDateFormat("yyyy-MM-dd").format(orden_compras.getFecha_orden());
             
@@ -70,7 +67,10 @@ public class Orden_comprasBean {
         }
         
     }
-    
+    /**
+     * Metodo para listar todos los registros de orden de compras
+     * @throws Exception 
+     */
     public void Mostrar() throws Exception {
         Orden_comprasDao dao;
         
@@ -82,7 +82,11 @@ public class Orden_comprasBean {
         }
         
     }
-    
+    /**
+     * Metodo para modificar una orden de compras
+     * @param mar
+     * @throws Exception 
+     */
     public void modificar(Orden_compras mar) throws Exception {
         System.out.println("*******************************************************Modificar");
         Orden_comprasDao dao;
@@ -96,7 +100,11 @@ public class Orden_comprasBean {
         }
         
     }
-    
+    /**
+     * Metodo para eliminar una orden de compras
+     * @param mar
+     * @throws Exception 
+     */
     public void eliminar(Orden_compras mar) throws Exception {
         System.out.println("*******************************************************eliminar");
         Orden_comprasDao dao;
@@ -110,7 +118,10 @@ public class Orden_comprasBean {
         }
         
     }
-    
+    /**
+     * Metodo para listar el proveedor_Producto
+     * @throws Exception 
+     */
     public void Mostrar_Prov_Produ() throws Exception {
         //Mostrar Proveedor_produc
         Orden_comprasDao dao;

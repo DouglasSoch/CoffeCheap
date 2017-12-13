@@ -2,7 +2,7 @@ package com.coffecheap.bean;
 
 /**
  *
- * @marhor acier
+ * @marhor Santi
  */
 
 import com.coffecheap.modelo.Unidad_medida;
@@ -36,6 +36,9 @@ public class Unidad_medidaBean {
     this.lstUnidad_medida = lstUnidad_medida;
   }
 
+  /**
+   * Metodo para registrar
+   */
   public void registrar() {
 
     System.out.println("*******************************************************registrar");
@@ -51,6 +54,10 @@ public class Unidad_medidaBean {
 
   }
 
+  /**
+   * Metodo para listar las unidades de medida
+   * @throws Exception 
+   */
   public void listar() throws Exception {
     Unidad_medidaDao dao;
 
@@ -63,6 +70,11 @@ public class Unidad_medidaBean {
 
   }
 
+  /**
+   * Metodo para modificar 
+   * @param mar
+   * @throws Exception 
+   */
   public void modificar(Unidad_medida mar) throws Exception {
     System.out.println("*******************************************************Modificar");
     Unidad_medidaDao dao;
@@ -77,6 +89,11 @@ public class Unidad_medidaBean {
 
   }
 
+  /**
+   * Metodo para eliminar
+   * @param mar
+   * @throws Exception 
+   */
   public void eliminar(Unidad_medida mar) throws Exception {
     System.out.println("*******************************************************eliminar");
     Unidad_medidaDao dao;

@@ -5,7 +5,10 @@ import com.coffecheap.modelo.Proveedor;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
+/**
+ * 
+ * @author bryan
+ */
 @ManagedBean
 @ViewScoped
 public class ProveedorBean {
@@ -33,6 +36,10 @@ public class ProveedorBean {
     public ProveedorBean() {
     }
     
+    /**
+     * Metodo para registrar un proveedor
+     * @throws Exception 
+     */
     public void Ingresar() throws Exception{
         
         ProveedorDao dao;
@@ -44,7 +51,10 @@ public class ProveedorBean {
             throw e;
         }
     }
-    
+    /**
+     * Metodo para eliminar un proveedor
+     * @throws Exception 
+     */
     public void Eliminar() throws Exception{
         
         ProveedorDao dao;
@@ -56,7 +66,10 @@ public class ProveedorBean {
             throw e;
         }
     }
-    
+    /**
+     * Metodo para Modifcar un proveedor
+     * @throws Exception 
+     */
     public void Modificar() throws Exception{
         
         ProveedorDao dao;
@@ -68,7 +81,10 @@ public class ProveedorBean {
             throw e;
         }
     }
-    
+    /**
+     * Metodo para listar todos los registros de proveedor
+     * @throws Exception 
+     */
     public void Mostrar() throws Exception{
         
         ProveedorDao dao;

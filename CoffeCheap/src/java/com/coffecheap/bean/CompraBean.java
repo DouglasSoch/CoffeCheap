@@ -10,7 +10,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
+/**
+ * 
+ * @author bryan
+ */
 @ManagedBean
 @ViewScoped
 public class CompraBean extends Dao {
@@ -48,6 +51,10 @@ public class CompraBean extends Dao {
   public CompraBean() {
   }
 
+  /**
+   * Metodo especial para la compra
+   * @throws Exception 
+   */
   public void Intermedio() throws Exception {
 
     i = i + 1;
@@ -63,7 +70,9 @@ public class CompraBean extends Dao {
     compra.setSerie(null);
 
   }
-
+/**
+ * Metodo para registrar una compra
+ */
   public void Ingresar() {
     CompraDao dao;
     try {
@@ -97,7 +106,10 @@ public class CompraBean extends Dao {
       }
     }
   }
-
+/**
+ * Metodo para eliminar un registro de compra
+ * @throws Exception 
+ */
   public void Eliminar() throws Exception {
 
     CompraDao dao;
@@ -113,7 +125,10 @@ public class CompraBean extends Dao {
       throw e;
     }
   }
-
+/**
+ * Metodo para modificar una compra
+ * @throws Exception 
+ */
   public void Modificar() throws Exception {
 
     CompraDao dao;
@@ -134,7 +149,10 @@ public class CompraBean extends Dao {
     }
 
   }
-
+/**
+ * Metodo para listar todos los registros de compra
+ * @throws Exception 
+ */
   public void Mostrar() throws Exception {
 
     CompraDao dao;

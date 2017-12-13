@@ -16,12 +16,16 @@ import javax.faces.context.FacesContext;
 
 /**
  *
- * @author medev
+ * @author Bryan
  */
 @ManagedBean
 @ViewScoped
 public class RecetaBean 
 {
+    /**
+     * Metodo para mostrar mensaje emergente desde una instancia creada RecetaBean
+     * @param summary 
+     */
      static public void addMessage(String summary) {
     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
     FacesContext.getCurrentInstance().addMessage(null, message);
@@ -46,6 +50,9 @@ private List<Receta>lstReceta;
         this.lstReceta = lstReceta;
     }
     
+    /**
+     * Metodo para registrar una Receta
+     */
     public void registrar() {
 
     System.out.println("*******************************************************registrar");
@@ -60,7 +67,10 @@ private List<Receta>lstReceta;
     }
 
   }
-
+/**
+ * Metodo para listar las recetas
+ * @throws Exception 
+ */
   public void listar() throws Exception {
     RecetaDao dao;
 
@@ -72,7 +82,10 @@ private List<Receta>lstReceta;
     }
 
   }
-
+/**
+ * MEtodo para modificar una receta
+ * @throws Exception 
+ */
   public void modificar() throws Exception 
   {
     RecetaDao dao;
@@ -87,7 +100,11 @@ private List<Receta>lstReceta;
 
   }
 
-
+/**
+ * Metodo para eliminar una receta
+ * @param receta
+ * @throws Exception 
+ */
   public void eliminar(Receta receta) throws Exception {
     System.out.println("*******************************************************eliminar");
     RecetaDao dao;
@@ -102,7 +119,10 @@ private List<Receta>lstReceta;
 
   }
   
-  
+  /**
+   * Metodo para obtener una fila en un objeto Receta
+   * @param recet 
+   */
     public void fila(Receta recet) 
   {
     RecetaDao dao;

@@ -7,6 +7,11 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+/**
+ * 
+ * @author Douglas
+ */
+
 @ManagedBean
 @ViewScoped
 public class TurnoBean {
@@ -35,6 +40,10 @@ public class TurnoBean {
     public TurnoBean() {
     }
     
+    /**
+     * Metodo para registrar 
+     * @throws Exception 
+     */
     public void Ingreso() throws Exception{
         
         TurnoDao dao;
@@ -47,6 +56,10 @@ public class TurnoBean {
         }
     }
     
+    /**
+     * Metodo para eliminar
+     * @throws Exception 
+     */
     public void Eliminar() throws Exception{
         
         TurnoDao dao;
@@ -59,6 +72,10 @@ public class TurnoBean {
         }
     }
     
+    /**
+     * Metodo para modificar u registro
+     * @throws Exception 
+     */
     public void Editar()throws Exception{
         
         TurnoDao dao;
@@ -71,6 +88,10 @@ public class TurnoBean {
         }
     }
     
+    /**
+     * Metodo para listar
+     * @throws Exception 
+     */
     public void Mostrar() throws Exception{
         
         TurnoDao dao;

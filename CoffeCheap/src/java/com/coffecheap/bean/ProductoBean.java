@@ -16,13 +16,17 @@ import javax.faces.context.FacesContext;
 
 /**
  *
- * @author medev
+ * @author Bryan
  */
 @Named(value = "productoBean")
 @ManagedBean
 @ViewScoped
 public class ProductoBean 
 {
+    /**
+     * Metodo para mostrar un mensaje emergente desde una instancia de ProductoBean
+     * @param summary 
+     */
     static public void addMessage(String summary) {
     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
     FacesContext.getCurrentInstance().addMessage(null, message);
@@ -47,6 +51,9 @@ public class ProductoBean
         this.lstProducto = lstProducto;
     }
     
+    /**
+     * Metodo para registrar  un producto
+     */
     public void registrar() 
     {
     ProductoDao dao;
@@ -61,7 +68,10 @@ public class ProductoBean
     }
 
   }
-
+/**
+ * Metodo para listar todos los registros de producto
+ * @throws Exception 
+ */
   public void Mostrar() throws Exception {
     ProductoDao dao;
 
@@ -73,6 +83,10 @@ public class ProductoBean
     }
 
   }
+  /**
+   * Metodo para mostrar todos los registros de producto
+   * @throws Exception 
+   */
   public void listar() throws Exception {
     ProductoDao dao;
 
@@ -84,6 +98,10 @@ public class ProductoBean
     }
 
   }
+  /**
+   * Metodo para modificar un producto
+   * @throws Exception 
+   */
   public void modificar() throws Exception {
     
     ProductoDao dao;
@@ -98,9 +116,13 @@ public class ProductoBean
 
   }
 
-
-  public void eliminar(Producto prod) throws Exception {
-    System.out.println("*******************************************************eliminar");
+/**
+ * Metodo para eliminar
+ * @param prod
+ * @throws Exception 
+ */
+  public void eliminar(Producto prod) throws Exception 
+  {
     ProductoDao dao;
 
     try {
@@ -112,7 +134,10 @@ public class ProductoBean
     }
 
   }
-  
+  /**
+   * Metodo para obtener una fila en un objeto producto
+   * @param pro 
+   */
   public void fila(Producto pro) 
   {
     ProductoDao dao;

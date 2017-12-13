@@ -13,7 +13,10 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class ClienteBean 
 {
-
+/**
+ * Metodo para mostrar un mensaje emergente desde una instancia de PedidoBean
+ * @param summary 
+ */
     static public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -37,6 +40,10 @@ public class ClienteBean
     this.lstCliente = lstCliente;
   }
 
+  /**
+   * Metodo para registrar un cliente
+   * @throws Exception 
+   */
   public void registrar() throws Exception {
     ClienteDao dao;
     try {
@@ -46,7 +53,10 @@ public class ClienteBean
       System.out.println(e);
     }
   }
-  
+  /**
+   * Metodo para registrar un cliente
+   * @throws Exception 
+   */
   public void registrarN() throws Exception {
     ClienteDao dao;
     try {
@@ -56,7 +66,10 @@ public class ClienteBean
       System.out.println(e);
     }
   }
-
+/**
+ * Metodo para listar todos los registros de cliente
+ * @throws Exception 
+ */
   public void mostar() throws Exception {
     ClienteDao dao;
 
@@ -67,7 +80,10 @@ public class ClienteBean
       throw e;
     }
   }
-  
+  /**
+   * Metodo para listar todos los registros de cliente pero con condicion en nombre
+   * @throws Exception 
+   */
     public void listar() throws Exception {
     ClienteDao dao;
  
@@ -78,7 +94,10 @@ public class ClienteBean
       throw e;
     }
   }
-
+/**
+ * Metodo para listar por parametro
+ * @throws Exception 
+ */
   public void mostarPorParametro() throws Exception {
     ClienteDao dao;
 
@@ -89,7 +108,10 @@ public class ClienteBean
       throw e;
     }
   }
-
+/**
+ * Metodo para obtener ina fila en un objeto
+ * @throws Exception 
+ */
   public void buscar() throws Exception 
   {
         System.out.println("EL id es "+cliente.getId_cliente());
@@ -110,7 +132,11 @@ public class ClienteBean
     }
   }
   
-  
+  /**
+   * Metodo para obtener una fila en un objeto
+   * @param clie
+   * @throws Exception 
+   */
     public void fila(Cliente clie) throws Exception 
   {
     ClienteDao dao;
@@ -132,7 +158,10 @@ public class ClienteBean
    
 
     
-    
+    /**
+     * Metodo para obtener una fila en un objeto
+     * @throws Exception 
+     */
    public void buscarr() throws Exception 
   {
         System.out.println("EL id es "+cliente.getId_cliente());
@@ -152,7 +181,10 @@ public class ClienteBean
       
     }
   }
-
+/**
+ * Metodo para modificar un cliente
+ * @throws Exception 
+ */
   public void modificar() throws Exception {
     ClienteDao dao;
 
@@ -163,7 +195,11 @@ public class ClienteBean
       throw e;
     }
   }
-
+/**
+ * Metodo para elimianr un cliente
+ * @param cli
+ * @throws Exception 
+ */
   public void eliminar(Cliente cli) throws Exception {
     ClienteDao dao;
 

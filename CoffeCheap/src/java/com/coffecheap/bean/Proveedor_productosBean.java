@@ -1,10 +1,4 @@
 package com.coffecheap.bean;
-
-/**
- *
- * @marhor acier
- */
-
 import com.coffecheap.modelo.Proveedor_productos;
 import com.coffecheap.dao.Proveedor_productosDao;
 import com.coffecheap.modelo.Producto;
@@ -18,12 +12,18 @@ import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
+/**
+ * 
+ * @author bryan
+ */
 @ManagedBean
 @ViewScoped
 public class Proveedor_productosBean 
 {
-
+/**
+ * Metodo para mostrar un mensaje emergente desde una instancia creada de Proveedor_productosBean
+ * @param summary 
+ */
      static public void addMessage(String summary) {
     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
     FacesContext.getCurrentInstance().addMessage(null, message);
@@ -68,6 +68,9 @@ public class Proveedor_productosBean
     this.lstProveedor_productos = lstProveedor_productos;
   }
 
+  /**
+   * Metodo para registrar un Proveedor Producto
+   */
   public void registrar() 
   {
     Proveedor_productosDao dao;
@@ -86,6 +89,10 @@ public class Proveedor_productosBean
 
   }
   
+  /**
+   * Metodo para obtener una fila en un objeto de proveedor producto
+   * @param prod 
+   */
    public void fila(Proveedor_productos prod) 
   {
     Proveedor_productosDao dao;
@@ -103,7 +110,10 @@ public class Proveedor_productosBean
       System.out.println(e);
     }
   }
-
+/**
+ * Metodo para listar todos los registros de proveedor producto
+ * @throws Exception 
+ */
   public void listar() throws Exception {
     Proveedor_productosDao dao;
 
@@ -115,7 +125,10 @@ public class Proveedor_productosBean
     }
 
   }
-
+/**
+ * Metodo para registrar todos los productos
+ * @throws Exception 
+ */
   public void listarProducto() throws Exception {
     Proveedor_productosDao dao;
 

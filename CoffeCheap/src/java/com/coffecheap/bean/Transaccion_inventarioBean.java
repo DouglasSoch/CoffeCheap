@@ -16,10 +16,19 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
+/**
+ * 
+ * @author bryan
+ */
+
 @ManagedBean
 @ViewScoped
-public class Transaccion_inventarioBean {
-
+public class Transaccion_inventarioBean 
+{    
+    /**
+     * Metodo para mostrar mensajes desde on objeto creado de este molde
+     * @param summary 
+     */
     static public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -80,6 +89,10 @@ public class Transaccion_inventarioBean {
         this.lsttraInv = lsttraInv;
     }
 
+    /**
+     * metodo para registrar
+     * @throws Exception 
+     */
     public void registrar() throws Exception {
 
         Transaccion_InventarioDAO dao = new Transaccion_InventarioDAO();
@@ -140,7 +153,10 @@ public class Transaccion_inventarioBean {
             System.out.println(e);
         }
     }
-
+/**
+ * metodo para listar
+ * @throws Exception 
+ */
     public void mostar() throws Exception {
         Transaccion_InventarioDAO dao;
 
@@ -152,7 +168,10 @@ public class Transaccion_inventarioBean {
         }
     }
 
-   
+   /**
+    * Metodo para lista desplegable
+    * @throws Exception 
+    */
     public void leerParaModificarProducto() throws Exception {
         Transaccion_InventarioDAO dao;
 
@@ -163,7 +182,10 @@ public class Transaccion_inventarioBean {
             throw e;
         }
     }
-    
+    /**
+     * Metodo para lista desplegable
+     * @throws Exception 
+     */
         public void numeroFac() throws Exception {
         Transaccion_InventarioDAO dao;
 
@@ -174,7 +196,10 @@ public class Transaccion_inventarioBean {
             throw e;
         }
     }
-
+/**
+ * Metodo para lista deslegable
+ * @throws Exception 
+ */
     public void leerParaModificarTipoTransacciones() throws Exception {
         Transaccion_InventarioDAO dao;
 
@@ -185,7 +210,11 @@ public class Transaccion_inventarioBean {
             throw e;
         }
     }
-
+/**
+ * Metodo para obtener una fila en un objeto
+ * @param tra
+ * @throws Exception 
+ */
     public void buscar(Transaccion_inventario tra) throws Exception {
         Transaccion_InventarioDAO dao;
         Transaccion_inventario temp;
@@ -201,7 +230,10 @@ public class Transaccion_inventarioBean {
             throw e;
         }
     }
-   
+   /**
+    * Metodo para modificar
+    * @throws Exception 
+    */
                      public void modificar() throws Exception
     {
         
@@ -217,7 +249,11 @@ public class Transaccion_inventarioBean {
             throw e;
         }
     }
-    
+    /**
+     * Metodo para eliminar
+     * @param tra
+     * @throws Exception 
+     */
      public void eliminar(Transaccion_inventario tra) throws Exception
     {
         
@@ -233,6 +269,10 @@ public class Transaccion_inventarioBean {
             throw e;
         }
     }
+     /**
+      * Metodo para realizar sustraccion
+      * @throws Exception 
+      */
      public void resta() throws Exception
     {
         

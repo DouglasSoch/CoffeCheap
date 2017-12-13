@@ -39,16 +39,28 @@ import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRPptxExporter;
 
+/**
+ * 
+ * @author Santi & Lezana
+ */
+
 @ManagedBean
 @ViewScoped
 public class Venta_facturaBean 
 
 {
+    /**
+     * 
+     * @param summary Texto que sera mostrado como una mensaje emergente
+     */
      static public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
+     /**
+      * Variables 
+      */
   private Venta_factura venta_factura = new Venta_factura();
   private List<Venta_factura> lstVenta_factura;
   private List<Proveedor_productos> lstProveedor_productos;
@@ -70,10 +82,6 @@ public class Venta_facturaBean
     public void setLstPedido(List<Pedido> lstPedido) {
         this.lstPedido = lstPedido;
     }
-
-  
-  
-  
 
   public List<Proveedor_productos> getLstProveedor_productos() {
     return lstProveedor_productos;
@@ -98,7 +106,9 @@ public class Venta_facturaBean
   public void setLstVenta_factura(List<Venta_factura> lstVenta_factura) {
     this.lstVenta_factura = lstVenta_factura;
   }
-
+/**
+ * Metodo registrar
+ */
   public void registrar() {
 
     System.out.println("*******************************************************registrar");
@@ -119,6 +129,9 @@ public class Venta_facturaBean
     }
 
   }
+  /**
+   * Metodo para listar 
+   */
 
   public void listarCliente()
   {
@@ -135,6 +148,10 @@ public class Venta_facturaBean
         
   }
   
+  
+  /**
+   * Metodo para listar 
+   */
   public void listarPedido()
   {
         Venta_facturaDao dao;
@@ -149,7 +166,9 @@ public class Venta_facturaBean
                     }
         
   }
-  
+  /**
+   * Metodo para listar 
+   */
   public void listar()
   {
         Venta_facturaDao dao;
@@ -164,7 +183,11 @@ public class Venta_facturaBean
                     }
         
   }
-  
+  /**
+   * metodo para obtener una fila de una tabla en un objeto
+   * @param vf
+   * @throws Exception 
+   */
   public void buscar(Venta_factura vf) throws Exception {
         Venta_facturaDao dao;
         Venta_factura temp;
@@ -181,6 +204,10 @@ public class Venta_facturaBean
         }
     }
   
+  /**
+   * metodo para mostrar
+   * @throws Exception 
+   */
   public void Mostrar() throws Exception {
     Venta_facturaDao dao;
 
@@ -192,6 +219,10 @@ public class Venta_facturaBean
     }
   }
 
+  /**
+   * Metodo para modificar el valor obetenido 
+   * @throws Exception 
+   */
   public void modificar() throws Exception 
   {
    
@@ -205,7 +236,11 @@ public class Venta_facturaBean
       throw e;
     }
   }
-
+/**
+ * Metodo recibe objeto por parametro para eliminar
+ * @param mar
+ * @throws Exception 
+ */
   public void eliminar(Venta_factura mar) throws Exception 
   {
     
@@ -220,6 +255,11 @@ public class Venta_facturaBean
     }
   }
 
+  /**
+   * Metodo especial para registrar venta
+   * @param mesa
+   * @param clienteid 
+   */
   public void registrar_venta(int mesa, int clienteid) {
 
     venta_factura.setEstadoFactura(true);
@@ -240,6 +280,11 @@ public class Venta_facturaBean
 
   }
   
+  /**
+   * Metodo para control de la factura
+   * @param mesa
+   * @return 
+   */
     public boolean controlGenerarFactura(int mesa) {
 
     boolean estado=false;
@@ -259,7 +304,11 @@ public class Venta_facturaBean
     return estado;
   }
     
-    
+    /**
+     * Metodo para ver archivos PDF
+     * @param actionEvent
+     * @throws Exception 
+     */
     public void verPDF(ActionEvent actionEvent) throws Exception{
         Facturar_Imp dao=new Facturar_Imp();
         

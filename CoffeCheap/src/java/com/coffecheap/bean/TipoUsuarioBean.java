@@ -10,6 +10,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+/**
+ *
+ * @author bryan
+ */
+
 @ManagedBean
 @ViewScoped
 public class TipoUsuarioBean {
@@ -43,8 +48,6 @@ public class TipoUsuarioBean {
         this.tip = tip;
     }
 
-    
-    
     public String getMessage() {
         return message;
     }
@@ -93,6 +96,11 @@ public class TipoUsuarioBean {
         this.tipo = tipo;
     }
 
+    /**
+     * Metodo para ingresar un tipo de usuario
+     *
+     * @throws Exception
+     */
     public void Ingresar() throws Exception {
 
         TipoUsuarioDao dao;
@@ -116,6 +124,11 @@ public class TipoUsuarioBean {
         }
     }
 
+    /**
+     * Metodo para listar las paginas del proyecto
+     *
+     * @throws Exception
+     */
     public void Crud() throws Exception {
 
         TipoUsuarioDao dao;
@@ -127,6 +140,11 @@ public class TipoUsuarioBean {
         }
     }
 
+    /**
+     * Metodo para listar los nombres de las paginas
+     *
+     * @throws Exception
+     */
     public void Nombre() throws Exception {
 
         TipoUsuarioDao dao;
@@ -138,6 +156,11 @@ public class TipoUsuarioBean {
         }
     }
 
+    /**
+     * Metodo especial para verificacion de permisos de los tipo de usuarios
+     *
+     * @throws Exception
+     */
     public void Intermedio() throws Exception {
         TipoUsuarioDao dao;
 
@@ -145,7 +168,6 @@ public class TipoUsuarioBean {
             dao = new TipoUsuarioDao();
 
             String nombre = dao.Comparar(tipo.getNombretipo());
-           
 
             if (nombre == null) {
 
@@ -225,46 +247,58 @@ public class TipoUsuarioBean {
         }
     }
 
+    /**
+     * Metodo para ocultar elementos
+     *
+     * @return
+     */
     public int Ocultar() {
         int respuesta = listadescripcion.size();
 
         return respuesta;
     }
 
-    
-     public void modificar() throws Exception
-    {
-        
-        TipoUsuarioDao dao ;
-        
-        try
-        {
-            dao= new TipoUsuarioDao();
+    /**
+     * Metodo para modificar un tipo de usuario
+     *
+     * @throws Exception
+     */
+    public void modificar() throws Exception {
+
+        TipoUsuarioDao dao;
+
+        try {
+            dao = new TipoUsuarioDao();
             dao.modificar(tip);
-            
-        }catch(Exception e)
-        {
+
+        } catch (Exception e) {
             throw e;
         }
     }
-    
-     public void eliminar(Tipo tipo) throws Exception
-    {
-        
-        TipoUsuarioDao dao ;
-        
-        try
-        {
-            dao= new TipoUsuarioDao();
+
+    /**
+     * Metodo para eliminar un tipo de usuario
+     *
+     * @param tipo
+     * @throws Exception
+     */
+    public void eliminar(Tipo tipo) throws Exception {
+
+        TipoUsuarioDao dao;
+
+        try {
+            dao = new TipoUsuarioDao();
             dao.eliminar(tipo);
-            
-        }catch(Exception e)
-        {
+
+        } catch (Exception e) {
             throw e;
         }
     }
-     
-      public void mostar() throws Exception {
+/**
+ * Metodo para listar todos los registros de usuario
+ * @throws Exception 
+ */
+    public void mostar() throws Exception {
         TipoUsuarioDao dao;
 
         try {
@@ -274,7 +308,12 @@ public class TipoUsuarioBean {
             throw e;
         }
     }
-          public void buscar(Tipo tipo) throws Exception {
+/**
+ * Metodo para obtner una fila en un objeto de tipo Uusario
+ * @param tipo
+ * @throws Exception 
+ */
+    public void buscar(Tipo tipo) throws Exception {
         TipoUsuarioDao dao;
         Tipo temp;
 

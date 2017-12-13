@@ -15,12 +15,18 @@ import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
+/**
+ * 
+ * @author bryan
+ */
 @ManagedBean
 @ViewScoped
 public class PedidoBean 
 {
-
+/**
+ * Metodo para mostrar un mensaje emergente desde una instancia de PedidoBean
+ * @param summary 
+ */
       static public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
@@ -43,7 +49,9 @@ public class PedidoBean
   public void setLstPedido(List<Pedido> lstPedido) {
     this.lstPedido = lstPedido;
   }
-
+/**
+ * Metodo para registrar un pedido
+ */
   public void registrar() 
   {
     
@@ -62,7 +70,10 @@ public class PedidoBean
     }
 
   }
-
+/**
+ * Metodo para listar todos los registros de pedido
+ * @throws Exception 
+ */
   public void listar() throws Exception {
     PedidoDao dao;
 
@@ -74,7 +85,11 @@ public class PedidoBean
     }
 
   }
-
+/**
+ * Metodo para modificar un pedido
+ * @param Ped
+ * @throws Exception 
+ */
   public void modificar(Pedido Ped) throws Exception {
     System.out.println("*******************************************************Modificar");
     PedidoDao dao;
@@ -88,7 +103,11 @@ public class PedidoBean
     }
 
   }
-
+/**
+ * Metodo para eliminar un pedido
+ * @param Ped
+ * @throws Exception 
+ */
   public void eliminar(Pedido Ped) throws Exception {
     System.out.println("*******************************************************eliminar");
     PedidoDao dao;

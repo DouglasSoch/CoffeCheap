@@ -14,12 +14,19 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-
+/**
+ * 
+ * @author bryan
+ */
 @Named(value = "plato_pedidoBean")
 @ManagedBean
 @ViewScoped
 public class Plato_pedidoBean 
 {
+    /**
+     * Metodo para mostrar un mensaje emergente desde una instnacia de Plato_pedidoBean
+     * @param summary 
+     */
        static public void addMessage(String summary) {
     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
     FacesContext.getCurrentInstance().addMessage(null, message);
@@ -43,6 +50,9 @@ public class Plato_pedidoBean
         this.lstPlapedido = lstPlapedido;
     }
     
+    /**
+     * Metodo para registrar un plato pedido
+     */
     public void registrar() 
     {
     Plato_pedidoDao dao;
@@ -57,6 +67,10 @@ public class Plato_pedidoBean
 
   }
 
+    /**
+     * Metodo para listar todos los registros de plato pedido
+     * @throws Exception 
+     */
   public void listar() throws Exception {
     Plato_pedidoDao dao;
 
@@ -68,7 +82,10 @@ public class Plato_pedidoBean
     }
 
   }
-
+/**
+ * Metodo para obtener una fila en un objeto de plato pedido
+ * @param platoP 
+ */
   public void fila(Plato_pedido platoP) 
   {
     Plato_pedidoDao dao;
@@ -86,7 +103,10 @@ public class Plato_pedidoBean
       System.out.println(e);
     }
   }
-  
+  /**
+   * Metodo para modificar un plato pedido
+   * @throws Exception 
+   */
   public void modificar() throws Exception 
   {
     Plato_pedidoDao dao;
@@ -100,6 +120,11 @@ public class Plato_pedidoBean
     }
 
   }
+  /**
+   * Metodo para eliminar un plato pedido
+   * @param plapedido
+   * @throws Exception 
+   */
   public void eliminar(Plato_pedido plapedido) throws Exception 
   {
     Plato_pedidoDao dao;

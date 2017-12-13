@@ -5,11 +5,11 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-  <h:head>
-    <title>Cliente Eliminar</title>
-  </h:head>
-  <h:body>
-   <ui:composition template="./WEB-INF/template/Template.xhtml">
+    <h:head>
+        <title>Cliente Eliminar</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
             <ui:define name="content">
                 <p:growl id="mess"/>
                 <f:event type="preRenderView" listener="#{clienteBean.mostar()}"/>
@@ -18,15 +18,12 @@
                                  paginator="true"
                                  paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
-
                         <p:column headerText="Nit" filterBy="#{cliente.nit_cliente}" filterMatchMode="exact">
                             <p:outputLabel value="#{cliente.nit_cliente}"/>
                         </p:column>
-
                         <p:column headerText="Nombre" filterBy="#{cliente.nombre}" filterMatchMode="contains">
                             <p:outputLabel value="#{cliente.nombre}"/>
                         </p:column>
-
                         <p:column headerText="Direccion" filterBy="#{cliente.direccion}" filterMatchMode="contains">
                             <p:outputLabel value="#{cliente.direccion}"/>
                         </p:column>
@@ -34,14 +31,9 @@
                             <p:commandButton value="Eliminar" actionListener="#{clienteBean.eliminar(cliente)}"  update="mess, tabla1, mess" />
                         </p:column>
                     </p:dataTable>
-
                 </h:form>
-
-
-
             </ui:define>
-
         </ui:composition>
-  </h:body>
+    </h:body>
 </html>
 

@@ -21,13 +21,17 @@ import javax.faces.context.FacesContext;
 
 /**
  *
- * @author medev
+ * @author Bryan
  */
 @Named(value = "platoBean")
 @ManagedBean
 @ViewScoped
 public class PlatoBean 
 {
+    /**
+     * Metodo para mostrar mensaje emergente desde una instancia creada de PlatoBean
+     * @param summary 
+     */
     static public void addMessage(String summary) {
     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
     FacesContext.getCurrentInstance().addMessage(null, message);
@@ -59,6 +63,9 @@ List<Tipo_plato> lstTPlato = new ArrayList();
     public void setLstPlato(List<Plato> lstPlato) {
         this.lstPlato = lstPlato;
     }
+    /**
+     * Metodo para registrar un plato
+     */
     public void registrar() 
     {
     PlatoDao dao;
@@ -71,6 +78,10 @@ List<Tipo_plato> lstTPlato = new ArrayList();
       System.out.println(e);
     }
   }
+    /**
+     * Metodo para obtener una fila en un objeto de plato
+     * @param plato 
+     */
        public void fila(Plato plato) 
   {
     PlatoDao dao;
@@ -88,6 +99,10 @@ List<Tipo_plato> lstTPlato = new ArrayList();
       System.out.println(e);
     }
   }
+       /**
+        * Metodo para listar todos los registros de plato
+        * @throws Exception 
+        */
   public void listar() throws Exception {
     PlatoDao dao;
     try 
@@ -99,6 +114,10 @@ List<Tipo_plato> lstTPlato = new ArrayList();
       throw e;
     }
   }
+  /**
+   * MEtodo para listar en  una lista deplegable los tipos de plato
+   * @throws Exception 
+   */
     public void listarTPlatp() throws Exception {
     PlatoDao dao;
     try 
@@ -111,6 +130,10 @@ List<Tipo_plato> lstTPlato = new ArrayList();
     }
 
   }
+    /**
+     * Metodo para modificar un plato
+     * @throws Exception 
+     */
   public void modificar() throws Exception 
   {
     PlatoDao dao;
@@ -125,6 +148,11 @@ List<Tipo_plato> lstTPlato = new ArrayList();
     }
 
   }
+  /**
+   * Metodo para Eliminar un plato
+   * @param plat
+   * @throws Exception 
+   */
   public void eliminar(Plato plat) throws Exception 
   {
     PlatoDao dao;

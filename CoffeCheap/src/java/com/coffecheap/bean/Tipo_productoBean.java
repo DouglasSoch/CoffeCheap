@@ -1,9 +1,6 @@
 package com.coffecheap.bean;
 
-/**
- *
- * @marhor acier
- */
+
 
 import com.coffecheap.modelo.Tipo_producto;
 import com.coffecheap.dao.Tipo_productoDao;
@@ -12,7 +9,10 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
-
+/**
+ * 
+ * @author Santi
+ */
 @ManagedBean
 @ViewScoped
 public class Tipo_productoBean {
@@ -36,10 +36,11 @@ public class Tipo_productoBean {
     this.lstTipo_producto = lstTipo_producto;
   }
 
-  public void registrar() {
-
-    System.out.println("*******************************************************registrar");
-
+  /**
+   * Metodo para registrar
+   */
+  public void registrar() 
+  {
     Tipo_productoDao dao;
 
     try {
@@ -51,6 +52,10 @@ public class Tipo_productoBean {
 
   }
 
+  /**
+   * Metodo para listar
+   * @throws Exception 
+   */
   public void listar() throws Exception {
     Tipo_productoDao dao;
 
@@ -63,6 +68,11 @@ public class Tipo_productoBean {
 
   }
 
+  /**
+   * Metodo para modificar
+   * @param mar
+   * @throws Exception 
+   */
   public void modificar(Tipo_producto mar) throws Exception {
     System.out.println("*******************************************************Modificar");
     Tipo_productoDao dao;
@@ -77,6 +87,11 @@ public class Tipo_productoBean {
 
   }
 
+  /**
+   * Metodo para eliminar
+   * @param mar
+   * @throws Exception 
+   */
   public void eliminar(Tipo_producto mar) throws Exception {
     System.out.println("*******************************************************eliminar");
     Tipo_productoDao dao;
