@@ -165,6 +165,22 @@ public class Venta_facturaBean
         
   }
   
+  public void buscar(Venta_factura vf) throws Exception {
+        Venta_facturaDao dao;
+        Venta_factura temp;
+
+        try {
+            dao = new Venta_facturaDao();
+            temp = dao.leerParaModificar(vf);
+            if (venta_factura != null) {
+                this.venta_factura = temp;
+            }
+
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+  
   public void Mostrar() throws Exception {
     Venta_facturaDao dao;
 

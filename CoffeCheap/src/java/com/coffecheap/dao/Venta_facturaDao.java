@@ -124,6 +124,38 @@ public class Venta_facturaDao extends Dao {
     return lista;
 
   }
+    
+    public Venta_factura leerParaModificar(Venta_factura vf) throws Exception {
+        Venta_factura tt = null;
+        ResultSet rs;
+
+        try {
+            this.Conectar();
+            PreparedStatement st = getCon().prepareCall("select venta_factura.id_venta_factura, venta_factura.nit_empresa, venta_factura.subtotal, venta_factura.iva, venta_factura.propina, venta_factura.total, venta_factura.fecha_emision, pedido.id_pedido, cliente.id_cliente, cliente.nit_cliente from venta_factura inner join cliente on(venta_factura.id_cliente = cliente.id_cliente ) inner join pedido on(venta_factura.id_pedido = pedido.id_pedido) where id_venta_factura=?");
+            st.setInt(1, vf.getId_venta_factura());
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                tt = new Venta_factura();
+                  tt.setId_venta_factura(rs.getInt(1));
+        tt.setNit_empresa(rs.getString(2));
+        tt.setSubtotal(rs.getDouble(3));
+        tt.setIva(rs.getDouble(4));
+        tt.setPropina(rs.getDouble(5));
+        tt.setTotal(rs.getDouble(6));
+        tt.setFecha_emision(rs.getTimestamp(7));
+        tt.getPedido().setId_pedido(rs.getInt(8));
+        tt.getCliente().setId_cliente(9);
+        tt.getCliente().setNombre(rs.getString(10));
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Desconecar();
+        }
+        return tt;
+    }
+
 
   public List<Venta_factura> listar() throws Exception {
     List<Venta_factura> lista;
@@ -160,9 +192,10 @@ public class Venta_facturaDao extends Dao {
 
   }
 
-  public void modificar(Venta_factura VF) throws Exception {
-    System.out.println("*******************************************************modificar dao");
-    try {
+  public void modificar(Venta_factura VF) throws Exception 
+  { 
+    try 
+    {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("UPDATE  venta_factura SET id_venta_factura=?, fecha_orden=?, fecha_entrega=?, cantidad_orden=?, id_producto=?, id_proveedor=?, precio=? WHERE id_venta_factura=?;");
 
