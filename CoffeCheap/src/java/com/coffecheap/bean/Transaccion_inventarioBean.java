@@ -17,34 +17,28 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
 /**
- * 
+ *
  * @author bryan
  */
-
 @ManagedBean
 @ViewScoped
-public class Transaccion_inventarioBean 
-{    
+public class Transaccion_inventarioBean {
+
     /**
      * Metodo para mostrar mensajes desde on objeto creado de este molde
-     * @param summary 
+     *
+     * @param summary String
      */
     static public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
-
-
-    
     Transaccion_inventario traInv = new Transaccion_inventario();
     List<Transaccion_inventario> lsttraInv2 = new ArrayList();
     List<Transaccion_inventario> lsttraInv = new ArrayList();
     List<Compra> lsttraFac = new ArrayList();
     String fechaSus = null;
-    
-    
-    
 
     public List<Compra> getLsttraFac() {
         return lsttraFac;
@@ -54,9 +48,6 @@ public class Transaccion_inventarioBean
         this.lsttraFac = lsttraFac;
     }
 
-   
-
-    
     public List<Transaccion_inventario> getLsttraInv2() {
         return lsttraInv2;
     }
@@ -91,72 +82,58 @@ public class Transaccion_inventarioBean
 
     /**
      * metodo para registrar
-     * @throws Exception 
+     *
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar() throws Exception {
 
         Transaccion_InventarioDAO dao = new Transaccion_InventarioDAO();
 
         try {
-            
-             if (traInv.getProducto().getId_producto() == 0) {
+
+            if (traInv.getProducto().getId_producto() == 0) {
                 addMessage("Eliga Producto ");
-            } 
-            else 
-            {
-                if(traInv.getTtransaccion().getId_tipo_transacciones()==0)
-                {
+            } else {
+                if (traInv.getTtransaccion().getId_tipo_transacciones() == 0) {
                     addMessage("Eliga tipo de transaccion");
+                } else {
+                    if (traInv.getTtransaccion().getId_tipo_transacciones() == 1) {
+                        addMessage("Solo se pueden hacer salidas");
+                    } else {
+                        if (traInv.getCantidad() == 0) {
+                            addMessage("Ingrese Cantidad");
+                        } else {
+                            if (traInv.getDetalle().equals("")) {
+                                addMessage("Ingrese Detalle");
+                            } else {
+                                if (traInv.getCompra().getId_compras() == 0) {
+                                    addMessage("Eliga una factua");
+                                } else {
+                                    SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+                                    Date fecha = new Date();
+                                    String fechaString = formateador.format(fecha);
+                                    Date tranformada = formateador.parse(fechaString);
+                                    fechaSus = fechaString;
+                                    traInv.setFecha(tranformada);
+                                    dao.registrar(traInv);
+                                    resta();
+                                }
+                            }
+                        }
+                    }
                 }
-                else
-                 {
-                     if(traInv.getTtransaccion().getId_tipo_transacciones()==1)
-                     {
-                       addMessage("Solo se pueden hacer salidas");
-                     }
-                     else
-                     {
-                         if(traInv.getCantidad()==0)
-                         {
-                             addMessage("Ingrese Cantidad");
-                         }
-                         else
-                         {
-                             if(traInv.getDetalle().equals(""))
-                             {
-                                 addMessage("Ingrese Detalle");
-                             }
-                             else
-                             {
-                                 if(traInv.getCompra().getId_compras()==0)
-                                 {
-                                     addMessage("Eliga una factua");
-                                 }
-                                 else
-                                 {
-                                 SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-                                 Date fecha = new Date();
-                                 String fechaString = formateador.format(fecha);
-                                 Date tranformada = formateador.parse(fechaString);
-                                 fechaSus = fechaString;
-                                 traInv.setFecha(tranformada);
-                                 dao.registrar(traInv);
-                                 resta();
-                                 }
-                             }
-                         }
-                     }
-                 }
             }
 
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-/**
- * metodo para listar
- * @throws Exception 
- */
+
+    /**
+     * metodo para listar
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void mostar() throws Exception {
         Transaccion_InventarioDAO dao;
 
@@ -168,10 +145,11 @@ public class Transaccion_inventarioBean
         }
     }
 
-   /**
-    * Metodo para lista desplegable
-    * @throws Exception 
-    */
+    /**
+     * Metodo para lista desplegable
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void leerParaModificarProducto() throws Exception {
         Transaccion_InventarioDAO dao;
 
@@ -182,11 +160,13 @@ public class Transaccion_inventarioBean
             throw e;
         }
     }
+
     /**
      * Metodo para lista desplegable
-     * @throws Exception 
+     *
+     * @throws Exception por si resulta un error de SQL
      */
-        public void numeroFac() throws Exception {
+    public void numeroFac() throws Exception {
         Transaccion_InventarioDAO dao;
 
         try {
@@ -196,10 +176,12 @@ public class Transaccion_inventarioBean
             throw e;
         }
     }
-/**
- * Metodo para lista deslegable
- * @throws Exception 
- */
+
+    /**
+     * Metodo para lista deslegable
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void leerParaModificarTipoTransacciones() throws Exception {
         Transaccion_InventarioDAO dao;
 
@@ -210,11 +192,13 @@ public class Transaccion_inventarioBean
             throw e;
         }
     }
-/**
- * Metodo para obtener una fila en un objeto
- * @param tra
- * @throws Exception 
- */
+
+    /**
+     * Metodo para obtener una fila en un objeto
+     *
+     * @param tra Objeto de la clase
+     * @throws Exception por si resulta un error de SQL
+     */
     public void buscar(Transaccion_inventario tra) throws Exception {
         Transaccion_InventarioDAO dao;
         Transaccion_inventario temp;
@@ -230,64 +214,60 @@ public class Transaccion_inventarioBean
             throw e;
         }
     }
-   /**
-    * Metodo para modificar
-    * @throws Exception 
-    */
-                     public void modificar() throws Exception
-    {
-        
-        Transaccion_InventarioDAO dao ;
-        
-        try
-        {
-            dao= new Transaccion_InventarioDAO();
+
+    /**
+     * Metodo para modificar
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void modificar() throws Exception {
+
+        Transaccion_InventarioDAO dao;
+
+        try {
+            dao = new Transaccion_InventarioDAO();
             dao.modificar(traInv);
-            
-        }catch(Exception e)
-        {
+
+        } catch (Exception e) {
             throw e;
         }
     }
+
     /**
      * Metodo para eliminar
-     * @param tra
-     * @throws Exception 
+     *
+     * @param tra Objeto de la clase
+     * @throws Exception por si resulta un error de SQL
      */
-     public void eliminar(Transaccion_inventario tra) throws Exception
-    {
-        
-        Transaccion_InventarioDAO dao ;
-        
-        try
-        {
-            dao= new Transaccion_InventarioDAO();
+    public void eliminar(Transaccion_inventario tra) throws Exception {
+
+        Transaccion_InventarioDAO dao;
+
+        try {
+            dao = new Transaccion_InventarioDAO();
             dao.eliminar(tra);
-            
-        }catch(Exception e)
-        {
+
+        } catch (Exception e) {
             throw e;
         }
     }
-     /**
-      * Metodo para realizar sustraccion
-      * @throws Exception 
-      */
-     public void resta() throws Exception
-    {
-        
-        Transaccion_InventarioDAO dao ;
-        
-        try
-        {
-            dao= new Transaccion_InventarioDAO();
+
+    /**
+     * Metodo para realizar sustraccion
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void resta() throws Exception {
+
+        Transaccion_InventarioDAO dao;
+
+        try {
+            dao = new Transaccion_InventarioDAO();
             dao.resta(traInv);
-            
-        }catch(Exception e)
-        {
+
+        } catch (Exception e) {
             throw e;
         }
     }
-                     
-    
+
 }

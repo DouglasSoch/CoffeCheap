@@ -5,7 +5,6 @@
  */
 package com.coffecheap.bean;
 
-
 import com.coffecheap.dao.Contador_Vista_Producto_Dao;
 import com.coffecheap.dao.Dao;
 import java.util.List;
@@ -18,6 +17,7 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class Contador_Vista_Producto_Bean extends Dao {
+
     Producto producto = new Producto();
     List<Producto> lista;
 
@@ -36,16 +36,20 @@ public class Contador_Vista_Producto_Bean extends Dao {
     public void setLista(List<Producto> lista) {
         this.lista = lista;
     }
-    
-    
+
+    /**
+     * Metodo para mostrar todos los datos
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void Mostrar() throws Exception {
 
-    Contador_Vista_Producto_Dao dao;
-    try {
-      dao = new Contador_Vista_Producto_Dao();
-      lista = dao.Listar();      
-    } catch (Exception e) {
-      throw e;
+        Contador_Vista_Producto_Dao dao;
+        try {
+            dao = new Contador_Vista_Producto_Dao();
+            lista = dao.Listar();
+        } catch (Exception e) {
+            throw e;
+        }
     }
-  }
 }

@@ -8,18 +8,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 /**
- * 
+ *
  * @author Douglas
  */
-
 @ManagedBean
 @ViewScoped
 public class TurnoBean {
 
     Turno turno = new Turno();
-    List <Turno> listar = new ArrayList();
-    
-    
+    List<Turno> listar = new ArrayList();
 
     public Turno getTurno() {
         return turno;
@@ -36,18 +33,19 @@ public class TurnoBean {
     public void setListar(List<Turno> listar) {
         this.listar = listar;
     }
-    
+
     public TurnoBean() {
     }
-    
+
     /**
-     * Metodo para registrar 
-     * @throws Exception 
+     * Metodo para registrar
+     *
+     * @throws Exception por si resulta un error de SQL
      */
-    public void Ingreso() throws Exception{
-        
+    public void Ingreso() throws Exception {
+
         TurnoDao dao;
-        
+
         try {
             dao = new TurnoDao();
             dao.Ingresar(turno);
@@ -55,15 +53,16 @@ public class TurnoBean {
             throw e;
         }
     }
-    
+
     /**
      * Metodo para eliminar
-     * @throws Exception 
+     *
+     * @throws Exception por si resulta un error de SQL
      */
-    public void Eliminar() throws Exception{
-        
+    public void Eliminar() throws Exception {
+
         TurnoDao dao;
-        
+
         try {
             dao = new TurnoDao();
             dao.Eliminar(turno);
@@ -71,15 +70,16 @@ public class TurnoBean {
             throw e;
         }
     }
-    
+
     /**
      * Metodo para modificar u registro
-     * @throws Exception 
+     *
+     * @throws Exception por si resulta un error de SQL
      */
-    public void Editar()throws Exception{
-        
+    public void Editar() throws Exception {
+
         TurnoDao dao;
-        
+
         try {
             dao = new TurnoDao();
             dao.Modificar(turno);
@@ -87,15 +87,16 @@ public class TurnoBean {
             throw e;
         }
     }
-    
+
     /**
      * Metodo para listar
-     * @throws Exception 
+     *
+     * @throws Exception por si resulta un error de SQL
      */
-    public void Mostrar() throws Exception{
-        
+    public void Mostrar() throws Exception {
+
         TurnoDao dao;
-        
+
         try {
             dao = new TurnoDao();
             listar = dao.Visualizar();
@@ -103,5 +104,5 @@ public class TurnoBean {
             throw e;
         }
     }
-    
+
 }
