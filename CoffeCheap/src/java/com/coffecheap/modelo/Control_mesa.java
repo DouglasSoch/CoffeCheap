@@ -8,36 +8,56 @@ package com.coffecheap.modelo;
 import java.util.Objects;
 
 /**
+ * Clase control mesa
  *
  * @author bryan
  */
 public class Control_mesa {
-    
-    Mesa mesa= new Mesa();
-    Boolean pago= false;
-    Boolean vaciar= false;
-    int NMesa;
-   
-   
-  public int getNMesa() {
-    return NMesa;
-  }
 
-  public void setNMesa(int NMesa) {
-    this.NMesa = NMesa;
-  }
-  
+    Mesa mesa = new Mesa();
+    Boolean pago = false;
+    Boolean vaciar = false;
+    int NMesa;
+
+    public int getNMesa() {
+        return NMesa;
+    }
+
+    public void setNMesa(int NMesa) {
+        this.NMesa = NMesa;
+    }
+
+    /**
+     * constructor vacio
+     */
     public Control_mesa() {
     }
 
+    /**
+     * Constrcutor para objeto mesa
+     *
+     * @param mesa atributo
+     */
     public Control_mesa(Mesa mesa) {
         this.mesa = mesa;
     }
 
+    /**
+     * constructor para boolean
+     *
+     * @param pago atributo
+     */
     public Control_mesa(Boolean pago) {
         this.pago = pago;
     }
 
+    /**
+     * cosntructor con todos los atributos
+     *
+     * @param mesa atributo
+     * @param pago atributo
+     * @param vaciar atributo
+     */
     public Control_mesa(Mesa mesa, Boolean pago, Boolean vaciar) {
         this.mesa = mesa;
         this.pago = pago;
@@ -102,6 +122,5 @@ public class Control_mesa {
     public String toString() {
         return "Control_mesa{" + "mesa=" + mesa + ", pago=" + pago + ", vaciar=" + vaciar + '}';
     }
-    
-    
+
 }

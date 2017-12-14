@@ -1,50 +1,93 @@
-
 package com.coffecheap.modelo;
 
 import java.util.Objects;
 
 /**
+ * Clase tem mesero
  *
  * @author bryan
  */
 public class Tem_mesero {
 
-    
-    int id_chef=0;
-    Pedido pedido= new Pedido();
-    Plato plato= new Plato();
-    int cantidad=0;
-    String descripcion= null;
-    Estado_plato estadoPlato= new Estado_plato();
-    Tipo_plato tipoPlato= new Tipo_plato();
+    int id_chef = 0;
+    Pedido pedido = new Pedido();
+    Plato plato = new Plato();
+    int cantidad = 0;
+    String descripcion = null;
+    Estado_plato estadoPlato = new Estado_plato();
+    Tipo_plato tipoPlato = new Tipo_plato();
 
+    /**
+     * constructor vacio
+     */
     public Tem_mesero() {
     }
 
+    /**
+     * constructor para int
+     *
+     * @param id_chef atributo
+     */
     public Tem_mesero(int id_chef) {
         this.id_chef = id_chef;
     }
 
+    /**
+     * constructor para objeto pedido
+     *
+     * @param pedido atributo
+     */
     public Tem_mesero(Pedido pedido) {
         this.pedido = pedido;
     }
 
+    /**
+     * constructor para objeto plato
+     *
+     * @param plato atributo
+     */
     public Tem_mesero(Plato plato) {
         this.plato = plato;
     }
 
+    /**
+     * constructor para string
+     *
+     * @param descripcion atributo
+     */
     public Tem_mesero(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    /**
+     * constructor para objeto estado plato
+     *
+     * @param estadoPlato atributo
+     */
     public Tem_mesero(Estado_plato estadoPlato) {
         this.estadoPlato = estadoPlato;
     }
 
+    /**
+     * constructor para objeto tipo plato
+     *
+     * @param tipoPlato atributo
+     */
     public Tem_mesero(Tipo_plato tipoPlato) {
         this.tipoPlato = tipoPlato;
     }
 
+    /**
+     * constructor con todos los atributos
+     *
+     * @param id_chef atributo
+     * @param pedido atributo
+     * @param plato atributo
+     * @param cantidad atributo
+     * @param descripcion atributo
+     * @param estadoPlato atributo
+     * @param tipoPlato atributo
+     */
     public Tem_mesero(int id_chef, Pedido pedido, Plato plato, int cantidad, String descripcion, Estado_plato estadoPlato, Tipo_plato tipoPlato) {
         this.id_chef = id_chef;
         this.pedido = pedido;
@@ -54,7 +97,7 @@ public class Tem_mesero {
         this.estadoPlato = estadoPlato;
         this.tipoPlato = tipoPlato;
     }
-    
+
     public int getId_chef() {
         return id_chef;
     }

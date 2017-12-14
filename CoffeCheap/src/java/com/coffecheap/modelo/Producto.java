@@ -3,18 +3,23 @@ package com.coffecheap.modelo;
 import java.util.Date;
 import java.util.Objects;
 
-public class Producto 
-{
-    int id_producto =0;
+/**
+ * Clase producto
+ *
+ * @author bryan
+ */
+public class Producto {
+
+    int id_producto = 0;
     int id_producto_eliminar;
     int cantidad;
     int cantidad_eliminar;
-    String nombre =null;
-    int existencia =0;
+    String nombre = null;
+    int existencia = 0;
     Unidad_medida Umedida = new Unidad_medida();
     Tipo_producto Tproducto = new Tipo_producto();
     //no tocar la variable Date es especial
-    Date fecha=null;
+    Date fecha = null;
 
     public Date getFecha() {
         return fecha;
@@ -23,8 +28,10 @@ public class Producto
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
 
+    /**
+     * Constructor vacio
+     */
     public Producto() {
     }
 
@@ -36,8 +43,6 @@ public class Producto
         this.cantidad_eliminar = cantidad_eliminar;
     }
 
-    
-    
     public int getCantidad() {
         return cantidad;
     }
@@ -46,8 +51,6 @@ public class Producto
         this.cantidad = cantidad;
     }
 
-    
-    
     public int getId_producto_eliminar() {
         return id_producto_eliminar;
     }
@@ -55,23 +58,52 @@ public class Producto
     public void setId_producto_eliminar(int id_producto_eliminar) {
         this.id_producto_eliminar = id_producto_eliminar;
     }
-    
+
+    /**
+     * constructor para int
+     *
+     * @param id_producto atributo
+     */
     public Producto(int id_producto) {
         this.id_producto = id_producto;
     }
 
+    /**
+     * constructor para string
+     *
+     * @param nombre atributo
+     */
     public Producto(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * constructor para objeto unidad de medida
+     *
+     * @param Umedida atributo 
+     */
     public Producto(Unidad_medida Umedida) {
         this.Umedida = Umedida;
     }
 
+    /**
+     * constructor para tipo producto
+     *
+     * @param Tproducto atributo 
+     */
     public Producto(Tipo_producto Tproducto) {
         this.Tproducto = Tproducto;
     }
 
+    /**
+     * constructor con todos los atributos
+     *
+     * @param id_producto atributo
+     * @param nombre atributo
+     * @param existencia atributo
+     * @param Umedida atributo
+     * @param Tproducto atributo
+     */
     public Producto(int id_producto, String nombre, int existencia, Unidad_medida Umedida, Tipo_producto Tproducto) {
         this.id_producto = id_producto;
         this.nombre = nombre;

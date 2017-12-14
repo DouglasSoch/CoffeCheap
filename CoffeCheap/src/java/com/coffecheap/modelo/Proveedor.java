@@ -1,16 +1,24 @@
- package com.coffecheap.modelo;
+package com.coffecheap.modelo;
 
 import java.util.Objects;
 
-public class Proveedor 
-{
-    int id_proveedor = 0; 
+/**
+ * Clase proveedor
+ *
+ * @author bryan
+ */
+public class Proveedor {
+
+    int id_proveedor = 0;
     String nombre = null;
     String nit = null;
     int telefono = 0;
     String mail = null;
     String direccion = null;
 
+    /**
+     * constructo vacio
+     */
     public Proveedor() {
     }
 
@@ -22,14 +30,33 @@ public class Proveedor
         this.nit = nit;
     }
 
+    /**
+     * constructor para int
+     *
+     * @param id_provedor atributo
+     */
     public Proveedor(int id_provedor) {
         this.id_proveedor = id_provedor;
     }
 
+    /**
+     * constructor para String
+     *
+     * @param nombre atributo
+     */
     public Proveedor(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * constructor con todos los atributos
+     *
+     * @param id_provedor atributo
+     * @param nombre atributo
+     * @param telefono atributo
+     * @param mail atributo
+     * @param direccion atributo
+     */
     public Proveedor(int id_provedor, String nombre, int telefono, String mail, String direccion) {
         this.id_proveedor = id_provedor;
         this.nombre = nombre;
@@ -37,7 +64,7 @@ public class Proveedor
         this.mail = mail;
         this.direccion = direccion;
     }
-    
+
     public int getId_proveedor() {
         return id_proveedor;
     }

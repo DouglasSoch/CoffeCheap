@@ -2,22 +2,46 @@ package com.coffecheap.modelo;
 
 import java.util.Objects;
 
-public class Unidad_medida 
-{
-    int id_unidad = 0;
-    String nombre =null;
+/**
+ * Clase unidad medida
+ *
+ * @author bryan
+ */
+public class Unidad_medida {
 
+    int id_unidad = 0;
+    String nombre = null;
+
+    /**
+     * constructor vacio
+     */
     public Unidad_medida() {
     }
 
+    /**
+     * Constructor para int
+     *
+     * @param id_unidad atributo
+     */
     public Unidad_medida(int id_unidad) {
         this.id_unidad = id_unidad;
     }
 
+    /**
+     * Constructor para String
+     *
+     * @param nombre atributo
+     */
     public Unidad_medida(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Constructor con todos los atributos
+     *
+     * @param id_unidad atributo
+     * @param nombre atributo
+     */
     public Unidad_medida(int id_unidad, String nombre) {
         this.id_unidad = id_unidad;
         this.nombre = nombre;

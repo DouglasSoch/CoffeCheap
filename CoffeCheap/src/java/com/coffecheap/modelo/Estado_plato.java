@@ -8,14 +8,15 @@ package com.coffecheap.modelo;
 import java.util.Objects;
 
 /**
+ * Clase estado plato
  *
  * @author bryan
  */
 public class Estado_plato {
-    
-    int id=0;
-    String nombre= null;
-    int id2=0;
+
+    int id = 0;
+    String nombre = null;
+    int id2 = 0;
 
     public int getId2() {
         return id2;
@@ -24,16 +25,27 @@ public class Estado_plato {
     public void setId2(int id2) {
         this.id2 = id2;
     }
-    
-    
-    
+
+    /**
+     * constructor vacio
+     */
     public Estado_plato() {
     }
 
+    /**
+     * constructor para int
+     *
+     * @param id atributo
+     */
     public Estado_plato(int id) {
         this.id = id;
     }
 
+    /**
+     * constructor para String
+     *
+     * @param nombre atributo 
+     */
     public Estado_plato(String nombre) {
         this.nombre = nombre;
     }
@@ -84,7 +96,5 @@ public class Estado_plato {
     public String toString() {
         return "Estado_plato{" + "id=" + id + ", nombre=" + nombre + '}';
     }
-    
-    
-    
+
 }
