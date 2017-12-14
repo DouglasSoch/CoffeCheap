@@ -5,8 +5,9 @@ import com.coffecheap.modelo.Proveedor;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
 /**
- * 
+ *
  * @author bryan
  */
 @ManagedBean
@@ -14,7 +15,7 @@ import javax.faces.bean.ViewScoped;
 public class ProveedorBean {
 
     Proveedor proveedor = new Proveedor();
-    List <Proveedor> listar;
+    List<Proveedor> listar;
 
     public Proveedor getProveedor() {
         return proveedor;
@@ -32,18 +33,18 @@ public class ProveedorBean {
         this.listar = listar;
     }
 
-    
     public ProveedorBean() {
     }
-    
+
     /**
      * Metodo para registrar un proveedor
-     * @throws Exception 
+     *
+     * @throws Exception por si resulta un error de SQL
      */
-    public void Ingresar() throws Exception{
-        
+    public void Ingresar() throws Exception {
+
         ProveedorDao dao;
-        
+
         try {
             dao = new ProveedorDao();
             dao.Ingresar(proveedor);
@@ -51,14 +52,16 @@ public class ProveedorBean {
             throw e;
         }
     }
+
     /**
      * Metodo para eliminar un proveedor
-     * @throws Exception 
+     *
+     * @throws Exception por si resulta un error de SQL
      */
-    public void Eliminar() throws Exception{
-        
+    public void Eliminar() throws Exception {
+
         ProveedorDao dao;
-        
+
         try {
             dao = new ProveedorDao();
             dao.Borrar(proveedor);
@@ -66,14 +69,16 @@ public class ProveedorBean {
             throw e;
         }
     }
+
     /**
      * Metodo para Modifcar un proveedor
-     * @throws Exception 
+     *
+     * @throws Exception por si resulta un error de SQL
      */
-    public void Modificar() throws Exception{
-        
+    public void Modificar() throws Exception {
+
         ProveedorDao dao;
-        
+
         try {
             dao = new ProveedorDao();
             dao.Editar(proveedor);
@@ -81,14 +86,16 @@ public class ProveedorBean {
             throw e;
         }
     }
+
     /**
      * Metodo para listar todos los registros de proveedor
-     * @throws Exception 
+     *
+     * @throws Exception por si resulta un error de SQL
      */
-    public void Mostrar() throws Exception{
-        
+    public void Mostrar() throws Exception {
+
         ProveedorDao dao;
-        
+
         try {
             dao = new ProveedorDao();
             listar = dao.Mostrar();
@@ -96,5 +103,5 @@ public class ProveedorBean {
             throw e;
         }
     }
-    
+
 }

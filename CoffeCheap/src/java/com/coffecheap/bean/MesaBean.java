@@ -59,7 +59,7 @@ public class MesaBean {
     /**
      * Metodo para listar todos los registros de mesa
      *
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public void listar() throws Exception {
         MesaDao dao;
@@ -77,7 +77,7 @@ public class MesaBean {
      * Metodo para modificar una mesa
      *
      * @param mar
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Mesa mar) throws Exception {
         MesaDao dao;
@@ -95,8 +95,8 @@ public class MesaBean {
     /**
      * Metodo para eliminar un registro de mesa
      *
-     * @param mar
-     * @throws Exception
+     * @param mar Objeto de la clase
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Mesa mar) throws Exception {
         MesaDao dao;

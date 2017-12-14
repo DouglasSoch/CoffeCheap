@@ -21,19 +21,20 @@ import javax.faces.context.FacesContext;
 @Named(value = "productoBean")
 @ManagedBean
 @ViewScoped
-public class ProductoBean 
-{
+public class ProductoBean {
+
     /**
-     * Metodo para mostrar un mensaje emergente desde una instancia de ProductoBean
-     * @param summary 
+     * Metodo para mostrar un mensaje emergente desde una instancia de
+     * ProductoBean
+     *
+     * @param summary String
      */
     static public void addMessage(String summary) {
-    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-    FacesContext.getCurrentInstance().addMessage(null, message);
-  }
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
     private Producto producto = new Producto();
-    private List<Producto>lstProducto;
-    
+    private List<Producto> lstProducto;
 
     public Producto getProducto() {
         return producto;
@@ -50,110 +51,110 @@ public class ProductoBean
     public void setLstProducto(List<Producto> lstProducto) {
         this.lstProducto = lstProducto;
     }
-    
+
     /**
-     * Metodo para registrar  un producto
+     * Metodo para registrar un producto
      */
-    public void registrar() 
-    {
-    ProductoDao dao;
-    try 
-    {
-      dao = new ProductoDao();
-      dao.registrar(producto);
-    }
-    catch (Exception e) 
-    {
-      System.out.println(e);
+    public void registrar() {
+        ProductoDao dao;
+        try {
+            dao = new ProductoDao();
+            dao.registrar(producto);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
-  }
-/**
- * Metodo para listar todos los registros de producto
- * @throws Exception 
- */
-  public void Mostrar() throws Exception {
-    ProductoDao dao;
+    /**
+     * Metodo para listar todos los registros de producto
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void Mostrar() throws Exception {
+        ProductoDao dao;
 
-    try {
-      dao = new ProductoDao();
-      lstProducto = dao.listar();
-    } catch (Exception e) {
-      throw e;
+        try {
+            dao = new ProductoDao();
+            lstProducto = dao.listar();
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
-  }
-  /**
-   * Metodo para mostrar todos los registros de producto
-   * @throws Exception 
-   */
-  public void listar() throws Exception {
-    ProductoDao dao;
+    /**
+     * Metodo para mostrar todos los registros de producto
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void listar() throws Exception {
+        ProductoDao dao;
 
-    try {
-      dao = new ProductoDao();
-      lstProducto = dao.listar();
-    } catch (Exception e) {
-      throw e;
+        try {
+            dao = new ProductoDao();
+            lstProducto = dao.listar();
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
-  }
-  /**
-   * Metodo para modificar un producto
-   * @throws Exception 
-   */
-  public void modificar() throws Exception {
-    
-    ProductoDao dao;
+    /**
+     * Metodo para modificar un producto
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void modificar() throws Exception {
 
-    try {
-      dao = new ProductoDao();
-      dao.modificar(producto);
+        ProductoDao dao;
 
-    } catch (Exception e) {
-      throw e;
+        try {
+            dao = new ProductoDao();
+            dao.modificar(producto);
+
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
-  }
+    /**
+     * Metodo para eliminar
+     *
+     * @param prod Objeto de la clase
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void eliminar(Producto prod) throws Exception {
+        ProductoDao dao;
 
-/**
- * Metodo para eliminar
- * @param prod
- * @throws Exception 
- */
-  public void eliminar(Producto prod) throws Exception 
-  {
-    ProductoDao dao;
+        try {
+            dao = new ProductoDao();
+            dao.eliminar(prod);
 
-    try {
-      dao = new ProductoDao();
-      dao.eliminar(prod);
+        } catch (Exception e) {
+            throw e;
+        }
 
-    } catch (Exception e) {
-      throw e;
     }
 
-  }
-  /**
-   * Metodo para obtener una fila en un objeto producto
-   * @param pro 
-   */
-  public void fila(Producto pro) 
-  {
-    ProductoDao dao;
-    Producto temp;
-    try 
-    {
-      dao = new ProductoDao();
-      temp = dao.leerFila(pro);
-      if(temp !=null)
-      {
-          this.producto= temp;
-      }
-    } catch (Exception e) 
-    {
-      System.out.println(e);
+    /**
+     * Metodo para obtener una fila en un objeto producto
+     *
+     * @param pro Objeto de la clase
+     */
+    public void fila(Producto pro) {
+        ProductoDao dao;
+        Producto temp;
+        try {
+            dao = new ProductoDao();
+            temp = dao.leerFila(pro);
+            if (temp != null) {
+                this.producto = temp;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
-  }
 
 }
