@@ -5,7 +5,6 @@
  */
 package com.coffecheap.bean;
 
-
 import com.coffecheap.dao.ValidarLoginDao;
 import com.coffecheap.modelo.Usuario;
 import java.io.IOException;
@@ -23,7 +22,7 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class Verificar_login implements Serializable {
 
-    Usuario usu=new Usuario();
+    Usuario usu = new Usuario();
     String halo;
 
     public String getHalo() {
@@ -42,34 +41,44 @@ public class Verificar_login implements Serializable {
         this.usu = usu;
     }
 
-
+    /**
+     *
+     * @throws IOException por si resulta un error de SQL
+     */
     public void vrificarSession() throws IOException {
-       
+
         try {
-            
-            Usuario usuario=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("nomb");
-          
-            if (usuario==null) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml"); 
-            }else{
-                usu=usuario;
+
+            Usuario usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("nomb");
+
+            if (usuario == null) {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+            } else {
+                usu = usuario;
             }
-                
+
         } catch (Exception ex) {
 
         }
     }
-    
-    public void hola() throws Exception{
-        ValidarLoginDao dao=new ValidarLoginDao();
-        halo=dao.hola(usu);
+
+    /**
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void hola() throws Exception {
+        ValidarLoginDao dao = new ValidarLoginDao();
+        halo = dao.hola(usu);
     }
-      
-    public void cerrar() throws Exception{
-         usu=new Usuario();
-      FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml"); 
-        
+
+    /**
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void cerrar() throws Exception {
+        usu = new Usuario();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+
     }
-           
 
 }
