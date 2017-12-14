@@ -17,7 +17,8 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @ViewScoped
 public class Estado_mesaBean {
-static public void addMessage(String summary) {
+
+    static public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
@@ -32,8 +33,6 @@ static public void addMessage(String summary) {
     }
     private List<Estado_mesa> lstEstado_mesa;
 
-   
-
     public List<Estado_mesa> getLstEstado_mesa() {
         return lstEstado_mesa;
     }
@@ -44,22 +43,21 @@ static public void addMessage(String summary) {
 
     /**
      * Metodo para ingresar registros en estado mesa
+     *
+     * @throws Exception Exception por si resulta un error de SQL
      */
     public void registrar() throws Exception {
 
         Estado_mesaDao dao;
 
         try {
-           
- if(estado_mes.getNombre().equals(""))
-                                 {
-                                     addMessage("Ingrese El Nombre");
-                                 }
-                                 else
-                                 {
-            dao = new Estado_mesaDao();
-            dao.registrar(estado_mes);
-                                 }
+
+            if (estado_mes.getNombre().equals("")) {
+                addMessage("Ingrese El Nombre");
+            } else {
+                dao = new Estado_mesaDao();
+                dao.registrar(estado_mes);
+            }
         } catch (Exception e) {
             throw e;
         }
