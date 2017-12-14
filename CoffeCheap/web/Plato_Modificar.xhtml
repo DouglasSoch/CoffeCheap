@@ -16,7 +16,7 @@
                 <h:form id="tabla">
                     <p:panelGrid id="display1" columns="7" columnClasses="label,value" style="margin:10px 0">          
                         <p:dataTable value="#{platoBean.lstPlato}" var="tabla"  paginator="true" rows="10" styleClass="paginated" resizableColumns="true"  id="tabla1">
-                            <p:column headerText="Nombre">
+                            <p:column headerText="Nombre" filterBy="#{tabla.nombre}" filterMatchMode="exact">
                                 <p:outputLabel value="#{tabla.nombre}"  />
                             </p:column>
                             <p:column headerText="Precio">

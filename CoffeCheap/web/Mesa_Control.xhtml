@@ -18,7 +18,7 @@
 
         <h:form class="flip" id="tempo">
 
-          <p:panelGrid id="desplegar1" columns="6">
+          <p:panelGrid id="desplegar1" columns="7">
             <c:forEach begin="1" end="#{control_mesaBean.tamano()}" step="1" var="i">
 
               <p:outputLabel value="${i}" style="color: black; align-items: center" class="#{control_mesaBean.ControlEstado(i)};"/>                           
@@ -41,7 +41,9 @@
                                  style="color: black" class="#{control_mesaBean.ControlEstado(i)}"/>
 
               <b:commandButton   actionListener="#{control_mesaBean.AsignarMesaUnida(i)}" update="messages, tempo"  value="U"  
-                                 style="color: black; font-size: 15px" class="#{control_mesaBean.ControlEstado(i)}"/>     
+                                 style="color: black; font-size: 15px" class="#{control_mesaBean.ControlEstado(i)}"/> 
+              
+              <h:commandButton value="Imprimir" actionListener="#{venta_facturaBean.verPDF}" />
 
             </c:forEach>              
           </p:panelGrid>
@@ -79,12 +81,13 @@
                 <f:actionListener   binding="#{clienteBean.cliente.setNit_cliente(null)}"/>
                 <f:actionListener   binding="#{clienteBean.cliente.setNombre(null)}"/>              
               
-              </p:commandButton>                   
+              </p:commandButton>                  
 
-              <h:commandButton value="Imprimir Factura" actionListener="#{venta_facturaBean.verPDF}" />
+             
 
 
             </p:panelGrid>
+               
           </p:dialog>
 
           <p:dialog widgetVar="dlgM" modal="true" resizable="false" header="Generar factura" showEffect="fade"> 

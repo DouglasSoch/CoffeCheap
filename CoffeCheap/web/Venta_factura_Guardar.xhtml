@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -10,52 +10,58 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 
-  <h:body>
-    <ui:composition template="./WEB-INF/template/Template.xhtml">
-      <ui:define name="content">
-          <p:growl id="mess"/>
-          <f:event type="preRenderView" listener="#{venta_facturaBean.listarCliente()}"/>
-          <f:event type="preRenderView" listener="#{venta_facturaBean.listarPedido()}"/>
-        <h:form class="flip">
+    <h:body>
+        <ui:composition template="./WEB-INF/template/Template.xhtml">
+            <ui:define name="content">
+                <p:growl id="mess"/>
+                <f:event type="preRenderView" listener="#{venta_facturaBean.listarCliente()}"/>
+                <f:event type="preRenderView" listener="#{venta_facturaBean.listarPedido()}"/>
+                <h:form id="tempo" class="flip">
 
-          <h:panelGrid id="desplegar1" columns="2" cellpadding="5" border="1">
+                    <h:panelGrid id="PaneVenFac" columns="2" cellpadding="5" border="1">
+
+                        <p:outputLabel value="Mesa" style="color: black"/>
+                        <p:inputText  value="#{control_mesaBean.control_mesa.NMesa}"/>
+
+                        <p:outputLabel value="ingrese nit  " style="color: black"/>
+                        <p:inputText  value="#{clienteBean.cliente.nit_cliente}"/>
                         
+                        <p:outputLabel value="ingrese nombre " style="color: black" />
+                        <p:inputText  value="#{clienteBean.cliente.nombre}" />
+                        <p:outputLabel value="ingrese Direccion  " style="color: black"/>
+                        <p:inputText  value="#{clienteBean.cliente.direccion}"/>
+                        <h:outputText value="Propina: " style="color: black"/>
+                        <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" 
+                                               offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
+                        <p:outputLabel value="&nbsp;"/>
+                        <p:commandButton style="width:200px; align-content: center;height: 30px" value="Buscar" actionListener="#{clienteBean.buscar()}" update="PaneVenFac"/>
+                        <p:commandButton style="width:200px; align-content: center;height: 30px" value="Registrar" actionListener="#{clienteBean.registrarN()}" update="PaneVenFac"/>
 
-            <p:outputLabel  value="nit empresa"/>
-            <p:autoComplete id="nit_empresa" value="#{venta_facturaBean.venta_factura.nit_empresa}"/>
+                        <p:commandButton value="Factura" actionListener="#{venta_facturaBean.registrar_venta(control_mesaBean.control_mesa.getNMesa(), clienteBean.cliente.id_cliente)}" 
+                                         style="width:200px; align-content: center;height: 30px" update="tempo, PaneVenFac">
 
-            <p:outputLabel  value="Total" />
-            <p:autoComplete id="total" value="#{venta_facturaBean.venta_factura.tem_total}"/>
+                            <f:actionListener   binding="#{clienteBean.cliente.setDireccion(null)}"/>  
+                            <f:actionListener   binding="#{clienteBean.cliente.setId_cliente(0)}"/>
+                            <f:actionListener   binding="#{clienteBean.cliente.setNit_cliente(null)}"/>
+                            <f:actionListener   binding="#{clienteBean.cliente.setNombre(null)}"/>              
 
-            <h:outputText value="Propina: "/>
-            <p:selectBooleanButton id="value1" value="#{venta_facturaBean.venta_factura.opc_propina}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:200px; align-content: center;height: 30px" />
+                        </p:commandButton>                   
 
-            <p:outputLabel  value="Fecha de Emision" />
-            <p:calendar id="Entrega" value="#{venta_facturaBean.venta_factura.fecha_emision}" pattern="yyyy-MM-dd HH:mm:ss" locale="es"/>
-
-            <p:outputLabel for="Producto_lista" value="Pedido:" />
-            <p:selectOneMenu id="Producto_lista" value="#{venta_facturaBean.venta_factura.pedido.id_pedido}"> 
-              <f:selectItem itemLabel="Pedido" itemValue=""/>
-              <f:selectItems value="#{venta_facturaBean.lstPedido}" var="listape" itemLabel="#{listape.id_pedido}" itemValue="#{listape.id_pedido}"/>      
-            </p:selectOneMenu> 
-            
-            <p:outputLabel for="Cliente_lista" value="Cliente:" />
-            <p:selectOneMenu id="Cliente_lista"  value="#{venta_facturaBean.venta_factura.cliente.id_cliente}"> 
-              <f:selectItem itemLabel="Cliente" itemValue=""/>
-              <f:selectItems value="#{venta_facturaBean.lstCliente}" var="listapee" itemLabel="#{listapee.nit_cliente}" itemValue="#{listapee.id_cliente}"/>      
-            </p:selectOneMenu> 
-          </h:panelGrid>
+                        <h:commandButton value="Imprimir Factura" actionListener="#{venta_facturaBean.verPDF}" />
 
 
-          <p:commandButton value="Guardar" update="mess" actionListener="#{venta_facturaBean.registrar()}"/>
+                    </h:panelGrid>
 
 
 
-        </h:form>
-      
 
-      </ui:define>
-    </ui:composition>
-  </h:body>
+
+
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
 
