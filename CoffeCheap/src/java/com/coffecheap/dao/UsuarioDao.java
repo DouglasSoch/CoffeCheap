@@ -9,8 +9,19 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author bryan
+ */
+
 public class UsuarioDao extends Dao {
 
+    /**
+     * Metodo para registrar un usuario
+     *
+     * @param Tt recibe por parametro los valores de la tabla
+     * @throws Exception podria tener excepciones si hay algun valor vacio
+     */
     public void registrar(Usuario Tt) throws Exception {
 
         try {
@@ -40,6 +51,12 @@ public class UsuarioDao extends Dao {
 
     }
 
+    /**
+     * Metodo que lista todos los registros de usuario
+     *
+     * @return retorna una lista tipo Usuario
+     * @throws Exception
+     */
     public List<Usuario> listar() throws Exception {
         List<Usuario> lista;
         ResultSet rs;
@@ -78,8 +95,14 @@ public class UsuarioDao extends Dao {
         return lista;
 
     }
-    
-    
+
+    /**
+     * Metodo que lista todos los registros de Turno y es para una lista
+     * desplegable en el frontEnd
+     *
+     * @return retorna una lista tipo Turno
+     * @throws Exception
+     */
     public List<Turno> listarTurno() throws Exception {
         List<Turno> lista;
         ResultSet rs;
@@ -106,6 +129,13 @@ public class UsuarioDao extends Dao {
 
     }
 
+    /**
+     * Metodo que lista todos los registro de Tipo y es para una lista
+     * desplegable en el frontEnd
+     *
+     * @return retorna una lista de tipo Tipo
+     * @throws Exception
+     */
     public List<Tipo> listarTipo() throws Exception {
         List<Tipo> lista;
         ResultSet rs;
@@ -132,7 +162,13 @@ public class UsuarioDao extends Dao {
 
     }
 
-    
+    /**
+     * Metodo que lista los registros de usuario por condicion
+     *
+     * @param usuarioS
+     * @return retorna una lista Usuario
+     * @throws Exception
+     */
     public List<Usuario> listarPorParametro(Usuario usuarioS) throws Exception {
         List<Usuario> lista;
         ResultSet rs;
@@ -170,7 +206,11 @@ public class UsuarioDao extends Dao {
         return lista;
 
     }
-
+/**
+ * Metodo que modifica un registro de usuario y recibe los valores por medio de parametro
+ * @param Tt objeto Usuario
+ * @throws Exception 
+ */
     public void modificar(Usuario Tt) throws Exception {
         try {
             this.Conectar();
@@ -198,10 +238,13 @@ public class UsuarioDao extends Dao {
         }
 
     }
-
-   
-    public Usuario leerParaModificar(Usuario usuarioS) throws Exception 
-    {
+/**
+ * Metodo para listar los registros con condicion de usuario
+ * @param usuarioS
+ * @return
+ * @throws Exception 
+ */
+    public Usuario leerParaModificar(Usuario usuarioS) throws Exception {
         Usuario usuario = null;
         ResultSet rs;
         boolean ver;
@@ -210,12 +253,12 @@ public class UsuarioDao extends Dao {
             PreparedStatement st = getCon().prepareCall("select iduser, user, pass, tipouser, nombre, apellido, codigo, idturno, telefono, direccion, dpi, nit, correo from usuario where iduser=?");
             st.setInt(1, usuarioS.getId());
             rs = st.executeQuery();
-            
-             ver=rs.next();
-            
+
+            ver = rs.next();
+
             System.out.println(ver);
-            
-           if(ver==true){
+
+            if (ver == true) {
                 usuario = new Usuario();
                 usuario.setId(rs.getInt(1));
                 usuario.setUsuario(rs.getString(2));
@@ -231,14 +274,11 @@ public class UsuarioDao extends Dao {
                 usuario.setNit(rs.getString(12));
                 usuario.setCorreo(rs.getString(13));
                 rs.close();
+            } else {
+                UsuarioBean.addMessage("no existe");
+                rs.close();
             }
-          else
-           {
-            UsuarioBean.addMessage("no existe");
-            rs.close();
-           }  
-           
-            
+
         } catch (Exception e) {
             throw e;
         } finally {
@@ -246,22 +286,13 @@ public class UsuarioDao extends Dao {
         }
         return usuario;
     }
-
+/**
+ * Metodo para eliminar un registro de usuario
+ * @param pac
+ * @throws Exception 
+ */
     public void eliminar(Usuario pac) throws Exception 
     {
-        System.out.println("el id de usuario es"+pac.getId());
-        System.out.println("el usuario es"+pac.getUsuario());
-        System.out.println("la contrasena es"+pac.getPass());
-        System.out.println("el tipo usu es"+pac.getTipo().getId());
-        System.out.println("el nombre del usuario es"+pac.getNombre());
-        System.out.println("el apellido del usuario es"+pac.getApellido());
-        System.out.println("el codigo del usuario es"+pac.getCodigo());
-        System.out.println("el id del turno es"+pac.getTurno().getId_turno());
-        System.out.println("el telefono es"+pac.getTelefono());
-        System.out.println("la direccion es"+pac.getDireccion());
-        System.out.println("el dpi es"+pac.getDpi());
-        System.out.println("el nit es"+pac.getNit());
-        System.out.println("el correo es"+pac.getCorreo());
         try {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("DELETE FROM usuario WHERE iduser=?");
@@ -276,67 +307,74 @@ public class UsuarioDao extends Dao {
         }
 
     }
-
+/**
+ * Metodo para listar usuario para lista desplegable en el FrontEnd
+ * @return
+ * @throws Exception 
+ */
     public List<Usuario> listarMe() throws Exception {
-    List<Usuario> lista;
-    ResultSet rs;
-   int numero=3;
-    try {
-      this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("select iduser, user from usuario where tipouser=?");
-      st.setInt(1, numero);
-      rs = st.executeQuery();
-      lista = new ArrayList();
-      while (rs.next()) {
-        Usuario tt = new Usuario();
-        tt.setId(rs.getInt(1));
-        tt.setUsuario(rs.getString(2));
-        lista.add(tt);
-      }
+        List<Usuario> lista;
+        ResultSet rs;
+        int numero = 3;
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("select iduser, user from usuario where tipouser=?");
+            st.setInt(1, numero);
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Usuario tt = new Usuario();
+                tt.setId(rs.getInt(1));
+                tt.setUsuario(rs.getString(2));
+                lista.add(tt);
+            }
 
-    } catch (Exception ex) {
-      throw ex;
-    } finally {
-      this.Desconecar();
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            this.Desconecar();
+        }
+
+        return lista;
+
     }
+/**
+ * Metodo para listar chef
+ * @return
+ * @throws Exception 
+ */
+    public List<Usuario> listarChef() throws Exception {
+        List<Usuario> lista;
+        ResultSet rs;
 
-    return lista;
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareCall("SELECT *FROM usuario WHERE tipouser=4");
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Usuario tt = new Usuario();
 
-  }
-  
-  public List<Usuario> listarChef() throws Exception {
-    List<Usuario> lista;
-    ResultSet rs;
+                tt.setId(rs.getInt(1));
+                tt.setNit(rs.getString(2));
+                tt.setPass(rs.getString(3));
+                tt.getTipo().setId(rs.getInt(4));
+                tt.setNombre(rs.getString(5));
+                tt.setApellido(rs.getString(6));
+                tt.setCodigo(rs.getInt(7));
+                tt.getTurno().setId_turno(rs.getInt(8));
 
-    try {
-      this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM usuario WHERE tipouser=4");
-      rs = st.executeQuery();
-      lista = new ArrayList();
-      while (rs.next()) {
-        Usuario tt = new Usuario();
+                lista.add(tt);
+            }
 
-        tt.setId(rs.getInt(1));
-        tt.setNit(rs.getString(2));
-        tt.setPass(rs.getString(3));
-        tt.getTipo().setId(rs.getInt(4));
-        tt.setNombre(rs.getString(5));
-        tt.setApellido(rs.getString(6));
-        tt.setCodigo(rs.getInt(7));
-        tt.getTurno().setId_turno(rs.getInt(8));   
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            this.Desconecar();
+        }
 
-        lista.add(tt);
-      }
+        return lista;
 
-    } catch (Exception ex) {
-      throw ex;
-    } finally {
-      this.Desconecar();
     }
-
-    return lista;
-
-  }
-  
 
 }

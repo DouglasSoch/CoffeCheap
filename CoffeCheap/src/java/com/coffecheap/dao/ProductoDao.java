@@ -17,50 +17,51 @@ import java.util.List;
 
 /**
  *
- * @author medev
+ * @author Bryan
  */
-public class ProductoDao extends Dao 
-{
-    public void registrar(Producto prod) throws Exception 
-    {
-      ResultSet rs;
-        try 
-        {
+public class ProductoDao extends Dao {
+
+    /**
+     * Metodo para registrar un producto
+     *
+     * @param prod
+     * @throws Exception
+     */
+    public void registrar(Producto prod) throws Exception {
+        ResultSet rs;
+        try {
             this.Conectar();
-            
+
             PreparedStatement ps = getCon().prepareStatement("select id_producto, nombre_producto from producto where nombre_producto=?");
             ps.setString(1, prod.getNombre());
-            rs=ps.executeQuery();    
-            if(rs.next())
-            {
+            rs = ps.executeQuery();
+            if (rs.next()) {
                 prod.setId_producto(rs.getInt(1));
                 suma(prod);
                 tTransaccion(prod);
+            } else {
+                PreparedStatement st = this.getCon().prepareStatement("insert into producto(nombre_producto,existencia,id_unidad,id_tipos) values(?,?,?,?)");
+                st.setString(1, prod.getNombre());
+                st.setInt(2, prod.getExistencia());
+                st.setInt(3, prod.getUmedida().getId_unidad());
+                st.setInt(4, prod.getTproducto().getId_tipo());
+                st.executeUpdate();
+                ProductoBean.addMessage("Accion Completada");
             }
-            else
-            {
-            PreparedStatement st = this.getCon().prepareStatement("insert into producto(nombre_producto,existencia,id_unidad,id_tipos) values(?,?,?,?)");
-            st.setString(1, prod.getNombre());
-            st.setInt(2, prod.getExistencia());
-            st.setInt(3, prod.getUmedida().getId_unidad());
-            st.setInt(4, prod.getTproducto().getId_tipo());
-            st.executeUpdate();
-            ProductoBean.addMessage("Accion Completada");
-            }
-        }
-        catch (Exception ex) 
-        {
+        } catch (Exception ex) {
             throw ex;
-        } 
-        finally 
-        {
+        } finally {
             this.Desconecar();
 
         }
     }
 
-    public void suma(Producto pro) 
-    {
+    /**
+     * Metodo para sumar la existencia de un producto
+     *
+     * @param pro
+     */
+    public void suma(Producto pro) {
         try {
             this.Conectar();
             PreparedStatement ps = getCon().prepareStatement("update producto set  existencia=existencia+? where id_producto=?");
@@ -73,8 +74,14 @@ public class ProductoDao extends Dao
         }
     }
 
-    public void tTransaccion(Producto pro) throws ParseException 
-    {
+    /**
+     * Metodo para insertar en transaccion inventario si en dado caso existe
+     * regitro de producto
+     *
+     * @param pro
+     * @throws ParseException
+     */
+    public void tTransaccion(Producto pro) throws ParseException {
         String detalle = "Cambio en existencia de producto ya existente";
         int tipo = 5;
         SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
@@ -93,13 +100,17 @@ public class ProductoDao extends Dao
             ps.setString(5, detalle);
             ps.executeUpdate();
             ProductoBean.addMessage("Se ralizo el registro del producto" + pro.getNombre() + "con exito");
-        } 
-        catch (Exception e) 
-        {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
+    /**
+     * Metodo para listar producto
+     *
+     * @return
+     * @throws Exception
+     */
     public List<Producto> listar() throws Exception {
         List<Producto> lista;
         ResultSet rs;
@@ -132,10 +143,14 @@ public class ProductoDao extends Dao
 
     }
 
-    public void modificar(Producto prod) throws Exception 
-    {
-        try 
-        {
+    /**
+     * Metodo para modificar producto
+     *
+     * @param prod
+     * @throws Exception
+     */
+    public void modificar(Producto prod) throws Exception {
+        try {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("UPDATE  producto SET  nombre_producto=?, existencia=?, id_unidad=?, id_tipos=? WHERE id_producto=?");
             st.setInt(1, prod.getId_producto());
@@ -154,8 +169,13 @@ public class ProductoDao extends Dao
 
     }
 
-    public void eliminar(Producto prod) throws Exception 
-    {
+    /**
+     * Metodo para eliminar producto
+     *
+     * @param prod
+     * @throws Exception
+     */
+    public void eliminar(Producto prod) throws Exception {
         try {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("DELETE FROM producto WHERE id_producto=?;");
@@ -170,8 +190,15 @@ public class ProductoDao extends Dao
         }
 
     }
-    
-     public Producto leerFila(Producto pro) throws Exception {
+
+    /**
+     * Metodo para obetener los valores de una fila
+     *
+     * @param pro
+     * @return
+     * @throws Exception
+     */
+    public Producto leerFila(Producto pro) throws Exception {
         Producto proo = null;
         ResultSet rs;
 

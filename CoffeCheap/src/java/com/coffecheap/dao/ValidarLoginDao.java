@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 
 /**
  *
- * @author medev
+ * @author Bryan
  */
 public class ValidarLoginDao extends Dao{
      Usuario usuari=new Usuario();
@@ -25,7 +25,12 @@ public class ValidarLoginDao extends Dao{
         this.usuari = usuari;
     }
     
-    
+    /**
+     * Metodo para validar el usuario
+     * @param usu
+     * @return
+     * @throws Exception 
+     */
     public Usuario login(Usuario usu) throws Exception{
          usuari.setUsuario("use154151fd51s5dfr");
             usuari.setPass("pa545454548asd415ss");
@@ -58,7 +63,12 @@ public class ValidarLoginDao extends Dao{
         }
         return usuari;
     }
-    
+    /**
+     * Metodo hola
+     * @param usu
+     * @return
+     * @throws Exception 
+     */
     public String hola(Usuario usu) throws Exception{
         String hola=null; 
         try{

@@ -10,10 +10,14 @@ import java.util.List;
 
 /**
  *
- * @author acier
+ * @author Bryan
  */
 public class Orden_comprasDao extends Dao {
-
+/**
+ * Metodo para registrar 
+ * @param Tt
+ * @throws Exception 
+ */
   public void registrar(Orden_compras Tt) throws Exception {
 
     try {
@@ -36,7 +40,11 @@ public class Orden_comprasDao extends Dao {
     }
 
   }
-
+/**
+ * Metodo para listar todos los registros de orden compras
+ * @return
+ * @throws Exception 
+ */
   public List<Orden_compras> listar() throws Exception {
     List<Orden_compras> lista;
     ResultSet rs;
@@ -69,9 +77,13 @@ public class Orden_comprasDao extends Dao {
     return lista;
 
   }
-
-  public void modificar(Orden_compras tt) throws Exception {
-    System.out.println("*******************************************************modificar dao");
+/**
+ * Metodo para modificar orden compras
+ * @param tt
+ * @throws Exception 
+ */
+  public void modificar(Orden_compras tt) throws Exception 
+  {
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("UPDATE  orden_compras SET id_orden_compras=?, fecha_orden=?, fecha_entrega=?, cantidad_orden=?, id_producto=?, id_proveedor=?, precio=? WHERE id_orden_compras=?;");
@@ -94,7 +106,11 @@ public class Orden_comprasDao extends Dao {
     }
 
   }
-
+/**
+ * Metodo para eliminar orden compras
+ * @param pac
+ * @throws Exception 
+ */
   public void eliminar(Orden_compras pac) throws Exception {
     System.out.println("*******************************************************eliminar dao");
     try {
@@ -111,7 +127,12 @@ public class Orden_comprasDao extends Dao {
     }
 
   }
-
+/**
+ * Metodo para listar proveedor_Producto
+ * @param ordenid
+ * @return
+ * @throws Exception 
+ */
   public List<Proveedor_productos> ListarProveedor_Produ(Orden_compras ordenid) throws Exception {
 
     List<Proveedor_productos> lista;

@@ -13,10 +13,14 @@ import java.util.List;
 
 /**
  *
- * @author acier
+ * @author Bryan
  */
 public class Pedido_MostrarDao extends Dao {
-
+/**
+ * Metodo para listar todos los registros de pedido
+ * @return
+ * @throws Exception 
+ */
   public List<Pedido> listar() throws Exception {
     List<Pedido> lista;
     ResultSet rs;

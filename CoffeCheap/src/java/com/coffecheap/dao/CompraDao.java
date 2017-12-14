@@ -8,9 +8,22 @@ import com.coffecheap.modelo.Compra;
 import com.coffecheap.modelo.Producto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * 
+ * @author bryan
+ */
 public class CompraDao extends Dao {
-
+/**
+ * Metodo para registrar una compra
+ * @param orden
+ * @param producto
+ * @param cantidad
+ * @param costo
+ * @param nofactura
+ * @param serie
+ * @param fecha
+ * @throws Exception 
+ */
     public void Insertar(int orden, int producto, int cantidad, int costo, int nofactura, String serie, String fecha) throws Exception {
         try {
             this.Conectar();
@@ -22,7 +35,12 @@ public class CompraDao extends Dao {
             this.Desconecar();
         }
     }
-
+/**
+ * metodo para obtener la cantidad de compra
+ * @param producto
+ * @return
+ * @throws Exception 
+ */
     public int Cantidad(int producto) throws Exception {
 
         int respuesta = 0;
@@ -45,7 +63,12 @@ public class CompraDao extends Dao {
         }
         return respuesta;
     }
-
+/**
+ * Metodo para actualizar la cantidad de compra
+ * @param cantidad
+ * @param producto
+ * @throws Exception 
+ */
     public void ActualizarCantidad(int cantidad, int producto) throws Exception {
 
         try {
@@ -59,7 +82,11 @@ public class CompraDao extends Dao {
             this.Desconecar();
         }
     }
-
+/**
+ * Metodo para modificar la compra
+ * @param compra
+ * @throws Exception 
+ */
     public void Modificar(Compra compra) throws Exception {
         try {
             this.Conectar();
@@ -93,7 +120,11 @@ public class CompraDao extends Dao {
             compra.setSerie(null);
         }
     }
-
+/**
+ * Metodo para eliminar una compra
+ * @param compra
+ * @throws Exception 
+ */
     public void Eliminar(Compra compra) throws Exception {
         try {
             this.Conectar();
@@ -107,7 +138,11 @@ public class CompraDao extends Dao {
             compra.setId_compras(0);
         }
     }
-
+/**
+ * Metodo para listar todos los registros de la compra
+ * @return
+ * @throws Exception 
+ */
     public List<Compra> Mostrar() throws Exception {
 
         List<Compra> lista;
@@ -148,7 +183,11 @@ public class CompraDao extends Dao {
         }
         return lista;
     }
-
+/**
+ * Metodo para listar por codigo de producto
+ * @return
+ * @throws Exception 
+ */
     public List<String> CodigodeProducto() throws Exception {
 
         List<String> lista;
@@ -172,7 +211,12 @@ public class CompraDao extends Dao {
         }
         return lista;
     }
-
+/**
+ * Metodo para verificar existencia
+ * @param codigo
+ * @return
+ * @throws Exception 
+ */
     public int Operacion(int codigo) throws Exception {
 
         int numero = 0;
@@ -196,7 +240,12 @@ public class CompraDao extends Dao {
         }
         return numero;
     }
-
+/**
+ * Metodo para verificar compra
+ * @param codigo
+ * @return
+ * @throws Exception 
+ */
     public int CodigoProducto(int codigo) throws Exception {
 
         int numero = 0;
@@ -221,6 +270,12 @@ public class CompraDao extends Dao {
         return numero;
     }
 
+    /**
+     * Metodo para verificar cantidad
+     * @param codigo
+     * @return
+     * @throws Exception 
+     */
     public int CantidadProducto(int codigo) throws Exception {
 
         int numero = 0;
@@ -244,7 +299,11 @@ public class CompraDao extends Dao {
         }
         return numero;
     }
-
+/**
+ * Metodo para modificar existencia
+ * @param cantidad
+ * @param codigo 
+ */
     public void ActualizarExistencia(int cantidad, int codigo) {
         try {
             this.Conectar();
@@ -265,7 +324,12 @@ public class CompraDao extends Dao {
             }
         }
     }
-
+/**
+ * Metodo para verificar existencia 
+ * @param codigo
+ * @return
+ * @throws Exception 
+ */
     public int CantidadEnTabla(int codigo) throws Exception {
 
         int numero = 0;
@@ -289,7 +353,12 @@ public class CompraDao extends Dao {
         }
         return numero;
     }
-
+/**
+ * Metodo para actulizar producto
+ * @param codigo
+ * @param cantidad
+ * @throws Exception 
+ */
     public void ActualizacionProductos(int codigo, int cantidad) throws Exception {
 
         try {

@@ -16,9 +16,14 @@ import java.util.List;
 
 /**
  *
- * @author medev
+ * @author Bryan
  */
 public class PlatoDao extends Dao {
+    /**
+     * Metodo para ingresar un plato
+     * @param plat
+     * @throws Exception 
+     */
     public void registrar(Plato plat) throws Exception {
 
     try {
@@ -39,7 +44,11 @@ public class PlatoDao extends Dao {
     }
 
   }
-
+/**
+ * Metodo para listar tipo plato para una lista desplegable
+ * @return
+ * @throws Exception 
+ */
       public List<Tipo_plato> listarTipoPlato() throws Exception {
     List<Tipo_plato> lista;
     ResultSet rs;
@@ -64,6 +73,11 @@ public class PlatoDao extends Dao {
     return lista;
   }
     
+      /**
+       * Metodo para listar todos los registros de plato
+       * @return
+       * @throws Exception 
+       */
   public List<Plato> listar() throws Exception {
     List<Plato> lista;
     ResultSet rs;
@@ -96,7 +110,11 @@ public class PlatoDao extends Dao {
     return lista;
 
   }
-
+/**
+ * Metodo para modificar plato
+ * @param plat
+ * @throws Exception 
+ */
   public void modificar(Plato plat) throws Exception 
   {
     try 
@@ -120,7 +138,11 @@ public class PlatoDao extends Dao {
     }
 
   }
-
+/**
+ * Metodo para eliminar una plato
+ * @param plat
+ * @throws Exception 
+ */
   public void eliminar(Plato plat) throws Exception 
   {
     try {
@@ -137,7 +159,12 @@ public class PlatoDao extends Dao {
       this.Desconecar();
     }
   }
-  
+  /**
+   * Metodo para obtener una fila e ingresarla en un objeto 
+   * @param plat
+   * @return
+   * @throws Exception 
+   */
    public Plato leerFila(Plato plat) throws Exception {
          Plato plato = null;
         ResultSet rs;

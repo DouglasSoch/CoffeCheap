@@ -13,9 +13,16 @@ import java.util.List;
 import com.coffecheap.modelo.Producto;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
-
+/**
+ * 
+ * @author bryan
+ */
 public class Contador_Vista_Producto_Dao extends Dao{
-    
+   /**
+    * Metodo para listar todos los productos
+    * @return
+    * @throws Exception 
+    */ 
     public List<Producto> Listar() throws Exception {
 
         List<Producto> lista;

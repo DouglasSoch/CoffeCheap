@@ -10,9 +10,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import static org.primefaces.component.datatable.DataTable.PropertyKeys.summary;
-
+/**
+ * 
+ * @author bryan
+ */
 public class Transaccion_InventarioDAO extends Dao 
 {
+    /**
+     * Metodo para registrar una transaccion de inventario
+     * @param traInv
+     * @throws Exception 
+     */
     public void registrar(Transaccion_inventario traInv) throws Exception 
     {
         try 
@@ -34,7 +42,11 @@ public class Transaccion_InventarioDAO extends Dao
             this.Desconecar();
         }
     }
-
+/**
+ * Metodo para reducir si hay una existencia
+ * @param tra
+ * @throws Exception 
+ */
     public void resta(Transaccion_inventario tra) throws Exception
     {
         try
@@ -53,6 +65,11 @@ public class Transaccion_InventarioDAO extends Dao
         }
     }
     
+    /**
+     * Metodo para listar todos los registrso de transaccion inventario
+     * @return
+     * @throws Exception 
+     */
     public List<Transaccion_inventario> mostrar() throws Exception {
         List<Transaccion_inventario> lista;
         ResultSet rs;
@@ -90,7 +107,11 @@ public class Transaccion_InventarioDAO extends Dao
         }
         return lista;
     }
-
+/**
+ * Metodo para listar factura utilizado para lista desplegable en el FrontEnd
+ * @return
+ * @throws Exception 
+ */
     public List<Compra> listarCompraFactura() throws Exception {
         List<Compra> lista;
         ResultSet rs;
@@ -113,7 +134,11 @@ public class Transaccion_InventarioDAO extends Dao
         }
         return lista;
     }
-
+/**
+ * metodo para listar producto para lista desplegable en Front end
+ * @return
+ * @throws Exception 
+ */
     public List<Transaccion_inventario> listarParaModificarProducto() throws Exception {
         List<Transaccion_inventario> lista;
         ResultSet rs;
@@ -137,6 +162,11 @@ public class Transaccion_InventarioDAO extends Dao
         return lista;
     }
 
+    /**
+     * Metodo para listar transaccion inventario para lista desplegable
+     * @return
+     * @throws Exception 
+     */
     public List<Transaccion_inventario> listarParaModificarTtransaccion() throws Exception {
         List<Transaccion_inventario> lista;
         ResultSet rs;
@@ -161,7 +191,12 @@ public class Transaccion_InventarioDAO extends Dao
         return lista;
     }
     
-
+/**
+ * Metodo para lista desplegable 
+ * @param traInv
+ * @return
+ * @throws Exception 
+ */
     public Transaccion_inventario leerParaModificar(Transaccion_inventario traInv) throws Exception {
         Transaccion_inventario traInvAden = null;
         ResultSet rs;
@@ -194,7 +229,11 @@ public class Transaccion_InventarioDAO extends Dao
         return traInvAden;
     }
 
-    
+    /**
+     * Metodo para eliminar
+     * @param orco
+     * @throws Exception 
+     */
          public void eliminar(Transaccion_inventario orco) throws Exception
     {
         try
@@ -211,7 +250,11 @@ public class Transaccion_InventarioDAO extends Dao
             this.Desconecar();
         }
     }
-     
+     /**
+      * Metodo para modificar
+      * @param orco
+      * @throws Exception 
+      */
     public void modificar(Transaccion_inventario orco) throws Exception {
         try {
             this.Conectar();

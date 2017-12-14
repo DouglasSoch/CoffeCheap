@@ -5,9 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 
+ * @author bryan
+ */
 public class ReservaUsuaDao extends Dao
 {
+    /**
+     * Metodo para listar todos los registros de la reserva
+     * @return 
+     */
     public List<Mesa> mesas()
     {
         ResultSet rs;
@@ -32,7 +39,12 @@ public class ReservaUsuaDao extends Dao
         return lstMesa;
         
     }
-    
+    /**
+     * metodo para verificar el estado
+     * @param mesa
+     * @return
+     * @throws Exception 
+     */
     public String ControlEstado(int mesa) throws Exception {
     String color = "rgb(115, 191, 209)";
     
@@ -57,7 +69,11 @@ public class ReservaUsuaDao extends Dao
     return color;
   }
     
-    
+    /**
+     * MEtodo para verificar el tamaño de la mesa 
+     * @return
+     * @throws Exception 
+     */
   public int tamaño() throws Exception {
     int numero = 0;
     try {
@@ -76,7 +92,11 @@ public class ReservaUsuaDao extends Dao
 
     return numero;
   }
-  
+  /**
+   * Control para el cambio de estado de la reserva
+   * @param mesa
+   * @throws Exception 
+   */
   public void CamBioEstado(int mesa) throws Exception {
 
     System.out.println("*******************************************************modificar dao");
@@ -104,7 +124,12 @@ public class ReservaUsuaDao extends Dao
     }
 
   }
-  
+  /***
+   * Metodo para ver los ccomensales de la reserva
+   * @param numer
+   * @return
+   * @throws Exception 
+   */
     public int comensales(int numer) throws Exception {
     int numero = 0;
     try {

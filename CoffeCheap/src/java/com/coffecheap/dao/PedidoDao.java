@@ -9,16 +9,16 @@ import java.util.List;
 
 /**
  *
- * @author acier
+ * @author Bryan
  */
 public class PedidoDao extends Dao {
-
+/**
+ * Metodo para registrar pedido
+ * @param Tt
+ * @throws Exception 
+ */
   public void registrar(Pedido Tt) throws Exception 
   {
-      System.out.println("la mesa es"+Tt.getMesa().getId_mesa());
-      System.out.println("la hora es "+Tt.getHoraS());
-      System.out.println("el usuario es"+Tt.getUsuario().getId());
-      System.out.println("la fecha es"+Tt.getTemp_fecha());
     try 
     {
       this.Conectar();
@@ -38,7 +38,11 @@ public class PedidoDao extends Dao {
     }
 
   }
-
+/**
+ * Metodo para listar pedido
+ * @return
+ * @throws Exception 
+ */
   public List<Pedido> listar() throws Exception {
     List<Pedido> lista;
     ResultSet rs;
@@ -80,7 +84,11 @@ public class PedidoDao extends Dao {
     return lista;
 
   }
-
+/**
+ * Metodo para modificar pedido
+ * @param Tt
+ * @throws Exception 
+ */
   public void modificar(Pedido Tt) throws Exception {
     System.out.println("*******************************************************modificar dao");
     try {
@@ -103,9 +111,13 @@ public class PedidoDao extends Dao {
     }
 
   }
-
-  public void eliminar(Pedido pac) throws Exception {
-    System.out.println("*******************************************************eliminar dao");
+/**
+ * Metodo para eiliminar pedido
+ * @param pac
+ * @throws Exception 
+ */
+  public void eliminar(Pedido pac) throws Exception 
+  {
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("DELETE FROM pedido WHERE id_pedido=?;");

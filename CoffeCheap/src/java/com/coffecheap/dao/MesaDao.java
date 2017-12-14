@@ -13,10 +13,14 @@ import java.util.List;
 
 /**
  *
- * @author acier
+ * @author Bryan
  */
 public class MesaDao extends Dao {
-
+/**
+ * MEtodo para registrar una mesa
+ * @param Tt
+ * @throws Exception 
+ */
   public void registrar(Mesa Tt) throws Exception {
 
     try {
@@ -58,6 +62,11 @@ public class MesaDao extends Dao {
 
   }
 
+  /**
+   * Metodo par listar todos los registros de la mesa
+   * @return
+   * @throws Exception 
+   */
   public List<Mesa> listar() throws Exception {
     List<Mesa> lista;
     ResultSet rs;
@@ -87,7 +96,11 @@ public class MesaDao extends Dao {
     return lista;
 
   }
-
+/**
+ * Metodo para modificar una mesa
+ * @param tt
+ * @throws Exception 
+ */
   public void modificar(Mesa tt) throws Exception {
     System.out.println("*******************************************************modificar dao");
     try {
