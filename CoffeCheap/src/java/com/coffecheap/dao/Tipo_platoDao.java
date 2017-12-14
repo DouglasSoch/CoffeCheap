@@ -16,8 +16,8 @@ public class Tipo_platoDao extends Dao {
     /**
      * Metodo para ingresar un registro en tipo Plato
      *
-     * @param tipoPlato
-     * @throws Exception
+     * @param tipoPlato para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar(Tipo_plato tipoPlato) throws Exception {
         ResultSet rs;
@@ -48,8 +48,8 @@ public class Tipo_platoDao extends Dao {
     /**
      * Metodo para listar todos los registros de tipo plato
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Tipo_plato> listar() throws Exception {
         List<Tipo_plato> lista;
@@ -105,8 +105,8 @@ public class Tipo_platoDao extends Dao {
     /**
      * Metodo para modifcar un registro de tipo plato
      *
-     * @param tipoPlato
-     * @throws Exception
+     * @param tipoPlato para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Tipo_plato tipoPlato) throws Exception {
         try {
@@ -128,8 +128,8 @@ public class Tipo_platoDao extends Dao {
     /**
      * Metodo para eliminar un registro de tipo plato
      *
-     * @param tipoPlato
-     * @throws Exception
+     * @param tipoPlato para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Tipo_plato tipoPlato) throws Exception {
         try {
@@ -150,9 +150,9 @@ public class Tipo_platoDao extends Dao {
     /**
      * Metodo para obtener un registro de una tabla de tipo plato
      *
-     * @param tipoPlato
-     * @return
-     * @throws Exception
+     * @param tipoPlato para la sentencia SQL
+     * @return objeto tipo plato
+     * @throws Exception por si resulta un error de SQL
      */
     public Tipo_plato leerFila(Tipo_plato tipoPlato) throws Exception {
         Tipo_plato tipoPlatoN = null;

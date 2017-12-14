@@ -28,9 +28,9 @@ public class ReservaDao extends Dao {
     /**
      * Metodo para listar cosulta de disponibilidad
      *
-     * @param reserva
-     * @return
-     * @throws Exception
+     * @param reserva para la sentencia SQL
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Reserva> consultaDeDispo(Reserva reserva) throws Exception {
         List<Reserva> lstReserva = null;
@@ -63,9 +63,9 @@ public class ReservaDao extends Dao {
     /**
      * Metodo para registrar un cliente y una reserva
      *
-     * @param nit
-     * @return
-     * @throws Exception
+     * @param nit para la sentencia SQL
+     * @return boolean
+     * @throws Exception por si resulta un error de SQL
      */
     public Boolean registrarclienteYReserva(String nit) throws Exception {
         Boolean estado = false;
@@ -98,8 +98,8 @@ public class ReservaDao extends Dao {
     /**
      * Metodo para listar todos los registros de cliente para lista desplegable
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Cliente> listarNombre() throws Exception {
         List<Cliente> lista;
@@ -126,8 +126,8 @@ public class ReservaDao extends Dao {
     /**
      * Metodo para listar todos los registros de mesa
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Mesa> listarMesa() throws Exception {
         List<Mesa> lista;
@@ -154,8 +154,8 @@ public class ReservaDao extends Dao {
     /**
      * Metodo para registrar una reserva
      *
-     * @param reserva
-     * @throws Exception
+     * @param reserva para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar(Reserva reserva) throws Exception {
         try {
@@ -179,8 +179,8 @@ public class ReservaDao extends Dao {
     /**
      * Metodo para listar reserva
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Reserva> mostrar() throws Exception {
         List<Reserva> lista;
@@ -212,9 +212,9 @@ public class ReservaDao extends Dao {
     /**
      * Metodo para listar Reserva
      *
-     * @param reservaa
-     * @return
-     * @throws Exception
+     * @param reservaa para la sentencia SQL
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Reserva> mostrarPorPrarametro(Reserva reservaa) throws Exception {
 
@@ -250,9 +250,9 @@ public class ReservaDao extends Dao {
     /**
      * Metodo para obtener registro
      *
-     * @param reservaa
-     * @return
-     * @throws Exception
+     * @param reservaa para la sentencia SQL
+     * @return objeto reserva
+     * @throws Exception por si resulta un error de SQL
      */
     public Reserva leerParaModificar(Reserva reservaa) throws Exception {
         Reserva reserva = null;
@@ -283,8 +283,8 @@ public class ReservaDao extends Dao {
     /**
      * Metodo para eliminar una reserva
      *
-     * @param reserva
-     * @throws Exception
+     * @param reserva para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Reserva reserva) throws Exception {
         try {
@@ -302,8 +302,8 @@ public class ReservaDao extends Dao {
     /**
      * MEtodo para miodificar una reserva
      *
-     * @param reserva
-     * @throws Exception
+     * @param reserva para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Reserva reserva) throws Exception {
         try {
@@ -331,8 +331,8 @@ public class ReservaDao extends Dao {
     /**
      * Metodo para listar reserva
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Reserva> mostrarr() throws Exception {
         List<Reserva> lstReserva = null;
@@ -364,9 +364,9 @@ public class ReservaDao extends Dao {
     /**
      * Metodo para obtener e registro de reserva
      *
-     * @param cliente
-     * @return
-     * @throws Exception
+     * @param cliente para la sentencia SQL
+     * @return objeto Cliente
+     * @throws Exception por si resulta un error de SQL
      */
     public Cliente leerFilaR(Cliente cliente) throws Exception {
 

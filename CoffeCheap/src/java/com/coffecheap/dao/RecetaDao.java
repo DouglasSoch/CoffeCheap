@@ -21,8 +21,8 @@ public class RecetaDao extends Dao {
     /**
      * Metodo para registrar en receta
      *
-     * @param receta
-     * @throws Exception
+     * @param receta para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar(Receta receta) throws Exception {
         ResultSet rs;
@@ -56,8 +56,8 @@ public class RecetaDao extends Dao {
     /**
      * Metodo para listar todos los registros de recetaa
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Receta> listar() throws Exception {
         List<Receta> lista;
@@ -93,8 +93,8 @@ public class RecetaDao extends Dao {
     /**
      * Metodo para modificar un regsitro de receta
      *
-     * @param receta
-     * @throws Exception
+     * @param receta para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Receta receta) throws Exception {
         try {
@@ -120,8 +120,8 @@ public class RecetaDao extends Dao {
     /**
      * MEtodo para eliminar un registro de receta
      *
-     * @param receta
-     * @throws Exception
+     * @param receta para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Receta receta) throws Exception {
         try {

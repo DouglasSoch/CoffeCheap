@@ -15,8 +15,8 @@ public class ProveedorDao extends Dao {
     /**
      * Metodo para registrar un proveedor
      *
-     * @param proveedor
-     * @throws Exception
+     * @param proveedor para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void Ingresar(Proveedor proveedor) throws Exception {
         try {
@@ -45,8 +45,8 @@ public class ProveedorDao extends Dao {
     /**
      * Metodo para borrar un proveedor
      *
-     * @param proveedor
-     * @throws Exception
+     * @param proveedor para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void Borrar(Proveedor proveedor) throws Exception {
 
@@ -67,8 +67,8 @@ public class ProveedorDao extends Dao {
     /**
      * MEtodo para modificar un proveedor
      *
-     * @param proveedor
-     * @throws Exception
+     * @param proveedor para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void Editar(Proveedor proveedor) throws Exception {
 
@@ -99,8 +99,8 @@ public class ProveedorDao extends Dao {
     /**
      * Metodo para listar todos los regisstros de un proveedor
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Proveedor> Mostrar() throws Exception {
 

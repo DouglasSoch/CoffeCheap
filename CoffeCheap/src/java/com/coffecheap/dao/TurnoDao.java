@@ -15,8 +15,8 @@ public class TurnoDao extends Dao {
     /**
      * Metodo para registrar un turno
      *
-     * @param turno
-     * @throws Exception
+     * @param turno para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void Ingresar(Turno turno) throws Exception {
         try {
@@ -39,8 +39,8 @@ public class TurnoDao extends Dao {
     /**
      * Metodo para eliminar un turno
      *
-     * @param turno
-     * @throws Exception
+     * @param turno para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void Eliminar(Turno turno) throws Exception {
         try {
@@ -59,8 +59,8 @@ public class TurnoDao extends Dao {
     /**
      * Metodo para modificar un turno
      *
-     * @param turno
-     * @throws Exception
+     * @param turno para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void Modificar(Turno turno) throws Exception {
 
@@ -84,8 +84,8 @@ public class TurnoDao extends Dao {
     /**
      * metodo para listar los turno
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Turno> Visualizar() throws Exception {
 

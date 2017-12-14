@@ -26,8 +26,8 @@ public class Venta_facturaDao extends Dao {
     /**
      * Metodo para registrar en venta factura
      *
-     * @param VF
-     * @throws Exception
+     * @param VF para los valores que se van a insertar en el SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar(Venta_factura VF) throws Exception {
 
@@ -82,8 +82,8 @@ public class Venta_facturaDao extends Dao {
     /**
      * Metodo para listar pedido para lista desplegable
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Pedido> listarPedido() throws Exception {
         List<Pedido> lista;
@@ -113,8 +113,8 @@ public class Venta_facturaDao extends Dao {
     /**
      * Metodo para listar cliente para lista desplegable
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Cliente> listarCliente() throws Exception {
         List<Cliente> lista;
@@ -145,9 +145,9 @@ public class Venta_facturaDao extends Dao {
     /**
      * MEtodo para listar antes de modificar
      *
-     * @param vf
-     * @return
-     * @throws Exception
+     * @param vf para los valores del SQL
+     * @return objeto
+     * @throws Exception por si resulta un error de SQL
      */
     public Venta_factura leerParaModificar(Venta_factura vf) throws Exception {
         Venta_factura tt = null;
@@ -183,8 +183,8 @@ public class Venta_facturaDao extends Dao {
     /**
      * Metodo para listar todos los registros de venta factura
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Venta_factura> listar() throws Exception {
         List<Venta_factura> lista;
@@ -224,8 +224,8 @@ public class Venta_facturaDao extends Dao {
     /**
      * Metodo para modificar un registro de Venta factura
      *
-     * @param VF
-     * @throws Exception
+     * @param VF para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Venta_factura VF) throws Exception {
         System.out.println("modificar");
@@ -264,8 +264,8 @@ public class Venta_facturaDao extends Dao {
     /**
      * Metodo para eliminar un registro de venta factura
      *
-     * @param pac
-     * @throws Exception
+     * @param pac para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Venta_factura pac) throws Exception {
         try {
@@ -287,10 +287,10 @@ public class Venta_facturaDao extends Dao {
     /**
      * Metodo para control deneral de la factura
      *
-     * @param VF
-     * @param mesa
-     * @return
-     * @throws Exception
+     * @param VF para la sentencia SQL
+     * @param mesa para la sentencia SQL
+     * @return boolean
+     * @throws Exception por si resulta un error de SQL
      */
     public boolean controlGenerarFactura(Venta_factura VF, int mesa) throws Exception {
 
@@ -330,10 +330,10 @@ public class Venta_facturaDao extends Dao {
     /**
      * MEtodo para regsitrar en control
      *
-     * @param VF
-     * @param mesa
-     * @param clienteid
-     * @throws Exception
+     * @param VF para la sentencia SQL
+     * @param mesa para la sentencia SQL
+     * @param clienteid para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar_venta(Venta_factura VF, int mesa, int clienteid) throws Exception {
         int idPedido = 0;

@@ -20,8 +20,8 @@ public class Estado_mesaDao extends Dao {
     /**
      * Metodo para ingresar un registro en estado mesa
      *
-     * @param Tt
-     * @throws Exception
+     * @param Tt para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar(Estado_mesa Tt) throws Exception {
 
@@ -44,8 +44,8 @@ public class Estado_mesaDao extends Dao {
     /**
      * Metodo para listar todos los registros de estado mesa
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Estado_mesa> listar() throws Exception {
         List<Estado_mesa> lista;
@@ -78,8 +78,8 @@ public class Estado_mesaDao extends Dao {
     /**
      * Metodo para modificar un registro de estado mesa
      *
-     * @param tt
-     * @throws Exception
+     * @param tt para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Estado_mesa tt) throws Exception {
         try {
@@ -104,8 +104,8 @@ public class Estado_mesaDao extends Dao {
     /**
      * Metodo para eliminar un registro de estado mesa
      *
-     * @param pac
-     * @throws Exception
+     * @param pac para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Estado_mesa pac) throws Exception {
         try {

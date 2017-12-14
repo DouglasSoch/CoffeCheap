@@ -16,9 +16,9 @@ public class TipoUsuarioDao extends Dao {
     /**
      * Metodo para registrar en tipo
      *
-     * @param nombre
-     * @param descripcion
-     * @throws Exception
+     * @param nombre para la sentencia SQL
+     * @param descripcion para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void Ingresar(String nombre, String descripcion) throws Exception {
 
@@ -38,10 +38,10 @@ public class TipoUsuarioDao extends Dao {
     /**
      * metodo para registrar los permisosde usuario
      *
-     * @param usuario
-     * @param idpagina
-     * @param idcrud
-     * @throws Exception
+     * @param usuario para la sentencia SQL
+     * @param idpagina para la sentencia SQL
+     * @param idcrud para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void Permiso(int usuario, int idpagina, int idcrud) throws Exception {
 
@@ -63,8 +63,8 @@ public class TipoUsuarioDao extends Dao {
     /**
      * MEtodo para eliminar un tip de usuario
      *
-     * @param tipo
-     * @throws Exception
+     * @param tipo para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Tipo tipo) throws Exception {
         try {
@@ -82,8 +82,8 @@ public class TipoUsuarioDao extends Dao {
     /**
      * Metodo para modficar un tipo de usuario
      *
-     * @param tipo
-     * @throws Exception
+     * @param tipo para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Tipo tipo) throws Exception {
         try {
@@ -103,9 +103,9 @@ public class TipoUsuarioDao extends Dao {
     /**
      * Metodo para obtener un registro en un objeto
      *
-     * @param nombre
-     * @return
-     * @throws Exception
+     * @param nombre para la sentencia SQL
+     * @return int
+     * @throws Exception por si resulta un error de SQL
      */
     public int Buscar(String nombre) throws Exception {
 
@@ -150,8 +150,8 @@ public class TipoUsuarioDao extends Dao {
     /**
      * MEtodo para lista deplegable de tipo
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<TipoUsuario> Tipo() throws Exception {
 
@@ -179,8 +179,8 @@ public class TipoUsuarioDao extends Dao {
     /**
      * Metodo para lista desplegable de crud
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<TipoUsuario> Crud() throws Exception {
 
@@ -208,8 +208,8 @@ public class TipoUsuarioDao extends Dao {
     /**
      * Metodo para lista desplegable de html
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<TipoUsuario> Html() throws Exception {
         List<TipoUsuario> lista;
@@ -237,8 +237,8 @@ public class TipoUsuarioDao extends Dao {
     /**
      * Metodo para listar tipo
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Tipo> mostrar() throws Exception {
         List<Tipo> lista;
@@ -267,9 +267,9 @@ public class TipoUsuarioDao extends Dao {
     /**
      * Metodo para leer antes de modificar
      *
-     * @param tipo
-     * @return
-     * @throws Exception
+     * @param tipo para la sentencia SQL
+     * @return objeto tipo
+     * @throws Exception por si resulta un error de SQL
      */
     public Tipo leerParaModificar(Tipo tipo) throws Exception {
         Tipo tip = null;

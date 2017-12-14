@@ -24,8 +24,8 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para registrar en control mesa
      *
-     * @param Tt
-     * @throws Exception
+     * @param Tt para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar(Control_mesa Tt) throws Exception {
 
@@ -49,8 +49,8 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para listar todos losn registros de control mesa
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Control_mesa> listarMesaOcupadas() throws Exception {
         List<Control_mesa> lista;
@@ -82,8 +82,8 @@ public class Control_mesaDao extends Dao {
     /**
      * metodo para recibir el tamaño de registros en mesa
      *
-     * @return
-     * @throws Exception
+     * @return int
+     * @throws Exception por si resulta un error de SQL
      */
     public int tamaño() throws Exception {
         int numero = 0;
@@ -107,8 +107,8 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para eliminar un registro de control mesa
      *
-     * @param pac
-     * @throws Exception
+     * @param pac para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Control_mesa pac) throws Exception {
         try {
@@ -129,8 +129,8 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para cambiar de estado el control mesa
      *
-     * @param mesa
-     * @throws Exception
+     * @param mesa para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void CamBioEstado(int mesa) throws Exception {
         try {
@@ -161,9 +161,9 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para cambiar de color
      *
-     * @param mesa
-     * @return
-     * @throws Exception
+     * @param mesa para la sentencia SQL
+     * @return String
+     * @throws Exception por si resulta un error de SQL
      */
     public String ControlEstado(int mesa) throws Exception {
         String color = "btn-default";
@@ -204,8 +204,8 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para registrar el pago
      *
-     * @param mesa
-     * @throws Exception
+     * @param mesa para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void RegistrarPago(int mesa) throws Exception {
 
@@ -256,9 +256,9 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para habilitar el pago para los meseros
      *
-     * @param mesa
-     * @return
-     * @throws Exception
+     * @param mesa para la sentencia SQL
+     * @return boolean
+     * @throws Exception por si resulta un error de SQL
      */
     public boolean HabilitarPago(int mesa) throws Exception {
         int pago;
@@ -295,9 +295,9 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para indicar que esta pagado
      *
-     * @param mesa
-     * @return
-     * @throws Exception
+     * @param mesa para la sentencia SQL
+     * @return String
+     * @throws Exception por si resulta un error de SQL
      */
     public String EstaPago(int mesa) throws Exception {
         int pago;
@@ -334,8 +334,8 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para limpiar mesa para que el recepcionista este avisado
      *
-     * @param mesa
-     * @throws Exception
+     * @param mesa para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void LimpiarMesa(int mesa) throws Exception {
         try {
@@ -403,8 +403,8 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para control de la reserva
      *
-     * @param mesa
-     * @throws Exception
+     * @param mesa para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void controlreserva(int mesa) throws Exception {
 
@@ -446,9 +446,9 @@ public class Control_mesaDao extends Dao {
     /**
      * MEtodo para el manejo de fecha con la libreria java.sql
      *
-     * @param time
-     * @param minutes
-     * @return
+     * @param time para la sentencia SQL
+     * @param minutes para la sentencia SQL
+     * @return por si resulta un error de SQL
      */
     public java.sql.Time getAddSubtractTime(java.sql.Time time, int minutes) {
         Calendar cal = new GregorianCalendar();
@@ -498,9 +498,9 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para asignar todo a una mesa
      *
-     * @param mesas
-     * @param MesaPrincipal
-     * @throws Exception
+     * @param mesas para la sentencia SQL
+     * @param MesaPrincipal para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void asigTodo1mesa(String[] mesas, int MesaPrincipal) throws Exception {
 
@@ -549,8 +549,8 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para unir mesa
      *
-     * @param mesa
-     * @throws Exception
+     * @param mesa para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void AsignarMesaUnida(int mesa) throws Exception {
         try {

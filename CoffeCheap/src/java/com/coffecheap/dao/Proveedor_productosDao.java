@@ -23,8 +23,8 @@ public class Proveedor_productosDao extends Dao {
     /**
      * Metodo para registrar un proveedor producto
      *
-     * @param Tt
-     * @throws Exception
+     * @param Tt para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar(Proveedor_productos Tt) throws Exception {
         ResultSet rs;
@@ -56,8 +56,8 @@ public class Proveedor_productosDao extends Dao {
     /**
      * Metodo para listar todos los proveedores producto
      *
-     * @return
-     * @throws Exception
+     * @return Lsit
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Proveedor_productos> listar() throws Exception {
         List<Proveedor_productos> lista;
@@ -89,8 +89,8 @@ public class Proveedor_productosDao extends Dao {
     /**
      * Metodo para listar todos los proveedores
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Proveedor> listarProveedor() throws Exception {
         List<Proveedor> lista;
@@ -121,8 +121,8 @@ public class Proveedor_productosDao extends Dao {
     /**
      * Metodo para listar todos los registros de producto
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Producto> listarProducto() throws Exception {
         List<Producto> lista;
@@ -153,8 +153,8 @@ public class Proveedor_productosDao extends Dao {
     /**
      * Metodo para modificar un proveedor producto
      *
-     * @param Tt
-     * @throws Exception
+     * @param Tt para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Proveedor_productos Tt) throws Exception {
         try {
@@ -176,9 +176,9 @@ public class Proveedor_productosDao extends Dao {
     /**
      * Metodo para obtener un registro de proveedor producto en un objeto
      *
-     * @param prov
-     * @return Proveedor_Productos
-     * @throws Exception
+     * @param prov para la sentencia SQL
+     * @return Proveedor_Productos objeto
+     * @throws Exception por si resulta un error de SQL
      */
     public Proveedor_productos leerFila(Proveedor_productos prov) throws Exception {
         Proveedor_productos provP = null;
@@ -210,8 +210,8 @@ public class Proveedor_productosDao extends Dao {
     /**
      * Metodo para eliminar un registro de proveedor producto
      *
-     * @param prov
-     * @throws Exception
+     * @param prov para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Proveedor_productos prov) throws Exception {
         try {

@@ -20,8 +20,8 @@ public class Facturar_Imp extends Dao {
     /**
      * Metodo para listar todos los registros de fac
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Fac> listar() throws Exception {
         List<Fac> lista;

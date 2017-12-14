@@ -21,8 +21,8 @@ public class Plato_pedidoDao extends Dao {
     /**
      * Metodo para registrar en plato pedido
      *
-     * @param ppedido
-     * @throws Exception
+     * @param ppedido para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar(Plato_pedido ppedido) throws Exception {
 
@@ -48,8 +48,8 @@ public class Plato_pedidoDao extends Dao {
     /**
      * Metodo para listar todos los registros de plato pedido
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Plato_pedido> listar() throws Exception {
         List<Plato_pedido> lista;
@@ -82,8 +82,8 @@ public class Plato_pedidoDao extends Dao {
     /**
      * MEtodo para modificar un registro en plato pedido
      *
-     * @param ppedido
-     * @throws Exception
+     * @param ppedido para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Plato_pedido ppedido) throws Exception {
         try {
@@ -108,8 +108,8 @@ public class Plato_pedidoDao extends Dao {
     /**
      * Metodo para eliminar un registro en plato pedido
      *
-     * @param ppedido
-     * @throws Exception
+     * @param ppedido para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Plato_pedido ppedido) throws Exception {
         try {
@@ -127,9 +127,9 @@ public class Plato_pedidoDao extends Dao {
     /**
      * Metodo para obtener antes de modificar
      *
-     * @param platoPedido
-     * @return
-     * @throws Exception
+     * @param platoPedido para la sentencia SQL
+     * @return objeto plato pedido
+     * @throws Exception por si resulta un error de SQL
      */
     public Plato_pedido leerParaModificar(Plato_pedido platoPedido) throws Exception {
         Plato_pedido platoPe = null;

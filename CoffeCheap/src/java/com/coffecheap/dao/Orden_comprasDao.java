@@ -13,156 +13,165 @@ import java.util.List;
  * @author Bryan
  */
 public class Orden_comprasDao extends Dao {
-/**
- * Metodo para registrar 
- * @param Tt
- * @throws Exception 
- */
-  public void registrar(Orden_compras Tt) throws Exception {
 
-    try {
+    /**
+     * Metodo para registrar
+     *
+     * @param Tt para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void registrar(Orden_compras Tt) throws Exception {
 
-      this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("insert into orden_compras values(?,?,?,?,?,?);");
-      st.setInt(1, Tt.getId_orden_compras());
-      st.setString(2, Tt.getTemp_fecha_orden());
-      st.setString(3, Tt.getTemp_fecha_entrega());
-      st.setInt(4, Tt.getCantidad());
-      st.setInt(5, Tt.getPproductos().getProducto().getId_producto());
-      st.setInt(6, Tt.getPproductos().getProveedor().getId_proveedor());
-      st.executeUpdate();
+        try {
 
-    } catch (Exception ex) {
-      throw ex;
-    } finally {
-      this.Desconecar();
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("insert into orden_compras values(?,?,?,?,?,?);");
+            st.setInt(1, Tt.getId_orden_compras());
+            st.setString(2, Tt.getTemp_fecha_orden());
+            st.setString(3, Tt.getTemp_fecha_entrega());
+            st.setInt(4, Tt.getCantidad());
+            st.setInt(5, Tt.getPproductos().getProducto().getId_producto());
+            st.setInt(6, Tt.getPproductos().getProveedor().getId_proveedor());
+            st.executeUpdate();
 
-    }
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            this.Desconecar();
 
-  }
-/**
- * Metodo para listar todos los registros de orden compras
- * @return
- * @throws Exception 
- */
-  public List<Orden_compras> listar() throws Exception {
-    List<Orden_compras> lista;
-    ResultSet rs;
-
-    try {
-      this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT *FROM orden_compras");
-      rs = st.executeQuery();
-      lista = new ArrayList();
-      while (rs.next()) {
-        Orden_compras tt = new Orden_compras();
-
-        tt.setId_orden_compras(rs.getInt(1));
-        tt.setFecha_orden(rs.getDate(2));
-        tt.setFecha_entrega(rs.getDate(3));
-        tt.setCantidad(rs.getInt(4));
-        tt.getPproductos().getProducto().setId_producto(rs.getInt(5));
-        tt.getPproductos().getProveedor().setId_proveedor(rs.getInt(6));
-        // tt.setPrecio(rs.getDouble(7));
-
-        lista.add(tt);
-      }
-
-    } catch (Exception ex) {
-      throw ex;
-    } finally {
-      this.Desconecar();
-    }
-
-    return lista;
-
-  }
-/**
- * Metodo para modificar orden compras
- * @param tt
- * @throws Exception 
- */
-  public void modificar(Orden_compras tt) throws Exception 
-  {
-    try {
-      this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("UPDATE  orden_compras SET id_orden_compras=?, fecha_orden=?, fecha_entrega=?, cantidad_orden=?, id_producto=?, id_proveedor=?, precio=? WHERE id_orden_compras=?;");
-
-      st.setInt(1, tt.getId_orden_compras());
-      //st.setDate(2, tt.getFecha_orden());
-      // st.setDate(3, tt.getFecha_entrega());
-      st.setInt(4, tt.getCantidad());
-      st.setInt(5, tt.getPproductos().getProducto().getId_producto());
-      st.setInt(6, tt.getPproductos().getProveedor().getId_proveedor());
-      st.setDouble(7, tt.getPrecio());
-      st.setInt(8, tt.getId_orden_compras());
-      st.executeUpdate();
-
-    } catch (Exception ex) {
-      throw ex;
-    } finally {
-      this.Desconecar();
+        }
 
     }
 
-  }
-/**
- * Metodo para eliminar orden compras
- * @param pac
- * @throws Exception 
- */
-  public void eliminar(Orden_compras pac) throws Exception {
-    System.out.println("*******************************************************eliminar dao");
-    try {
-      this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("DELETE FROM orden_compras WHERE id_Orden_compras=?;");
-      st.setInt(1, pac.getId_orden_compras());
-      st.executeUpdate();
+    /**
+     * Metodo para listar todos los registros de orden compras
+     *
+     * @return List
+     * @throws Exception por si resulta un error de SQL
+     */
+    public List<Orden_compras> listar() throws Exception {
+        List<Orden_compras> lista;
+        ResultSet rs;
 
-    } catch (Exception ex) {
-      throw ex;
-    } finally {
-      this.Desconecar();
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareCall("SELECT *FROM orden_compras");
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Orden_compras tt = new Orden_compras();
+
+                tt.setId_orden_compras(rs.getInt(1));
+                tt.setFecha_orden(rs.getDate(2));
+                tt.setFecha_entrega(rs.getDate(3));
+                tt.setCantidad(rs.getInt(4));
+                tt.getPproductos().getProducto().setId_producto(rs.getInt(5));
+                tt.getPproductos().getProveedor().setId_proveedor(rs.getInt(6));
+                // tt.setPrecio(rs.getDouble(7));
+
+                lista.add(tt);
+            }
+
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            this.Desconecar();
+        }
+
+        return lista;
 
     }
 
-  }
-/**
- * Metodo para listar proveedor_Producto
- * @param ordenid
- * @return
- * @throws Exception 
- */
-  public List<Proveedor_productos> ListarProveedor_Produ(Orden_compras ordenid) throws Exception {
+    /**
+     * Metodo para modificar orden compras
+     *
+     * @param tt para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void modificar(Orden_compras tt) throws Exception {
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("UPDATE  orden_compras SET id_orden_compras=?, fecha_orden=?, fecha_entrega=?, cantidad_orden=?, id_producto=?, id_proveedor=?, precio=? WHERE id_orden_compras=?;");
 
-    List<Proveedor_productos> lista;
-    ResultSet rs;
-    try {
-      this.Conectar();
-      PreparedStatement st = this.getCon().prepareStatement("select proveedor.id_proveedor, producto.id_producto,"
-              + "producto.nombre_producto, prov_prod.precio_insumo\n"
-              + "from proveedor \n"
-              + "inner join proveedor_productos as prov_prod\n"
-              + "on(proveedor.id_proveedor = prov_prod.id_proveedor)\n"
-              + "inner join producto \n"
-              + "on(prov_prod.id_producto = producto.id_producto) where proveedor.id_proveedor=?;");
-      st.setInt(1, ordenid.getPproductos().getProveedor().getId_proveedor());
-      rs = st.executeQuery();
-      lista = new ArrayList();
-      while (rs.next()) {
-        Proveedor_productos prove_pro = new Proveedor_productos();
-        prove_pro.getProveedor().setId_proveedor(rs.getInt("proveedor.id_proveedor"));
-        prove_pro.getProducto().setId_producto(rs.getInt("producto.id_producto"));
-        prove_pro.getProducto().setNombre(rs.getString("producto.nombre_producto"));
-        prove_pro.setPrecio(rs.getInt("prov_prod.precio_insumo"));
-        lista.add(prove_pro);
-      }
-    } catch (Exception e) {
-      throw e;
-    } finally {
-      this.Desconecar();
+            st.setInt(1, tt.getId_orden_compras());
+            //st.setDate(2, tt.getFecha_orden());
+            // st.setDate(3, tt.getFecha_entrega());
+            st.setInt(4, tt.getCantidad());
+            st.setInt(5, tt.getPproductos().getProducto().getId_producto());
+            st.setInt(6, tt.getPproductos().getProveedor().getId_proveedor());
+            st.setDouble(7, tt.getPrecio());
+            st.setInt(8, tt.getId_orden_compras());
+            st.executeUpdate();
+
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            this.Desconecar();
+
+        }
+
     }
-    return lista;
-  }
+
+    /**
+     * Metodo para eliminar orden compras
+     *
+     * @param pac para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void eliminar(Orden_compras pac) throws Exception {
+        System.out.println("*******************************************************eliminar dao");
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("DELETE FROM orden_compras WHERE id_Orden_compras=?;");
+            st.setInt(1, pac.getId_orden_compras());
+            st.executeUpdate();
+
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            this.Desconecar();
+
+        }
+
+    }
+
+    /**
+     * Metodo para listar proveedor_Producto
+     *
+     * @param ordenid para la sentencia SQL
+     * @return List
+     * @throws Exception por si resulta un error de SQL
+     */
+    public List<Proveedor_productos> ListarProveedor_Produ(Orden_compras ordenid) throws Exception {
+
+        List<Proveedor_productos> lista;
+        ResultSet rs;
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("select proveedor.id_proveedor, producto.id_producto,"
+                    + "producto.nombre_producto, prov_prod.precio_insumo\n"
+                    + "from proveedor \n"
+                    + "inner join proveedor_productos as prov_prod\n"
+                    + "on(proveedor.id_proveedor = prov_prod.id_proveedor)\n"
+                    + "inner join producto \n"
+                    + "on(prov_prod.id_producto = producto.id_producto) where proveedor.id_proveedor=?;");
+            st.setInt(1, ordenid.getPproductos().getProveedor().getId_proveedor());
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Proveedor_productos prove_pro = new Proveedor_productos();
+                prove_pro.getProveedor().setId_proveedor(rs.getInt("proveedor.id_proveedor"));
+                prove_pro.getProducto().setId_producto(rs.getInt("producto.id_producto"));
+                prove_pro.getProducto().setNombre(rs.getString("producto.nombre_producto"));
+                prove_pro.setPrecio(rs.getInt("prov_prod.precio_insumo"));
+                lista.add(prove_pro);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Desconecar();
+        }
+        return lista;
+    }
 
 }

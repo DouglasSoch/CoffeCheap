@@ -13,16 +13,19 @@ import java.util.List;
 import com.coffecheap.modelo.Producto;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
+
 /**
- * 
+ *
  * @author bryan
  */
-public class Contador_Vista_Producto_Dao extends Dao{
-   /**
-    * Metodo para listar todos los productos
-    * @return
-    * @throws Exception 
-    */ 
+public class Contador_Vista_Producto_Dao extends Dao {
+
+    /**
+     * Metodo para listar todos los productos
+     *
+     * @return List
+     * @throws Exception por si resulta un error de SQL
+     */
     public List<Producto> Listar() throws Exception {
 
         List<Producto> lista;
@@ -48,8 +51,7 @@ public class Contador_Vista_Producto_Dao extends Dao{
                 producto.getUmedida().setNombre(rs.getString("unidad_medida.nombre"));
                 producto.getTproducto().setNombre(rs.getString("tipo_producto.nombre_tipo"));
                 lista.add(producto);
-                
-                
+
             }
         } catch (Exception e) {
             throw e;

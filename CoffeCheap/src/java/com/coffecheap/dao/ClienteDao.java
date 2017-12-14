@@ -18,8 +18,8 @@ public class ClienteDao extends Dao {
     /**
      * Metodo para registrar cliente
      *
-     * @param cli
-     * @throws Exception
+     * @param cli para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar(Cliente cli) throws Exception {
         ResultSet rs;
@@ -49,8 +49,8 @@ public class ClienteDao extends Dao {
     /**
      * Metodo para registrar un cliente
      *
-     * @param cli
-     * @throws Exception
+     * @param cli para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrarN(Cliente cli) throws Exception {
         try {
@@ -70,8 +70,8 @@ public class ClienteDao extends Dao {
     /**
      * Metodo para listar todos los registros de todos los clientes
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Cliente> mostrar() throws Exception {
         List<Cliente> lista;
@@ -101,8 +101,8 @@ public class ClienteDao extends Dao {
     /**
      * Metodo para listar todos los clientes para una lista desplegable
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Cliente> listarNombre() throws Exception {
         List<Cliente> lista;
@@ -129,9 +129,9 @@ public class ClienteDao extends Dao {
     /**
      * Metodo para listar por parametro
      *
-     * @param cliente
-     * @return
-     * @throws Exception
+     * @param cliente para la sentencia SQL
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Cliente> mostrarPorPrarametro(Cliente cliente) throws Exception {
 
@@ -165,9 +165,9 @@ public class ClienteDao extends Dao {
     /**
      * Metodo para listar por parametro
      *
-     * @param cliente
-     * @return
-     * @throws Exception
+     * @param cliente para la sentencia SQL
+     * @return objeto clientee
+     * @throws Exception por si resulta un error de SQL
      */
     public Cliente leerParaModificar(Cliente cliente) throws Exception {
 
@@ -195,9 +195,9 @@ public class ClienteDao extends Dao {
     /**
      * Metodo para listar por parametro
      *
-     * @param cliente
-     * @return
-     * @throws Exception
+     * @param cliente para la sentencia SQL
+     * @return objeto cliente
+     * @throws Exception por si resulta un error de SQL
      */
     public Cliente leerParaModificarS(Cliente cliente) throws Exception {
         Cliente cli = null;
@@ -234,8 +234,8 @@ public class ClienteDao extends Dao {
     /**
      * MEtodo para eliminar
      *
-     * @param cliente
-     * @throws Exception
+     * @param cliente para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Cliente cliente) throws Exception {
         try {
@@ -254,8 +254,8 @@ public class ClienteDao extends Dao {
     /**
      * Metodo para modificar
      *
-     * @param cliente
-     * @throws Exception
+     * @param cliente para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Cliente cliente) throws Exception {
         try {
@@ -276,9 +276,9 @@ public class ClienteDao extends Dao {
     /**
      * Metodo para leer una fila
      *
-     * @param cliente
-     * @return
-     * @throws Exception
+     * @param cliente para la sentencia SQL
+     * @return objeto cliente
+     * @throws Exception por si resulta un error de SQL
      */
     public Cliente leerFila(Cliente cliente) throws Exception {
 

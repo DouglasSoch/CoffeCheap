@@ -10,21 +10,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import static org.primefaces.component.datatable.DataTable.PropertyKeys.summary;
+
 /**
- * 
+ *
  * @author bryan
  */
-public class Transaccion_InventarioDAO extends Dao 
-{
+public class Transaccion_InventarioDAO extends Dao {
+
     /**
      * Metodo para registrar una transaccion de inventario
-     * @param traInv
-     * @throws Exception 
+     *
+     * @param traInv para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
-    public void registrar(Transaccion_inventario traInv) throws Exception 
-    {
-        try 
-        {
+    public void registrar(Transaccion_inventario traInv) throws Exception {
+        try {
             SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("insert into transaccion_inventario (fecha,id_producto,id_tipo_transaccion,cantidad,detalle,id_compra)values(?,?,?,?,?,?)");
@@ -42,33 +42,32 @@ public class Transaccion_InventarioDAO extends Dao
             this.Desconecar();
         }
     }
-/**
- * Metodo para reducir si hay una existencia
- * @param tra
- * @throws Exception 
- */
-    public void resta(Transaccion_inventario tra) throws Exception
-    {
-        try
-        {
+
+    /**
+     * Metodo para reducir si hay una existencia
+     *
+     * @param tra para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void resta(Transaccion_inventario tra) throws Exception {
+        try {
             this.Conectar();
             PreparedStatement ps = getCon().prepareStatement("update producto set  existencia=existencia-? where id_producto=?");
             ps.setInt(1, tra.getCantidad());
             ps.setInt(2, tra.getProducto().getId_producto());
             ps.executeUpdate();
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e);
-        }finally
-        {
+        } finally {
             this.Desconecar();
         }
     }
-    
+
     /**
      * Metodo para listar todos los registrso de transaccion inventario
-     * @return
-     * @throws Exception 
+     *
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Transaccion_inventario> mostrar() throws Exception {
         List<Transaccion_inventario> lista;
@@ -100,18 +99,19 @@ public class Transaccion_InventarioDAO extends Dao
             }
         } catch (Exception e) {
             throw e;
-        }
-        finally 
-        {
+        } finally {
             this.Desconecar();
         }
         return lista;
     }
-/**
- * Metodo para listar factura utilizado para lista desplegable en el FrontEnd
- * @return
- * @throws Exception 
- */
+
+    /**
+     * Metodo para listar factura utilizado para lista desplegable en el
+     * FrontEnd
+     *
+     * @return List
+     * @throws Exception por si resulta un error de SQL
+     */
     public List<Compra> listarCompraFactura() throws Exception {
         List<Compra> lista;
         ResultSet rs;
@@ -134,11 +134,13 @@ public class Transaccion_InventarioDAO extends Dao
         }
         return lista;
     }
-/**
- * metodo para listar producto para lista desplegable en Front end
- * @return
- * @throws Exception 
- */
+
+    /**
+     * metodo para listar producto para lista desplegable en Front end
+     *
+     * @return List
+     * @throws Exception por si resulta un error de SQL
+     */
     public List<Transaccion_inventario> listarParaModificarProducto() throws Exception {
         List<Transaccion_inventario> lista;
         ResultSet rs;
@@ -164,8 +166,9 @@ public class Transaccion_InventarioDAO extends Dao
 
     /**
      * Metodo para listar transaccion inventario para lista desplegable
-     * @return
-     * @throws Exception 
+     *
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Transaccion_inventario> listarParaModificarTtransaccion() throws Exception {
         List<Transaccion_inventario> lista;
@@ -177,7 +180,7 @@ public class Transaccion_InventarioDAO extends Dao
             lista = new ArrayList();
 
             while (rs.next()) {
-                
+
                 Transaccion_inventario traInv = new Transaccion_inventario();
                 traInv.getTtransaccion().setId_tipo_transacciones(rs.getInt(1));
                 traInv.getTtransaccion().setNombre(rs.getString(2));
@@ -190,13 +193,14 @@ public class Transaccion_InventarioDAO extends Dao
         }
         return lista;
     }
-    
-/**
- * Metodo para lista desplegable 
- * @param traInv
- * @return
- * @throws Exception 
- */
+
+    /**
+     * Metodo para lista desplegable
+     *
+     * @param traInv para la sentencia SQL
+     * @return List
+     * @throws Exception por si resulta un error de SQL
+     */
     public Transaccion_inventario leerParaModificar(Transaccion_inventario traInv) throws Exception {
         Transaccion_inventario traInvAden = null;
         ResultSet rs;
@@ -231,30 +235,29 @@ public class Transaccion_InventarioDAO extends Dao
 
     /**
      * Metodo para eliminar
-     * @param orco
-     * @throws Exception 
+     *
+     * @param orco para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
-         public void eliminar(Transaccion_inventario orco) throws Exception
-    {
-        try
-        {
-         this.Conectar();
+    public void eliminar(Transaccion_inventario orco) throws Exception {
+        try {
+            this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("delete from transaccion_inventario where id_transaccion=?");
             st.setInt(1, orco.getId_transaccion());
             st.executeUpdate();
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             throw e;
-        }finally
-        {
+        } finally {
             this.Desconecar();
         }
     }
-     /**
-      * Metodo para modificar
-      * @param orco
-      * @throws Exception 
-      */
+
+    /**
+     * Metodo para modificar
+     *
+     * @param orco para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
+     */
     public void modificar(Transaccion_inventario orco) throws Exception {
         try {
             this.Conectar();

@@ -20,8 +20,8 @@ public class Tipo_productoDao extends Dao {
     /**
      * Metodo para registrar un tipo de producto
      *
-     * @param Tt
-     * @throws Exception
+     * @param Tt para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar(Tipo_producto Tt) throws Exception {
 
@@ -46,8 +46,8 @@ public class Tipo_productoDao extends Dao {
     /**
      * Metodo para listar todo los tipos de producto
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Tipo_producto> listar() throws Exception {
         List<Tipo_producto> lista;
@@ -80,8 +80,8 @@ public class Tipo_productoDao extends Dao {
     /**
      * MEtodo para modificar un tipo de producto
      *
-     * @param tt
-     * @throws Exception
+     * @param tt para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Tipo_producto tt) throws Exception {
         try {
@@ -106,8 +106,8 @@ public class Tipo_productoDao extends Dao {
     /**
      * MEtodo para eliminar un tipo de producto
      *
-     * @param pac
-     * @throws Exception
+     * @param pac para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Tipo_producto pac) throws Exception {
         try {

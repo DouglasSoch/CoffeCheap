@@ -16,37 +16,39 @@ import java.util.List;
  * @author Bryan
  */
 public class Pedido_MostrarDao extends Dao {
-/**
- * Metodo para listar todos los registros de pedido
- * @return
- * @throws Exception 
- */
-  public List<Pedido> listar() throws Exception {
-    List<Pedido> lista;
-    ResultSet rs;
 
-    try {
-      this.Conectar();
-      PreparedStatement st = this.getCon().prepareCall("SELECT * FROM pedido;");
+    /**
+     * Metodo para listar todos los registros de pedido
+     *
+     * @return List
+     * @throws Exception por si resulta un error de SQL
+     */
+    public List<Pedido> listar() throws Exception {
+        List<Pedido> lista;
+        ResultSet rs;
 
-      rs = st.executeQuery();
-      lista = new ArrayList();
-      while (rs.next()) {
-        Pedido Emp = new Pedido();
-        //Emp.setCodigo(rs.getInt(1));
-        //Emp.setNombre(rs.getString(2));
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareCall("SELECT * FROM pedido;");
 
-        lista.add(Emp);
-      }
+            rs = st.executeQuery();
+            lista = new ArrayList();
+            while (rs.next()) {
+                Pedido Emp = new Pedido();
+                //Emp.setCodigo(rs.getInt(1));
+                //Emp.setNombre(rs.getString(2));
 
-    } catch (Exception ex) {
-      throw ex;
-    } finally {
-      this.Desconecar();
+                lista.add(Emp);
+            }
+
+        } catch (Exception ex) {
+            throw ex;
+        } finally {
+            this.Desconecar();
+        }
+
+        return lista;
+
     }
-
-    return lista;
-
-  }
 
 }

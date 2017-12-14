@@ -5,7 +5,6 @@
  */
 package com.coffecheap.dao;
 
-
 import com.coffecheap.modelo.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,8 +13,9 @@ import java.sql.ResultSet;
  *
  * @author Bryan
  */
-public class ValidarLoginDao extends Dao{
-     Usuario usuari=new Usuario();
+public class ValidarLoginDao extends Dao {
+
+    Usuario usuari = new Usuario();
 
     public Usuario getUsuari() {
         return usuari;
@@ -24,73 +24,68 @@ public class ValidarLoginDao extends Dao{
     public void setUsuari(Usuario usuari) {
         this.usuari = usuari;
     }
-    
+
     /**
      * Metodo para validar el usuario
-     * @param usu
-     * @return
-     * @throws Exception 
+     *
+     * @param usu para la sentencia SQL
+     * @return objeto usuario
+     * @throws Exception por si resulta un error de SQL
      */
-    public Usuario login(Usuario usu) throws Exception{
-         usuari.setUsuario("use154151fd51s5dfr");
-            usuari.setPass("pa545454548asd415ss");
-            usuari.setNombre("nomb45as4d54a5sdre");
-            usuari.getTipo().setId(53168412);
-            usuari.setApellido("as1d5as1d51a");
-        try{
+    public Usuario login(Usuario usu) throws Exception {
+        usuari.setUsuario("use154151fd51s5dfr");
+        usuari.setPass("pa545454548asd415ss");
+        usuari.setNombre("nomb45as4d54a5sdre");
+        usuari.getTipo().setId(53168412);
+        usuari.setApellido("as1d5as1d51a");
+        try {
             this.Conectar();
             System.out.println(usu.getUsuario());
-            PreparedStatement st=this.getCon().prepareStatement("select * from usuario where user='"+usu.getUsuario()+"'");
-            ResultSet rs=st.executeQuery();
+            PreparedStatement st = this.getCon().prepareStatement("select * from usuario where user='" + usu.getUsuario() + "'");
+            ResultSet rs = st.executeQuery();
             rs.next();
-            
+
             usuari.setUsuario(rs.getString("user"));
             usuari.setPass(rs.getString("pass"));
             usuari.setNombre(rs.getString("nombre"));
             usuari.getTipo().setId(rs.getInt("tipouser"));
             usuari.setApellido(rs.getString("apellido"));
             usuari.setId(rs.getInt("iduser"));
-        
-            
-           
-               
-        
-        }catch(Exception ex){
-          
-        }finally{
+
+        } catch (Exception ex) {
+
+        } finally {
             this.Desconecar();
-            
+
         }
         return usuari;
     }
+
     /**
      * Metodo hola
-     * @param usu
-     * @return
-     * @throws Exception 
+     *
+     * @param usu para la sentencia SQL
+     * @return String
+     * @throws Exception por si resulta un error de SQL
      */
-    public String hola(Usuario usu) throws Exception{
-        String hola=null; 
-        try{
+    public String hola(Usuario usu) throws Exception {
+        String hola = null;
+        try {
             this.Conectar();
             System.out.println(usu.getUsuario());
-            PreparedStatement st=this.getCon().prepareStatement("select tipo.nombretipo from usuario inner join tipo on (tipo.idtipo = usuario.tipouser) where usuario.iduser="+usu.getId());
-            ResultSet rs=st.executeQuery();
+            PreparedStatement st = this.getCon().prepareStatement("select tipo.nombretipo from usuario inner join tipo on (tipo.idtipo = usuario.tipouser) where usuario.iduser=" + usu.getId());
+            ResultSet rs = st.executeQuery();
             rs.next();
-        
-        
-            
-            hola=rs.getString(1);
-           
-               
-        
-        }catch(Exception ex){
-          
-        }finally{
+
+            hola = rs.getString(1);
+
+        } catch (Exception ex) {
+
+        } finally {
             this.Desconecar();
-            
+
         }
         return hola;
-   
+
     }
 }

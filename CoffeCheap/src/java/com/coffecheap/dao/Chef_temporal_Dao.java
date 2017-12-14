@@ -21,8 +21,8 @@ public class Chef_temporal_Dao extends Dao {
     /**
      * Metodo para listar todos los registros de tem chef
      *
-     * @return
-     * @throws Exception
+     * @return Tem_chef
+     * @throws Exception por si resulta un null
      */
     public ArrayList<Tem_chef> listar() throws Exception {
         ArrayList<Tem_chef> lista;
@@ -60,13 +60,12 @@ public class Chef_temporal_Dao extends Dao {
      * Metodo patra controlar el color de la opciones
      *
      * @param estado
-     * @return
-     * @throws Exception
+     * @return String
+     * @throws Exception por si resulta un error de SQL
      */
     public String ControlColor(int estado) throws Exception {
         String color = "";
 
-        System.out.println("*******************************************************modificar dao");
         try {
             this.Conectar();
             PreparedStatement s2 = this.getCon().prepareStatement("select id_estado from tem_chef WHERE id_chef_temporal=?;");
@@ -93,8 +92,8 @@ public class Chef_temporal_Dao extends Dao {
     /**
      * Metodo para indicar el cierrre
      *
-     * @param codigo
-     * @throws Exception
+     * @param codigo para la condicion del sql
+     * @throws Exception por si resulta un error de SQL
      */
     public void cierre(int codigo) throws Exception {
         try {
@@ -111,8 +110,8 @@ public class Chef_temporal_Dao extends Dao {
     /**
      * Metodo para eliminar un pedidio
      *
-     * @param codigo
-     * @throws Exception
+     * @param codigo para la condicion de sql
+     * @throws Exception por si resulta un error de SQL
      */
     public void Eliminar(int codigo) throws Exception {
         try {
@@ -129,9 +128,9 @@ public class Chef_temporal_Dao extends Dao {
     /**
      * Metodo para el nombre del boton
      *
-     * @param codigo
-     * @return
-     * @throws Exception
+     * @param codigo para la condicion del SQL
+     * @return String
+     * @throws Exception por si resulta un error de SQL
      */
     public String NombreBoton(int codigo) throws Exception {
 
@@ -158,9 +157,9 @@ public class Chef_temporal_Dao extends Dao {
     /**
      * Metodo para elimiar un pedido
      *
-     * @param codigo
-     * @return
-     * @throws Exception
+     * @param codigo para la condicion del SQL
+     * @return int
+     * @throws Exception por si resulta un error de SQL
      */
     public int BotonEliminar(int codigo) throws Exception {
 

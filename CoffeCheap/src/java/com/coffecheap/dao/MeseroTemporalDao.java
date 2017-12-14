@@ -21,8 +21,8 @@ public class MeseroTemporalDao extends Dao {
     /**
      * Metodo para listar todos los registros de tipo plato
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public ArrayList<Tipo_plato> listar() throws Exception {
         ArrayList<Tipo_plato> lista;
@@ -54,9 +54,9 @@ public class MeseroTemporalDao extends Dao {
     /**
      * MEtodo para listar registro de plato
      *
-     * @param pl
-     * @return
-     * @throws Exception
+     * @param pl para la sentencia SQL
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public ArrayList<Plato> listar2(Tem_chef pl) throws Exception {
         ArrayList<Plato> lista;
@@ -87,10 +87,10 @@ public class MeseroTemporalDao extends Dao {
     /**
      * Metodo para registrar un pedido
      *
-     * @param chef
-     * @param a
-     * @param mesa
-     * @throws Exception
+     * @param chef para la sentencia SQL
+     * @param a para la sentencia SQL
+     * @param mesa para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void Insertar(Tem_chef chef, int a, int mesa) throws Exception {
         ResultSet rs;

@@ -16,9 +16,9 @@ public class MenuDao extends Dao {
     /**
      * Metodo que envia los codigos
      *
-     * @param tipo
-     * @return
-     * @throws Exception
+     * @param tipo para la sentencia SQL
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Menu> CodigodeMenu(int tipo) throws Exception {
 
@@ -48,10 +48,10 @@ public class MenuDao extends Dao {
     /**
      * Metodo que lista todos los registros de menu
      *
-     * @param tipo
-     * @param pagina
-     * @return
-     * @throws Exception
+     * @param tipo para la sentencia SQL
+     * @param pagina para la sentencia SQL
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Menu> SubMenu(int tipo, int pagina) throws Exception {
 
@@ -81,10 +81,10 @@ public class MenuDao extends Dao {
     /**
      * MEtodo que lista todos nombre de las paginas
      *
-     * @param tipo
-     * @param cantidad
-     * @return
-     * @throws Exception
+     * @param tipo para la sentencia SQL
+     * @param cantidad para la sentencia SQL
+     * @return String
+     * @throws Exception por si resulta un error de SQL
      */
     public String Menu1(int tipo, int cantidad) throws Exception {
 
@@ -116,9 +116,9 @@ public class MenuDao extends Dao {
     /**
      * Metodo para ciclo
      *
-     * @param tipo
-     * @return
-     * @throws Exception
+     * @param tipo para la sentencia SQL
+     * @return int
+     * @throws Exception por si resulta un error de SQL
      */
     public int CantidadFor1(int tipo) throws Exception {
 
@@ -150,10 +150,10 @@ public class MenuDao extends Dao {
     /**
      * Metodo para la cantidad de ciclos
      *
-     * @param tipo
-     * @param idpagina
-     * @return
-     * @throws Exception
+     * @param tipo para la sentencia SQL
+     * @param idpagina para la sentencia SQL
+     * @return int
+     * @throws Exception por si resulta un error de SQL
      */
     public int CantidadFor2(int tipo, int idpagina) throws Exception {
 
@@ -184,11 +184,11 @@ public class MenuDao extends Dao {
     /**
      * Metodo para nombre de la paginas
      *
-     * @param tipo
-     * @param pagina
-     * @param codigo
-     * @return
-     * @throws Exception
+     * @param tipo para la sentencia SQL
+     * @param pagina para la sentencia SQL
+     * @param codigo para la sentencia SQL
+     * @return String
+     * @throws Exception por si resulta un error de SQL
      */
     public String NombresCrud(int tipo, int pagina, int codigo) throws Exception {
         String resultado = null;
@@ -217,11 +217,11 @@ public class MenuDao extends Dao {
     /**
      * Metodo para llamado de pagina
      *
-     * @param tipo
-     * @param pagina
-     * @param codigo
-     * @return
-     * @throws Exception
+     * @param tipo para la sentencia SQL
+     * @param pagina para la sentencia SQL
+     * @param codigo para la sentencia SQL
+     * @return String
+     * @throws Exception por si resulta un error de SQL
      */
     public String LlamadoPagina(int tipo, int pagina, int codigo) throws Exception {
         String resultado = null;

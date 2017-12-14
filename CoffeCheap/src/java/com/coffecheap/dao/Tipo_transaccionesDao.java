@@ -20,8 +20,8 @@ public class Tipo_transaccionesDao extends Dao {
     /**
      * Metodo para registrar
      *
-     * @param Tt
-     * @throws Exception
+     * @param Tt para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar(Tipo_transacciones Tt) throws Exception {
 
@@ -46,8 +46,8 @@ public class Tipo_transaccionesDao extends Dao {
     /**
      * Metodo para listar todos los registros de tipo de transacciones
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Tipo_transacciones> listar() throws Exception {
         List<Tipo_transacciones> lista;
@@ -80,8 +80,8 @@ public class Tipo_transaccionesDao extends Dao {
     /**
      * Metodo para modificar un registro de tipo de transacciones
      *
-     * @param tt
-     * @throws Exception
+     * @param tt para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Tipo_transacciones tt) throws Exception {
         try {
@@ -106,8 +106,8 @@ public class Tipo_transaccionesDao extends Dao {
     /**
      * Metodo para eliminar un regsitro de tipo de transacciones
      *
-     * @param pac
-     * @throws Exception
+     * @param pac para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Tipo_transacciones pac) throws Exception {
         try {

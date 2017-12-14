@@ -8,22 +8,25 @@ import com.coffecheap.modelo.Compra;
 import com.coffecheap.modelo.Producto;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
- * 
+ *
  * @author bryan
  */
 public class CompraDao extends Dao {
-/**
- * Metodo para registrar una compra
- * @param orden
- * @param producto
- * @param cantidad
- * @param costo
- * @param nofactura
- * @param serie
- * @param fecha
- * @throws Exception 
- */
+
+    /**
+     * Metodo para registrar una compra
+     *
+     * @param orden para la sentencia SQL
+     * @param producto para la sentencia SQL
+     * @param cantidad para la sentencia SQL
+     * @param costo para la sentencia SQL
+     * @param nofactura para la sentencia SQL
+     * @param serie para la sentencia SQL
+     * @param fecha para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
+     */
     public void Insertar(int orden, int producto, int cantidad, int costo, int nofactura, String serie, String fecha) throws Exception {
         try {
             this.Conectar();
@@ -35,12 +38,14 @@ public class CompraDao extends Dao {
             this.Desconecar();
         }
     }
-/**
- * metodo para obtener la cantidad de compra
- * @param producto
- * @return
- * @throws Exception 
- */
+
+    /**
+     * metodo para obtener la cantidad de compra
+     *
+     * @param producto para la sentencia SQL
+     * @return int
+     * @throws Exception por si resulta un error de SQL
+     */
     public int Cantidad(int producto) throws Exception {
 
         int respuesta = 0;
@@ -63,12 +68,14 @@ public class CompraDao extends Dao {
         }
         return respuesta;
     }
-/**
- * Metodo para actualizar la cantidad de compra
- * @param cantidad
- * @param producto
- * @throws Exception 
- */
+
+    /**
+     * Metodo para actualizar la cantidad de compra
+     *
+     * @param cantidad para la sentencia SQL
+     * @param producto para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
+     */
     public void ActualizarCantidad(int cantidad, int producto) throws Exception {
 
         try {
@@ -82,11 +89,13 @@ public class CompraDao extends Dao {
             this.Desconecar();
         }
     }
-/**
- * Metodo para modificar la compra
- * @param compra
- * @throws Exception 
- */
+
+    /**
+     * Metodo para modificar la compra
+     *
+     * @param compra para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
+     */
     public void Modificar(Compra compra) throws Exception {
         try {
             this.Conectar();
@@ -120,11 +129,13 @@ public class CompraDao extends Dao {
             compra.setSerie(null);
         }
     }
-/**
- * Metodo para eliminar una compra
- * @param compra
- * @throws Exception 
- */
+
+    /**
+     * Metodo para eliminar una compra
+     *
+     * @param compra para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
+     */
     public void Eliminar(Compra compra) throws Exception {
         try {
             this.Conectar();
@@ -138,11 +149,13 @@ public class CompraDao extends Dao {
             compra.setId_compras(0);
         }
     }
-/**
- * Metodo para listar todos los registros de la compra
- * @return
- * @throws Exception 
- */
+
+    /**
+     * Metodo para listar todos los registros de la compra
+     *
+     * @return List
+     * @throws Exception por si resulta un error de SQL
+     */
     public List<Compra> Mostrar() throws Exception {
 
         List<Compra> lista;
@@ -183,11 +196,13 @@ public class CompraDao extends Dao {
         }
         return lista;
     }
-/**
- * Metodo para listar por codigo de producto
- * @return
- * @throws Exception 
- */
+
+    /**
+     * Metodo para listar por codigo de producto
+     *
+     * @return List
+     * @throws Exception por si resulta un error de SQL
+     */
     public List<String> CodigodeProducto() throws Exception {
 
         List<String> lista;
@@ -211,12 +226,14 @@ public class CompraDao extends Dao {
         }
         return lista;
     }
-/**
- * Metodo para verificar existencia
- * @param codigo
- * @return
- * @throws Exception 
- */
+
+    /**
+     * Metodo para verificar existencia
+     *
+     * @param codigo para la sentencia SQL
+     * @return int
+     * @throws Exception por si resulta un error de SQL
+     */
     public int Operacion(int codigo) throws Exception {
 
         int numero = 0;
@@ -240,12 +257,14 @@ public class CompraDao extends Dao {
         }
         return numero;
     }
-/**
- * Metodo para verificar compra
- * @param codigo
- * @return
- * @throws Exception 
- */
+
+    /**
+     * Metodo para verificar compra
+     *
+     * @param codigo para la sentencia SQL
+     * @return int
+     * @throws Exception por si resulta un error de SQL
+     */
     public int CodigoProducto(int codigo) throws Exception {
 
         int numero = 0;
@@ -272,9 +291,10 @@ public class CompraDao extends Dao {
 
     /**
      * Metodo para verificar cantidad
-     * @param codigo
-     * @return
-     * @throws Exception 
+     *
+     * @param codigo para la sentencia SQL
+     * @return int
+     * @throws Exception por si resulta un error de SQL
      */
     public int CantidadProducto(int codigo) throws Exception {
 
@@ -299,15 +319,17 @@ public class CompraDao extends Dao {
         }
         return numero;
     }
-/**
- * Metodo para modificar existencia
- * @param cantidad
- * @param codigo 
- */
+
+    /**
+     * Metodo para modificar existencia
+     *
+     * @param cantidad para la sentencia SQL
+     * @param codigo para la sentencia SQL
+     */
     public void ActualizarExistencia(int cantidad, int codigo) {
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("update producto set existencia ="+cantidad+" where id_producto=" + codigo);
+            PreparedStatement st = this.getCon().prepareStatement("update producto set existencia =" + cantidad + " where id_producto=" + codigo);
             st.executeUpdate();
 
         } catch (Exception e) {
@@ -324,12 +346,14 @@ public class CompraDao extends Dao {
             }
         }
     }
-/**
- * Metodo para verificar existencia 
- * @param codigo
- * @return
- * @throws Exception 
- */
+
+    /**
+     * Metodo para verificar existencia
+     *
+     * @param codigo para la sentencia SQL
+     * @return int
+     * @throws Exception por si resulta un error de SQL
+     */
     public int CantidadEnTabla(int codigo) throws Exception {
 
         int numero = 0;
@@ -353,12 +377,14 @@ public class CompraDao extends Dao {
         }
         return numero;
     }
-/**
- * Metodo para actulizar producto
- * @param codigo
- * @param cantidad
- * @throws Exception 
- */
+
+    /**
+     * Metodo para actulizar producto
+     *
+     * @param codigo para la sentencia SQL
+     * @param cantidad para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
+     */
     public void ActualizacionProductos(int codigo, int cantidad) throws Exception {
 
         try {

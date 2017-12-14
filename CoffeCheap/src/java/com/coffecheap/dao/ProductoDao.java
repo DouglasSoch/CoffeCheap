@@ -24,8 +24,8 @@ public class ProductoDao extends Dao {
     /**
      * Metodo para registrar un producto
      *
-     * @param prod
-     * @throws Exception
+     * @param prod por si resulta un error de SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrar(Producto prod) throws Exception {
         ResultSet rs;
@@ -59,7 +59,7 @@ public class ProductoDao extends Dao {
     /**
      * Metodo para sumar la existencia de un producto
      *
-     * @param pro
+     * @param pro por si resulta un error de SQL
      */
     public void suma(Producto pro) {
         try {
@@ -78,8 +78,8 @@ public class ProductoDao extends Dao {
      * Metodo para insertar en transaccion inventario si en dado caso existe
      * regitro de producto
      *
-     * @param pro
-     * @throws ParseException
+     * @param pro por si resulta un error de SQL
+     * @throws ParseException por si resulta un error de SQL
      */
     public void tTransaccion(Producto pro) throws ParseException {
         String detalle = "Cambio en existencia de producto ya existente";
@@ -108,8 +108,8 @@ public class ProductoDao extends Dao {
     /**
      * Metodo para listar producto
      *
-     * @return
-     * @throws Exception
+     * @return List
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Producto> listar() throws Exception {
         List<Producto> lista;
@@ -146,8 +146,8 @@ public class ProductoDao extends Dao {
     /**
      * Metodo para modificar producto
      *
-     * @param prod
-     * @throws Exception
+     * @param prod para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Producto prod) throws Exception {
         try {
@@ -172,8 +172,8 @@ public class ProductoDao extends Dao {
     /**
      * Metodo para eliminar producto
      *
-     * @param prod
-     * @throws Exception
+     * @param prod para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Producto prod) throws Exception {
         try {
@@ -194,9 +194,9 @@ public class ProductoDao extends Dao {
     /**
      * Metodo para obetener los valores de una fila
      *
-     * @param pro
-     * @return
-     * @throws Exception
+     * @param pro para la sentencia SQL
+     * @return objeto producto
+     * @throws Exception por si resulta un error de SQL
      */
     public Producto leerFila(Producto pro) throws Exception {
         Producto proo = null;

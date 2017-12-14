@@ -13,7 +13,6 @@ import java.util.List;
  *
  * @author bryan
  */
-
 public class UsuarioDao extends Dao {
 
     /**
@@ -55,7 +54,7 @@ public class UsuarioDao extends Dao {
      * Metodo que lista todos los registros de usuario
      *
      * @return retorna una lista tipo Usuario
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Usuario> listar() throws Exception {
         List<Usuario> lista;
@@ -101,7 +100,7 @@ public class UsuarioDao extends Dao {
      * desplegable en el frontEnd
      *
      * @return retorna una lista tipo Turno
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Turno> listarTurno() throws Exception {
         List<Turno> lista;
@@ -134,7 +133,7 @@ public class UsuarioDao extends Dao {
      * desplegable en el frontEnd
      *
      * @return retorna una lista de tipo Tipo
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Tipo> listarTipo() throws Exception {
         List<Tipo> lista;
@@ -165,9 +164,9 @@ public class UsuarioDao extends Dao {
     /**
      * Metodo que lista los registros de usuario por condicion
      *
-     * @param usuarioS
+     * @param usuarioS para la sentencia SQL
      * @return retorna una lista Usuario
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public List<Usuario> listarPorParametro(Usuario usuarioS) throws Exception {
         List<Usuario> lista;
@@ -206,11 +205,14 @@ public class UsuarioDao extends Dao {
         return lista;
 
     }
-/**
- * Metodo que modifica un registro de usuario y recibe los valores por medio de parametro
- * @param Tt objeto Usuario
- * @throws Exception 
- */
+
+    /**
+     * Metodo que modifica un registro de usuario y recibe los valores por medio
+     * de parametro
+     *
+     * @param Tt objeto Usuario para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
+     */
     public void modificar(Usuario Tt) throws Exception {
         try {
             this.Conectar();
@@ -238,12 +240,14 @@ public class UsuarioDao extends Dao {
         }
 
     }
-/**
- * Metodo para listar los registros con condicion de usuario
- * @param usuarioS
- * @return
- * @throws Exception 
- */
+
+    /**
+     * Metodo para listar los registros con condicion de usuario
+     *
+     * @param usuarioS para la sentencia SQL
+     * @return objeto
+     * @throws Exception por si resulta un error de SQL
+     */
     public Usuario leerParaModificar(Usuario usuarioS) throws Exception {
         Usuario usuario = null;
         ResultSet rs;
@@ -286,13 +290,14 @@ public class UsuarioDao extends Dao {
         }
         return usuario;
     }
-/**
- * Metodo para eliminar un registro de usuario
- * @param pac
- * @throws Exception 
- */
-    public void eliminar(Usuario pac) throws Exception 
-    {
+
+    /**
+     * Metodo para eliminar un registro de usuario
+     *
+     * @param pac para la sentencia SQL
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void eliminar(Usuario pac) throws Exception {
         try {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("DELETE FROM usuario WHERE iduser=?");
@@ -307,11 +312,13 @@ public class UsuarioDao extends Dao {
         }
 
     }
-/**
- * Metodo para listar usuario para lista desplegable en el FrontEnd
- * @return
- * @throws Exception 
- */
+
+    /**
+     * Metodo para listar usuario para lista desplegable en el FrontEnd
+     *
+     * @return List
+     * @throws Exception por si resulta un error de SQL
+     */
     public List<Usuario> listarMe() throws Exception {
         List<Usuario> lista;
         ResultSet rs;
@@ -338,11 +345,13 @@ public class UsuarioDao extends Dao {
         return lista;
 
     }
-/**
- * Metodo para listar chef
- * @return
- * @throws Exception 
- */
+
+    /**
+     * Metodo para listar chef
+     *
+     * @return List
+     * @throws Exception por si resulta un error de SQL
+     */
     public List<Usuario> listarChef() throws Exception {
         List<Usuario> lista;
         ResultSet rs;
