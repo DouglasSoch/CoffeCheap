@@ -13,9 +13,14 @@ import java.util.List;
 
 /**
  *
- * @author acier
+ * @author Bryan
  */
 public class Unidad_medidaDao extends Dao {
+/**
+ * Metodo para registrar una medida de unidad
+ * @param Tt
+ * @throws Exception 
+ */
 
   public void registrar(Unidad_medida Tt) throws Exception {
 
@@ -36,7 +41,11 @@ public class Unidad_medidaDao extends Dao {
     }
 
   }
-
+/**
+ * Metodo para listar las unidades de medidas
+ * @return
+ * @throws Exception 
+ */
   public List<Unidad_medida> listar() throws Exception {
     List<Unidad_medida> lista;
     ResultSet rs;
@@ -64,9 +73,13 @@ public class Unidad_medidaDao extends Dao {
     return lista;
 
   }
-
-  public void modificar(Unidad_medida tt) throws Exception {
-    System.out.println("*******************************************************modificar dao");
+/**
+ * Metodo para modificar una unidad de medidia
+ * @param tt
+ * @throws Exception 
+ */
+  public void modificar(Unidad_medida tt) throws Exception 
+  {
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("UPDATE unidad_medida SET id_unidad=?, nombre=? WHERE id_unidad=?;");
@@ -85,9 +98,13 @@ public class Unidad_medidaDao extends Dao {
     }
 
   }
-
-  public void eliminar(Unidad_medida pac) throws Exception {
-    System.out.println("*******************************************************eliminar dao");
+/**
+ * Metodo para eliminar un registro de unidad de medida
+ * @param pac
+ * @throws Exception 
+ */
+  public void eliminar(Unidad_medida pac) throws Exception 
+  {
     try {
       this.Conectar();
       PreparedStatement st = this.getCon().prepareStatement("DELETE FROM unidad_medida WHERE id_unidad=?;");

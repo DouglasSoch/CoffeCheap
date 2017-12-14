@@ -7,8 +7,19 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author bryan
+ */
 public class TipoUsuarioDao extends Dao {
 
+    /**
+     * Metodo para registrar en tipo
+     *
+     * @param nombre
+     * @param descripcion
+     * @throws Exception
+     */
     public void Ingresar(String nombre, String descripcion) throws Exception {
 
         try {
@@ -24,6 +35,14 @@ public class TipoUsuarioDao extends Dao {
         }
     }
 
+    /**
+     * metodo para registrar los permisosde usuario
+     *
+     * @param usuario
+     * @param idpagina
+     * @param idcrud
+     * @throws Exception
+     */
     public void Permiso(int usuario, int idpagina, int idcrud) throws Exception {
 
         try {
@@ -41,31 +60,18 @@ public class TipoUsuarioDao extends Dao {
 
     }
 
- public void eliminar(Tipo tipo) throws Exception
-    {
-        try
-        {
-         this.Conectar();
+    /**
+     * MEtodo para eliminar un tip de usuario
+     *
+     * @param tipo
+     * @throws Exception
+     */
+    public void eliminar(Tipo tipo) throws Exception {
+        try {
+            this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("delete from tipo where idtipo=?");
             st.setInt(1, tipo.getId());
             st.executeUpdate();
-        }catch(Exception e)
-        {
-            throw e;
-        }finally
-        {
-            this.Desconecar();
-        }
-    }
-     
-    public void modificar(Tipo tipo) throws Exception {
-        try {
-            this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("update tipo set  nombretipo=?, descripcion=? where idtipo=?");
-            st.setString(1, tipo.getNombre());
-            st.setString(2, tipo.getDesc());
-            st.setInt(3, tipo.getId()); 
-           st.executeUpdate();
         } catch (Exception e) {
             throw e;
         } finally {
@@ -73,13 +79,41 @@ public class TipoUsuarioDao extends Dao {
         }
     }
 
+    /**
+     * Metodo para modficar un tipo de usuario
+     *
+     * @param tipo
+     * @throws Exception
+     */
+    public void modificar(Tipo tipo) throws Exception {
+        try {
+            this.Conectar();
+            PreparedStatement st = this.getCon().prepareStatement("update tipo set  nombretipo=?, descripcion=? where idtipo=?");
+            st.setString(1, tipo.getNombre());
+            st.setString(2, tipo.getDesc());
+            st.setInt(3, tipo.getId());
+            st.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            this.Desconecar();
+        }
+    }
+
+    /**
+     * Metodo para obtener un registro en un objeto
+     *
+     * @param nombre
+     * @return
+     * @throws Exception
+     */
     public int Buscar(String nombre) throws Exception {
 
         int respuesta = 0;
         ResultSet rs;
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("select idtipo from tipo where nombretipo='" + nombre+"';");
+            PreparedStatement st = this.getCon().prepareStatement("select idtipo from tipo where nombretipo='" + nombre + "';");
             rs = st.executeQuery();
             while (rs.next()) {
                 respuesta = rs.getInt("idtipo");
@@ -99,11 +133,11 @@ public class TipoUsuarioDao extends Dao {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("select nombretipo from tipo where nombretipo='" + nombre + "';");
             rs = st.executeQuery();
-            
+
             while (rs.next()) {
                 respuesta = rs.getString("nombretipo");
             }
-            
+
         } catch (Exception e) {
             throw e;
         } finally {
@@ -113,6 +147,12 @@ public class TipoUsuarioDao extends Dao {
         return respuesta;
     }
 
+    /**
+     * MEtodo para lista deplegable de tipo
+     *
+     * @return
+     * @throws Exception
+     */
     public List<TipoUsuario> Tipo() throws Exception {
 
         List<TipoUsuario> lista;
@@ -136,6 +176,12 @@ public class TipoUsuarioDao extends Dao {
         return lista;
     }
 
+    /**
+     * Metodo para lista desplegable de crud
+     *
+     * @return
+     * @throws Exception
+     */
     public List<TipoUsuario> Crud() throws Exception {
 
         List<TipoUsuario> lista;
@@ -159,6 +205,12 @@ public class TipoUsuarioDao extends Dao {
         return lista;
     }
 
+    /**
+     * Metodo para lista desplegable de html
+     *
+     * @return
+     * @throws Exception
+     */
     public List<TipoUsuario> Html() throws Exception {
         List<TipoUsuario> lista;
         ResultSet rs;
@@ -181,8 +233,13 @@ public class TipoUsuarioDao extends Dao {
         }
         return lista;
     }
-    
-    
+
+    /**
+     * Metodo para listar tipo
+     *
+     * @return
+     * @throws Exception
+     */
     public List<Tipo> mostrar() throws Exception {
         List<Tipo> lista;
         ResultSet rs;
@@ -206,7 +263,14 @@ public class TipoUsuarioDao extends Dao {
         }
         return lista;
     }
-    
+
+    /**
+     * Metodo para leer antes de modificar
+     *
+     * @param tipo
+     * @return
+     * @throws Exception
+     */
     public Tipo leerParaModificar(Tipo tipo) throws Exception {
         Tipo tip = null;
         ResultSet rs;

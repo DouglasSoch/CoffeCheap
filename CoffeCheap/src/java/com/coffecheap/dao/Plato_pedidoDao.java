@@ -14,10 +14,16 @@ import java.util.List;
 
 /**
  *
- * @author medev
+ * @author Bryan
  */
 public class Plato_pedidoDao extends Dao {
 
+    /**
+     * Metodo para registrar en plato pedido
+     *
+     * @param ppedido
+     * @throws Exception
+     */
     public void registrar(Plato_pedido ppedido) throws Exception {
 
         try {
@@ -39,6 +45,12 @@ public class Plato_pedidoDao extends Dao {
 
     }
 
+    /**
+     * Metodo para listar todos los registros de plato pedido
+     *
+     * @return
+     * @throws Exception
+     */
     public List<Plato_pedido> listar() throws Exception {
         List<Plato_pedido> lista;
         ResultSet rs;
@@ -67,6 +79,12 @@ public class Plato_pedidoDao extends Dao {
         return lista;
     }
 
+    /**
+     * MEtodo para modificar un registro en plato pedido
+     *
+     * @param ppedido
+     * @throws Exception
+     */
     public void modificar(Plato_pedido ppedido) throws Exception {
         try {
             this.Conectar();
@@ -87,6 +105,12 @@ public class Plato_pedidoDao extends Dao {
         }
     }
 
+    /**
+     * Metodo para eliminar un registro en plato pedido
+     *
+     * @param ppedido
+     * @throws Exception
+     */
     public void eliminar(Plato_pedido ppedido) throws Exception {
         try {
             this.Conectar();
@@ -100,12 +124,17 @@ public class Plato_pedidoDao extends Dao {
         }
     }
 
-    public Plato_pedido leerParaModificar(Plato_pedido platoPedido) throws Exception 
-    {
+    /**
+     * Metodo para obtener antes de modificar
+     *
+     * @param platoPedido
+     * @return
+     * @throws Exception
+     */
+    public Plato_pedido leerParaModificar(Plato_pedido platoPedido) throws Exception {
         Plato_pedido platoPe = null;
         ResultSet rs;
-        try 
-        {
+        try {
             this.Conectar();
             PreparedStatement st = getCon().prepareCall("select id_plato_pedido,id_plato,cantidad,id_personal,id_pedido,precio  from plato_pedido where id_plato_pedido=?");
             st.setInt(1, platoPedido.getId_plato_pedido());
@@ -119,13 +148,9 @@ public class Plato_pedidoDao extends Dao {
                 platoPe.getPedido().setId_pedido(rs.getInt(5));
                 platoPe.setPrecio(rs.getDouble(6));
             }
-        } 
-        catch (Exception e) 
-        {
+        } catch (Exception e) {
             throw e;
-        }
-        finally 
-        {
+        } finally {
             this.Desconecar();
         }
         return platoPe;

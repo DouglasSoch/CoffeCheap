@@ -13,10 +13,17 @@ import java.util.List;
 
 /**
  *
- * @author javam
+ * @author Bryan
  */
-public class Facturar_Imp extends Dao{
-     public List<Fac> listar() throws Exception {
+public class Facturar_Imp extends Dao {
+
+    /**
+     * Metodo para listar todos los registros de fac
+     *
+     * @return
+     * @throws Exception
+     */
+    public List<Fac> listar() throws Exception {
         List<Fac> lista;
         ResultSet rs;
 
@@ -41,10 +48,10 @@ public class Facturar_Imp extends Dao{
                 factu.setTotal(rs.getInt("total"));
                 factu.setId_mesa(rs.getInt("id_mesa"));
                 factu.setCantidad_comensales(rs.getInt("cantidad_comensales"));
-                 factu.setNombre(rs.getString("nombre"));
+                factu.setNombre(rs.getString("nombre"));
                 lista.add(factu);
             }
-         
+
         } catch (Exception ex) {
             throw ex;
         } finally {

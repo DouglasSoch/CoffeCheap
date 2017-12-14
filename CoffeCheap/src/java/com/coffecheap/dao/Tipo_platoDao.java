@@ -7,24 +7,29 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tipo_platoDao extends Dao 
-{
+/**
+ *
+ * @author bryan
+ */
+public class Tipo_platoDao extends Dao {
 
-    public void registrar(Tipo_plato tipoPlato) throws Exception 
-    {
+    /**
+     * Metodo para ingresar un registro en tipo Plato
+     *
+     * @param tipoPlato
+     * @throws Exception
+     */
+    public void registrar(Tipo_plato tipoPlato) throws Exception {
         ResultSet rs;
-        try 
-        {
+        try {
             this.Conectar();
             PreparedStatement ps = getCon().prepareStatement("select *from tipo_plato where nombre=?");
             ps.setString(1, tipoPlato.getNombre());
             rs = ps.executeQuery();
-            
-            if (rs.next()) 
-            {
+
+            if (rs.next()) {
                 Tipo_platoBean.addMessage("ya existe un registro con estos datos");
-            } else 
-            {
+            } else {
                 PreparedStatement st = this.getCon().prepareStatement("insert into tipo_plato (id_tipo_plato, nombre) values(?,?)");
                 st.setInt(1, tipoPlato.getId());
                 st.setString(2, tipoPlato.getNombre());
@@ -34,13 +39,18 @@ public class Tipo_platoDao extends Dao
 
         } catch (Exception ex) {
             throw ex;
-        } finally 
-        {
+        } finally {
             this.Desconecar();
 
         }
     }
 
+    /**
+     * Metodo para listar todos los registros de tipo plato
+     *
+     * @return
+     * @throws Exception
+     */
     public List<Tipo_plato> listar() throws Exception {
         List<Tipo_plato> lista;
         ResultSet rs;
@@ -66,7 +76,7 @@ public class Tipo_platoDao extends Dao
         return lista;
 
     }
-    
+
 //     public List<Tipo_plato> listarProducto() throws Exception {
 //        List<Tipo_plato> lista;
 //        ResultSet rs;
@@ -92,7 +102,12 @@ public class Tipo_platoDao extends Dao
 //        return lista;
 //
 //    }
-
+    /**
+     * Metodo para modifcar un registro de tipo plato
+     *
+     * @param tipoPlato
+     * @throws Exception
+     */
     public void modificar(Tipo_plato tipoPlato) throws Exception {
         try {
             this.Conectar();
@@ -110,6 +125,12 @@ public class Tipo_platoDao extends Dao
 
     }
 
+    /**
+     * Metodo para eliminar un registro de tipo plato
+     *
+     * @param tipoPlato
+     * @throws Exception
+     */
     public void eliminar(Tipo_plato tipoPlato) throws Exception {
         try {
             this.Conectar();
@@ -126,27 +147,29 @@ public class Tipo_platoDao extends Dao
 
     }
 
+    /**
+     * Metodo para obtener un registro de una tabla de tipo plato
+     *
+     * @param tipoPlato
+     * @return
+     * @throws Exception
+     */
     public Tipo_plato leerFila(Tipo_plato tipoPlato) throws Exception {
         Tipo_plato tipoPlatoN = null;
         ResultSet rs;
-        try 
-        {
+        try {
             this.Conectar();
             PreparedStatement st = getCon().prepareStatement("select id_tipo_plato, nombre from tipo_plato WHERE id_tipo_plato=?");
             st.setInt(1, tipoPlato.getId());
             rs = st.executeQuery();
-            while (rs.next()) 
-            {
+            while (rs.next()) {
                 tipoPlatoN = new Tipo_plato();
                 tipoPlatoN.setId(rs.getInt(1));
                 tipoPlatoN.setNombre(rs.getString(2));
             }
-        }
-        catch (Exception e) 
-        {
+        } catch (Exception e) {
             System.out.println(e);
-        } finally 
-        {
+        } finally {
             this.Desconecar();
         }
         return tipoPlatoN;

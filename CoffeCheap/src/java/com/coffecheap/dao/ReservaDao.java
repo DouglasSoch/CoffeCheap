@@ -10,8 +10,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservaDao extends Dao 
-{
+/**
+ *
+ * @author bryan
+ */
+public class ReservaDao extends Dao {
 
 //    Cliente cliEs = new Cliente();
 //
@@ -22,8 +25,13 @@ public class ReservaDao extends Dao
 //    public void setCliEs(Cliente cliEs) {
 //        this.cliEs = cliEs;
 //    }
-    
-    
+    /**
+     * Metodo para listar cosulta de disponibilidad
+     *
+     * @param reserva
+     * @return
+     * @throws Exception
+     */
     public List<Reserva> consultaDeDispo(Reserva reserva) throws Exception {
         List<Reserva> lstReserva = null;
         try {
@@ -52,95 +60,104 @@ public class ReservaDao extends Dao
         return lstReserva;
     }
 
-    public Boolean registrarclienteYReserva(String nit) throws Exception 
-    {
-       Boolean estado=false;           
-        try 
-        {
+    /**
+     * Metodo para registrar un cliente y una reserva
+     *
+     * @param nit
+     * @return
+     * @throws Exception
+     */
+    public Boolean registrarclienteYReserva(String nit) throws Exception {
+        Boolean estado = false;
+        try {
             this.Conectar();
 
             PreparedStatement ps = this.getCon().prepareStatement("select nit_cliente from cliente where nit_cliente=?");
             ps.setString(1, nit);
-            ResultSet rs =ps.executeQuery();
-            
-            if(rs.next())
-            { 
-                if (rs.getString(1).equals(nit)) 
-                {
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                if (rs.getString(1).equals(nit)) {
                     ReservaBean.addMessage("El cliente existe");
-                    estado=false;
+                    estado = false;
                 }
-            }                
-            else
-                {
-                    ReservaBean.addMessage("El cliente no existe");
-                    estado=true;
-                }
+            } else {
+                ReservaBean.addMessage("El cliente no existe");
+                estado = true;
+            }
         } catch (Exception e) {
             throw e;
         } finally {
             this.Desconecar();
         }
-        System.out.println("el valor final es: "+estado);
+        System.out.println("el valor final es: " + estado);
         return estado;
-        
+
     }
-    
-    
-      public List<Cliente> listarNombre() throws Exception{
+
+    /**
+     * Metodo para listar todos los registros de cliente para lista desplegable
+     *
+     * @return
+     * @throws Exception
+     */
+    public List<Cliente> listarNombre() throws Exception {
         List<Cliente> lista;
         ResultSet rs;
-        try{
+        try {
             this.Conectar();
             PreparedStatement ps = getCon().prepareCall("select  id_cliente, nombre_cliente from cliente");
             rs = ps.executeQuery();
             lista = new ArrayList();
-            while(rs.next()){
+            while (rs.next()) {
                 Cliente cli = new Cliente();
                 cli.setId_cliente(rs.getInt(1));
                 cli.setNombre(rs.getString(2));
                 lista.add(cli);
-            }   
-        }catch(Exception e)
-        {
-           throw e;
+            }
+        } catch (Exception e) {
+            throw e;
         } finally {
             this.Desconecar();
         }
         return lista;
     }
-      
-     public List<Mesa> listarMesa() throws Exception{
+
+    /**
+     * Metodo para listar todos los registros de mesa
+     *
+     * @return
+     * @throws Exception
+     */
+    public List<Mesa> listarMesa() throws Exception {
         List<Mesa> lista;
         ResultSet rs;
-        try{
+        try {
             this.Conectar();
             PreparedStatement ps = getCon().prepareCall("select id_mesa from mesa ORDER BY id_mesa ASC");
             rs = ps.executeQuery();
             lista = new ArrayList();
-            while(rs.next()){
+            while (rs.next()) {
                 Mesa cli = new Mesa();
                 cli.setId_mesa(rs.getInt(1));
-                
+
                 lista.add(cli);
-            }   
-        }catch(Exception e)
-        {
-           throw e;
+            }
+        } catch (Exception e) {
+            throw e;
         } finally {
             this.Desconecar();
         }
         return lista;
     }
 
-
+    /**
+     * Metodo para registrar una reserva
+     *
+     * @param reserva
+     * @throws Exception
+     */
     public void registrar(Reserva reserva) throws Exception {
-        System.out.println("la fecha es: "+ reserva.getFechaSus());
-        System.out.println("la hora de entrada es: "+ reserva.getHora_entrada());
-        System.out.println("la hora de salida es: "+reserva.getHora_salida());
-        System.out.println("la cantidad de personas es: "+reserva.getCantidad_personas());
-        System.out.println("el id de la mesa es: "+reserva.getMesa().getId_mesa());
-        System.out.println("el id del cliente es: "+reserva.getCliente().getId_cliente());
         try {
             this.Conectar();
             PreparedStatement psir = this.getCon().prepareStatement("insert into reserva (fecha, hora_inicio, hora_final, cantidad_personas, id_mesa, id_cliente) values(?,?,?,?,?,?)");
@@ -159,6 +176,12 @@ public class ReservaDao extends Dao
         }
     }
 
+    /**
+     * Metodo para listar reserva
+     *
+     * @return
+     * @throws Exception
+     */
     public List<Reserva> mostrar() throws Exception {
         List<Reserva> lista;
         ResultSet rs;
@@ -186,6 +209,13 @@ public class ReservaDao extends Dao
         return lista;
     }
 
+    /**
+     * Metodo para listar Reserva
+     *
+     * @param reservaa
+     * @return
+     * @throws Exception
+     */
     public List<Reserva> mostrarPorPrarametro(Reserva reservaa) throws Exception {
 
         List<Reserva> lista;
@@ -217,6 +247,13 @@ public class ReservaDao extends Dao
         return lista;
     }
 
+    /**
+     * Metodo para obtener registro
+     *
+     * @param reservaa
+     * @return
+     * @throws Exception
+     */
     public Reserva leerParaModificar(Reserva reservaa) throws Exception {
         Reserva reserva = null;
         ResultSet rs;
@@ -243,6 +280,12 @@ public class ReservaDao extends Dao
         return reserva;
     }
 
+    /**
+     * Metodo para eliminar una reserva
+     *
+     * @param reserva
+     * @throws Exception
+     */
     public void eliminar(Reserva reserva) throws Exception {
         try {
             this.Conectar();
@@ -256,6 +299,12 @@ public class ReservaDao extends Dao
         }
     }
 
+    /**
+     * MEtodo para miodificar una reserva
+     *
+     * @param reserva
+     * @throws Exception
+     */
     public void modificar(Reserva reserva) throws Exception {
         try {
 
@@ -279,6 +328,12 @@ public class ReservaDao extends Dao
         }
     }
 
+    /**
+     * Metodo para listar reserva
+     *
+     * @return
+     * @throws Exception
+     */
     public List<Reserva> mostrarr() throws Exception {
         List<Reserva> lstReserva = null;
         System.out.println("entro");
@@ -305,11 +360,17 @@ public class ReservaDao extends Dao
         }
         return lstReserva;
     }
-    
-     public Cliente leerFilaR(Cliente cliente) throws Exception {
-        
-        
-        Cliente cli= null;
+
+    /**
+     * Metodo para obtener e registro de reserva
+     *
+     * @param cliente
+     * @return
+     * @throws Exception
+     */
+    public Cliente leerFilaR(Cliente cliente) throws Exception {
+
+        Cliente cli = null;
         ResultSet rs;
 
         try {
@@ -333,7 +394,7 @@ public class ReservaDao extends Dao
         }
         return cli;
     }
-     
+
 //         public Cliente nit(Cliente cliente) throws Exception {
 //        Cliente cli= null;
 //        try {

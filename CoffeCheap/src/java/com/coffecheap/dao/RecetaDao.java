@@ -14,10 +14,16 @@ import java.util.List;
 
 /**
  *
- * @author medev
+ * @author Bryan
  */
 public class RecetaDao extends Dao {
 
+    /**
+     * Metodo para registrar en receta
+     *
+     * @param receta
+     * @throws Exception
+     */
     public void registrar(Receta receta) throws Exception {
         ResultSet rs;
         try {
@@ -47,6 +53,12 @@ public class RecetaDao extends Dao {
         }
     }
 
+    /**
+     * Metodo para listar todos los registros de recetaa
+     *
+     * @return
+     * @throws Exception
+     */
     public List<Receta> listar() throws Exception {
         List<Receta> lista;
         ResultSet rs;
@@ -78,6 +90,12 @@ public class RecetaDao extends Dao {
 
     }
 
+    /**
+     * Metodo para modificar un regsitro de receta
+     *
+     * @param receta
+     * @throws Exception
+     */
     public void modificar(Receta receta) throws Exception {
         try {
             this.Conectar();
@@ -99,8 +117,13 @@ public class RecetaDao extends Dao {
 
     }
 
-    public void eliminar(Receta receta) throws Exception 
-    {
+    /**
+     * MEtodo para eliminar un registro de receta
+     *
+     * @param receta
+     * @throws Exception
+     */
+    public void eliminar(Receta receta) throws Exception {
         try {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("DELETE FROM receta WHERE id_plato=? and id_producto=?;");

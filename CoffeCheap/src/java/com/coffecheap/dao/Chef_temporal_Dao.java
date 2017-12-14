@@ -14,11 +14,17 @@ import java.util.ArrayList;
 
 /**
  *
- * @author javam
+ * @author Bryan
  */
 public class Chef_temporal_Dao extends Dao {
 
-    public ArrayList<Tem_chef   > listar() throws Exception {
+    /**
+     * Metodo para listar todos los registros de tem chef
+     *
+     * @return
+     * @throws Exception
+     */
+    public ArrayList<Tem_chef> listar() throws Exception {
         ArrayList<Tem_chef> lista;
         ResultSet rs;
 
@@ -50,6 +56,13 @@ public class Chef_temporal_Dao extends Dao {
 
     }
 
+    /**
+     * Metodo patra controlar el color de la opciones
+     *
+     * @param estado
+     * @return
+     * @throws Exception
+     */
     public String ControlColor(int estado) throws Exception {
         String color = "";
 
@@ -77,6 +90,12 @@ public class Chef_temporal_Dao extends Dao {
         return color;
     }
 
+    /**
+     * Metodo para indicar el cierrre
+     *
+     * @param codigo
+     * @throws Exception
+     */
     public void cierre(int codigo) throws Exception {
         try {
             this.Conectar();
@@ -89,6 +108,12 @@ public class Chef_temporal_Dao extends Dao {
         }
     }
 
+    /**
+     * Metodo para eliminar un pedidio
+     *
+     * @param codigo
+     * @throws Exception
+     */
     public void Eliminar(int codigo) throws Exception {
         try {
             this.Conectar();
@@ -101,6 +126,13 @@ public class Chef_temporal_Dao extends Dao {
         }
     }
 
+    /**
+     * Metodo para el nombre del boton
+     *
+     * @param codigo
+     * @return
+     * @throws Exception
+     */
     public String NombreBoton(int codigo) throws Exception {
 
         ResultSet rs;
@@ -122,14 +154,21 @@ public class Chef_temporal_Dao extends Dao {
         }
         return respuesta;
     }
-    
+
+    /**
+     * Metodo para elimiar un pedido
+     *
+     * @param codigo
+     * @return
+     * @throws Exception
+     */
     public int BotonEliminar(int codigo) throws Exception {
 
         ResultSet rs;
         int respuesta = 0;
         try {
             this.Conectar();
-            PreparedStatement st = this.getCon().prepareStatement("select id_estado from tem_chef where id_chef_temporal="+codigo+";");
+            PreparedStatement st = this.getCon().prepareStatement("select id_estado from tem_chef where id_chef_temporal=" + codigo + ";");
             rs = st.executeQuery();
 
             while (rs.next()) {
@@ -146,7 +185,6 @@ public class Chef_temporal_Dao extends Dao {
         return respuesta;
     }
 
-    
 //   public void modificar(Tem_chef tt) throws Exception {
 //    try {
 //      this.Conectar();

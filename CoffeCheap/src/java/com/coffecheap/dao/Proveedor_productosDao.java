@@ -16,10 +16,16 @@ import java.util.List;
 
 /**
  *
- * @author acier
+ * @author Bryan
  */
 public class Proveedor_productosDao extends Dao {
 
+    /**
+     * Metodo para registrar un proveedor producto
+     *
+     * @param Tt
+     * @throws Exception
+     */
     public void registrar(Proveedor_productos Tt) throws Exception {
         ResultSet rs;
         try {
@@ -47,6 +53,12 @@ public class Proveedor_productosDao extends Dao {
         }
     }
 
+    /**
+     * Metodo para listar todos los proveedores producto
+     *
+     * @return
+     * @throws Exception
+     */
     public List<Proveedor_productos> listar() throws Exception {
         List<Proveedor_productos> lista;
         ResultSet rs;
@@ -74,6 +86,12 @@ public class Proveedor_productosDao extends Dao {
         return lista;
     }
 
+    /**
+     * Metodo para listar todos los proveedores
+     *
+     * @return
+     * @throws Exception
+     */
     public List<Proveedor> listarProveedor() throws Exception {
         List<Proveedor> lista;
         ResultSet rs;
@@ -100,6 +118,12 @@ public class Proveedor_productosDao extends Dao {
 
     }
 
+    /**
+     * Metodo para listar todos los registros de producto
+     *
+     * @return
+     * @throws Exception
+     */
     public List<Producto> listarProducto() throws Exception {
         List<Producto> lista;
         ResultSet rs;
@@ -126,6 +150,12 @@ public class Proveedor_productosDao extends Dao {
 
     }
 
+    /**
+     * Metodo para modificar un proveedor producto
+     *
+     * @param Tt
+     * @throws Exception
+     */
     public void modificar(Proveedor_productos Tt) throws Exception {
         try {
             this.Conectar();
@@ -143,6 +173,13 @@ public class Proveedor_productosDao extends Dao {
         }
     }
 
+    /**
+     * Metodo para obtener un registro de proveedor producto en un objeto
+     *
+     * @param prov
+     * @return Proveedor_Productos
+     * @throws Exception
+     */
     public Proveedor_productos leerFila(Proveedor_productos prov) throws Exception {
         Proveedor_productos provP = null;
         ResultSet rs;
@@ -170,6 +207,12 @@ public class Proveedor_productosDao extends Dao {
         return provP;
     }
 
+    /**
+     * Metodo para eliminar un registro de proveedor producto
+     *
+     * @param prov
+     * @throws Exception
+     */
     public void eliminar(Proveedor_productos prov) throws Exception {
         try {
             this.Conectar();

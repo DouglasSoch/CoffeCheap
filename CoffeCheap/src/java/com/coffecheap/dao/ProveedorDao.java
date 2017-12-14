@@ -6,15 +6,25 @@ import java.util.ArrayList;
 import java.util.List;
 import com.coffecheap.modelo.Proveedor;
 
+/**
+ *
+ * @author bryan
+ */
 public class ProveedorDao extends Dao {
 
+    /**
+     * Metodo para registrar un proveedor
+     *
+     * @param proveedor
+     * @throws Exception
+     */
     public void Ingresar(Proveedor proveedor) throws Exception {
         try {
             this.Conectar();
             PreparedStatement st = this.getCon().prepareStatement("insert into proveedor values(?,?,?,?,?,?)");
             st.setInt(1, proveedor.getId_proveedor());
             st.setString(2, proveedor.getNombre());
-            st.setString(3, proveedor.getNit());            
+            st.setString(3, proveedor.getNit());
             st.setInt(4, proveedor.getTelefono());
             st.setString(5, proveedor.getMail());
             st.setString(6, proveedor.getDireccion());
@@ -32,6 +42,12 @@ public class ProveedorDao extends Dao {
         }
     }
 
+    /**
+     * Metodo para borrar un proveedor
+     *
+     * @param proveedor
+     * @throws Exception
+     */
     public void Borrar(Proveedor proveedor) throws Exception {
 
         try {
@@ -48,6 +64,12 @@ public class ProveedorDao extends Dao {
 
     }
 
+    /**
+     * MEtodo para modificar un proveedor
+     *
+     * @param proveedor
+     * @throws Exception
+     */
     public void Editar(Proveedor proveedor) throws Exception {
 
         try {
@@ -66,7 +88,7 @@ public class ProveedorDao extends Dao {
             this.Desconecar();
             proveedor.setId_proveedor(0);
             proveedor.setNombre(null);
-             proveedor.setNit(null);
+            proveedor.setNit(null);
             proveedor.setTelefono(0);
             proveedor.setMail(null);
             proveedor.setDireccion(null);
@@ -74,6 +96,12 @@ public class ProveedorDao extends Dao {
 
     }
 
+    /**
+     * Metodo para listar todos los regisstros de un proveedor
+     *
+     * @return
+     * @throws Exception
+     */
     public List<Proveedor> Mostrar() throws Exception {
 
         List<Proveedor> lista;
@@ -89,7 +117,7 @@ public class ProveedorDao extends Dao {
                 Proveedor proveedor = new Proveedor();
                 proveedor.setId_proveedor(rs.getInt("id_proveedor"));
                 proveedor.setNombre(rs.getString("nombre_proveedor"));
-                proveedor.setNit(rs.getString("nit_proveedor"));                
+                proveedor.setNit(rs.getString("nit_proveedor"));
                 proveedor.setTelefono(rs.getInt("telefono_proveedor"));
                 proveedor.setMail(rs.getString("email_proveedor"));
                 proveedor.setDireccion(rs.getString("direccion_proveedor"));

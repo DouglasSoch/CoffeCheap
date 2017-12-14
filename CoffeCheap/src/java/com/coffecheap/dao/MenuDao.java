@@ -6,9 +6,20 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author bryan
+ */
 public class MenuDao extends Dao {
 
     //Me envia los codigos de las paginas principales 1,2,4
+    /**
+     * Metodo que envia los codigos
+     *
+     * @param tipo
+     * @return
+     * @throws Exception
+     */
     public List<Menu> CodigodeMenu(int tipo) throws Exception {
 
         List<Menu> lista = null;
@@ -34,6 +45,14 @@ public class MenuDao extends Dao {
         return lista;
     }
 
+    /**
+     * Metodo que lista todos los registros de menu
+     *
+     * @param tipo
+     * @param pagina
+     * @return
+     * @throws Exception
+     */
     public List<Menu> SubMenu(int tipo, int pagina) throws Exception {
 
         List<Menu> lista = null;
@@ -59,6 +78,14 @@ public class MenuDao extends Dao {
         return lista;
     }
 
+    /**
+     * MEtodo que lista todos nombre de las paginas
+     *
+     * @param tipo
+     * @param cantidad
+     * @return
+     * @throws Exception
+     */
     public String Menu1(int tipo, int cantidad) throws Exception {
 
         String respuesta = null;
@@ -86,6 +113,13 @@ public class MenuDao extends Dao {
         return respuesta;
     }
 
+    /**
+     * Metodo para ciclo
+     *
+     * @param tipo
+     * @return
+     * @throws Exception
+     */
     public int CantidadFor1(int tipo) throws Exception {
 
         int resultado = 0;
@@ -113,6 +147,14 @@ public class MenuDao extends Dao {
     }
 
     //Este define la cantidad de ciclos
+    /**
+     * Metodo para la cantidad de ciclos
+     *
+     * @param tipo
+     * @param idpagina
+     * @return
+     * @throws Exception
+     */
     public int CantidadFor2(int tipo, int idpagina) throws Exception {
 
         int resultado = 0;
@@ -139,6 +181,15 @@ public class MenuDao extends Dao {
         return resultado;
     }
 
+    /**
+     * Metodo para nombre de la paginas
+     *
+     * @param tipo
+     * @param pagina
+     * @param codigo
+     * @return
+     * @throws Exception
+     */
     public String NombresCrud(int tipo, int pagina, int codigo) throws Exception {
         String resultado = null;
         ResultSet rs;
@@ -163,6 +214,15 @@ public class MenuDao extends Dao {
         return resultado;
     }
 
+    /**
+     * Metodo para llamado de pagina
+     *
+     * @param tipo
+     * @param pagina
+     * @param codigo
+     * @return
+     * @throws Exception
+     */
     public String LlamadoPagina(int tipo, int pagina, int codigo) throws Exception {
         String resultado = null;
         ResultSet rs;
@@ -172,7 +232,7 @@ public class MenuDao extends Dao {
             PreparedStatement st = this.getCon().prepareStatement("select permiso.idcrud as codigo, concat(html.nombrepagina,'_',crud.nombrecrud,'.xhtml') as nombrest\n"
                     + "from permiso\n"
                     + "inner join html on(html.idhtml = permiso.idpagina)\n"
-                    + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo="+tipo+" and permiso.idpagina="+pagina+" and permiso.idcrud="+codigo+";");
+                    + "inner join crud on (crud.idcrud = permiso.idcrud) where permiso.idtipo=" + tipo + " and permiso.idpagina=" + pagina + " and permiso.idcrud=" + codigo + ";");
             rs = st.executeQuery();
             while (rs.next()) {
                 Menu menu = new Menu();
