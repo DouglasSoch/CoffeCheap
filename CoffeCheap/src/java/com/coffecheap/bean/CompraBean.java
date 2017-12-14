@@ -8,8 +8,10 @@ import com.coffecheap.modelo.Producto;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -18,6 +20,12 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class CompraBean extends Dao {
+static public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+
 
     Compra compra = new Compra();
     List<Compra> lista;
@@ -58,7 +66,27 @@ public class CompraBean extends Dao {
      * @throws Exception por si resulta un error de SQL
      */
     public void Intermedio() throws Exception {
-
+ if (compra.getOcompras().getId_orden_compras() == 0) {
+            addMessage("Eliga Un Numero de Orden");
+        } else {
+            if (compra.getProducto().getId_producto() == 0) {
+                addMessage("Eliga Un Producto");
+            } else {
+                if (compra.getCantidad() == 0) {
+                    addMessage("Ingrese La Cantidad");
+                } else {
+                    if (compra.getCosto() == 0) {
+                        addMessage("Ingrese El costo");
+                    } else {
+                        if (compra.getNo_fac() == 0) {
+                            addMessage("Ingrese El Numero de Factura");
+                        } else {
+                            if (compra.getSerie().equals("")) {
+                                addMessage("Ingrese El Numero de Serie");
+                            } else {
+                                if (compra.getFechaEntrega().equals("")) {
+                                    addMessage("Ingrese La Fecha de Entrega");
+                                } else {
         i = i + 1;
         intermedio.add(new Compra(i, compra.getOcompras().getId_orden_compras(), compra.getProducto().getId_producto(),
                 compra.getCantidad(), compra.getCosto(), compra.getNo_fac(), compra.getSerie(), compra.getFechaEntrega()));
@@ -71,6 +99,7 @@ public class CompraBean extends Dao {
         compra.setNo_fac(0);
         compra.setSerie(null);
 
+                                }}}}}}}
     }
 
     /**

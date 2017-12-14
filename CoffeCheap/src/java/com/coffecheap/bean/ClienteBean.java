@@ -50,8 +50,27 @@ public class ClienteBean {
     public void registrar() throws Exception {
         ClienteDao dao;
         try {
+             if(cliente.getNombre().equals(""))
+                                 {
+                                     addMessage("Defina un nombre");
+                                 }
+                                    
+                               
+                                 else
+                                 { if(cliente.getNit_cliente().equals(""))
+                                 {
+                                     addMessage("Ingrese el NIT");
+                                 }
+                                 else
+                                if(cliente.getDireccion().equals(""))
+                                  {
+                                     addMessage("Defina una Direccion");
+                                 }
+                                 else
+                                 {
             dao = new ClienteDao();
             dao.registrar(cliente);
+                                 }}
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -65,8 +84,10 @@ public class ClienteBean {
     public void registrarN() throws Exception {
         ClienteDao dao;
         try {
+         
             dao = new ClienteDao();
             dao.registrarN(cliente);
+                                 
         } catch (Exception e) {
             System.out.println(e);
         }

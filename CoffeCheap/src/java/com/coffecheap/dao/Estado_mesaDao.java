@@ -5,6 +5,7 @@
  */
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.Estado_mesaBean;
 import com.coffecheap.modelo.Estado_mesa;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ public class Estado_mesaDao extends Dao {
             st.setString(1, Tt.getNombre());
 
             st.executeUpdate();
-
+Estado_mesaBean.addMessage("Registro Guardado");
         } catch (Exception ex) {
             throw ex;
         } finally {

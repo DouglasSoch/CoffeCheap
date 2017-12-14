@@ -60,6 +60,7 @@ public class ClienteDao extends Dao {
             st.setString(2, cli.getNombre());
             st.setString(3, cli.getDireccion());
             st.executeUpdate();
+            ClienteBean.addMessage("Registro Guardado");
         } catch (Exception e) {
             throw e;
         } finally {
