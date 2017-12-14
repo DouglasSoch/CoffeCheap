@@ -59,7 +59,7 @@ public class Chef_temporal_Dao extends Dao {
     /**
      * Metodo patra controlar el color de la opciones
      *
-     * @param estado
+     * @param estado Objeto de la clase
      * @return String
      * @throws Exception por si resulta un error de SQL
      */

@@ -14,7 +14,6 @@ import javax.faces.context.FacesContext;
  *
  * @author bryan
  */
-
 @ManagedBean
 @ViewScoped
 public class TipoUsuarioBean {
@@ -99,7 +98,7 @@ public class TipoUsuarioBean {
     /**
      * Metodo para ingresar un tipo de usuario
      *
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public void Ingresar() throws Exception {
 
@@ -127,7 +126,7 @@ public class TipoUsuarioBean {
     /**
      * Metodo para listar las paginas del proyecto
      *
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public void Crud() throws Exception {
 
@@ -143,7 +142,7 @@ public class TipoUsuarioBean {
     /**
      * Metodo para listar los nombres de las paginas
      *
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public void Nombre() throws Exception {
 
@@ -159,7 +158,7 @@ public class TipoUsuarioBean {
     /**
      * Metodo especial para verificacion de permisos de los tipo de usuarios
      *
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public void Intermedio() throws Exception {
         TipoUsuarioDao dao;
@@ -250,7 +249,7 @@ public class TipoUsuarioBean {
     /**
      * Metodo para ocultar elementos
      *
-     * @return
+     * @return int
      */
     public int Ocultar() {
         int respuesta = listadescripcion.size();
@@ -261,7 +260,7 @@ public class TipoUsuarioBean {
     /**
      * Metodo para modificar un tipo de usuario
      *
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar() throws Exception {
 
@@ -279,8 +278,8 @@ public class TipoUsuarioBean {
     /**
      * Metodo para eliminar un tipo de usuario
      *
-     * @param tipo
-     * @throws Exception
+     * @param tipo el objeto de la clase
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Tipo tipo) throws Exception {
 
@@ -294,10 +293,12 @@ public class TipoUsuarioBean {
             throw e;
         }
     }
-/**
- * Metodo para listar todos los registros de usuario
- * @throws Exception 
- */
+
+    /**
+     * Metodo para listar todos los registros de usuario
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void mostar() throws Exception {
         TipoUsuarioDao dao;
 
@@ -308,11 +309,13 @@ public class TipoUsuarioBean {
             throw e;
         }
     }
-/**
- * Metodo para obtner una fila en un objeto de tipo Uusario
- * @param tipo
- * @throws Exception 
- */
+
+    /**
+     * Metodo para obtner una fila en un objeto de tipo Uusario
+     *
+     * @param tipo Objeto de la clase
+     * @throws Exception por si resulta un error de SQL
+     */
     public void buscar(Tipo tipo) throws Exception {
         TipoUsuarioDao dao;
         Tipo temp;

@@ -188,7 +188,7 @@ public class Control_mesaBean {
 
     /**
      *
-     * @param mesaObjeto de la clase
+     * @param mesa Objeto de la clase
      * @return String
      * @throws Exception por si resulta un error de SQL
      */

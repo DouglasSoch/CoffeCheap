@@ -28,7 +28,7 @@ public class ReservaBean {
      * Metodo para mostrar mensajes emergentes desde una instancia creada de
      * ReservaBean
      *
-     * @param summary
+     * @param summary String
      */
     static public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
@@ -120,7 +120,7 @@ public class ReservaBean {
     /**
      * Metodo especial para registrar cliente si es necesario y reserva
      *
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public void registrarCyR() throws Exception {
 
@@ -161,13 +161,13 @@ public class ReservaBean {
         }
 
     }
-    
+
     /**
      * Metodo para mostrar el cliente si este existe
-     * @param clie
-     * @throws Exception 
+     *
+     * @param clie Objeto de la clase
+     * @throws Exception por si resulta un error de SQL
      */
-
     public void cliRe(Cliente clie) throws Exception {
         ReservaDao dao;
         Cliente temp;
@@ -186,10 +186,12 @@ public class ReservaBean {
 
         }
     }
-/**
- * Metodo para listar reservas
- * @throws Exception 
- */
+
+    /**
+     * Metodo para listar reservas
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void listar() throws Exception {
         ReservaDao dao;
 
@@ -200,10 +202,12 @@ public class ReservaBean {
             throw e;
         }
     }
-/**
- * Metodo para listar mesa en lista desplegable
- * @throws Exception 
- */
+
+    /**
+     * Metodo para listar mesa en lista desplegable
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void listarMesa() throws Exception {
         ReservaDao dao;
 
@@ -214,10 +218,12 @@ public class ReservaBean {
             throw e;
         }
     }
-/**
- * Metodo para registrar una reserva
- * @throws Exception 
- */
+
+    /**
+     * Metodo para registrar una reserva
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void registrar() throws Exception {
         ReservaDao dao;
         try {
@@ -253,10 +259,12 @@ public class ReservaBean {
             System.out.println(e);
         }
     }
-/**
- * Metodo para verificar si hay disponiblidad
- * @throws Exception 
- */
+
+    /**
+     * Metodo para verificar si hay disponiblidad
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void Dispo() throws Exception {
         ReservaDao dao;
 
@@ -267,9 +275,10 @@ public class ReservaBean {
             throw e;
         }
     }
-/**
- * Metodo para listar reserva
- */
+
+    /**
+     * Metodo para listar reserva
+     */
     public void mostrar() {
         ReservaDao dao;
 
@@ -280,10 +289,12 @@ public class ReservaBean {
             System.out.println(e);
         }
     }
-/**
- * Metodo para listar reserva
- * @throws Exception 
- */
+
+    /**
+     * Metodo para listar reserva
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void mostar() throws Exception {
         ReservaDao dao;
 
@@ -294,10 +305,12 @@ public class ReservaBean {
             throw e;
         }
     }
-/**
- * Metodo para listar reserva por parametro
- * @throws Exception 
- */
+
+    /**
+     * Metodo para listar reserva por parametro
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void mostarPorParametro() throws Exception {
         ReservaDao dao;
 
@@ -308,10 +321,12 @@ public class ReservaBean {
             throw e;
         }
     }
-/**
- * Metodo para obtner una fila en un objeto Reserva
- * @throws Exception 
- */
+
+    /**
+     * Metodo para obtner una fila en un objeto Reserva
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void buscar() throws Exception {
         ReservaDao dao;
         Reserva temp;
@@ -329,10 +344,12 @@ public class ReservaBean {
             throw e;
         }
     }
-/**
- * Metodo para modificar un registro de Reserva
- * @throws Exception 
- */
+
+    /**
+     * Metodo para modificar un registro de Reserva
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void modificar() throws Exception {
         ReservaDao dao;
 
@@ -343,10 +360,12 @@ public class ReservaBean {
             throw e;
         }
     }
-/**
- * Metodo para eliminar una Reserva
- * @throws Exception 
- */
+
+    /**
+     * Metodo para eliminar una Reserva
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void eliminar() throws Exception {
         ReservaDao dao;
 

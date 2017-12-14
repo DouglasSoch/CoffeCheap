@@ -13,26 +13,27 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-
 /**
  *
  * @author Bryan
  */
 @ManagedBean
 @ViewScoped
-public class RecetaBean 
-{
+public class RecetaBean {
+
     /**
-     * Metodo para mostrar mensaje emergente desde una instancia creada RecetaBean
-     * @param summary 
+     * Metodo para mostrar mensaje emergente desde una instancia creada
+     * RecetaBean
+     *
+     * @param summary String
      */
-     static public void addMessage(String summary) {
-    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-    FacesContext.getCurrentInstance().addMessage(null, message);
-  }
-    
-private Receta receta = new Receta();
-private List<Receta>lstReceta;
+    static public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
+    private Receta receta = new Receta();
+    private List<Receta> lstReceta;
 
     public Receta getReceta() {
         return receta;
@@ -49,95 +50,96 @@ private List<Receta>lstReceta;
     public void setLstReceta(List<Receta> lstReceta) {
         this.lstReceta = lstReceta;
     }
-    
+
     /**
      * Metodo para registrar una Receta
      */
     public void registrar() {
 
-    System.out.println("*******************************************************registrar");
+        System.out.println("*******************************************************registrar");
 
-    RecetaDao dao ;
+        RecetaDao dao;
 
-    try {
-      dao = new RecetaDao();
-      dao.registrar(receta);
-    } catch (Exception e) {
-      System.out.println(e);
+        try {
+            dao = new RecetaDao();
+            dao.registrar(receta);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
-  }
-/**
- * Metodo para listar las recetas
- * @throws Exception 
- */
-  public void listar() throws Exception {
-    RecetaDao dao;
+    /**
+     * Metodo para listar las recetas
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void listar() throws Exception {
+        RecetaDao dao;
 
-    try {
-      dao = new RecetaDao();
-      lstReceta = dao.listar();
-    } catch (Exception e) {
-      throw e;
+        try {
+            dao = new RecetaDao();
+            lstReceta = dao.listar();
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
-  }
-/**
- * MEtodo para modificar una receta
- * @throws Exception 
- */
-  public void modificar() throws Exception 
-  {
-    RecetaDao dao;
+    /**
+     * MEtodo para modificar una receta
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void modificar() throws Exception {
+        RecetaDao dao;
 
-    try {
-      dao = new RecetaDao();
-      dao.modificar(receta);
+        try {
+            dao = new RecetaDao();
+            dao.modificar(receta);
 
-    } catch (Exception e) {
-      throw e;
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
-  }
+    /**
+     * Metodo para eliminar una receta
+     *
+     * @param receta Objeto de la clase
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void eliminar(Receta receta) throws Exception {
+        System.out.println("*******************************************************eliminar");
+        RecetaDao dao;
 
-/**
- * Metodo para eliminar una receta
- * @param receta
- * @throws Exception 
- */
-  public void eliminar(Receta receta) throws Exception {
-    System.out.println("*******************************************************eliminar");
-    RecetaDao dao;
+        try {
+            dao = new RecetaDao();
+            dao.eliminar(receta);
 
-    try {
-      dao = new RecetaDao();
-      dao.eliminar(receta);
+        } catch (Exception e) {
+            throw e;
+        }
 
-    } catch (Exception e) {
-      throw e;
     }
 
-  }
-  
-  /**
-   * Metodo para obtener una fila en un objeto Receta
-   * @param recet 
-   */
-    public void fila(Receta recet) 
-  {
-    RecetaDao dao;
-    Receta temp;
-    try 
-    {
-      dao = new RecetaDao();
-      temp = dao.leerFila(recet);
-      if(temp !=null)
-      {
-          this.receta= temp;
-      }
-    } catch (Exception e) 
-    {
-      System.out.println(e);
+    /**
+     * Metodo para obtener una fila en un objeto Receta
+     *
+     * @param recet Objeto de la clase
+     */
+    public void fila(Receta recet) {
+        RecetaDao dao;
+        Receta temp;
+        try {
+            dao = new RecetaDao();
+            temp = dao.leerFila(recet);
+            if (temp != null) {
+                this.receta = temp;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
-  }
 }

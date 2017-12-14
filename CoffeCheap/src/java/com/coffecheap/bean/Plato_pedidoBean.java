@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -15,24 +15,26 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 /**
- * 
+ *
  * @author bryan
  */
 @Named(value = "plato_pedidoBean")
 @ManagedBean
 @ViewScoped
-public class Plato_pedidoBean 
-{
+public class Plato_pedidoBean {
+
     /**
-     * Metodo para mostrar un mensaje emergente desde una instnacia de Plato_pedidoBean
-     * @param summary 
+     * Metodo para mostrar un mensaje emergente desde una instnacia de
+     * Plato_pedidoBean
+     *
+     * @param summary String
      */
-       static public void addMessage(String summary) {
-    FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-    FacesContext.getCurrentInstance().addMessage(null, message);
-  }
+    static public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
     private Plato_pedido plapedido = new Plato_pedido();
-    private List<Plato_pedido>lstPlapedido;
+    private List<Plato_pedido> lstPlapedido;
 
     public Plato_pedido getPlapedido() {
         return plapedido;
@@ -49,95 +51,90 @@ public class Plato_pedidoBean
     public void setLstPlapedido(List<Plato_pedido> lstPlapedido) {
         this.lstPlapedido = lstPlapedido;
     }
-    
+
     /**
      * Metodo para registrar un plato pedido
      */
-    public void registrar() 
-    {
-    Plato_pedidoDao dao;
-    try 
-    {
-      dao = new Plato_pedidoDao();
-      dao.registrar(plapedido);
-    } catch (Exception e) 
-    {
-      System.out.println(e);
-    }
+    public void registrar() {
+        Plato_pedidoDao dao;
+        try {
+            dao = new Plato_pedidoDao();
+            dao.registrar(plapedido);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
-  }
+    }
 
     /**
      * Metodo para listar todos los registros de plato pedido
-     * @throws Exception 
+     *
+     * @throws Exception por si resulta un error de SQL
      */
-  public void listar() throws Exception {
-    Plato_pedidoDao dao;
+    public void listar() throws Exception {
+        Plato_pedidoDao dao;
 
-    try {
-      dao = new Plato_pedidoDao();
-      lstPlapedido = dao.listar();
-    } catch (Exception e) {
-      throw e;
+        try {
+            dao = new Plato_pedidoDao();
+            lstPlapedido = dao.listar();
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
-  }
-/**
- * Metodo para obtener una fila en un objeto de plato pedido
- * @param platoP 
- */
-  public void fila(Plato_pedido platoP) 
-  {
-    Plato_pedidoDao dao;
-    Plato_pedido temp;
-    try 
-    {
-      dao = new Plato_pedidoDao();
-      temp = dao.leerParaModificar(platoP);
-      if(temp !=null)
-      {
-          this.plapedido= temp;
-      }
-    } catch (Exception e) 
-    {
-      System.out.println(e);
-    }
-  }
-  /**
-   * Metodo para modificar un plato pedido
-   * @throws Exception 
-   */
-  public void modificar() throws Exception 
-  {
-    Plato_pedidoDao dao;
-
-    try {
-      dao = new Plato_pedidoDao();
-      dao.modificar(plapedido);
-
-    } catch (Exception e) {
-      throw e;
+    /**
+     * Metodo para obtener una fila en un objeto de plato pedido
+     *
+     * @param platoP Objeto de la clase
+     */
+    public void fila(Plato_pedido platoP) {
+        Plato_pedidoDao dao;
+        Plato_pedido temp;
+        try {
+            dao = new Plato_pedidoDao();
+            temp = dao.leerParaModificar(platoP);
+            if (temp != null) {
+                this.plapedido = temp;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
-  }
-  /**
-   * Metodo para eliminar un plato pedido
-   * @param plapedido
-   * @throws Exception 
-   */
-  public void eliminar(Plato_pedido plapedido) throws Exception 
-  {
-    Plato_pedidoDao dao;
-    try 
-    {
-      dao = new Plato_pedidoDao();
-      dao.eliminar(plapedido);
-    }
-    catch (Exception e) 
-    {
-      throw e;
+    /**
+     * Metodo para modificar un plato pedido
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void modificar() throws Exception {
+        Plato_pedidoDao dao;
+
+        try {
+            dao = new Plato_pedidoDao();
+            dao.modificar(plapedido);
+
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
-  }
-    
+    /**
+     * Metodo para eliminar un plato pedido
+     *
+     * @param plapedido Objeto de la clase
+     * @throws Exception por si resulta un error de SQL
+     */
+    public void eliminar(Plato_pedido plapedido) throws Exception {
+        Plato_pedidoDao dao;
+        try {
+            dao = new Plato_pedidoDao();
+            dao.eliminar(plapedido);
+        } catch (Exception e) {
+            throw e;
+        }
+
+    }
+
 }
