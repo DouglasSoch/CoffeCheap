@@ -13,14 +13,15 @@ import javax.faces.context.FacesContext;
  *
  * @author bryan
  */
-
 @ManagedBean
 @ViewScoped
 public class Tipo_platoBean {
 
     /**
-     * Metodo para mostrar mensaje emergente desde una instancia creada de este Bean
-     * @param summary 
+     * Metodo para mostrar mensaje emergente desde una instancia creada de este
+     * Bean
+     *
+     * @param summary String
      */
     static public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
@@ -61,7 +62,8 @@ public class Tipo_platoBean {
 
     /**
      * Metodo para obtener una fila en un objeto Tipo Plato
-     * @param tipo 
+     *
+     * @param tipo El objeto de la clase
      */
     public void fila(Tipo_plato tipo) {
         Tipo_platoDao dao;
@@ -80,7 +82,8 @@ public class Tipo_platoBean {
 
     /**
      * Metodo para listar todos los registros de Tipo Plato
-     * @throws Exception 
+     *
+     * @throws Exception por si resulta un error de SQL
      */
     public void listar() throws Exception {
         Tipo_platoDao dao;
@@ -92,10 +95,12 @@ public class Tipo_platoBean {
         }
 
     }
-/**
- * Metodo para Modificar Tipo Plato
- * @throws Exception 
- */
+
+    /**
+     * Metodo para Modificar Tipo Plato
+     *
+     * @throws Exception por si resulta un error de SQL
+     */
     public void modificar() throws Exception {
         Tipo_platoDao dao;
         try {
@@ -107,11 +112,13 @@ public class Tipo_platoBean {
         }
 
     }
-/**
- * Metodo para Eliminar un regitro de Tipo Plato
- * @param tipoPlato
- * @throws Exception 
- */
+
+    /**
+     * Metodo para Eliminar un regitro de Tipo Plato
+     *
+     * @param tipoPlato el objeto de la clase
+     * @throws Exception por si resulta un error de SQL
+     */
     public void eliminar(Tipo_plato tipoPlato) throws Exception {
         Tipo_platoDao dao;
         try {

@@ -34,9 +34,10 @@ public class Tipo_transaccionesBean {
     public void setLstTipo_transacciones(List<Tipo_transacciones> lstTipo_transacciones) {
         this.lstTipo_transacciones = lstTipo_transacciones;
     }
-/**
- * Metodo para registrar
- */
+
+    /**
+     * Metodo para registrar
+     */
     public void registrar() {
 
         System.out.println("*******************************************************registrar");
@@ -54,7 +55,8 @@ public class Tipo_transaccionesBean {
 
     /**
      * Metodo para listar
-     * @throws Exception 
+     *
+     * @throws Exception por si resulta un error de SQL
      */
     public void listar() throws Exception {
         Tipo_transaccionesDao dao;
@@ -67,11 +69,13 @@ public class Tipo_transaccionesBean {
         }
 
     }
-/**
- * Metodo para modificar
- * @param mar
- * @throws Exception 
- */
+
+    /**
+     * Metodo para modificar
+     *
+     * @param mar Objeto de la clase
+     * @throws Exception por si resulta un error de SQL
+     */
     public void modificar(Tipo_transacciones mar) throws Exception {
         System.out.println("*******************************************************Modificar");
         Tipo_transaccionesDao dao;
@@ -85,11 +89,13 @@ public class Tipo_transaccionesBean {
         }
 
     }
-/**
- * Metodo para eliminar
- * @param mar
- * @throws Exception 
- */
+
+    /**
+     * Metodo para eliminar
+     *
+     * @param mar Objeto de la clase
+     * @throws Exception por si resulta un error de SQL
+     */
     public void eliminar(Tipo_transacciones mar) throws Exception {
         System.out.println("*******************************************************eliminar");
         Tipo_transaccionesDao dao;
