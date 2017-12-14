@@ -69,8 +69,28 @@ public class PlatoBean {
     public void registrar() {
         PlatoDao dao;
         try {
-            dao = new PlatoDao();
-            dao.registrar(plato);
+            if (plato.getNombre().equals("")) {
+                addMessage("Ingrese El Nombre del Platillo");
+            } else {
+                if (plato.getPrecio() == 0) {
+                    addMessage("Ingrese El Precio del Platillo");
+                } else {
+                    if (plato.getPorciones() == 0) {
+                        addMessage("Ingrese la Cantidad de Porciones");
+                    } else {
+                        if (plato.getDescripcion().equals("")) {
+                            addMessage("Describa el Platillo");
+                        } else {
+                            if (plato.getTipoPlato().getId() == 0) {
+                                addMessage("Seleccione el Tipo de Platillo");
+                            } else {
+                                dao = new PlatoDao();
+                                dao.registrar(plato);
+                            }
+                        }
+                    }
+                }
+            }
         } catch (Exception e) {
             System.out.println(e);
         }

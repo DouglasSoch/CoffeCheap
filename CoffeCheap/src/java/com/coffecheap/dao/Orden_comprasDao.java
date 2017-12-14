@@ -1,5 +1,6 @@
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.Orden_comprasBean;
 import com.coffecheap.modelo.Orden_compras;
 import com.coffecheap.modelo.Proveedor_productos;
 import java.sql.PreparedStatement;
@@ -33,7 +34,7 @@ public class Orden_comprasDao extends Dao {
             st.setInt(5, Tt.getPproductos().getProducto().getId_producto());
             st.setInt(6, Tt.getPproductos().getProveedor().getId_proveedor());
             st.executeUpdate();
-
+            Orden_comprasBean.addMessage("Registro Guardado");
         } catch (Exception ex) {
             throw ex;
         } finally {

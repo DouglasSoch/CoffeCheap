@@ -8,8 +8,10 @@ import com.coffecheap.modelo.Mesa;
 import com.coffecheap.dao.MesaDao;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -19,6 +21,10 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class MesaBean {
 
+     static public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
     private Mesa mesa = new Mesa();
     private List<Mesa> lstMesa;
 
@@ -43,13 +49,24 @@ public class MesaBean {
      */
     public void registrar() {
 
-        System.out.println("********************************************registrar");
 
         MesaDao dao;
 
         try {
+             if(mesa.getCantidad_comensales()==0)
+                                 {
+                                     addMessage("Ingrese la Catidad de Comensales");
+                                 }
+                                 else
+                                 { if(mesa.getUbicacion().equals(""))
+                                 {
+                                     addMessage("Ingrese La Ubicacion de la Mesa");
+                                 }
+                                 else
+                                 {
             dao = new MesaDao();
             dao.registrar(mesa);
+                                 }}
         } catch (Exception e) {
             System.out.println(e);
         }

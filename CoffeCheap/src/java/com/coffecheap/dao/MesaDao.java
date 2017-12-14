@@ -5,6 +5,7 @@
  */
 package com.coffecheap.dao;
 
+import com.coffecheap.bean.MesaBean;
 import com.coffecheap.modelo.Mesa;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,6 +53,7 @@ public class MesaDao extends Dao {
             st2.setInt(3, 3);
             st2.setInt(4, 0);
             st2.executeUpdate();
+            MesaBean.addMessage("Registro Guardado");
 
         } catch (Exception ex) {
             throw ex;

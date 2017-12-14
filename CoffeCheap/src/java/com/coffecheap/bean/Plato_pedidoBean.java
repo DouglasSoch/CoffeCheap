@@ -56,21 +56,42 @@ public class Plato_pedidoBean {
      * Metodo para registrar un plato pedido
      */
     public void registrar() {
-        Plato_pedidoDao dao;
-        try {
-            dao = new Plato_pedidoDao();
-            dao.registrar(plapedido);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+          try {
+        if (plapedido.getPlato().getId_plato() == 0) {
+            addMessage("Seleccione el Plato");
+        } else {
+            if (plapedido.getCantidad() == 0) {
+                addMessage("Ingrese la Cantidad");
+            } else {
+                if (plapedido.getCantidad() == 0) {
+                    addMessage("Ingrese la Cantidad");
+                } else {
+                    if (plapedido.getUsuario().getId() == 0) {
+                        addMessage("Seleccione el Usuario");
+                    } else {
+                        if (plapedido.getPedido().getId_pedido() == 0) {
+                            addMessage("Seleccione el Pedido");
+                        } else {
+                            if (plapedido.getPrecio() == 0) {
+                                addMessage("Ingrese el Precio");
+                            } else {
 
-    }
+                                Plato_pedidoDao dao;
+                              
+                                    dao = new Plato_pedidoDao();
+                                    dao.registrar(plapedido);
+                                }}}}}}
+                                } catch (Exception e) {
+                                    System.out.println(e);
+                                }
 
-    /**
-     * Metodo para listar todos los registros de plato pedido
-     *
-     * @throws Exception por si resulta un error de SQL
-     */
+                            }
+                            /**
+                             * Metodo para listar todos los registros de plato
+                             * pedido
+                             *
+                             * @throws Exception por si resulta un error de SQL
+                             */
     public void listar() throws Exception {
         Plato_pedidoDao dao;
 

@@ -7,9 +7,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -47,21 +49,44 @@ public class Orden_comprasBean {
         this.lstOrden_compras = lstOrden_compras;
     }
 
+    static public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+
     /**
      * Metodo para registrar una orden de compras
      */
     public void registrar() {
         Orden_comprasDao dao;
         try {
-            String formateador = new SimpleDateFormat("yyyy-MM-dd").format(orden_compras.getFecha_entrega());
-            String formateador2 = new SimpleDateFormat("yyyy-MM-dd").format(orden_compras.getFecha_orden());
+            if (orden_compras.getId_orden_compras() == 0) {
+                addMessage("Ingrese El Id de Compra");
+            } else {
+                if (orden_compras.getTemp_fecha_orden().equals("")) {
+                    addMessage("Seleccione la Fecha de La orden");
+                } else {
+                    if (orden_compras.getTemp_fecha_entrega().equals("")) {
+                        addMessage("Seleccione la Fecha de Entrega");
+                    } else {
+                        if (orden_compras.getCantidad() == 0) {
+                            addMessage("Ingrese La Cantidad");
+                        } else {
+                            if (orden_compras.getPproductos().getProveedor().getId_proveedor() == 0) {
+                                addMessage("Seleccione El Proveedor");
+                            } else {
+                                if (orden_compras.getPproductos().getProducto().getId_producto() == 0) {
+                                    addMessage("Seleccione Un Producto");
+                                } else {
 
-            orden_compras.setTemp_fecha_entrega(formateador);
-            orden_compras.setTemp_fecha_orden(formateador2);
-
-            dao = new Orden_comprasDao();
-            dao.registrar(orden_compras);
-
+                                    dao = new Orden_comprasDao();
+                                    dao.registrar(orden_compras);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         } catch (Exception e) {
             System.out.println(e);
         }

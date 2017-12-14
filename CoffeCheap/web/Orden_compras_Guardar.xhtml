@@ -16,6 +16,7 @@
         <f:event type="preRenderView" listener="#{productoBean.Mostrar()}"/>
         <f:event type="preRenderView" listener="#{proveedorBean.Mostrar()}"/>
         <f:event type="preRenderView" listener="#{orden_comprasBean.Mostrar_Prov_Produ()}"/>
+         <p:growl id="mess"/>
         <h:form class="flip">
 
           <p:panelGrid id="desplegar1" columns="2">
@@ -24,10 +25,10 @@
             <p:autoComplete id="Codig" value="#{orden_comprasBean.orden_compras.id_orden_compras}"/>                         
 
             <p:outputLabel  value="Fecha de Orden" />
-            <p:calendar id="Orden" value="#{orden_comprasBean.orden_compras.fecha_orden}" locale="es"/>
+            <p:calendar id="Orden" value="#{orden_comprasBean.orden_compras.temp_fecha_orden}" locale="es"/>
 
             <p:outputLabel  value="Fecha de Entrega" />
-            <p:calendar id="Entrega" value="#{orden_comprasBean.orden_compras.fecha_entrega}" locale="es"/>
+            <p:calendar id="Entrega" value="#{orden_comprasBean.orden_compras.temp_fecha_entrega}" locale="es"/>
 
             <p:outputLabel  value="Cantidad Orden" />
             <p:autoComplete id="Cantidad" value="#{orden_comprasBean.orden_compras.cantidad}"/>
@@ -49,29 +50,9 @@
           </p:panelGrid>
 
 
-          <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{orden_comprasBean.registrar()}"/>
+          <p:commandButton value="Guardar" actionListener="#{orden_comprasBean.registrar()}"/>
 
 
-          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
-            <p:panelGrid id="display" columns="2" columnClasses="label,value">
-
-              <h:outputText value="id_orden_compras" style="color: #000000"/>
-              <h:outputText id="compra1" value="#{orden_comprasBean.orden_compras.id_orden_compras}" />                         
-
-              <h:outputText value="fecha orden" style="color: #000000"/>
-              <h:outputText id="orden1" value="#{orden_comprasBean.orden_compras.fecha_entrega}" />
-
-              <h:outputText value="Fecha entrega" style="color: #000000"/>
-              <h:outputText id="entrega1" value="#{orden_comprasBean.orden_compras.fecha_orden}" />
-
-              <h:outputText value="id producto" style="color: #000000"/>
-              <h:outputText id="producto1" value="#{orden_comprasBean.orden_compras.pproductos.producto.id_producto}" />
-
-              <h:outputText value="id proveedor" style="color: #000000"/>
-              <h:outputText id="proveedor1" value="#{orden_comprasBean.orden_compras.pproductos.proveedor.id_proveedor}" />
-              
-            </p:panelGrid>
-          </p:dialog>
 
         </h:form>
         <h:form id="otro">       

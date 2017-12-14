@@ -20,12 +20,11 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @ViewScoped
 public class CompraBean extends Dao {
-static public void addMessage(String summary) {
+
+    static public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
-
-
 
     Compra compra = new Compra();
     List<Compra> lista;
@@ -66,7 +65,7 @@ static public void addMessage(String summary) {
      * @throws Exception por si resulta un error de SQL
      */
     public void Intermedio() throws Exception {
- if (compra.getOcompras().getId_orden_compras() == 0) {
+        if (compra.getOcompras().getId_orden_compras() == 0) {
             addMessage("Eliga Un Numero de Orden");
         } else {
             if (compra.getProducto().getId_producto() == 0) {
@@ -87,19 +86,25 @@ static public void addMessage(String summary) {
                                 if (compra.getFechaEntrega().equals("")) {
                                     addMessage("Ingrese La Fecha de Entrega");
                                 } else {
-        i = i + 1;
-        intermedio.add(new Compra(i, compra.getOcompras().getId_orden_compras(), compra.getProducto().getId_producto(),
-                compra.getCantidad(), compra.getCosto(), compra.getNo_fac(), compra.getSerie(), compra.getFechaEntrega()));
+                                    i = i + 1;
+                                    intermedio.add(new Compra(i, compra.getOcompras().getId_orden_compras(), compra.getProducto().getId_producto(),
+                                            compra.getCantidad(), compra.getCosto(), compra.getNo_fac(), compra.getSerie(), compra.getFechaEntrega()));
 
-        compra.getOcompras().setId_orden_compras(0);
-        compra.getProducto().setId_producto(0);
-        compra.setCantidad(0);
-        compra.setCosto(0);
-        compra.setFechaEntrega(null);
-        compra.setNo_fac(0);
-        compra.setSerie(null);
+                                    compra.getOcompras().setId_orden_compras(0);
+                                    compra.getProducto().setId_producto(0);
+                                    compra.setCantidad(0);
+                                    compra.setCosto(0);
+                                    compra.setFechaEntrega(null);
+                                    compra.setNo_fac(0);
+                                    compra.setSerie(null);
 
-                                }}}}}}}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -170,13 +175,45 @@ static public void addMessage(String summary) {
         CompraDao dao;
         producto = compra.getProducto().getId_producto();
         try {
-            dao = new CompraDao();
-            dao.Modificar(compra);
-            List<String> listado = new ArrayList();
-            listado = dao.CodigodeProducto();
-            for (int j = 0; j < listado.size(); j++) {
-                int cantidad = dao.Cantidad(Integer.parseInt(listado.get(j)));
-                dao.ActualizarCantidad(cantidad, Integer.parseInt(listado.get(j)));
+            if (compra.getId_compras() == 0) {
+                addMessage("Ingrese un ID de Compra");
+            } else {
+                if (compra.getOcompras().getId_orden_compras() == 0) {
+                    addMessage("Eliga Un Numero de Orden");
+                } else {
+                    if (compra.getProducto().getId_producto() == 0) {
+                        addMessage("Eliga Un Producto");
+                    } else {
+                        if (compra.getCantidad() == 0) {
+                            addMessage("Ingrese La Cantidad");
+                        } else {
+                            if (compra.getCosto() == 0) {
+                                addMessage("Ingrese El costo");
+                            } else {
+                                if (compra.getNo_fac() == 0) {
+                                    addMessage("Ingrese El Numero de Factura");
+                                } else {
+                                    if (compra.getSerie().equals("")) {
+                                        addMessage("Ingrese El Numero de Serie");
+                                    } else {
+                                        if (compra.getFechaEntrega().equals("")) {
+                                            addMessage("Ingrese La Fecha de Entrega");
+                                        } else {
+                                            dao = new CompraDao();
+                                            dao.Modificar(compra);
+                                            List<String> listado = new ArrayList();
+                                            listado = dao.CodigodeProducto();
+                                            for (int j = 0; j < listado.size(); j++) {
+                                                int cantidad = dao.Cantidad(Integer.parseInt(listado.get(j)));
+                                                dao.ActualizarCantidad(cantidad, Integer.parseInt(listado.get(j)));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 //        System.out.println("productos: " + listado.get(j));
             }
 

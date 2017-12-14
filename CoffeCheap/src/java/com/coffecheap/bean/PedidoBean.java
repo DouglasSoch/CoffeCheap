@@ -60,13 +60,25 @@ public class PedidoBean {
 
         PedidoDao dao;
         try {
+            if (pedido.getMesa().getId_mesa() == 0) {
+                addMessage("Seleccione Una Mesa");
+            } else {
+                if (pedido.getHoraS().equals("")) {
+                    addMessage("Ingrese La Hora");
+                } else {
+                    if (pedido.getUsuario().getId() == 0) {
+                        addMessage("Seleccione el usuario");
+                    } else {
+                        if (pedido.getTemp_fecha().equals("")) {
+                            addMessage("Seleccione la Fecha");
+                        } else {
 
-            String formateador = new SimpleDateFormat("yyyy-MM-dd").format(pedido.getFecha());
-            String formaterHour = new SimpleDateFormat("HH:mm:ss").format(pedido.getHora());
-            pedido.setTemp_fecha(formateador);
-            pedido.setHoraS(formaterHour);
-            dao = new PedidoDao();
-            dao.registrar(pedido);
+                            dao = new PedidoDao();
+                            dao.registrar(pedido);
+                        }
+                    }
+                }
+            }
         } catch (Exception e) {
             System.out.println(e);
         }

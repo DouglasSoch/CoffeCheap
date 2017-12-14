@@ -28,7 +28,7 @@
                             <f:selectItems value="#{usuarioBean.lstUsuarioMe}" var="tipp" itemLabel="#{tipp.usuario}" itemValue="#{tipp.id}"/>      
                         </p:selectOneMenu>
                         <p:outputLabel  value="Fecha" />
-                        <p:calendar id="Entrega" value="#{pedidoBean.pedido.fecha}" pattern="yyyy-MM-dd" locale="es"/>
+                        <p:calendar id="Entrega" value="#{pedidoBean.pedido.temp_fecha}" pattern="yyyy-MM-dd" locale="es"/>
                     </h:panelGrid>
                     <p:commandButton value="Guardar"  update="mess" actionListener="#{pedidoBean.registrar()}"/>
                 </h:form>

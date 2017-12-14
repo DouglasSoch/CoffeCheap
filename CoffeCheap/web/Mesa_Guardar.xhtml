@@ -13,8 +13,8 @@
   <h:body>
     <ui:composition template="./WEB-INF/template/Template.xhtml">
       <ui:define name="content">
-
-        <h:form class="flip">
+<p:growl id="mess"/>
+<h:form id="hola">
           <f:event type="preRenderView"  listener="#{estado_mesaBean.listar()}"/>
 
           <p:panelGrid id="desplegar1" columns="2">
@@ -28,23 +28,10 @@
           </p:panelGrid>
 
 
-          <p:commandButton value="Guardar" update="display" oncomplete="PF('dlg').show()" actionListener="#{mesaBean.registrar()}"/>
+          <p:commandButton value="Guardar"  actionListener="#{mesaBean.registrar()}"/>
 
 
-          <p:dialog widgetVar="dlg" modal="true" resizable="false" header="Valores Guardados" showEffect="fade"> 
-            <p:panelGrid id="display" columns="2" columnClasses="label,value">
-                                    
-              <h:outputText value="Cantidad Comensales" style="color: #000000"/>
-              <h:outputText id="CantidadV" value="#{mesaBean.mesa.cantidad_comensales}" />
-              
-              <h:outputText value="Ubicacion" style="color: #000000"/>
-              <h:outputText id="UbicacionV" value="#{mesaBean.mesa.ubicacion}" />
-              
-              
-                           
-              
-            </p:panelGrid>
-          </p:dialog>
+          
 
         </h:form>
         
