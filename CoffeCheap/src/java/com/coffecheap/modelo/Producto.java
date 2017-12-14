@@ -80,7 +80,7 @@ public class Producto {
     /**
      * constructor para objeto unidad de medida
      *
-     * @param Umedida
+     * @param Umedida atributo 
      */
     public Producto(Unidad_medida Umedida) {
         this.Umedida = Umedida;
@@ -89,7 +89,7 @@ public class Producto {
     /**
      * constructor para tipo producto
      *
-     * @param Tproducto
+     * @param Tproducto atributo 
      */
     public Producto(Tipo_producto Tproducto) {
         this.Tproducto = Tproducto;

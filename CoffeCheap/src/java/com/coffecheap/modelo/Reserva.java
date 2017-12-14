@@ -32,7 +32,7 @@ public class Reserva {
     /**
      * constructor para int
      *
-     * @param id_reserva
+     * @param id_reserva atributo 
      */
     public Reserva(int id_reserva) {
         this.id_reserva = id_reserva;
@@ -41,7 +41,7 @@ public class Reserva {
     /**
      * constructor para date
      *
-     * @param fecha
+     * @param fecha atributo 
      */
     public Reserva(Date fecha) {
         this.fecha = fecha;
@@ -50,7 +50,7 @@ public class Reserva {
     /**
      * constructor para time
      *
-     * @param hora_inicio
+     * @param hora_inicio atributo 
      */
     public Reserva(Time hora_inicio) {
         this.hora_inicio = hora_inicio;
@@ -59,7 +59,7 @@ public class Reserva {
     /**
      * Constructor para String
      *
-     * @param hora_entrada
+     * @param hora_entrada atributo 
      */
     public Reserva(String hora_entrada) {
         this.hora_entrada = hora_entrada;
@@ -68,7 +68,7 @@ public class Reserva {
     /**
      * constructor para objeto Cliente
      *
-     * @param cliente
+     * @param cliente atributo 
      */
     public Reserva(Cliente cliente) {
         this.cliente = cliente;
@@ -77,7 +77,7 @@ public class Reserva {
     /**
      * constructor para objeto meas
      *
-     * @param mesa
+     * @param mesa atributo 
      */
     public Reserva(Mesa mesa) {
         this.mesa = mesa;

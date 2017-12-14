@@ -44,7 +44,7 @@ public class Estado_plato {
     /**
      * constructor para String
      *
-     * @param nombre
+     * @param nombre atributo 
      */
     public Estado_plato(String nombre) {
         this.nombre = nombre;
