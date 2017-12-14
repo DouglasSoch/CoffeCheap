@@ -1,17 +1,21 @@
 package com.coffecheap.modelo;
 
-
 import java.sql.Time;
 import java.util.Date;
 
 import java.util.Objects;
 
-public class Reserva 
-{
-    int id_reserva =0 ; 
+/**
+ * Clase reserva
+ *
+ * @author bryan
+ */
+public class Reserva {
+
+    int id_reserva = 0;
     Date fecha = null;
-    Time hora_inicio = null ;
-    Time hora_final= null;
+    Time hora_inicio = null;
+    Time hora_final = null;
     int cantidad_personas = 0;
     String hora_entrada = null;
     String hora_salida = null;
@@ -19,33 +23,80 @@ public class Reserva
     Cliente cliente = new Cliente();
     Mesa mesa = new Mesa();
 
+    /**
+     * Constructor vacion
+     */
     public Reserva() {
     }
 
+    /**
+     * constructor para int
+     *
+     * @param id_reserva
+     */
     public Reserva(int id_reserva) {
         this.id_reserva = id_reserva;
     }
 
+    /**
+     * constructor para date
+     *
+     * @param fecha
+     */
     public Reserva(Date fecha) {
         this.fecha = fecha;
     }
 
+    /**
+     * constructor para time
+     *
+     * @param hora_inicio
+     */
     public Reserva(Time hora_inicio) {
         this.hora_inicio = hora_inicio;
     }
 
+    /**
+     * Constructor para String
+     *
+     * @param hora_entrada
+     */
     public Reserva(String hora_entrada) {
         this.hora_entrada = hora_entrada;
     }
 
+    /**
+     * constructor para objeto Cliente
+     *
+     * @param cliente
+     */
     public Reserva(Cliente cliente) {
         this.cliente = cliente;
     }
 
+    /**
+     * constructor para objeto meas
+     *
+     * @param mesa
+     */
     public Reserva(Mesa mesa) {
         this.mesa = mesa;
     }
 
+    /**
+     * constructor con todos los atributos
+     *
+     * @param id_reserva atributo
+     * @param fecha atributo
+     * @param hora_inicio atributo
+     * @param hora_final atributo
+     * @param cantidad_personas atributo
+     * @param hora_entrada atributo
+     * @param hora_salida atributo
+     * @param fechaSus atributo
+     * @param cliente atributo
+     * @param mesa atributo
+     */
     public Reserva(int id_reserva, Date fecha, Time hora_inicio, Time hora_final, int cantidad_personas, String hora_entrada, String hora_salida, String fechaSus, Cliente cliente, Mesa mesa) {
         this.id_reserva = id_reserva;
         this.fecha = fecha;
@@ -202,6 +253,4 @@ public class Reserva
         return "Reserva{" + "id_reserva=" + id_reserva + ", fecha=" + fecha + ", hora_inicio=" + hora_inicio + ", hora_final=" + hora_final + ", cantidad_personas=" + cantidad_personas + ", hora_entrada=" + hora_entrada + ", hora_salida=" + hora_salida + ", fechaSus=" + fechaSus + ", cliente=" + cliente + ", mesa=" + mesa + '}';
     }
 
-    
-    
 }

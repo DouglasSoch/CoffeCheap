@@ -2,24 +2,40 @@
 package com.coffecheap.modelo;
 
 import java.util.Objects;
-
+/**
+ * Clase turno
+ * @author bryan
+ */
 public class Turno 
 {
     int id_turno = 0;
     String horario_turno = null;
     String observaciones = null;
-
+/**
+ * constructor vacio
+ */
     public Turno() {
     }
-
+/**
+ * Constructor para int
+ * @param id_turno atributo
+ */
     public Turno(int id_turno) {
         this.id_turno = id_turno;
     }
-
+/**
+ * Constructor para String
+ * @param horario_turno atributo
+ */
     public Turno(String horario_turno) {
         this.horario_turno = horario_turno;
     }
-
+/**
+ * Constructor con todos lo atributos
+ * @param id_turno atributo
+ * @param horario_turno atributo
+ * @param observaciones atributo
+ */
     public Turno(int id_turno, String horario_turno, String observaciones) {
         this.id_turno = id_turno;
         this.horario_turno = horario_turno;

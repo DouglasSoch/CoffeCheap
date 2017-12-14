@@ -2,39 +2,75 @@ package com.coffecheap.modelo;
 
 import java.util.Objects;
 
-public class Receta 
-{
+/**
+ * Clase receta
+ *
+ * @author bryan
+ */
+public class Receta {
+
     Plato plato = new Plato();
     Producto producto = new Producto();
     int cantidad = 0;
     Unidad_medida Umedida = new Unidad_medida();
 
+    /**
+     * constructor vacio
+     */
     public Receta() {
     }
 
+    /**
+     * constructor para el objeto plato
+     *
+     * @param plato atributo
+     */
     public Receta(Plato plato) {
         this.plato = plato;
     }
 
+    /**
+     * constructor para el objeto producto
+     *
+     * @param producto atributo
+     */
     public Receta(Producto producto) {
         this.producto = producto;
     }
 
+    /**
+     * constructor para int
+     *
+     * @param cantidad atributo
+     */
     public Receta(int cantidad) {
         this.cantidad = cantidad;
     }
 
+    /**
+     * constructor para el objeto unidad medida
+     *
+     * @param Umedida atributo
+     */
     public Receta(Unidad_medida Umedida) {
         this.Umedida = Umedida;
     }
 
+    /**
+     * constructor con todos los parametros
+     *
+     * @param plato atributo
+     * @param producto atributo
+     * @param cantidad atributo
+     * @param Umedida atributo
+     */
     public Receta(Plato plato, Producto producto, int cantidad, Unidad_medida Umedida) {
         this.plato = plato;
         this.producto = producto;
         this.cantidad = cantidad;
         this.Umedida = Umedida;
     }
-    
+
     public Plato getPlato() {
         return plato;
     }

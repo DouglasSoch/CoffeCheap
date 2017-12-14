@@ -2,17 +2,18 @@ package com.coffecheap.modelo;
 
 import java.util.Objects;
 
+/**
+ * Clase estado pago
+ *
+ * @author bryan
+ */
 public class EstadoPago {
 
     private boolean DesHabilitarBoton = false;
     private String Estado = null;
 
-
-    
-    
-
     public boolean isDesHabilitarBoton() {
-        
+
         return DesHabilitarBoton;
     }
 
@@ -31,8 +32,4 @@ public class EstadoPago {
     public EstadoPago() {
     }
 
-    
-
-       
-    
 }

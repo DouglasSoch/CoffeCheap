@@ -2,21 +2,44 @@ package com.coffecheap.modelo;
 
 import java.util.Objects;
 
-public class Cliente  
-{
-    int id_cliente =0;
+/**
+ * Clase cliente
+ *
+ * @author bryan
+ */
+public class Cliente {
+
+    int id_cliente = 0;
     String nombre = null;
     String direccion = null;
     String nit_cliente = null;
 
+    /**
+     * constructor para int
+     *
+     * @param id_cliente atributo
+     */
     public Cliente(int id_cliente) {
         this.id_cliente = id_cliente;
     }
 
+    /**
+     * constructor para String
+     *
+     * @param nombre atributo
+     */
     public Cliente(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Constructor con todos los atributos
+     *
+     * @param id_cliente atributo
+     * @param nombre atributo
+     * @param direccion atributo
+     * @param nit_cliente atributo
+     */
     public Cliente(int id_cliente, String nombre, String direccion, String nit_cliente) {
         this.id_cliente = id_cliente;
         this.nombre = nombre;
@@ -26,7 +49,7 @@ public class Cliente
 
     public Cliente() {
     }
-    
+
     public int getId_cliente() {
         return id_cliente;
     }

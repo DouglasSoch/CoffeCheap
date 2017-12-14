@@ -1,28 +1,27 @@
 package com.coffecheap.modelo;
 
-
-
 /**
+ * Clase fac
  *
  * @author Lezanaman
  */
-public class Fac 
-{
-  String fecha_emision;
-  String nombre_cliente;
-  int nit_cliente;
-  String direccion;
-  String nombre_platillo;
-  int cantidad;
-  int precio;
-  int tot;
-  int subtotal;
-  int iva;
-  int propina;
-  int total;
-  int id_mesa;
-  int cantidad_comensales;
-  String nombre;
+public class Fac {
+
+    String fecha_emision;
+    String nombre_cliente;
+    int nit_cliente;
+    String direccion;
+    String nombre_platillo;
+    int cantidad;
+    int precio;
+    int tot;
+    int subtotal;
+    int iva;
+    int propina;
+    int total;
+    int id_mesa;
+    int cantidad_comensales;
+    String nombre;
 
     public String getFecha_emision() {
         return fecha_emision;
@@ -143,6 +142,5 @@ public class Fac
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
+
 }

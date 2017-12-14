@@ -12,21 +12,34 @@ import java.util.Objects;
  * @author bryan
  */
 public class Tipo_plato {
-    
-    int id=0;
-    String nombre=null;
 
+    int id = 0;
+    String nombre = null;
+
+    /**
+     * contructor vacio
+     */
     public Tipo_plato() {
     }
-    
+
+    /**
+     * Constructor para int
+     *
+     * @param id atributo
+     */
     public Tipo_plato(int id) {
         this.id = id;
     }
 
+    /**
+     * constructor para String
+     *
+     * @param nombre atributo
+     */
     public Tipo_plato(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -73,5 +86,5 @@ public class Tipo_plato {
     public String toString() {
         return "Tipo_plato{" + "id=" + id + ", nombre=" + nombre + '}';
     }
-    
+
 }

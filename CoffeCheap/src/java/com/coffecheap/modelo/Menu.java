@@ -1,7 +1,12 @@
 package com.coffecheap.modelo;
 
-    public class Menu {
-    
+/**
+ * Clase menu
+ *
+ * @author bryan
+ */
+public class Menu {
+
     int codigo;
     int codigosubmenu;
     int cantidadprimerciclo;
@@ -17,7 +22,7 @@ package com.coffecheap.modelo;
     public void setLlamadopagina(String llamadopagina) {
         this.llamadopagina = llamadopagina;
     }
-    
+
     public int getCodigosubmenu() {
         return codigosubmenu;
     }
@@ -25,15 +30,15 @@ package com.coffecheap.modelo;
     public void setCodigosubmenu(int codigosubmenu) {
         this.codigosubmenu = codigosubmenu;
     }
-    
+
     public int getCantidadprimerciclo() {
         return cantidadprimerciclo;
     }
 
     public void setCantidadprimerciclo(int cantidadprimerciclo) {
         this.cantidadprimerciclo = cantidadprimerciclo;
-    }       
-    
+    }
+
     public int getCodigo() {
         return codigo;
     }
@@ -65,6 +70,5 @@ package com.coffecheap.modelo;
     public void setSubpagina(String subpagina) {
         this.subpagina = subpagina;
     }
-    
-    
+
 }

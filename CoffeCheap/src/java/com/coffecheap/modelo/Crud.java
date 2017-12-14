@@ -8,33 +8,50 @@ package com.coffecheap.modelo;
 import java.util.Objects;
 
 /**
+ * Clase crud
  *
  * @author bryan
  */
 public class Crud {
-    int id= 0;
-    String nombre= null;
 
+    int id = 0;
+    String nombre = null;
+
+    /**
+     * constructor vacio
+     */
     public Crud() {
     }
 
-    
-    
+    /**
+     * constructor para int
+     *
+     * @param id atributo
+     */
     public Crud(int id) {
         this.id = id;
     }
 
+    /**
+     * constructor para String
+     *
+     * @param nombre atributo
+     */
     public Crud(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * constructor con todos los atributos
+     *
+     * @param id atributo
+     * @param nombre atributo
+     */
     public Crud(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    
-    
     public int getId() {
         return id;
     }
@@ -81,8 +98,5 @@ public class Crud {
     public String toString() {
         return "Crud{" + "id=" + id + ", nombre=" + nombre + '}';
     }
-    
-    
-    
-    
+
 }

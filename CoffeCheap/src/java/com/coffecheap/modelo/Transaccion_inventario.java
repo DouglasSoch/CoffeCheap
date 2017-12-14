@@ -2,7 +2,10 @@ package com.coffecheap.modelo;
 
 import java.util.Date;
 import java.util.Objects;
-
+/**
+ * Clase transaccion inventario
+ * @author bryan
+ */
 public class Transaccion_inventario {
 
     int id_transaccion =0;
@@ -14,10 +17,23 @@ public class Transaccion_inventario {
     int cantidad = 0;
     String detalle = null;
     Compra compra = new Compra();
-
+/**
+ * constructor vacio
+ */
     public Transaccion_inventario() {
     }
-
+/**
+ * Constructor con todos los atributos
+ * @param id_transaccion atributo
+ * @param fecha atributo
+ * @param producto atributo
+ * @param Ttransaccion atributo
+ * @param fechaUno atributo
+ * @param fechaDos atributo
+ * @param cantidad atributo
+ * @param detalle v
+ * @param compra atributo
+ */
     public Transaccion_inventario(int id_transaccion, Date fecha, Producto producto, Tipo_transacciones Ttransaccion, String fechaUno, String fechaDos, int cantidad, String detalle, Compra compra) {
         this.id_transaccion = id_transaccion;
         this.fecha = fecha;

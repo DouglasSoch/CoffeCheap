@@ -1,41 +1,84 @@
 package com.coffecheap.modelo;
 
 import java.util.Objects;
-
+/**
+ * Clase usuario
+ * @author bryan
+ */
 public class Usuario {
-          int id= 0;
-          String usuario= null;
-          String pass= null;
-          Tipo tipo = new Tipo();
-          String nombre= null;
-          String apellido = null;
-          int codigo= 0;
-          Turno turno= new Turno();
-          int telefono = 0;
-          String direccion= null;
-          int dpi= 0;
-          String nit= null;
-          String correo= null;
 
+    int id = 0;
+    String usuario = null;
+    String pass = null;
+    Tipo tipo = new Tipo();
+    String nombre = null;
+    String apellido = null;
+    int codigo = 0;
+    Turno turno = new Turno();
+    int telefono = 0;
+    String direccion = null;
+    int dpi = 0;
+    String nit = null;
+    String correo = null;
+
+    /**
+     * Contructor vacio
+     */
     public Usuario() {
     }
 
+    /**
+     * Contructor para int
+     *
+     * @param id atributo
+     */
     public Usuario(int id) {
         this.id = id;
     }
 
+    /**
+     * Constructor para String
+     *
+     * @param usuario atributo
+     */
     public Usuario(String usuario) {
         this.usuario = usuario;
     }
 
+    /**
+     * Constructor para Tipo
+     *
+     * @param tipo objeto
+     */
     public Usuario(Tipo tipo) {
         this.tipo = tipo;
     }
 
+    /**
+     * Constructor para turno
+     *
+     * @param turno objeto
+     */
     public Usuario(Turno turno) {
         this.turno = turno;
     }
 
+    /**
+     *
+     * @param id atributo
+     * @param usuario atributo
+     * @param pass atributo
+     * @param tipo atributo
+     * @param nombre atributo
+     * @param apellido atributo
+     * @param codigo atributo
+     * @param turno atributo
+     * @param telefono atributo
+     * @param direccion atributo
+     * @param dpi atributo
+     * @param nit atributo
+     * @param correo atributo
+     */
     public Usuario(int id, String usuario, String pass, Tipo tipo, String nombre, String apellido, int codigo, Turno turno, int telefono, String direccion, int dpi, String nit, String correo) {
         this.id = id;
         this.usuario = usuario;
@@ -52,8 +95,6 @@ public class Usuario {
         this.correo = correo;
     }
 
-          
-          
     public int getId() {
         return id;
     }

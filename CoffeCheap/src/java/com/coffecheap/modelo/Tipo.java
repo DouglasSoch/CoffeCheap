@@ -8,25 +8,47 @@ package com.coffecheap.modelo;
 import java.util.Objects;
 
 /**
+ * Clase tipo
  *
  * @author bryan
  */
 public class Tipo {
+
     int id = 0;
     String nombre = null;
     String desc = null;
 
+    /**
+     * Constructor vacio
+     */
     public Tipo() {
     }
 
+    /**
+     * constructor para int
+     *
+     * @param id atributo
+     */
     public Tipo(int id) {
         this.id = id;
     }
 
+    /**
+     * Cosntructor para string
+     *
+     * @param nombre atributo
+     */
     public Tipo(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Constructor con todos los atributos
+     *
+     * @param id atributo
+     * @param nombre atributo
+     * @param desc atributo
+     */
     public Tipo(int id, String nombre, String desc) {
         this.id = id;
         this.nombre = nombre;
@@ -91,5 +113,5 @@ public class Tipo {
     public String toString() {
         return "Tipo{" + "id=" + id + ", nombre=" + nombre + ", desc=" + desc + '}';
     }
-    
+
 }

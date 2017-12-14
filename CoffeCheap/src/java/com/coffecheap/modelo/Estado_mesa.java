@@ -2,27 +2,51 @@ package com.coffecheap.modelo;
 
 import java.util.Objects;
 
-public class Estado_mesa 
-{
+/**
+ * Clase estado mesa
+ *
+ * @author bryan
+ */
+public class Estado_mesa {
+
     int id_estado = 0;
     String nombre = null;
 
+    /**
+     * constructor vacio
+     */
     public Estado_mesa() {
     }
 
+    /**
+     * constructor para int
+     *
+     * @param id_estado atributo
+     */
     public Estado_mesa(int id_estado) {
         this.id_estado = id_estado;
     }
 
+    /**
+     * Constructor para String
+     *
+     * @param nombre atributo
+     */
     public Estado_mesa(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Constructor con todos los atributos
+     *
+     * @param id_estado atributo
+     * @param nombre atributoF
+     */
     public Estado_mesa(int id_estado, String nombre) {
         this.id_estado = id_estado;
         this.nombre = nombre;
     }
-    
+
     public int getId_estado() {
         return id_estado;
     }
@@ -69,5 +93,5 @@ public class Estado_mesa
     public String toString() {
         return "Estado_mesa{" + "id_estado=" + id_estado + ", nombre=" + nombre + '}';
     }
-    
+
 }

@@ -2,22 +2,46 @@ package com.coffecheap.modelo;
 
 import java.util.Objects;
 
-public class Tipo_transacciones 
-{
+/**
+ * Clase tipo de transaccion
+ *
+ * @author bryan
+ */
+public class Tipo_transacciones {
+
     int id_tipo_transacciones = 0;
     String nombre = null;
 
+    /**
+     * Constructor vacio
+     */
     public Tipo_transacciones() {
     }
 
+    /**
+     * Constructor para int
+     *
+     * @param id_tipo_transacciones atributo
+     */
     public Tipo_transacciones(int id_tipo_transacciones) {
         this.id_tipo_transacciones = id_tipo_transacciones;
     }
 
+    /**
+     * constructor para string
+     *
+     * @param nombre atributo
+     */
     public Tipo_transacciones(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * constructor con todos los atributos
+     *
+     * @param id_tipo_transacciones atributo
+     * @param nombre atributo
+     */
     public Tipo_transacciones(int id_tipo_transacciones, String nombre) {
         this.id_tipo_transacciones = id_tipo_transacciones;
         this.nombre = nombre;

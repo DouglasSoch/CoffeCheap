@@ -1,5 +1,8 @@
 package com.coffecheap.modelo;
-
+/**
+ * Clase tipo usuario
+ * @author bryan
+ */
 public class TipoUsuario {
     
     int identificacion;

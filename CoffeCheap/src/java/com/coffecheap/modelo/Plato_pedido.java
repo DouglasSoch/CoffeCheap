@@ -2,38 +2,81 @@ package com.coffecheap.modelo;
 
 import java.util.Objects;
 
-public class Plato_pedido 
-{
+/**
+ * Clase plato pedido
+ *
+ * @author bryan
+ */
+public class Plato_pedido {
+
     int id_plato_pedido = 0;
     Plato plato = new Plato();
     int cantidad = 0;
-    Usuario usuario= new Usuario();
-     Pedido pedido= new Pedido();
-     Double precio= 0.0;
+    Usuario usuario = new Usuario();
+    Pedido pedido = new Pedido();
+    Double precio = 0.0;
 
+    /**
+     * constructor vacio
+     */
     public Plato_pedido() {
     }
 
+    /**
+     * constructor para int
+     *
+     * @param id_plato_pedido atributo
+     */
     public Plato_pedido(int id_plato_pedido) {
         this.id_plato_pedido = id_plato_pedido;
     }
 
+    /**
+     * Constructor para objeto plato
+     *
+     * @param plato atributo
+     */
     public Plato_pedido(Plato plato) {
         this.plato = plato;
     }
 
+    /**
+     * constructor para objeto usuario
+     *
+     * @param usuario atributo
+     */
     public Plato_pedido(Usuario usuario) {
         this.usuario = usuario;
     }
 
+    /**
+     * constructor para objeto pedido
+     *
+     * @param pedido atributo
+     */
     public Plato_pedido(Pedido pedido) {
         this.pedido = pedido;
     }
 
+    /**
+     * Constructor para double
+     *
+     * @param precio atributo
+     */
     public Plato_pedido(Double precio) {
         this.precio = precio;
     }
 
+    /**
+     * constructor con todos los atributos
+     *
+     * @param id_plato_pedido atributo
+     * @param plato atributo
+     * @param cantidad atributo
+     * @param usuario atributo
+     * @param pedido atributo
+     * @param precio atributo
+     */
     public Plato_pedido(int id_plato_pedido, Plato plato, int cantidad, Usuario usuario, Pedido pedido, Double precio) {
         this.id_plato_pedido = id_plato_pedido;
         this.plato = plato;
@@ -137,5 +180,5 @@ public class Plato_pedido
     public String toString() {
         return "Plato_pedido{" + "id_plato_pedido=" + id_plato_pedido + ", plato=" + plato + ", cantidad=" + cantidad + ", usuario=" + usuario + ", pedido=" + pedido + ", precio=" + precio + '}';
     }
-     
+
 }

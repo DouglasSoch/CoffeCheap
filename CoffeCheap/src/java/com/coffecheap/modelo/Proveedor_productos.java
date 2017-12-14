@@ -2,27 +2,57 @@ package com.coffecheap.modelo;
 
 import java.util.Objects;
 
-public class Proveedor_productos 
-{
-    Proveedor proveedor= new Proveedor();
-    Producto producto= new Producto();
+/**
+ * Clase proveedo producto
+ *
+ * @author bryan
+ */
+public class Proveedor_productos {
+
+    Proveedor proveedor = new Proveedor();
+    Producto producto = new Producto();
     int precio = 0;
 
+    /**
+     * constructor vacio
+     */
     public Proveedor_productos() {
     }
 
+    /**
+     * constructor para el objeto proveedor
+     *
+     * @param proveedor atributo
+     */
     public Proveedor_productos(Proveedor proveedor) {
         this.proveedor = proveedor;
     }
 
+    /**
+     * constructor para el objeto producto
+     *
+     * @param producto atributo
+     */
     public Proveedor_productos(Producto producto) {
         this.producto = producto;
     }
 
+    /**
+     * constructor para int
+     *
+     * @param precio atributo
+     */
     public Proveedor_productos(int precio) {
         this.precio = precio;
     }
-    
+
+    /**
+     * constructor con todos los atributos
+     *
+     * @param proveedor atributo
+     * @param producto atributo
+     * @param precio atributo
+     */
 
     public Proveedor_productos(Proveedor proveedor, Producto producto, int precio) {
         this.proveedor = proveedor;

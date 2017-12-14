@@ -2,35 +2,72 @@ package com.coffecheap.modelo;
 
 import java.util.Objects;
 
-public class Plato 
-{
+/**
+ * Clase plato
+ *
+ * @author bryan
+ */
+public class Plato {
+
     int id_plato = 0;
     String nombre = null;
-    Double precio =0.0;
-    int porciones =0;
+    Double precio = 0.0;
+    int porciones = 0;
     String descripcion = null;
     Tipo_plato tipoPlato = new Tipo_plato();
 
-    
+    /**
+     * constructor plato
+     */
     public Plato() {
     }
 
+    /**
+     * constructor para nit
+     *
+     * @param id_plato atributo
+     */
     public Plato(int id_plato) {
         this.id_plato = id_plato;
     }
 
+    /**
+     * constructor para String
+     *
+     * @param nombre atributo
+     */
     public Plato(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * constructor para double
+     *
+     * @param precio atributo
+     */
     public Plato(Double precio) {
         this.precio = precio;
     }
 
+    /**
+     * constructor para objeto tipo plato
+     *
+     * @param tipoPlato atributo
+     */
     public Plato(Tipo_plato tipoPlato) {
         this.tipoPlato = tipoPlato;
     }
 
+    /**
+     * constructor con todos los atributos
+     *
+     * @param id_plato atributo
+     * @param nombre atributo
+     * @param precio atributo
+     * @param porciones atributo
+     * @param descripcion atributo
+     * @param tipoPlato atributo
+     */
     public Plato(int id_plato, String nombre, Double precio, int porciones, String descripcion, Tipo_plato tipoPlato) {
         this.id_plato = id_plato;
         this.nombre = nombre;
@@ -135,5 +172,4 @@ public class Plato
         return "Plato{" + "id_plato=" + id_plato + ", nombre=" + nombre + ", precio=" + precio + ", porciones=" + porciones + ", descripcion=" + descripcion + ", tipoPlato=" + tipoPlato + '}';
     }
 
-    
 }

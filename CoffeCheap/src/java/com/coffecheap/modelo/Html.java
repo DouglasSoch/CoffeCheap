@@ -8,30 +8,49 @@ package com.coffecheap.modelo;
 import java.util.Objects;
 
 /**
+ * Clase html
  *
  * @author bryan
  */
 public class Html {
-    int id= 0;
-    String nombre= null;
 
-    
+    int id = 0;
+    String nombre = null;
+
+    /**
+     * constructor vacio
+     */
     public Html() {
     }
-    
+
+    /**
+     * constructor para int
+     *
+     * @param id atributo
+     */
     public Html(int id) {
         this.id = id;
     }
 
+    /**
+     * Constructor para Sring
+     *
+     * @param nombre atributo
+     */
     public Html(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * constructor con todos los parametros
+     *
+     * @param id atributo
+     * @param nombre atributo
+     */
     public Html(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
-
 
     public int getId() {
         return id;
@@ -79,7 +98,5 @@ public class Html {
     public String toString() {
         return "Html{" + "id=" + id + ", nombre=" + nombre + '}';
     }
-    
-    
-    
+
 }

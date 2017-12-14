@@ -1,17 +1,16 @@
-
 package com.coffecheap.modelo;
 
 import java.util.Objects;
 
 /**
+ * Clase tem chef
  *
  * @author bryan
  */
 public class Tem_chef {
 
-    int id_chef=0;
-     int codigounico=0;
-  
+    int id_chef = 0;
+    int codigounico = 0;
 
     public int getCodigounico() {
         return codigounico;
@@ -20,12 +19,12 @@ public class Tem_chef {
     public void setCodigounico(int codigounico) {
         this.codigounico = codigounico;
     }
-    Pedido pedido= new Pedido();
-    Plato plato= new Plato();
-    int cantidad=0;
-    String descripcion= null;
-    Estado_plato estadoPlato= new Estado_plato();
-    Tipo_plato tipoPlato= new Tipo_plato();
+    Pedido pedido = new Pedido();
+    Plato plato = new Plato();
+    int cantidad = 0;
+    String descripcion = null;
+    Estado_plato estadoPlato = new Estado_plato();
+    Tipo_plato tipoPlato = new Tipo_plato();
 
     public Tem_chef() {
     }
@@ -63,7 +62,7 @@ public class Tem_chef {
         this.estadoPlato = estadoPlato;
         this.tipoPlato = tipoPlato;
     }
-    
+
     public int getId_chef() {
         return id_chef;
     }

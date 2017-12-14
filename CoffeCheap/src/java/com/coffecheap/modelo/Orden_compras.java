@@ -1,17 +1,21 @@
 package com.coffecheap.modelo;
 
-
 import java.util.Date;
 import java.util.Objects;
 
-public class Orden_compras 
-{
+/**
+ * Clase orden compras
+ *
+ * @author bryan
+ */
+public class Orden_compras {
+
     String temp_fecha_orden;
     String temp_fecha_entrega;
-     int id_orden_compras = 0;
+    int id_orden_compras = 0;
     Date fecha_orden = null;
     Date fecha_entrega = null;
-    int cantidad =0;
+    int cantidad = 0;
     Proveedor_productos Pproductos = new Proveedor_productos();
     Double precio = 0.0;
 
@@ -30,7 +34,6 @@ public class Orden_compras
     public void setTemp_fecha_entrega(String temp_fecha_entrega) {
         this.temp_fecha_entrega = temp_fecha_entrega;
     }
-   
 
     public Orden_compras() {
     }
@@ -51,6 +54,16 @@ public class Orden_compras
         this.precio = precio;
     }
 
+    /**
+     * constructor con todos los atributos
+     *
+     * @param id_orden_compras atributo
+     * @param fecha_orden atributo
+     * @param fecha_entrega atributo
+     * @param cantidad atributo
+     * @param Pproductos atributo
+     * @param precio atributo
+     */
     public Orden_compras(int id_orden_compras, Date fecha_orden, Date fecha_entrega, int cantidad, Proveedor_productos Pproductos, Double precio) {
         this.id_orden_compras = id_orden_compras;
         this.fecha_orden = fecha_orden;
@@ -59,7 +72,7 @@ public class Orden_compras
         this.Pproductos = Pproductos;
         this.precio = precio;
     }
-    
+
     public int getId_orden_compras() {
         return id_orden_compras;
     }
@@ -154,5 +167,5 @@ public class Orden_compras
     public String toString() {
         return "Orden_compras{" + "id_orden_compras=" + id_orden_compras + ", fecha_orden=" + fecha_orden + ", fecha_entrega=" + fecha_entrega + ", cantidad=" + cantidad + ", Pproductos=" + Pproductos + ", precio=" + precio + '}';
     }
-    
+
 }

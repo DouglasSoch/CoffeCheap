@@ -3,17 +3,27 @@ package com.coffecheap.modelo;
 import java.util.Objects;
 
 /**
+ * Clase detalle devolucion
  *
  * @author Lezanaman
  */
-public class Detalle_devolucion 
-{
-   int id=0;
-   Compra compra = new Compra();
+public class Detalle_devolucion {
 
+    int id = 0;
+    Compra compra = new Compra();
+
+    /**
+     * constructor vacio
+     */
     public Detalle_devolucion() {
     }
 
+    /**
+     * constructor con todos los atributos
+     *
+     * @param id atributo
+     * @param compra atributo
+     */
     public Detalle_devolucion(int id, Compra compra) {
         this.id = id;
         this.compra = compra;
@@ -27,7 +37,6 @@ public class Detalle_devolucion
         this.id = id;
     }
 
-   
     public int getId() {
         return id;
     }
@@ -74,6 +83,5 @@ public class Detalle_devolucion
     public String toString() {
         return "Detalle_devolucion{" + "id=" + id + ", compra=" + compra + '}';
     }
-   
-   
+
 }

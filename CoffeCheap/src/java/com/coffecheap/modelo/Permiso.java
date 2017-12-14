@@ -8,38 +8,62 @@ package com.coffecheap.modelo;
 import java.util.Objects;
 
 /**
+ * Clase
  *
  * @author bryan
  */
 public class Permiso {
-    
+
     Tipo tipo = new Tipo();
     Html html = new Html();
-    Crud crud= new Crud();
+    Crud crud = new Crud();
 
+    /**
+     * constructor vacio
+     */
     public Permiso() {
     }
 
+    /**
+     * constructor para objeto tipo
+     *
+     * @param tipo atributo
+     */
     public Permiso(Tipo tipo) {
         this.tipo = tipo;
     }
 
+    /**
+     * constructor para objeto html
+     *
+     * @param html atributo
+     */
     public Permiso(Html html) {
         this.html = html;
     }
 
+    /**
+     * constructor para objeto crud
+     *
+     * @param crud atributo
+     */
     public Permiso(Crud crud) {
         this.crud = crud;
     }
 
+    /**
+     * constructor con todos los atributos
+     *
+     * @param tipo atributo
+     * @param html atributo
+     * @param crud atributo
+     */
     public Permiso(Tipo tipo, Html html, Crud crud) {
         this.tipo = tipo;
         this.html = html;
         this.crud = crud;
     }
 
-    
-    
     public Tipo getTipo() {
         return tipo;
     }
@@ -98,7 +122,5 @@ public class Permiso {
     public String toString() {
         return "Permiso{" + "tipo=" + tipo + ", html=" + html + ", crud=" + crud + '}';
     }
-    
-    
-    
+
 }
