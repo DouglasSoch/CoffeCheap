@@ -460,8 +460,8 @@ public class Control_mesaDao extends Dao {
     /**
      * Metodo para listar el control de las mesas
      *
-     * @param mesa
-     * @throws Exception
+     * @param mesa Objeto de la clase
+     * @throws Exception por si resulta un error de SQL
      */
     public void ListaPedido(int mesa) throws Exception {
 

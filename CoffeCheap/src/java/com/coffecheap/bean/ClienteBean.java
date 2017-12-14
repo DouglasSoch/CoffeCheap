@@ -171,7 +171,7 @@ public class ClienteBean {
     /**
      * Metodo para obtener una fila en un objeto
      *
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public void buscarr() throws Exception {
         System.out.println("EL id es " + cliente.getId_cliente());
@@ -195,7 +195,7 @@ public class ClienteBean {
     /**
      * Metodo para modificar un cliente
      *
-     * @throws Exception
+     * @throws Exception por si resulta un error de SQL
      */
     public void modificar() throws Exception {
         ClienteDao dao;
@@ -211,8 +211,8 @@ public class ClienteBean {
     /**
      * Metodo para elimianr un cliente
      *
-     * @param cli
-     * @throws Exception
+     * @param cli Objeto de la clase
+     * @throws Exception por si resulta un error de SQL
      */
     public void eliminar(Cliente cli) throws Exception {
         ClienteDao dao;

@@ -76,7 +76,7 @@ public class MesaBean {
     /**
      * Metodo para modificar una mesa
      *
-     * @param mar
+     * @param mar Objeto de la clase
      * @throws Exception por si resulta un error de SQL
      */
     public void modificar(Mesa mar) throws Exception {

@@ -40,7 +40,7 @@ import net.sf.jasperreports.engine.export.ooxml.JRPptxExporter;
 
 /**
  *
- * @author Santi & Lezana
+ * @author Bryan
  */
 @ManagedBean
 @ViewScoped
